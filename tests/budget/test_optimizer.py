@@ -67,7 +67,7 @@ def test_the_allowance_constraint_binds_when_it_is_tight(truth: pl.DataFrame) ->
     loose = optimize(model, constraints_for(model))
     tight = optimize(
         model,
-        constraints_for(model, allowance={"paid_search": 20.0}, revenue_per_acquisition=60.0),
+        constraints_for(model, allowance={"paid_search": 19.0}, revenue_per_acquisition=60.0),
     )
     search_loose = next(a for a in loose.allocation if a.channel == "paid_search")
     search_tight = next(a for a in tight.allocation if a.channel == "paid_search")
