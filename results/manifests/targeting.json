@@ -1,0 +1,2998 @@
+{
+ "as_of": "2026-09-27",
+ "figures": {},
+ "seed": 12,
+ "tables": {
+  "targeting.criteo.policies": {
+   "columns": [
+    "Policy",
+    "Qini coefficient",
+    "Lower",
+    "Upper",
+    "Chosen share",
+    "Value on validation",
+    "Value on test"
+   ],
+   "formats": [
+    "text",
+    "float3",
+    "float3",
+    "float3",
+    "pct1",
+    "float1",
+    "float1"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858); T and X learners, the sure things rule and everyone",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "rows": [
+    [
+     "T learner",
+     3.427638596,
+     3.208547022,
+     3.618760616,
+     1.0,
+     10.60536208,
+     10.44070113
+    ],
+    [
+     "X learner",
+     3.706225711,
+     3.514858089,
+     3.92852778,
+     1.0,
+     10.60536208,
+     10.44070113
+    ],
+    [
+     "Sure things",
+     3.629114845,
+     3.437524465,
+     3.860819755,
+     0.95,
+     10.6234143,
+     10.40796277
+    ],
+    [
+     "Everyone",
+     -6.415701304e-16,
+     -2.44584214e-15,
+     2.205548244e-15,
+     1.0,
+     10.60536208,
+     10.44070113
+    ]
+   ]
+  },
+  "targeting.criteo.qini_differences": {
+   "columns": [
+    "Comparison",
+    "Difference",
+    "Lower",
+    "Upper"
+   ],
+   "formats": [
+    "text",
+    "float3",
+    "float3",
+    "float3"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858); T and X learners, the sure things rule and everyone",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "rows": [
+    [
+     "T learner minus X learner",
+     -0.2785871145,
+     -0.4831658364,
+     -0.09374784903
+    ],
+    [
+     "T learner minus Sure things",
+     -0.2014762483,
+     -0.4426309015,
+     -0.00983407311
+    ],
+    [
+     "X learner minus Sure things",
+     0.07711086616,
+     -0.132422341,
+     0.2552338256
+    ]
+   ]
+  },
+  "targeting.hillstrom.policies": {
+   "columns": [
+    "Policy",
+    "Qini coefficient",
+    "Lower",
+    "Upper",
+    "Chosen share",
+    "Value on validation",
+    "Value on test"
+   ],
+   "formats": [
+    "text",
+    "float3",
+    "float3",
+    "float3",
+    "pct1",
+    "usd0",
+    "usd0"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583); T and X learners, the sure things rule and everyone",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "rows": [
+    [
+     "T learner",
+     -0.1085856591,
+     -1.196706839,
+     0.9412200901,
+     0.95,
+     87.28785958,
+     187.7622968
+    ],
+    [
+     "X learner",
+     -0.1101373146,
+     -1.244569263,
+     1.03948385,
+     0.85,
+     106.429173,
+     179.9311805
+    ],
+    [
+     "Sure things",
+     0.1910545139,
+     -0.7157256405,
+     1.214328857,
+     0.85,
+     84.2079798,
+     207.4169129
+    ],
+    [
+     "Everyone",
+     1.552924456e-16,
+     -7.799941248e-16,
+     6.842929001e-16,
+     1.0,
+     82.95832307,
+     201.5411841
+    ]
+   ]
+  },
+  "targeting.hillstrom.qini_differences": {
+   "columns": [
+    "Comparison",
+    "Difference",
+    "Lower",
+    "Upper"
+   ],
+   "formats": [
+    "text",
+    "float3",
+    "float3",
+    "float3"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583); T and X learners, the sure things rule and everyone",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "rows": [
+    [
+     "T learner minus X learner",
+     0.00155165547,
+     -0.6160708476,
+     0.5668810735
+    ],
+    [
+     "T learner minus Sure things",
+     -0.2996401731,
+     -1.360010827,
+     0.8290095102
+    ],
+    [
+     "X learner minus Sure things",
+     -0.3011918285,
+     -1.406940635,
+     0.9477681254
+    ]
+   ]
+  },
+  "targeting.sim.policies": {
+   "columns": [
+    "Policy",
+    "Qini coefficient",
+    "Lower",
+    "Upper",
+    "Chosen share",
+    "Value on validation",
+    "Value on test"
+   ],
+   "formats": [
+    "text",
+    "float3",
+    "float3",
+    "float3",
+    "pct1",
+    "usd0",
+    "usd0"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162); T and X learners, the sure things rule and everyone",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "T learner",
+     8.923653932,
+     7.626602543,
+     10.03002751,
+     0.8,
+     891.9978472,
+     892.7017833
+    ],
+    [
+     "X learner",
+     10.14669686,
+     8.848442609,
+     11.252157,
+     0.85,
+     912.1674737,
+     923.2206275
+    ],
+    [
+     "Sure things",
+     -1.289832666,
+     -2.368450441,
+     -0.0760093653,
+     1.0,
+     809.2227627,
+     879.2159714
+    ],
+    [
+     "Everyone",
+     -1.610933609e-15,
+     -3.836819751e-15,
+     3.630262757e-15,
+     1.0,
+     809.2227627,
+     879.2159714
+    ]
+   ]
+  },
+  "targeting.sim.qini_differences": {
+   "columns": [
+    "Comparison",
+    "Difference",
+    "Lower",
+    "Upper"
+   ],
+   "formats": [
+    "text",
+    "float3",
+    "float3",
+    "float3"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162); T and X learners, the sure things rule and everyone",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "T learner minus X learner",
+     -1.223042931,
+     -1.652608977,
+     -0.7878541003
+    ],
+    [
+     "T learner minus Sure things",
+     10.2134866,
+     8.209607499,
+     11.9065647
+    ],
+    [
+     "X learner minus Sure things",
+     11.43652953,
+     9.594119878,
+     13.05788186
+    ]
+   ]
+  },
+  "targeting.sim.quadrants": {
+   "columns": [
+    "Policy",
+    "Share contacted",
+    "Persuadables",
+    "Sure things",
+    "Lost causes",
+    "Sleeping dogs",
+    "Regret (conversions)"
+   ],
+   "formats": [
+    "text",
+    "pct1",
+    "pct1",
+    "pct1",
+    "pct1",
+    "pct1",
+    "int"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162); the oracle contacts exactly the persuadables",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "T learner",
+     0.8,
+     0.966359197,
+     0.7153455681,
+     0.8006953791,
+     0.1137724551,
+     81
+    ],
+    [
+     "X learner",
+     0.85,
+     0.9913185024,
+     0.7961733698,
+     0.8501570211,
+     0.08383233533,
+     30
+    ],
+    [
+     "Sure things",
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     167
+    ],
+    [
+     "Everyone",
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     167
+    ],
+    [
+     "Oracle (known truth)",
+     0.04580589039,
+     1.0,
+     0.0,
+     0.0,
+     0.0,
+     0
+    ]
+   ]
+  }
+ },
+ "values": {
+  "targeting.bootstrap_replicates": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "the targeting protocol settings",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 200
+  },
+  "targeting.criteo.budget_seconds": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 900
+  },
+  "targeting.criteo.everyone.chosen_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 1.0
+  },
+  "targeting.criteo.everyone.interior": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": "degenerate"
+  },
+  "targeting.criteo.everyone.interior_reason": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": "the everyone policy contacts the whole list by definition; it is the baseline the targeting policies are judged against, not a choice"
+  },
+  "targeting.criteo.everyone.policy_value_test": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 10.44070113
+  },
+  "targeting.criteo.everyone.policy_value_test_per_thousand_contacted": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 10.44070113
+  },
+  "targeting.criteo.everyone.policy_value_validation": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 10.60536208
+  },
+  "targeting.criteo.everyone.qini": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": -6.415701304e-16
+  },
+  "targeting.criteo.everyone.qini_lower": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": -2.44584214e-15
+  },
+  "targeting.criteo.everyone.qini_upper": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 2.205548244e-15
+  },
+  "targeting.criteo.everyone.top_decile_uplift": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 0.01044070113
+  },
+  "targeting.criteo.learners": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": "T learner and X learner, both fit"
+  },
+  "targeting.criteo.outcome": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": "visit (conversion is too rare to rank on)"
+  },
+  "targeting.criteo.rows_test": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 2793890
+  },
+  "targeting.criteo.rows_total": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 13979592
+  },
+  "targeting.criteo.rows_train": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 8388844
+  },
+  "targeting.criteo.rows_train_used": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 2000000
+  },
+  "targeting.criteo.rows_validation": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 2796858
+  },
+  "targeting.criteo.seconds": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 286
+  },
+  "targeting.criteo.sure_things.chosen_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 0.95
+  },
+  "targeting.criteo.sure_things.interior": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": "interior"
+  },
+  "targeting.criteo.sure_things.interior_reason": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": "the curve peaks at 95% and is lower at 90% and at 100%"
+  },
+  "targeting.criteo.sure_things.policy_value_test": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 10.40796277
+  },
+  "targeting.criteo.sure_things.policy_value_test_per_thousand_contacted": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 10.95575028
+  },
+  "targeting.criteo.sure_things.policy_value_validation": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 10.6234143
+  },
+  "targeting.criteo.sure_things.qini": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 3.629114845
+  },
+  "targeting.criteo.sure_things.qini_lower": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 3.437524465
+  },
+  "targeting.criteo.sure_things.qini_upper": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 3.860819755
+  },
+  "targeting.criteo.sure_things.top_decile_uplift": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 0.05183096904
+  },
+  "targeting.criteo.t_learner.chosen_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 1.0
+  },
+  "targeting.criteo.t_learner.interior": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": "degenerate"
+  },
+  "targeting.criteo.t_learner.interior_reason": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": "the chosen share, 100%, is the largest on the grid: the curve is still rising where the list runs out"
+  },
+  "targeting.criteo.t_learner.policy_value_test": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 10.44070113
+  },
+  "targeting.criteo.t_learner.policy_value_test_per_thousand_contacted": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 10.44070113
+  },
+  "targeting.criteo.t_learner.policy_value_validation": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 10.60536208
+  },
+  "targeting.criteo.t_learner.qini": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 3.427638596
+  },
+  "targeting.criteo.t_learner.qini_lower": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 3.208547022
+  },
+  "targeting.criteo.t_learner.qini_upper": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 3.618760616
+  },
+  "targeting.criteo.t_learner.top_decile_uplift": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 0.05691011598
+  },
+  "targeting.criteo.value_unit": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": "incremental visits per thousand users on the list; Criteo publishes no value per visit and no cost per impression, so no cost is assumed"
+  },
+  "targeting.criteo.x_learner.chosen_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 1.0
+  },
+  "targeting.criteo.x_learner.interior": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": "degenerate"
+  },
+  "targeting.criteo.x_learner.interior_reason": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": "the chosen share, 100%, is the largest on the grid: the curve is still rising where the list runs out"
+  },
+  "targeting.criteo.x_learner.policy_value_test": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 10.44070113
+  },
+  "targeting.criteo.x_learner.policy_value_test_per_thousand_contacted": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 10.44070113
+  },
+  "targeting.criteo.x_learner.policy_value_validation": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, validation split of 2,796,858 users",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 10.60536208
+  },
+  "targeting.criteo.x_learner.qini": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 3.706225711
+  },
+  "targeting.criteo.x_learner.qini_lower": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 3.514858089
+  },
+  "targeting.criteo.x_learner.qini_upper": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 3.92852778
+  },
+  "targeting.criteo.x_learner.top_decile_uplift": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 0.0632064174
+  },
+  "targeting.hillstrom.cost_per_contact": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.12
+  },
+  "targeting.hillstrom.everyone.chosen_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 1.0
+  },
+  "targeting.hillstrom.everyone.interior": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "degenerate"
+  },
+  "targeting.hillstrom.everyone.interior_reason": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "the everyone policy contacts the whole list by definition; it is the baseline the targeting policies are judged against, not a choice"
+  },
+  "targeting.hillstrom.everyone.policy_value_test": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 201.5411841
+  },
+  "targeting.hillstrom.everyone.policy_value_test_per_thousand_contacted": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 201.5411841
+  },
+  "targeting.hillstrom.everyone.policy_value_validation": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 82.95832307
+  },
+  "targeting.hillstrom.everyone.qini": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 1.552924456e-16
+  },
+  "targeting.hillstrom.everyone.qini_lower": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": -7.799941248e-16
+  },
+  "targeting.hillstrom.everyone.qini_upper": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 6.842929001e-16
+  },
+  "targeting.hillstrom.everyone.top_decile_uplift": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.0101193658
+  },
+  "targeting.hillstrom.margin_on_spend": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.3
+  },
+  "targeting.hillstrom.outcome": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "conversion in the two weeks after the email"
+  },
+  "targeting.hillstrom.rows_test": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 8560
+  },
+  "targeting.hillstrom.rows_train": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 25470
+  },
+  "targeting.hillstrom.rows_validation": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 8583
+  },
+  "targeting.hillstrom.sure_things.chosen_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.85
+  },
+  "targeting.hillstrom.sure_things.interior": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "interior"
+  },
+  "targeting.hillstrom.sure_things.interior_reason": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "the curve peaks at 85% and is lower at 80% and at 90%"
+  },
+  "targeting.hillstrom.sure_things.policy_value_test": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 207.4169129
+  },
+  "targeting.hillstrom.sure_things.policy_value_test_per_thousand_contacted": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 244.0198976
+  },
+  "targeting.hillstrom.sure_things.policy_value_validation": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 84.2079798
+  },
+  "targeting.hillstrom.sure_things.qini": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.1910545139
+  },
+  "targeting.hillstrom.sure_things.qini_lower": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": -0.7157256405
+  },
+  "targeting.hillstrom.sure_things.qini_upper": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 1.214328857
+  },
+  "targeting.hillstrom.sure_things.top_decile_uplift": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": -0.0008795327005
+  },
+  "targeting.hillstrom.t_learner.chosen_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.95
+  },
+  "targeting.hillstrom.t_learner.interior": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "interior"
+  },
+  "targeting.hillstrom.t_learner.interior_reason": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "the curve peaks at 95% and is lower at 90% and at 100%"
+  },
+  "targeting.hillstrom.t_learner.policy_value_test": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 187.7622968
+  },
+  "targeting.hillstrom.t_learner.policy_value_test_per_thousand_contacted": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 197.644523
+  },
+  "targeting.hillstrom.t_learner.policy_value_validation": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 87.28785958
+  },
+  "targeting.hillstrom.t_learner.qini": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": -0.1085856591
+  },
+  "targeting.hillstrom.t_learner.qini_lower": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": -1.196706839
+  },
+  "targeting.hillstrom.t_learner.qini_upper": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.9412200901
+  },
+  "targeting.hillstrom.t_learner.top_decile_uplift": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.005882095688
+  },
+  "targeting.hillstrom.treatment": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "the men's merchandise email against no email"
+  },
+  "targeting.hillstrom.value_unit": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "incremental profit per thousand customers on the list"
+  },
+  "targeting.hillstrom.x_learner.chosen_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.85
+  },
+  "targeting.hillstrom.x_learner.interior": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "interior"
+  },
+  "targeting.hillstrom.x_learner.interior_reason": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "the curve peaks at 85% and is lower at 80% and at 90%"
+  },
+  "targeting.hillstrom.x_learner.policy_value_test": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 179.9311805
+  },
+  "targeting.hillstrom.x_learner.policy_value_test_per_thousand_contacted": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 211.6837417
+  },
+  "targeting.hillstrom.x_learner.policy_value_validation": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, validation split of 8,583",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 106.429173
+  },
+  "targeting.hillstrom.x_learner.qini": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": -0.1101373146
+  },
+  "targeting.hillstrom.x_learner.qini_lower": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": -1.244569263
+  },
+  "targeting.hillstrom.x_learner.qini_upper": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 1.03948385
+  },
+  "targeting.hillstrom.x_learner.top_decile_uplift": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583)",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.006303117695
+  },
+  "targeting.learner.learning_rate": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "the targeting protocol settings",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.05
+  },
+  "targeting.learner.min_child_samples": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "the targeting protocol settings",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 200
+  },
+  "targeting.learner.n_estimators": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "the targeting protocol settings",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 200
+  },
+  "targeting.learner.num_leaves": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "the targeting protocol settings",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 15
+  },
+  "targeting.level": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "the targeting protocol settings",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.9
+  },
+  "targeting.share_grid.first": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "the targeting protocol settings",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.05
+  },
+  "targeting.share_grid.last": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "the targeting protocol settings",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 1.0
+  },
+  "targeting.share_grid.step": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "the targeting protocol settings",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.05
+  },
+  "targeting.sim.cost_per_contact": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.12
+  },
+  "targeting.sim.everyone.chosen_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "targeting.sim.everyone.interior": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "degenerate"
+  },
+  "targeting.sim.everyone.interior_reason": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "the everyone policy contacts the whole list by definition; it is the baseline the targeting policies are judged against, not a choice"
+  },
+  "targeting.sim.everyone.policy_value_test": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 879.2159714
+  },
+  "targeting.sim.everyone.policy_value_test_per_thousand_contacted": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 879.2159714
+  },
+  "targeting.sim.everyone.policy_value_validation": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 809.2227627
+  },
+  "targeting.sim.everyone.qini": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": -1.610933609e-15
+  },
+  "targeting.sim.everyone.qini_lower": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": -3.836819751e-15
+  },
+  "targeting.sim.everyone.qini_upper": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 3.630262757e-15
+  },
+  "targeting.sim.everyone.top_decile_uplift": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.04325610266
+  },
+  "targeting.sim.margin": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.42
+  },
+  "targeting.sim.oracle_conversions": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1843
+  },
+  "targeting.sim.pehe.t_learner": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.0244625992
+  },
+  "targeting.sim.pehe.x_learner": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.01588341322
+  },
+  "targeting.sim.quadrant.everyone.lost_cause": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "targeting.sim.quadrant.everyone.persuadable": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "targeting.sim.quadrant.everyone.sleeping_dog": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "targeting.sim.quadrant.everyone.sure_thing": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "targeting.sim.quadrant.sure_things.lost_cause": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "targeting.sim.quadrant.sure_things.persuadable": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "targeting.sim.quadrant.sure_things.sleeping_dog": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "targeting.sim.quadrant.sure_things.sure_thing": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "targeting.sim.quadrant.t_learner.lost_cause": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.8006953791
+  },
+  "targeting.sim.quadrant.t_learner.persuadable": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.966359197
+  },
+  "targeting.sim.quadrant.t_learner.sleeping_dog": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1137724551
+  },
+  "targeting.sim.quadrant.t_learner.sure_thing": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.7153455681
+  },
+  "targeting.sim.quadrant.x_learner.lost_cause": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.8501570211
+  },
+  "targeting.sim.quadrant.x_learner.persuadable": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.9913185024
+  },
+  "targeting.sim.quadrant.x_learner.sleeping_dog": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.08383233533
+  },
+  "targeting.sim.quadrant.x_learner.sure_thing": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.7961733698
+  },
+  "targeting.sim.regret.everyone": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 167
+  },
+  "targeting.sim.regret.sure_things": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 167
+  },
+  "targeting.sim.regret.t_learner": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 81
+  },
+  "targeting.sim.regret.x_learner": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162), contacted at the share chosen on validation",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 30
+  },
+  "targeting.sim.revenue_per_conversion": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 55.0
+  },
+  "targeting.sim.rows_test": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 40235
+  },
+  "targeting.sim.rows_train": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 119603
+  },
+  "targeting.sim.rows_validation": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 40162
+  },
+  "targeting.sim.sure_things.chosen_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "targeting.sim.sure_things.interior": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "degenerate"
+  },
+  "targeting.sim.sure_things.interior_reason": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "the chosen share, 100%, is the largest on the grid: the curve is still rising where the list runs out"
+  },
+  "targeting.sim.sure_things.policy_value_test": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 879.2159714
+  },
+  "targeting.sim.sure_things.policy_value_test_per_thousand_contacted": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 879.2159714
+  },
+  "targeting.sim.sure_things.policy_value_validation": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 809.2227627
+  },
+  "targeting.sim.sure_things.qini": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": -1.289832666
+  },
+  "targeting.sim.sure_things.qini_lower": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": -2.368450441
+  },
+  "targeting.sim.sure_things.qini_upper": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": -0.0760093653
+  },
+  "targeting.sim.sure_things.top_decile_uplift": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.04308955646
+  },
+  "targeting.sim.t_learner.chosen_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.8
+  },
+  "targeting.sim.t_learner.interior": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "interior"
+  },
+  "targeting.sim.t_learner.interior_reason": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "the curve peaks at 80% and is lower at 75% and at 85%"
+  },
+  "targeting.sim.t_learner.policy_value_test": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 892.7017833
+  },
+  "targeting.sim.t_learner.policy_value_test_per_thousand_contacted": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1115.877229
+  },
+  "targeting.sim.t_learner.policy_value_validation": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 891.9978472
+  },
+  "targeting.sim.t_learner.qini": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 8.923653932
+  },
+  "targeting.sim.t_learner.qini_lower": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 7.626602543
+  },
+  "targeting.sim.t_learner.qini_upper": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 10.03002751
+  },
+  "targeting.sim.t_learner.top_decile_uplift": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "t_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.09829102754
+  },
+  "targeting.sim.test_quadrant_share.lost_cause": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.8863924444
+  },
+  "targeting.sim.test_quadrant_share.persuadable": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.04580589039
+  },
+  "targeting.sim.test_quadrant_share.sleeping_dog": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.004150615136
+  },
+  "targeting.sim.test_quadrant_share.sure_thing": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.06365105008
+  },
+  "targeting.sim.value_unit": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "incremental profit per thousand customers on the list"
+  },
+  "targeting.sim.x_learner.chosen_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.85
+  },
+  "targeting.sim.x_learner.interior": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "interior"
+  },
+  "targeting.sim.x_learner.interior_reason": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "the curve peaks at 85% and is lower at 80% and at 90%"
+  },
+  "targeting.sim.x_learner.policy_value_test": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 923.2206275
+  },
+  "targeting.sim.x_learner.policy_value_test_per_thousand_contacted": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1086.141915
+  },
+  "targeting.sim.x_learner.policy_value_validation": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, validation split of 40,162",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 912.1674737
+  },
+  "targeting.sim.x_learner.qini": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 10.14669686
+  },
+  "targeting.sim.x_learner.qini_lower": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 8.848442609
+  },
+  "targeting.sim.x_learner.qini_upper": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 11.252157
+  },
+  "targeting.sim.x_learner.top_decile_uplift": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "x_learner",
+    "origin": "marginal_targeting.protocol",
+    "population": "simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162)",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1072608435
+  },
+  "targeting.split.test": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "the targeting protocol settings",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.2
+  },
+  "targeting.split.train": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "the targeting protocol settings",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.6
+  },
+  "targeting.split.validation": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_targeting.protocol",
+    "population": "the targeting protocol settings",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.2
+  }
+ }
+}

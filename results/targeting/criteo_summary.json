@@ -1,0 +1,274 @@
+{
+ "budget_seconds": 900,
+ "dataset": "criteo",
+ "policies": [
+  {
+   "chosen_on": "validation",
+   "chosen_share": 1.0,
+   "interior": {
+    "interior": false,
+    "reason": "the chosen share, 100%, is the largest on the grid: the curve is still rising where the list runs out"
+   },
+   "policy": "t_learner",
+   "qini": {
+    "estimate": 3.427638596394114,
+    "level": 0.9,
+    "lower": 3.2085470219756678,
+    "replicates": 200,
+    "upper": 3.6187606157925964
+   },
+   "top_decile_uplift": 0.05691011597696988,
+   "value_test": {
+    "incremental_conversion_per_contact": 0.010440701131111639,
+    "incremental_spend_per_contact": null,
+    "profit_per_thousand": 10.44070113111164,
+    "profit_per_thousand_contacted": 10.44070113111164,
+    "share": 1.0,
+    "split": "test"
+   },
+   "value_validation": {
+    "incremental_conversion_per_contact": 0.010605362080990395,
+    "incremental_spend_per_contact": null,
+    "profit_per_thousand": 10.605362080990394,
+    "profit_per_thousand_contacted": 10.605362080990394,
+    "share": 1.0,
+    "split": "validation"
+   }
+  },
+  {
+   "chosen_on": "validation",
+   "chosen_share": 1.0,
+   "interior": {
+    "interior": false,
+    "reason": "the chosen share, 100%, is the largest on the grid: the curve is still rising where the list runs out"
+   },
+   "policy": "x_learner",
+   "qini": {
+    "estimate": 3.706225710884041,
+    "level": 0.9,
+    "lower": 3.5148580885886065,
+    "replicates": 200,
+    "upper": 3.928527779695952
+   },
+   "top_decile_uplift": 0.06320641740012911,
+   "value_test": {
+    "incremental_conversion_per_contact": 0.010440701131111639,
+    "incremental_spend_per_contact": null,
+    "profit_per_thousand": 10.44070113111164,
+    "profit_per_thousand_contacted": 10.44070113111164,
+    "share": 1.0,
+    "split": "test"
+   },
+   "value_validation": {
+    "incremental_conversion_per_contact": 0.010605362080990395,
+    "incremental_spend_per_contact": null,
+    "profit_per_thousand": 10.605362080990394,
+    "profit_per_thousand_contacted": 10.605362080990394,
+    "share": 1.0,
+    "split": "validation"
+   }
+  },
+  {
+   "chosen_on": "validation",
+   "chosen_share": 0.95,
+   "interior": {
+    "interior": true,
+    "reason": "the curve peaks at 95% and is lower at 90% and at 100%"
+   },
+   "policy": "sure_things",
+   "qini": {
+    "estimate": 3.6291148447266455,
+    "level": 0.9,
+    "lower": 3.4375244651228387,
+    "replicates": 200,
+    "upper": 3.8608197552747603
+   },
+   "top_decile_uplift": 0.051830969043009545,
+   "value_test": {
+    "incremental_conversion_per_contact": 0.010955750280299402,
+    "incremental_spend_per_contact": null,
+    "profit_per_thousand": 10.407962766284433,
+    "profit_per_thousand_contacted": 10.955750280299402,
+    "share": 0.95,
+    "split": "test"
+   },
+   "value_validation": {
+    "incremental_conversion_per_contact": 0.011182541369623815,
+    "incremental_spend_per_contact": null,
+    "profit_per_thousand": 10.623414301142624,
+    "profit_per_thousand_contacted": 11.182541369623815,
+    "share": 0.95,
+    "split": "validation"
+   }
+  },
+  {
+   "chosen_on": "validation",
+   "chosen_share": 1.0,
+   "interior": {
+    "interior": false,
+    "reason": "the everyone policy contacts the whole list by definition; it is the baseline the targeting policies are judged against, not a choice"
+   },
+   "policy": "everyone",
+   "qini": {
+    "estimate": -6.415701303552638e-16,
+    "level": 0.9,
+    "lower": -2.4458421399309328e-15,
+    "replicates": 200,
+    "upper": 2.20554824403862e-15
+   },
+   "top_decile_uplift": 0.010440701131111625,
+   "value_test": {
+    "incremental_conversion_per_contact": 0.010440701131111639,
+    "incremental_spend_per_contact": null,
+    "profit_per_thousand": 10.44070113111164,
+    "profit_per_thousand_contacted": 10.44070113111164,
+    "share": 1.0,
+    "split": "test"
+   },
+   "value_validation": {
+    "incremental_conversion_per_contact": 0.010605362080990395,
+    "incremental_spend_per_contact": null,
+    "profit_per_thousand": 10.605362080990394,
+    "profit_per_thousand_contacted": 10.605362080990394,
+    "share": 1.0,
+    "split": "validation"
+   }
+  }
+ ],
+ "qini_differences": [
+  {
+   "first": "t_learner",
+   "interval": {
+    "estimate": -0.2785871144899268,
+    "level": 0.9,
+    "lower": -0.4831658363887476,
+    "replicates": 200,
+    "upper": -0.09374784903319873
+   },
+   "second": "x_learner"
+  },
+  {
+   "first": "t_learner",
+   "interval": {
+    "estimate": -0.20147624833253142,
+    "level": 0.9,
+    "lower": -0.4426309015410558,
+    "replicates": 200,
+    "upper": -0.00983407310969946
+   },
+   "second": "sure_things"
+  },
+  {
+   "first": "t_learner",
+   "interval": {
+    "estimate": 3.4276385963941145,
+    "level": 0.9,
+    "lower": 3.2085470219756687,
+    "replicates": 200,
+    "upper": 3.6187606157925982
+   },
+   "second": "everyone"
+  },
+  {
+   "first": "x_learner",
+   "interval": {
+    "estimate": 0.07711086615739537,
+    "level": 0.9,
+    "lower": -0.1324223409531716,
+    "replicates": 200,
+    "upper": 0.2552338255770528
+   },
+   "second": "sure_things"
+  },
+  {
+   "first": "x_learner",
+   "interval": {
+    "estimate": 3.7062257108840413,
+    "level": 0.9,
+    "lower": 3.514858088588606,
+    "replicates": 200,
+    "upper": 3.9285277796959543
+   },
+   "second": "everyone"
+  },
+  {
+   "first": "sure_things",
+   "interval": {
+    "estimate": 3.629114844726646,
+    "level": 0.9,
+    "lower": 3.4375244651228405,
+    "replicates": 200,
+    "upper": 3.860819755274759
+   },
+   "second": "everyone"
+  }
+ ],
+ "rows": {
+  "test": 2793890,
+  "train": 8388844,
+  "train_used": 2000000,
+  "validation": 2796858
+ },
+ "rows_total": 13979592,
+ "seconds": 286.2,
+ "settings": {
+  "cost_per_contact": 0.0,
+  "features": [
+   "f0",
+   "f1",
+   "f2",
+   "f3",
+   "f4",
+   "f5",
+   "f6",
+   "f7",
+   "f8",
+   "f9",
+   "f10",
+   "f11"
+  ],
+  "key": "row_id",
+  "learners": [
+   "t_learner",
+   "x_learner"
+  ],
+  "level": 0.9,
+  "margin_on_spend": 1.0,
+  "outcome_col": "visit",
+  "params": {
+   "learning_rate": 0.05,
+   "min_child_samples": 200,
+   "n_estimators": 200,
+   "num_leaves": 15
+  },
+  "points": 100,
+  "replicates": 200,
+  "seed": 12,
+  "share_grid": [
+   0.05,
+   0.1,
+   0.15,
+   0.2,
+   0.25,
+   0.3,
+   0.35,
+   0.4,
+   0.45,
+   0.5,
+   0.55,
+   0.6,
+   0.65,
+   0.7,
+   0.75,
+   0.8,
+   0.85,
+   0.9,
+   0.95,
+   1.0
+  ],
+  "spend_col": null,
+  "train_rows": 2000000,
+  "treated_col": "treatment"
+ },
+ "value_unit": "incremental visits per thousand users, no cost assumed"
+}

@@ -1,0 +1,268 @@
+{
+ "dataset": "hillstrom",
+ "policies": [
+  {
+   "chosen_on": "validation",
+   "chosen_share": 0.95,
+   "interior": {
+    "interior": true,
+    "reason": "the curve peaks at 95% and is lower at 90% and at 100%"
+   },
+   "policy": "t_learner",
+   "qini": {
+    "estimate": -0.10858565914236086,
+    "level": 0.9,
+    "lower": -1.1967068386482063,
+    "replicates": 200,
+    "upper": 0.9412200900633898
+   },
+   "top_decile_uplift": 0.005882095687920931,
+   "value_test": {
+    "incremental_conversion_per_contact": 0.010435628197657768,
+    "incremental_spend_per_contact": 1.0588150765187656,
+    "profit_per_thousand": 187.7622968078482,
+    "profit_per_thousand_contacted": 197.64452295562967,
+    "share": 0.95,
+    "split": "test"
+   },
+   "value_validation": {
+    "incremental_conversion_per_contact": 0.006848926016723658,
+    "incremental_spend_per_contact": 0.7062731914975731,
+    "profit_per_thousand": 87.28785957680832,
+    "profit_per_thousand_contacted": 91.88195744927191,
+    "share": 0.95,
+    "split": "validation"
+   }
+  },
+  {
+   "chosen_on": "validation",
+   "chosen_share": 0.85,
+   "interior": {
+    "interior": true,
+    "reason": "the curve peaks at 85% and is lower at 80% and at 90%"
+   },
+   "policy": "x_learner",
+   "qini": {
+    "estimate": -0.11013731461277848,
+    "level": 0.9,
+    "lower": -1.2445692634793195,
+    "replicates": 200,
+    "upper": 1.039483849691274
+   },
+   "top_decile_uplift": 0.006303117694610123,
+   "value_test": {
+    "incremental_conversion_per_contact": 0.010282871236183946,
+    "incremental_spend_per_contact": 1.1056124724153067,
+    "profit_per_thousand": 179.93118046590317,
+    "profit_per_thousand_contacted": 211.68374172459198,
+    "share": 0.85,
+    "split": "test"
+   },
+   "value_validation": {
+    "incremental_conversion_per_contact": 0.0079200386980024,
+    "incremental_spend_per_contact": 0.8173693057024534,
+    "profit_per_thousand": 106.4291729541256,
+    "profit_per_thousand_contacted": 125.21079171073602,
+    "share": 0.85,
+    "split": "validation"
+   }
+  },
+  {
+   "chosen_on": "validation",
+   "chosen_share": 0.85,
+   "interior": {
+    "interior": true,
+    "reason": "the curve peaks at 85% and is lower at 80% and at 90%"
+   },
+   "policy": "sure_things",
+   "qini": {
+    "estimate": 0.19105451392879588,
+    "level": 0.9,
+    "lower": -0.715725640473106,
+    "replicates": 200,
+    "upper": 1.2143288567399557
+   },
+   "top_decile_uplift": -0.0008795327004521951,
+   "value_test": {
+    "incremental_conversion_per_contact": 0.011012740049421859,
+    "incremental_spend_per_contact": 1.2133996585577593,
+    "profit_per_thousand": 207.41691293222863,
+    "profit_per_thousand_contacted": 244.01989756732777,
+    "share": 0.85,
+    "split": "test"
+   },
+   "value_validation": {
+    "incremental_conversion_per_contact": 0.006930108032993218,
+    "incremental_spend_per_contact": 0.7302273717588881,
+    "profit_per_thousand": 84.20797979851646,
+    "profit_per_thousand_contacted": 99.06821152766642,
+    "share": 0.85,
+    "split": "validation"
+   }
+  },
+  {
+   "chosen_on": "validation",
+   "chosen_share": 1.0,
+   "interior": {
+    "interior": false,
+    "reason": "the everyone policy contacts the whole list by definition; it is the baseline the targeting policies are judged against, not a choice"
+   },
+   "policy": "everyone",
+   "qini": {
+    "estimate": 1.5529244556944404e-16,
+    "level": 0.9,
+    "lower": -7.79994124844308e-16,
+    "replicates": 200,
+    "upper": 6.842929001216189e-16
+   },
+   "top_decile_uplift": 0.010119365804745284,
+   "value_test": {
+    "incremental_conversion_per_contact": 0.010119365804745284,
+    "incremental_spend_per_contact": 1.0718039469500837,
+    "profit_per_thousand": 201.54118408502515,
+    "profit_per_thousand_contacted": 201.54118408502515,
+    "share": 1.0,
+    "split": "test"
+   },
+   "value_validation": {
+    "incremental_conversion_per_contact": 0.0066846243865314485,
+    "incremental_spend_per_contact": 0.6765277435694936,
+    "profit_per_thousand": 82.95832307084808,
+    "profit_per_thousand_contacted": 82.95832307084808,
+    "share": 1.0,
+    "split": "validation"
+   }
+  }
+ ],
+ "qini_differences": [
+  {
+   "first": "t_learner",
+   "interval": {
+    "estimate": 0.0015516554704176205,
+    "level": 0.9,
+    "lower": -0.6160708476044755,
+    "replicates": 200,
+    "upper": 0.5668810734722667
+   },
+   "second": "x_learner"
+  },
+  {
+   "first": "t_learner",
+   "interval": {
+    "estimate": -0.29964017307115676,
+    "level": 0.9,
+    "lower": -1.36001082720496,
+    "replicates": 200,
+    "upper": 0.8290095101739429
+   },
+   "second": "sure_things"
+  },
+  {
+   "first": "t_learner",
+   "interval": {
+    "estimate": -0.10858565914236101,
+    "level": 0.9,
+    "lower": -1.1967068386482065,
+    "replicates": 200,
+    "upper": 0.9412200900633899
+   },
+   "second": "everyone"
+  },
+  {
+   "first": "x_learner",
+   "interval": {
+    "estimate": -0.30119182854157434,
+    "level": 0.9,
+    "lower": -1.4069406353999483,
+    "replicates": 200,
+    "upper": 0.9477681254251702
+   },
+   "second": "sure_things"
+  },
+  {
+   "first": "x_learner",
+   "interval": {
+    "estimate": -0.11013731461277863,
+    "level": 0.9,
+    "lower": -1.244569263479319,
+    "replicates": 200,
+    "upper": 1.039483849691274
+   },
+   "second": "everyone"
+  },
+  {
+   "first": "sure_things",
+   "interval": {
+    "estimate": 0.19105451392879572,
+    "level": 0.9,
+    "lower": -0.7157256404731059,
+    "replicates": 200,
+    "upper": 1.2143288567399555
+   },
+   "second": "everyone"
+  }
+ ],
+ "rows": {
+  "test": 8560,
+  "train": 25470,
+  "train_used": 25470,
+  "validation": 8583
+ },
+ "settings": {
+  "cost_per_contact": 0.12,
+  "features": [
+   "recency",
+   "history",
+   "mens",
+   "womens",
+   "newbie",
+   "zip_urban",
+   "zip_suburban",
+   "channel_web",
+   "channel_phone"
+  ],
+  "key": "customer_id",
+  "learners": [
+   "t_learner",
+   "x_learner"
+  ],
+  "level": 0.9,
+  "margin_on_spend": 0.3,
+  "outcome_col": "conversion",
+  "params": {
+   "learning_rate": 0.05,
+   "min_child_samples": 200,
+   "n_estimators": 200,
+   "num_leaves": 15
+  },
+  "points": 100,
+  "replicates": 200,
+  "seed": 12,
+  "share_grid": [
+   0.05,
+   0.1,
+   0.15,
+   0.2,
+   0.25,
+   0.3,
+   0.35,
+   0.4,
+   0.45,
+   0.5,
+   0.55,
+   0.6,
+   0.65,
+   0.7,
+   0.75,
+   0.8,
+   0.85,
+   0.9,
+   0.95,
+   1.0
+  ],
+  "spend_col": "spend",
+  "train_rows": null,
+  "treated_col": "treated"
+ },
+ "treatment": "men's email against no email; women's arm dropped"
+}

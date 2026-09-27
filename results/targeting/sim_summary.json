@@ -1,0 +1,310 @@
+{
+ "dataset": "sim",
+ "oracle_conversions": 1843,
+ "oracle_regret": {
+  "everyone": 167,
+  "sure_things": 167,
+  "t_learner": 81,
+  "x_learner": 30
+ },
+ "pehe": {
+  "t_learner": 0.024462599197490744,
+  "x_learner": 0.01588341321722045
+ },
+ "policies": [
+  {
+   "chosen_on": "validation",
+   "chosen_share": 0.8,
+   "interior": {
+    "interior": true,
+    "reason": "the curve peaks at 80% and is lower at 75% and at 85%"
+   },
+   "policy": "t_learner",
+   "qini": {
+    "estimate": 8.923653932349906,
+    "level": 0.9,
+    "lower": 7.626602542966187,
+    "replicates": 200,
+    "upper": 10.030027509699877
+   },
+   "top_decile_uplift": 0.09829102753938235,
+   "value_test": {
+    "incremental_conversion_per_contact": 0.05350117875148558,
+    "incremental_spend_per_contact": 2.9425648313317065,
+    "profit_per_thousand": 892.7017833274533,
+    "profit_per_thousand_contacted": 1115.8772291593166,
+    "share": 0.8,
+    "split": "test"
+   },
+   "value_validation": {
+    "incremental_conversion_per_contact": 0.05346308696977822,
+    "incremental_spend_per_contact": 2.9404697833378015,
+    "profit_per_thousand": 891.9978472015014,
+    "profit_per_thousand_contacted": 1114.9973090018768,
+    "share": 0.8,
+    "split": "validation"
+   }
+  },
+  {
+   "chosen_on": "validation",
+   "chosen_share": 0.85,
+   "interior": {
+    "interior": true,
+    "reason": "the curve peaks at 85% and is lower at 80% and at 90%"
+   },
+   "policy": "x_learner",
+   "qini": {
+    "estimate": 10.146696863176452,
+    "level": 0.9,
+    "lower": 8.8484426090691,
+    "replicates": 200,
+    "upper": 11.252157003612487
+   },
+   "top_decile_uplift": 0.10726084350239853,
+   "value_test": {
+    "incremental_conversion_per_contact": 0.05221393570243689,
+    "incremental_spend_per_contact": 2.871766463634029,
+    "profit_per_thousand": 923.2206275173482,
+    "profit_per_thousand_contacted": 1086.141914726292,
+    "share": 0.85,
+    "split": "test"
+   },
+   "value_validation": {
+    "incremental_conversion_per_contact": 0.05165100451624605,
+    "incremental_spend_per_contact": 2.8408052483935324,
+    "profit_per_thousand": 912.167473676491,
+    "profit_per_thousand_contacted": 1073.1382043252836,
+    "share": 0.85,
+    "split": "validation"
+   }
+  },
+  {
+   "chosen_on": "validation",
+   "chosen_share": 1.0,
+   "interior": {
+    "interior": false,
+    "reason": "the chosen share, 100%, is the largest on the grid: the curve is still rising where the list runs out"
+   },
+   "policy": "sure_things",
+   "qini": {
+    "estimate": -1.2898326663442252,
+    "level": 0.9,
+    "lower": -2.368450440871896,
+    "replicates": 200,
+    "upper": -0.07600936530048921
+   },
+   "top_decile_uplift": 0.04308955646192604,
+   "value_test": {
+    "incremental_conversion_per_contact": 0.043256102659389783,
+    "incremental_spend_per_contact": 2.3790856462664385,
+    "profit_per_thousand": 879.2159714319041,
+    "profit_per_thousand_contacted": 879.2159714319041,
+    "share": 1.0,
+    "split": "test"
+   },
+   "value_validation": {
+    "incremental_conversion_per_contact": 0.040226093621871545,
+    "incremental_spend_per_contact": 2.2124351492029346,
+    "profit_per_thousand": 809.2227626652325,
+    "profit_per_thousand_contacted": 809.2227626652325,
+    "share": 1.0,
+    "split": "validation"
+   }
+  },
+  {
+   "chosen_on": "validation",
+   "chosen_share": 1.0,
+   "interior": {
+    "interior": false,
+    "reason": "the everyone policy contacts the whole list by definition; it is the baseline the targeting policies are judged against, not a choice"
+   },
+   "policy": "everyone",
+   "qini": {
+    "estimate": -1.6109336087311033e-15,
+    "level": 0.9,
+    "lower": -3.836819750802081e-15,
+    "replicates": 200,
+    "upper": 3.6302627570705684e-15
+   },
+   "top_decile_uplift": 0.04325610265938977,
+   "value_test": {
+    "incremental_conversion_per_contact": 0.043256102659389783,
+    "incremental_spend_per_contact": 2.3790856462664385,
+    "profit_per_thousand": 879.2159714319041,
+    "profit_per_thousand_contacted": 879.2159714319041,
+    "share": 1.0,
+    "split": "test"
+   },
+   "value_validation": {
+    "incremental_conversion_per_contact": 0.040226093621871545,
+    "incremental_spend_per_contact": 2.2124351492029346,
+    "profit_per_thousand": 809.2227626652325,
+    "profit_per_thousand_contacted": 809.2227626652325,
+    "share": 1.0,
+    "split": "validation"
+   }
+  }
+ ],
+ "qini_differences": [
+  {
+   "first": "t_learner",
+   "interval": {
+    "estimate": -1.223042930826546,
+    "level": 0.9,
+    "lower": -1.652608976821536,
+    "replicates": 200,
+    "upper": -0.7878541002888911
+   },
+   "second": "x_learner"
+  },
+  {
+   "first": "t_learner",
+   "interval": {
+    "estimate": 10.21348659869413,
+    "level": 0.9,
+    "lower": 8.209607499180484,
+    "replicates": 200,
+    "upper": 11.90656470069264
+   },
+   "second": "sure_things"
+  },
+  {
+   "first": "t_learner",
+   "interval": {
+    "estimate": 8.923653932349907,
+    "level": 0.9,
+    "lower": 7.626602542966189,
+    "replicates": 200,
+    "upper": 10.030027509699876
+   },
+   "second": "everyone"
+  },
+  {
+   "first": "x_learner",
+   "interval": {
+    "estimate": 11.436529529520676,
+    "level": 0.9,
+    "lower": 9.594119877733217,
+    "replicates": 200,
+    "upper": 13.057881858821677
+   },
+   "second": "sure_things"
+  },
+  {
+   "first": "x_learner",
+   "interval": {
+    "estimate": 10.146696863176453,
+    "level": 0.9,
+    "lower": 8.848442609069101,
+    "replicates": 200,
+    "upper": 11.252157003612488
+   },
+   "second": "everyone"
+  },
+  {
+   "first": "sure_things",
+   "interval": {
+    "estimate": -1.2898326663442237,
+    "level": 0.9,
+    "lower": -2.368450440871893,
+    "replicates": 200,
+    "upper": -0.07600936530048655
+   },
+   "second": "everyone"
+  }
+ ],
+ "quadrant_shares_contacted": {
+  "everyone": {
+   "lost_cause": 1.0,
+   "persuadable": 1.0,
+   "sleeping_dog": 1.0,
+   "sure_thing": 1.0
+  },
+  "sure_things": {
+   "lost_cause": 1.0,
+   "persuadable": 1.0,
+   "sleeping_dog": 1.0,
+   "sure_thing": 1.0
+  },
+  "t_learner": {
+   "lost_cause": 0.800695379093764,
+   "persuadable": 0.9663591969614759,
+   "sleeping_dog": 0.11377245508982035,
+   "sure_thing": 0.7153455681374463
+  },
+  "x_learner": {
+   "lost_cause": 0.8501570210856887,
+   "persuadable": 0.9913185024416712,
+   "sleeping_dog": 0.08383233532934131,
+   "sure_thing": 0.7961733697774307
+  }
+ },
+ "revenue_per_conversion": 55.0,
+ "rows": {
+  "test": 40235,
+  "train": 119603,
+  "train_used": 119603,
+  "validation": 40162
+ },
+ "settings": {
+  "cost_per_contact": 0.12,
+  "features": [
+   "recency_days",
+   "frequency",
+   "monetary",
+   "tenure_days",
+   "category_affinity",
+   "engagement",
+   "region",
+   "mobile_share"
+  ],
+  "key": "customer_id",
+  "learners": [
+   "t_learner",
+   "x_learner"
+  ],
+  "level": 0.9,
+  "margin_on_spend": 0.42,
+  "outcome_col": "converted",
+  "params": {
+   "learning_rate": 0.05,
+   "min_child_samples": 200,
+   "n_estimators": 200,
+   "num_leaves": 15
+  },
+  "points": 100,
+  "replicates": 200,
+  "seed": 12,
+  "share_grid": [
+   0.05,
+   0.1,
+   0.15,
+   0.2,
+   0.25,
+   0.3,
+   0.35,
+   0.4,
+   0.45,
+   0.5,
+   0.55,
+   0.6,
+   0.65,
+   0.7,
+   0.75,
+   0.8,
+   0.85,
+   0.9,
+   0.95,
+   1.0
+  ],
+  "spend_col": "revenue",
+  "train_rows": null,
+  "treated_col": "treated"
+ },
+ "test_quadrant_counts": {
+  "lost_cause": 35664,
+  "persuadable": 1843,
+  "sleeping_dog": 167,
+  "sure_thing": 2561
+ }
+}
