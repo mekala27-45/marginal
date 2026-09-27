@@ -1,0 +1,118 @@
+{
+ "model_version": "truth",
+ "backend": "truth",
+ "spec_hash": "truth",
+ "inputs_hash": "012749994c523650",
+ "constraints": {
+  "total_budget": 500233.22517442255,
+  "floor_share": 0.25,
+  "ceiling_share": 2.0,
+  "max_change_share": 0.3,
+  "margin": 0.42,
+  "allowance": null,
+  "revenue_per_acquisition": null,
+  "floors": null,
+  "ceilings": null
+ },
+ "allocation": [
+  {
+   "channel": "paid_search",
+   "spend": 153673.24140426968,
+   "last_year": 129669.39555038983,
+   "change": 0.18511573800428405,
+   "expected_revenue": 466130.6266862163,
+   "marginal_return": 1.9055438323866989,
+   "marginal_profit": -0.19967159039758653,
+   "at_bound": "interior",
+   "implied_acquisition_cost": null
+  },
+  {
+   "channel": "paid_social",
+   "spend": 135035.15058652856,
+   "last_year": 110747.02387663511,
+   "change": 0.21931177795756218,
+   "expected_revenue": 317127.2310107273,
+   "marginal_return": 1.905543832386699,
+   "marginal_profit": -0.19967159039758642,
+   "at_bound": "interior",
+   "implied_acquisition_cost": null
+  },
+  {
+   "channel": "online_video",
+   "spend": 44778.00626529704,
+   "last_year": 63968.58037899577,
+   "change": -0.30000000000000004,
+   "expected_revenue": 71448.53973328143,
+   "marginal_return": 1.7228742682420888,
+   "marginal_profit": -0.2763928073383227,
+   "at_bound": "change limit",
+   "implied_acquisition_cost": null
+  },
+  {
+   "channel": "display_retargeting",
+   "spend": 57997.94143423569,
+   "last_year": 82854.20204890813,
+   "change": -0.30000000000000004,
+   "expected_revenue": 84440.12332736439,
+   "marginal_return": 1.307872758361519,
+   "marginal_profit": -0.45069344148816204,
+   "at_bound": "change limit",
+   "implied_acquisition_cost": null
+  },
+  {
+   "channel": "email",
+   "spend": 20089.912531497626,
+   "last_year": 15453.77887038279,
+   "change": 0.30000000000000004,
+   "expected_revenue": 135494.14732404993,
+   "marginal_return": 2.0567027829174522,
+   "marginal_profit": -0.13618483117467006,
+   "at_bound": "change limit",
+   "implied_acquisition_cost": null
+  },
+  {
+   "channel": "affiliate_promo",
+   "spend": 48611.864188548025,
+   "last_year": 40330.08907190249,
+   "change": 0.20534978491816314,
+   "expected_revenue": 130394.74815220141,
+   "marginal_return": 1.9055438323867133,
+   "marginal_profit": -0.19967159039758042,
+   "at_bound": "interior",
+   "implied_acquisition_cost": null
+  },
+  {
+   "channel": "direct_mail",
+   "spend": 40047.10876404588,
+   "last_year": 57210.1553772084,
+   "change": -0.30000000000000004,
+   "expected_revenue": 78548.17938241453,
+   "marginal_return": 1.9013756177294157,
+   "marginal_profit": -0.20142224055364544,
+   "at_bound": "change limit",
+   "implied_acquisition_cost": null
+  }
+ ],
+ "expected_revenue": 1283583.5956162554,
+ "expected_profit": 38871.88498440484,
+ "profit_lower": 38871.88498440484,
+ "profit_upper": 38871.88498440484,
+ "level": 0.9,
+ "solver_status": "Optimization terminated successfully",
+ "starts": 8,
+ "starts_converged": 8,
+ "marginal_equalized": true,
+ "marginal_spread": 6.106226635438361e-15,
+ "interior_channels": 3,
+ "degenerate": false,
+ "degenerate_reason": null,
+ "spend": {
+  "paid_search": 153673.24140426968,
+  "paid_social": 135035.15058652856,
+  "online_video": 44778.00626529704,
+  "display_retargeting": 57997.94143423569,
+  "email": 20089.912531497626,
+  "affiliate_promo": 48611.864188548025,
+  "direct_mail": 40047.10876404588
+ }
+}

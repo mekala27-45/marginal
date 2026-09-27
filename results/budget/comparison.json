@@ -1,0 +1,28 @@
+{
+ "calibrated": {
+  "expected_profit": 30049.74936997256,
+  "gain_over_last_year": 15171.867493475089,
+  "true_profit": 33192.24804015149,
+  "true_revenue": 1270060.6505108906
+ },
+ "equal_split": {
+  "gain_over_last_year": -74099.75517040223,
+  "true_profit": -56079.37462372583
+ },
+ "last_year": {
+  "gain_over_last_year": 0.0,
+  "true_profit": 18020.380546676402
+ },
+ "truth": {
+  "expected_profit": 38871.88498440484,
+  "gain_over_last_year": 20851.504437728378,
+  "true_profit": 38871.88498440478,
+  "true_revenue": 1283583.5956162554
+ },
+ "uncalibrated": {
+  "expected_profit": -11045.061183887068,
+  "gain_over_last_year": 19245.971914487774,
+  "true_profit": 37266.35246116418,
+  "true_revenue": 1279760.8991323495
+ }
+}

@@ -1,0 +1,4 @@
+{
+ "interior": true,
+ "reason": "every reallocation between interior channels lowers expected profit"
+}

@@ -1,0 +1,1305 @@
+{
+ "as_of": "2026-09-27",
+ "figures": {},
+ "seed": 12,
+ "tables": {
+  "budget.allocation": {
+   "columns": [
+    "Channel",
+    "Last year (weekly)",
+    "Plan (weekly)",
+    "Change",
+    "Expected revenue",
+    "Marginal return",
+    "Marginal profit",
+    "Bound"
+   ],
+   "formats": [
+    "text",
+    "usd0",
+    "usd0",
+    "spct1",
+    "usd0",
+    "float2",
+    "spct1",
+    "text"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "Paid search",
+     129669.3956,
+     165675.9786,
+     0.2776798863,
+     572550.5758,
+     1.973692662,
+     -0.1710490822,
+     "interior"
+    ],
+    [
+     "Paid social",
+     110747.0239,
+     143413.2153,
+     0.2949622505,
+     382029.0338,
+     1.973692662,
+     -0.1710490822,
+     "interior"
+    ],
+    [
+     "Online video",
+     63968.58038,
+     44778.00627,
+     -0.3,
+     22803.65878,
+     0.8435902062,
+     -0.6456921134,
+     "change limit"
+    ],
+    [
+     "Display and retargeting",
+     82854.20205,
+     57997.94143,
+     -0.3,
+     95908.05058,
+     1.025553776,
+     -0.5692674141,
+     "change limit"
+    ],
+    [
+     "Email",
+     15453.77887,
+     20089.91253,
+     0.3,
+     129901.4236,
+     2.79356641,
+     0.1732978921,
+     "change limit"
+    ],
+    [
+     "Affiliate and promo codes",
+     40330.08907,
+     28231.06235,
+     -0.3,
+     25910.68305,
+     1.549443583,
+     -0.3492336953,
+     "change limit"
+    ],
+    [
+     "Direct mail",
+     57210.15538,
+     40047.10876,
+     -0.3,
+     33475.08526,
+     0.8512649265,
+     -0.6424687309,
+     "change limit"
+    ]
+   ]
+  },
+  "budget.comparison": {
+   "columns": [
+    "Plan",
+    "True weekly profit",
+    "Gain over last year (weekly)",
+    "Gain over last year (annual)"
+   ],
+   "formats": [
+    "text",
+    "usd0",
+    "usd0",
+    "usd0"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "Calibrated model's plan",
+     33192.24804,
+     15171.86749,
+     788937.1097
+    ],
+    [
+     "Uncalibrated model's plan",
+     37266.35246,
+     19245.97191,
+     1000790.54
+    ],
+    [
+     "Truth optimal plan",
+     38871.88498,
+     20851.50444,
+     1084278.231
+    ],
+    [
+     "Last year's mix",
+     18020.38055,
+     0.0,
+     0.0
+    ],
+    [
+     "Equal split",
+     -56079.37462,
+     -74099.75517,
+     -3853187.269
+    ]
+   ]
+  },
+  "budget.regret": {
+   "columns": [
+    "Model",
+    "Seeds",
+    "Share of optimal gain captured",
+    "Lower",
+    "Upper",
+    "Gain over last year (weekly)",
+    "Lower",
+    "Upper",
+    "Beats last year"
+   ],
+   "formats": [
+    "text",
+    "int",
+    "pct0",
+    "pct0",
+    "pct0",
+    "usd0",
+    "usd0",
+    "usd0",
+    "pct0"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "uncalibrated",
+     2,
+     0.3167434226,
+     -0.01112420646,
+     0.6446110517,
+     5574.094161,
+     -213.0841956,
+     11361.27252,
+     0.5
+    ],
+    [
+     "calibrated",
+     2,
+     0.2892263533,
+     -0.04284007543,
+     0.6212927821,
+     5064.843096,
+     -820.6017252,
+     10950.28792,
+     0.5
+    ]
+   ]
+  }
+ },
+ "values": {
+  "budget.allowance_applied": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "no"
+  },
+  "budget.bound.affiliate_promo": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "change limit"
+  },
+  "budget.bound.direct_mail": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "change limit"
+  },
+  "budget.bound.display_retargeting": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "change limit"
+  },
+  "budget.bound.email": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "change limit"
+  },
+  "budget.bound.online_video": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "change limit"
+  },
+  "budget.bound.paid_search": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "interior"
+  },
+  "budget.bound.paid_social": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "interior"
+  },
+  "budget.calibrated.expected_profit_weekly": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 30049.74937
+  },
+  "budget.calibrated.true_profit_weekly": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 33192.24804
+  },
+  "budget.change.affiliate_promo": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": -0.3
+  },
+  "budget.change.direct_mail": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": -0.3
+  },
+  "budget.change.display_retargeting": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": -0.3
+  },
+  "budget.change.email": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.3
+  },
+  "budget.change.online_video": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": -0.3
+  },
+  "budget.change.paid_search": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2776798863
+  },
+  "budget.change.paid_social": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2949622505
+  },
+  "budget.expected_profit_lower": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 19986.63726
+  },
+  "budget.expected_profit_upper": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 55643.37786
+  },
+  "budget.expected_profit_weekly": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 30049.74937
+  },
+  "budget.expected_revenue_weekly": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1262578.511
+  },
+  "budget.headline.equal_split_gain_annual": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": -3853187.269
+  },
+  "budget.headline.gain_optimal_annual": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1084278.231
+  },
+  "budget.headline.gain_over_last_year_annual": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 788937.1097
+  },
+  "budget.headline.gain_over_last_year_weekly": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 15171.86749
+  },
+  "budget.headline.last_year_profit_weekly": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 18020.38055
+  },
+  "budget.headline.share_captured": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.7276150044
+  },
+  "budget.headline.share_captured_uncalibrated": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.9230015979
+  },
+  "budget.inputs_hash": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "fcaea5116fc59607"
+  },
+  "budget.interior": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "interior"
+  },
+  "budget.interior_channels": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 2
+  },
+  "budget.interior_reason": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "every reallocation between interior channels lowers expected profit"
+  },
+  "budget.level": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.9
+  },
+  "budget.margin": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.42
+  },
+  "budget.marginal_equalized": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "yes"
+  },
+  "budget.marginal_spread": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.511457626e-12
+  },
+  "budget.max_change_share": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.3
+  },
+  "budget.model_version": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "own-0c071596-calibrated"
+  },
+  "budget.plan.affiliate_promo": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 28231.06235
+  },
+  "budget.plan.direct_mail": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 40047.10876
+  },
+  "budget.plan.display_retargeting": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 57997.94143
+  },
+  "budget.plan.email": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 20089.91253
+  },
+  "budget.plan.online_video": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 44778.00627
+  },
+  "budget.plan.paid_search": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 165675.9786
+  },
+  "budget.plan.paid_social": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 143413.2153
+  },
+  "budget.regret.calibrated.beats_last_year": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 0.5
+  },
+  "budget.regret.calibrated.equal_split_gain_mean": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": -75336.49028
+  },
+  "budget.regret.calibrated.gain_lower": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": -820.6017252
+  },
+  "budget.regret.calibrated.gain_upper": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 10950.28792
+  },
+  "budget.regret.calibrated.gain_weekly": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 5064.843096
+  },
+  "budget.regret.calibrated.optimal_gain_mean": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 18390.00306
+  },
+  "budget.regret.calibrated.seeds": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 2
+  },
+  "budget.regret.calibrated.share_captured": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 0.2892263533
+  },
+  "budget.regret.calibrated.share_captured_lower": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": -0.04284007543
+  },
+  "budget.regret.calibrated.share_captured_upper": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 0.6212927821
+  },
+  "budget.regret.uncalibrated.beats_last_year": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 0.5
+  },
+  "budget.regret.uncalibrated.equal_split_gain_mean": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": -75336.49028
+  },
+  "budget.regret.uncalibrated.gain_lower": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": -213.0841956
+  },
+  "budget.regret.uncalibrated.gain_upper": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 11361.27252
+  },
+  "budget.regret.uncalibrated.gain_weekly": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 5574.094161
+  },
+  "budget.regret.uncalibrated.optimal_gain_mean": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 18390.00306
+  },
+  "budget.regret.uncalibrated.seeds": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 2
+  },
+  "budget.regret.uncalibrated.share_captured": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 0.3167434226
+  },
+  "budget.regret.uncalibrated.share_captured_lower": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": -0.01112420646
+  },
+  "budget.regret.uncalibrated.share_captured_upper": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.regret",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 0.6446110517
+  },
+  "budget.solver_status": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "Optimization terminated successfully"
+  },
+  "budget.starts": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 8
+  },
+  "budget.starts_converged": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 8
+  },
+  "budget.surface.budget_max": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 700326.5152
+  },
+  "budget.surface.budget_min": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 300139.9351
+  },
+  "budget.surface.points": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 37
+  },
+  "budget.total_annual": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 26012127.71
+  },
+  "budget.total_weekly": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 500233.2252
+  },
+  "budget.truth.expected_profit_weekly": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 38871.88498
+  },
+  "budget.truth.true_profit_weekly": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 38871.88498
+  },
+  "budget.uncalibrated.expected_profit_weekly": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": -11045.06118
+  },
+  "budget.uncalibrated.true_profit_weekly": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 37266.35246
+  }
+ }
+}
