@@ -1,0 +1,27 @@
+# Identifiers and names that contain digits but are not claims. Anything else numeric
+# in a template must come from the manifest.
+v0.1.0
+Apache 2.0
+CC BY-NC-SA 4.0
+CC BY 4.0
+Next.js 15
+Python 3.12
+Tailwind v4
+2008
+2009
+2010
+2011
+v2.1
+BG/NBD
+SLSQP
+Fraunces
+Day 3
+Day 8
+Day 9
+16px
+390px
+80 percent
+/v1/
+step nine
+Section 20
+PYTHONHASHSEED
