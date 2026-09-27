@@ -1,0 +1,19 @@
+[project]
+name = "marginal-contracts"
+version = "0.1.0"
+description = "Typed frames, provenance and the data fetch with checksums"
+requires-python = ">=3.12,<3.13"
+license = "Apache-2.0"
+dependencies = [
+  "marginal-core",
+  "polars>=1.30",
+  "fastexcel>=0.12",
+  "duckdb>=1.1",
+]
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/marginal_contracts"]

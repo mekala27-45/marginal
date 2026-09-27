@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.egg-info/
+dist/
+build/
+
+# Raw public datasets are fetched by `make data` and never committed; derived aggregates are.
+data/external/*
+!data/external/.gitkeep
+.cache/
+
+# Rebuilt by the pipeline
+results/models/**/*.txt
+results/models/**/*.pkl
+results/models/**/*.nc
+results/scratch/
+logs/*
+!logs/.gitkeep
+
+# Web
+web/node_modules/
+web/.next/
+web/out/
+web/test-results/
+web/playwright-report/
+web/tsconfig.tsbuildinfo
+
+# Local environment
+.env
+*.log
+.DS_Store

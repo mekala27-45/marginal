@@ -1,0 +1,19 @@
+[project]
+name = "marginal-attribution"
+version = "0.1.0"
+description = "Six credit rules and exact Shapley graded against known incremental credit"
+requires-python = ">=3.12,<3.13"
+license = "Apache-2.0"
+dependencies = [
+  "marginal-core",
+  "marginal-sim",
+  "numpy>=1.26",
+  "polars>=1.30",
+]
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/marginal_attribution"]

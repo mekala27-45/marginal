@@ -1,0 +1,30 @@
+[project]
+name = "marginal-registry"
+version = "0.1.0"
+description = "The pipeline CLI, the manifest builders, marts and site data"
+requires-python = ">=3.12,<3.13"
+license = "Apache-2.0"
+dependencies = [
+  "marginal-core",
+  "marginal-contracts",
+  "marginal-sim",
+  "marginal-evaluation",
+  "marginal-mmm",
+  "marginal-experiments",
+  "marginal-calibrate",
+  "marginal-budget",
+  "marginal-targeting",
+  "marginal-clv",
+  "marginal-attribution",
+  "marginal-render",
+  "typer>=0.15",
+  "duckdb>=1.1",
+  "polars>=1.30",
+]
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/marginal_registry"]

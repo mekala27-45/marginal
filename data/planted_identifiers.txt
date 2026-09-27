@@ -1,0 +1,5 @@
+# Tokens that must never appear in anything published. The identifier scan reads this list
+# and tests/gates/test_identifier_scan.py plants each one and expects the scan to find it.
+# They are invented; nothing here belongs to a real person.
+plantedperson_quiddle
+4111 1111 1111 1111
