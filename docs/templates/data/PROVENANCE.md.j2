@@ -1,0 +1,62 @@
+# Data provenance
+
+Rendered from `results/manifest.json` by the claim gate; do not edit by hand.
+
+Nothing raw is committed. `make data` looks for the three files under `data/external`,
+downloads each one when its host answers, and verifies the checksum either way. The
+committed folders `data/hillstrom`, `data/retail` and `data/criteo` hold derived
+aggregates only, and the identifier scan fails the build if a raw header appears
+anywhere published.
+
+{{ table('data.provenance') }}
+
+{{ label('data.provenance') }}
+
+## Hillstrom email experiment
+
+- Source: {{ v('data.hillstrom.url') }}
+- Citation: {{ v('data.hillstrom.citation') }}
+- Terms: {{ v('data.hillstrom.license') }}. Kevin Hillstrom released the file in March 2008
+  for the MineThatData challenge with no formal license text. It is used here for a non
+  commercial portfolio with attribution, through the scikit-uplift mirror, whose MD5
+  ({{ v('data.hillstrom.md5') }}) that project publishes.
+- SHA-256 of the verified copy: `{{ v('data.hillstrom.sha256') }}`
+- Rows: {{ v('data.hillstrom.rows') }} customers; arms of {{ v('data.hillstrom.arm.control') }} (no email),
+  {{ v('data.hillstrom.arm.mens') }} (men's email) and {{ v('data.hillstrom.arm.womens') }} (women's email).
+- Outcome window: two weeks. Population: recent buyers of a catalog retailer in 2008.
+- Committed: `data/hillstrom/summary.json` (arm counts and outcome rates). The rows stay external.
+
+## Online Retail II
+
+- Source: {{ v('data.retail.url') }}
+- Citation: {{ v('data.retail.citation') }}
+- Terms: {{ v('data.retail.license') }}. The same source pricepoint (Day 2 of this series) priced;
+  here it is the purchase history lifetime value is fit on.
+- SHA-256 of the verified copy: `{{ v('data.retail.sha256') }}` (the UCI page publishes no checksum;
+  a different copy fails verification on purpose so the row counts below stay tied to this file).
+- Rows: {{ v('data.retail.raw_rows') }} transactions from {{ v('data.retail.first_date') }} to
+  {{ v('data.retail.last_date') }}. Cleaning removed {{ v('data.retail.cancellation_rows') }} credit
+  notes (invoices starting with C), {{ v('data.retail.no_customer_rows') }} rows without a customer id
+  ({{ v('data.retail.no_customer_rate') }} of the non credit rows) and {{ v('data.retail.adjustment_rows') }}
+  non positive adjustments, leaving {{ v('data.retail.kept_rows') }} rows,
+  {{ v('data.retail.customers') }} customers and {{ v('data.retail.purchases') }} customer days.
+- Windows: calibration to {{ v('data.retail.calibration_end') }}, holdout from {{ v('data.retail.holdout_start') }}.
+- Committed: `data/retail/purchases.parquet` (customer id, day, revenue, lines) and `summary.json`.
+  Customer ids are the dataset's own pseudonymous integers.
+
+## Criteo Uplift Prediction Dataset
+
+- Source: {{ v('data.criteo.url') }}
+- Citation: {{ v('data.criteo.citation') }}
+- Terms: {{ v('data.criteo.license') }}. Non commercial use with attribution; every derived table
+  under `data/criteo` and `results/targeting` carries the same terms.
+- Published MD5: {{ v('data.criteo.md5') }}. SHA-256 of the verified copy: `{{ v('data.criteo.sha256') }}`.
+- Rows: {{ v('data.criteo.rows') }}, treated share {{ v('data.criteo.treated_share') }}, visit rate
+  {{ v('data.criteo.visit_rate') }}, conversion rate {{ v('data.criteo.conversion_rate') }}, exposure rate
+  {{ v('data.criteo.exposure_rate') }}.
+- Which release ran: the full v2.1 release, every row. The ten percent mirror the prompt named
+  no longer exists (the scikit-uplift bucket answers NoSuchBucket), so the full file was fetched
+  from Criteo AI Lab and verified against the MD5 scikit-uplift publishes for it.
+- Committed: `data/criteo/summary.json`. The rows stay external.
+
+{{ statement() }}

@@ -54,6 +54,9 @@ class Policy(StrictModel):
     lift_test_spend_change: float = -1.0
     """A holdout: the tested channel's spend goes to zero in the treated geos."""
 
+    srm_alpha: float = 0.001
+    """No result is shown while the assignment counts fail the sample ratio test at this level."""
+
     placebo_permutations: int = 200
     bootstrap_replicates: int = 200
     bootstrap_block_weeks: int = 8

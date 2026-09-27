@@ -1,0 +1,14 @@
+{
+ "adjustment_rows": 71,
+ "calibration_end": "2010-11-30",
+ "cancellation_rows": 19494,
+ "customers": 5878,
+ "first_date": "2009-12-01",
+ "holdout_start": "2010-12-01",
+ "kept_rows": 805549,
+ "last_date": "2011-12-09",
+ "no_customer_rate": 0.23118839329425114,
+ "no_customer_rows": 242257,
+ "purchases": 33107,
+ "raw_rows": 1067371
+}

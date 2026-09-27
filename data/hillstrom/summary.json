@@ -1,0 +1,11 @@
+{
+ "arms": {
+  "control": 21306,
+  "mens": 21307,
+  "womens": 21387
+ },
+ "conversion_rate": 0.00903125,
+ "mean_spend": 1.05090828125,
+ "rows": 64000,
+ "visit_rate": 0.14678125
+}

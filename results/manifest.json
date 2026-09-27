@@ -1,0 +1,1141 @@
+{
+ "as_of": "2026-09-27",
+ "figures": {},
+ "seed": 12,
+ "tables": {
+  "data.provenance": {
+   "columns": [
+    "Dataset",
+    "File",
+    "License",
+    "Published MD5",
+    "SHA-256 (first 16)",
+    "Rows"
+   ],
+   "formats": [
+    "text",
+    "text",
+    "text",
+    "text",
+    "text",
+    "int"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources",
+    "population": "the three public releases",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "rows": [
+    [
+     "Hillstrom email experiment (MineThatData E-Mail Analytics and Data Mining Challenge, March 2008)",
+     "hillstorm_no_indices.csv.gz",
+     "Public challenge release without a formal license text",
+     "a68a81291f53a14f4e29002629803ba3",
+     "bab6578f60db5d79",
+     64000
+    ],
+    [
+     "Online Retail II (UCI Machine Learning Repository, dataset 502)",
+     "online+retail+ii.zip",
+     "CC BY 4.0",
+     "none published",
+     "572e36277c2390fb",
+     1067371
+    ],
+    [
+     "Criteo Uplift Prediction Dataset v2.1 (Criteo AI Lab)",
+     "criteo-uplift-v2.1.csv.gz",
+     "CC BY-NC-SA 4.0",
+     "d2236769ef69e9be52556110102911ec",
+     "2716e1bf0fd157a9",
+     13979592
+    ]
+   ]
+  }
+ },
+ "values": {
+  "build.stages_present": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_registry.stages.assemble",
+    "population": "stage manifests found",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "data"
+  },
+  "data.criteo.citation": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources",
+    "population": "declared source",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "Diemert, E., Betlei, A., Renaudin, C., Amini, M. (2018). A Large Scale Benchmark for Uplift Modeling. AdKDD and TargetAd Workshop, KDD 2018."
+  },
+  "data.criteo.conversion_rate": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.criteo",
+    "population": "the full v2.1 release",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 0.002916680258
+  },
+  "data.criteo.exposure_rate": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.criteo",
+    "population": "the full v2.1 release",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 0.030631223
+  },
+  "data.criteo.license": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources",
+    "population": "declared terms",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "CC BY-NC-SA 4.0"
+  },
+  "data.criteo.md5": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources.verify",
+    "population": "the file this build verified",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "d2236769ef69e9be52556110102911ec"
+  },
+  "data.criteo.rows": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.criteo",
+    "population": "the full v2.1 release",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 13979592
+  },
+  "data.criteo.sha256": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources.verify",
+    "population": "the file this build verified",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "2716e1bf0fd157a93b5bf86924d9088419dfbac2022c6cd90030220634f616dc"
+  },
+  "data.criteo.treated_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.criteo",
+    "population": "the full v2.1 release",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 0.8500001288
+  },
+  "data.criteo.url": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources",
+    "population": "declared source",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "http://go.criteo.net/criteo-research-uplift-v2.1.csv.gz"
+  },
+  "data.criteo.visit_rate": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.criteo",
+    "population": "the full v2.1 release",
+    "seed": null,
+    "seeds": null,
+    "source": "real:criteo"
+   },
+   "value": 0.04699200091
+  },
+  "data.hillstrom.arm.control": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.hillstrom",
+    "population": "64,000 recent buyers, 2008",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 21306
+  },
+  "data.hillstrom.arm.mens": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.hillstrom",
+    "population": "64,000 recent buyers, 2008",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 21307
+  },
+  "data.hillstrom.arm.womens": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.hillstrom",
+    "population": "64,000 recent buyers, 2008",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 21387
+  },
+  "data.hillstrom.citation": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources",
+    "population": "declared source",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "Hillstrom, K. (2008). The MineThatData E-Mail Analytics and Data Mining Challenge. MineThatData blog."
+  },
+  "data.hillstrom.conversion_rate": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.hillstrom",
+    "population": "64,000 recent buyers, 2008",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.00903125
+  },
+  "data.hillstrom.license": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources",
+    "population": "declared terms",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "Public challenge release without a formal license text"
+  },
+  "data.hillstrom.md5": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources.verify",
+    "population": "the file this build verified",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "a68a81291f53a14f4e29002629803ba3"
+  },
+  "data.hillstrom.mean_spend": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.hillstrom",
+    "population": "64,000 recent buyers, 2008",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 1.050908281
+  },
+  "data.hillstrom.rows": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.hillstrom",
+    "population": "64,000 recent buyers, 2008",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 64000
+  },
+  "data.hillstrom.sha256": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources.verify",
+    "population": "the file this build verified",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "bab6578f60db5d792f1c2372c502f029152a5249cf5ea84390f3b7f885d7234f"
+  },
+  "data.hillstrom.url": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources",
+    "population": "declared source",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "https://hillstorm1.s3.us-east-2.amazonaws.com/hillstorm_no_indices.csv.gz"
+  },
+  "data.hillstrom.visit_rate": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.hillstrom",
+    "population": "64,000 recent buyers, 2008",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.14678125
+  },
+  "data.retail.adjustment_rows": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.retail",
+    "population": "UK online gift retailer, 2009 to 2011",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 71
+  },
+  "data.retail.calibration_end": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.retail",
+    "population": "UK online gift retailer, 2009 to 2011",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": "2010-11-30"
+  },
+  "data.retail.cancellation_rows": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.retail",
+    "population": "UK online gift retailer, 2009 to 2011",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 19494
+  },
+  "data.retail.citation": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources",
+    "population": "declared source",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "Chen, D. (2019). Online Retail II. UCI Machine Learning Repository. https://doi.org/10.24432/C5CG6D"
+  },
+  "data.retail.customers": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.retail",
+    "population": "UK online gift retailer, 2009 to 2011",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 5878
+  },
+  "data.retail.first_date": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.retail",
+    "population": "UK online gift retailer, 2009 to 2011",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": "2009-12-01"
+  },
+  "data.retail.holdout_start": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.retail",
+    "population": "UK online gift retailer, 2009 to 2011",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": "2010-12-01"
+  },
+  "data.retail.kept_rows": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.retail",
+    "population": "UK online gift retailer, 2009 to 2011",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 805549
+  },
+  "data.retail.last_date": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.retail",
+    "population": "UK online gift retailer, 2009 to 2011",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": "2011-12-09"
+  },
+  "data.retail.license": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources",
+    "population": "declared terms",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "CC BY 4.0"
+  },
+  "data.retail.md5": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources.verify",
+    "population": "the file this build verified",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "none published"
+  },
+  "data.retail.no_customer_rate": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.retail",
+    "population": "UK online gift retailer, 2009 to 2011",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 0.2311883933
+  },
+  "data.retail.no_customer_rows": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.retail",
+    "population": "UK online gift retailer, 2009 to 2011",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 242257
+  },
+  "data.retail.purchases": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.retail",
+    "population": "UK online gift retailer, 2009 to 2011",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 33107
+  },
+  "data.retail.raw_rows": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.retail",
+    "population": "UK online gift retailer, 2009 to 2011",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 1067371
+  },
+  "data.retail.sha256": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources.verify",
+    "population": "the file this build verified",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "572e36277c2390fbfde10664750731e0a86f55e33470d91919085f0408e67bfb"
+  },
+  "data.retail.url": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.sources",
+    "population": "declared source",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "https://archive.ics.uci.edu/static/public/502/online+retail+ii.zip"
+  },
+  "palette.dark.first_three_all_pairs_cvd": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "scripts/validate_palette.js",
+    "population": "web/src/theme/palette.json",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 13
+  },
+  "palette.dark.worst_adjacent_cvd": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "scripts/validate_palette.js",
+    "population": "web/src/theme/palette.json",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 12.4
+  },
+  "palette.dark.worst_adjacent_normal": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "scripts/validate_palette.js",
+    "population": "web/src/theme/palette.json",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 20.2
+  },
+  "palette.dark.worst_card_contrast": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "scripts/validate_palette.js",
+    "population": "web/src/theme/palette.json",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 4.13
+  },
+  "palette.dark.worst_slot_contrast": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "scripts/validate_palette.js",
+    "population": "web/src/theme/palette.json",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 4.49
+  },
+  "palette.failures": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "scripts/validate_palette.js",
+    "population": "web/src/theme/palette.json",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0
+  },
+  "palette.light.first_three_all_pairs_cvd": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "scripts/validate_palette.js",
+    "population": "web/src/theme/palette.json",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 9.2
+  },
+  "palette.light.worst_adjacent_cvd": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "scripts/validate_palette.js",
+    "population": "web/src/theme/palette.json",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 12.5
+  },
+  "palette.light.worst_adjacent_normal": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "scripts/validate_palette.js",
+    "population": "web/src/theme/palette.json",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 19.8
+  },
+  "palette.light.worst_card_contrast": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "scripts/validate_palette.js",
+    "population": "web/src/theme/palette.json",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 3.92
+  },
+  "palette.light.worst_slot_contrast": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "scripts/validate_palette.js",
+    "population": "web/src/theme/palette.json",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 3.63
+  },
+  "palette.validated": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "scripts/validate_palette.js",
+    "population": "web/src/theme/palette.json",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "green"
+  },
+  "policy.bootstrap_block_weeks": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 8
+  },
+  "policy.bootstrap_replicates": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 200
+  },
+  "policy.budget_ceiling_share": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 2.0
+  },
+  "policy.budget_floor_share": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.25
+  },
+  "policy.budget_max_change_share": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.3
+  },
+  "policy.channel_count": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 7
+  },
+  "policy.channel_order": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "Paid search, Paid social, Online video, Display and retargeting, Email, Affiliate and promo codes, Direct mail"
+  },
+  "policy.clv_discount_rate_annual": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.1
+  },
+  "policy.clv_horizon_months": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 12
+  },
+  "policy.clv_payback_share": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.7
+  },
+  "policy.contribution_margin": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.42
+  },
+  "policy.contribution_margin_breakeven": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 2.380952381
+  },
+  "policy.email_cost_per_contact": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.12
+  },
+  "policy.email_margin_on_spend": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.3
+  },
+  "policy.interval_level": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.9
+  },
+  "policy.lift_test_channel": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": "Display and retargeting"
+  },
+  "policy.lift_test_length_weeks": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 8
+  },
+  "policy.lift_test_pre_period_weeks": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 52
+  },
+  "policy.lift_test_spend_change": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": -1.0
+  },
+  "policy.optimizer_starts": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 8
+  },
+  "policy.placebo_permutations": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 200
+  },
+  "policy.recovery_seeds_bayes": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 3
+  },
+  "policy.recovery_seeds_own": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 20
+  },
+  "policy.rolling_origins": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 4
+  },
+  "policy.srm_alpha": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_core.config.POLICY",
+    "population": "the measurement policy",
+    "seed": null,
+    "seeds": null,
+    "source": "static"
+   },
+   "value": 0.001
+  }
+ }
+}

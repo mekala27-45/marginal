@@ -19,7 +19,13 @@ def _setup(tmp_path: Path) -> tuple[Renderer, Path]:
     )
     manifest = Manifest(as_of="2026-09-27", seed=1)
     manifest.put(
-        "mmm.own.roas.paid_search", 2.4137, "float2", source="simulated", model="own", population="p", origin="o"
+        "mmm.own.roas.paid_search",
+        2.4137,
+        "float2",
+        source="simulated",
+        model="own",
+        population="p",
+        origin="o",
     )
     manifest.put_table(
         "mmm.cross_check",

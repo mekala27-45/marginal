@@ -300,3 +300,80 @@ def _clean(value: Any) -> Scalar:
     if number.is_integer() and abs(number) < 2**53 and not isinstance(value, float):
         return int(number)
     return float(f"{number:.10g}")
+
+
+class Scribe:
+    """A manifest writer bound to one provenance, so a stage states its source once."""
+
+    def __init__(
+        self,
+        manifest: Manifest,
+        *,
+        source: str,
+        population: str,
+        origin: str,
+        model: str = "none",
+        seed: int | None = None,
+        seeds: int | None = None,
+        condition: str | None = None,
+    ) -> None:
+        self.manifest = manifest
+        self.source = source
+        self.population = population
+        self.origin = origin
+        self.model = model
+        self.seed = seed
+        self.seeds = seeds
+        self.condition = condition
+
+    def put(self, key: str, value: Scalar, fmt: str, *, condition: str | None = None) -> None:
+        self.manifest.put(
+            key,
+            value,
+            fmt,
+            source=self.source,
+            model=self.model,
+            population=self.population,
+            origin=self.origin,
+            seed=self.seed,
+            seeds=self.seeds,
+            condition=condition or self.condition,
+        )
+
+    def table(
+        self,
+        key: str,
+        columns: Sequence[str],
+        formats: Sequence[str],
+        rows: Iterable[Sequence[Scalar]],
+        *,
+        condition: str | None = None,
+    ) -> None:
+        self.manifest.put_table(
+            key,
+            columns,
+            formats,
+            rows,
+            source=self.source,
+            model=self.model,
+            population=self.population,
+            origin=self.origin,
+            seed=self.seed,
+            seeds=self.seeds,
+            condition=condition or self.condition,
+        )
+
+    def figure(self, key: str, title: str, callout: str, *, data: str | None = None) -> None:
+        self.manifest.put_figure(
+            key,
+            title,
+            callout,
+            source=self.source,
+            model=self.model,
+            population=self.population,
+            origin=self.origin,
+            data=data,
+            seed=self.seed,
+            seeds=self.seeds,
+            condition=self.condition,
+        )

@@ -25,3 +25,7 @@ Day 9
 step nine
 Section 20
 PYTHONHASHSEED
+SHA-256
+MD5
+Day 2
+log(0.5)

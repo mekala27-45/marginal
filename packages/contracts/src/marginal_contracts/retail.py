@@ -45,7 +45,13 @@ def read_workbook(zip_path: Path, cache: Path | None = None) -> pl.DataFrame:
         workbook = zip_path.parent / name
         if not workbook.exists():
             archive.extract(name, zip_path.parent)
-    frames = [pl.read_excel(workbook, sheet_name=sheet, engine="calamine") for sheet in SHEETS]
+    # Invoice and StockCode are read as text explicitly: calamine infers a numeric column from
+    # the first rows and turns every credit note (an invoice starting with C) into a null.
+    text = {"Invoice": pl.String, "StockCode": pl.String, "Description": pl.String, "Country": pl.String}
+    frames = [
+        pl.read_excel(workbook, sheet_name=sheet, engine="calamine", schema_overrides=text)
+        for sheet in SHEETS
+    ]
     frame = pl.concat(frames, how="vertical_relaxed")
     frame = frame.rename({"Customer ID": "customer_id"})
     frame = frame.with_columns(
