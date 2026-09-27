@@ -1,0 +1,21 @@
+{
+ "adstock": "geometric, normalized, lags 0 to 13",
+ "backend": "bayes",
+ "calibrated": 0,
+ "chains": 2,
+ "data_source": "simulated",
+ "divergences": 0,
+ "draws": 400,
+ "failed_ceilings": "",
+ "fit_seconds": 258.9,
+ "fit_status": "ok",
+ "max_rhat": 1.0095546483174456,
+ "priors": "saturation_beta HalfNormal(sigma=0.25); saturation_kappa LogNormal(mu=0.0, sigma=0.4); saturation_slope Gamma(mu=1.6, sigma=0.4); adstock_alpha Beta(alpha=2, beta=3) (beta in largest weeks of sales, kappa in mean weeks of the channel's spend)",
+ "residual_share_of_sales": 0.006694592808488065,
+ "sampler": "pymc 5.28.5 NUTS, jitter+adapt_diag",
+ "sampling_seconds": 250.1,
+ "saturation": "hill",
+ "spec_hash": "85e6f23579765fde",
+ "tune": 400,
+ "unexplained_variance_share": 0.005643504512123778
+}

@@ -1,0 +1,160 @@
+{
+ "experiments": [
+  {
+   "design": {
+    "analysis": "difference in differences with geo and week fixed effects on log sales; synthetic control with placebo inference",
+    "assignment": "stratified",
+    "channel": "display_retargeting",
+    "control_geos": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     6,
+     7,
+     10,
+     12,
+     13,
+     14,
+     15,
+     17,
+     18,
+     22,
+     23,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     36,
+     37,
+     38,
+     39
+    ],
+    "end_week": 155,
+    "interval_level": 0.9,
+    "name": "display_retargeting holdout, 8 weeks, 10 geos",
+    "placebo_permutations": 200,
+    "power_at_true_effect": 1.0,
+    "pre_period_weeks": 52,
+    "primary_outcome": "sales",
+    "spend_change": -1.0,
+    "start_week": 148,
+    "treated_geos": [
+     5,
+     8,
+     9,
+     11,
+     16,
+     19,
+     20,
+     21,
+     34,
+     35
+    ]
+   },
+   "experiment_id": "076102e0-ebd0-5218-8433-fab40b6cff08",
+   "kind": "geo_lift",
+   "name": "display_retargeting holdout, 8 weeks, 10 geos",
+   "plan_hash": "53733a76fe1af6ec",
+   "registered_at": "2026-09-27T21:45:07+00:00",
+   "registered_via": "local"
+  },
+  {
+   "design": {
+    "arms": [
+     "control",
+     "mens",
+     "womens"
+    ],
+    "control_arm": "control",
+    "correction": "Benjamini-Hochberg across segments",
+    "interval_level": 0.9,
+    "name": "Hillstrom 2008 email experiment",
+    "outcome_window_days": 14,
+    "outcomes": [
+     "visit",
+     "conversion",
+     "spend"
+    ],
+    "planned_shares": [
+     0.3333333333333333,
+     0.3333333333333333,
+     0.3333333333333333
+    ],
+    "primary_arm": "mens",
+    "segments_by": "history_segment"
+   },
+   "experiment_id": "0803e981-ba52-5cd9-8023-309fe0a5cb0d",
+   "kind": "email",
+   "name": "Hillstrom 2008 email experiment",
+   "plan_hash": "1a44a33031e3de84",
+   "registered_at": "2026-09-27T21:45:07+00:00",
+   "registered_via": "local"
+  }
+ ],
+ "results": [
+  {
+   "channel": "display_retargeting",
+   "end_week": 155,
+   "experiment_id": "076102e0-ebd0-5218-8433-fab40b6cff08",
+   "geos": [
+    5,
+    8,
+    9,
+    11,
+    16,
+    19,
+    20,
+    21,
+    34,
+    35
+   ],
+   "incremental_revenue": 169063.46409394566,
+   "level": 0.9,
+   "lower": 151588.44128042148,
+   "method": "did",
+   "plan_hash": "53733a76fe1af6ec",
+   "posted_at": "2026-09-27T21:45:07+00:00",
+   "posted_via": "local",
+   "standard_error": 10624.059507296055,
+   "start_week": 148,
+   "truth": 150477.6501144888,
+   "upper": 186538.48690746984
+  },
+  {
+   "channel": "display_retargeting",
+   "end_week": 155,
+   "experiment_id": "076102e0-ebd0-5218-8433-fab40b6cff08",
+   "geos": [
+    5,
+    8,
+    9,
+    11,
+    16,
+    19,
+    20,
+    21,
+    34,
+    35
+   ],
+   "incremental_revenue": 167951.8803050476,
+   "level": 0.9,
+   "lower": 131870.82127734798,
+   "method": "synthetic_control",
+   "plan_hash": "53733a76fe1af6ec",
+   "posted_at": "2026-09-27T21:45:07+00:00",
+   "posted_via": "local",
+   "standard_error": 22545.75604272315,
+   "start_week": 148,
+   "truth": 150477.6501144888,
+   "upper": 206046.35865790714
+  }
+ ]
+}

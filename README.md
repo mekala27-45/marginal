@@ -9,7 +9,7 @@ feeding an acquisition cost allowance, attribution rules beside incremental trut
 constrained budget optimizer that equalizes marginal returns, a plan and experiment
 registry on a live API, a quarterly review memo rendered from the manifest, and a site.
 
-Build in progress. Stage manifests present: data, simulate, recovery_own. The Criteo run
+Build in progress. Stage manifests present: data, simulate, recovery_own, experiments. The Criteo run
 uses the full v2.1 release (13,979,592 rows), because the ten percent mirror no
 longer exists; see `data/PROVENANCE.md`.
 

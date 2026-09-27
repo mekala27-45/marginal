@@ -90,8 +90,20 @@ DEFAULT_CHANNELS: tuple[ChannelTruth, ...] = (
 assert tuple(c.channel for c in DEFAULT_CHANNELS) == CHANNELS
 
 
+class Intervention(StrictModel):
+    """A change to one channel's spend in some geos over a window: a geo lift test."""
+
+    channel: str
+    geos: tuple[int, ...]
+    start_week: int
+    end_week: int
+    spend_multiplier: float
+    """Zero for a holdout, above one for an increase."""
+
+
 class MarketSpec(StrictModel):
     seed: int
+    intervention: Intervention | None = None
     spend_correlation: float = 0.6
     """Target correlation between channels' weekly spend shocks: 0.2, 0.6 or 0.9 in the study."""
     demand_feedback: bool = True

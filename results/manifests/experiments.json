@@ -1,0 +1,1486 @@
+{
+ "as_of": "2026-09-27",
+ "figures": {},
+ "seed": 12,
+ "tables": {
+  "email.effects": {
+   "columns": [
+    "Arm",
+    "Outcome",
+    "No email",
+    "Email",
+    "Effect",
+    "Lower",
+    "Upper"
+   ],
+   "formats": [
+    "text",
+    "text",
+    "float4",
+    "float4",
+    "float4",
+    "float4",
+    "float4"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "rows": [
+    [
+     "mens",
+     "visit",
+     0.1061672768,
+     0.1827568405,
+     0.07658956365,
+     0.0710202738,
+     0.0821588535
+    ],
+    [
+     "mens",
+     "conversion",
+     0.005726086548,
+     0.01253109307,
+     0.00680500652,
+     0.005290305578,
+     0.008319707461
+    ],
+    [
+     "mens",
+     "spend",
+     0.6527893551,
+     1.422616511,
+     0.7698271559,
+     0.5309178245,
+     1.008736487
+    ],
+    [
+     "womens",
+     "visit",
+     0.1061672768,
+     0.1514003834,
+     0.04523310659,
+     0.03991288987,
+     0.0505533233
+    ],
+    [
+     "womens",
+     "conversion",
+     0.005726086548,
+     0.008837144059,
+     0.003111057511,
+     0.001757874136,
+     0.004464240886
+    ],
+    [
+     "womens",
+     "spend",
+     0.6527893551,
+     1.077201571,
+     0.4244122159,
+     0.2100337409,
+     0.638790691
+    ]
+   ]
+  },
+  "email.segments.mens.conversion": {
+   "columns": [
+    "History segment",
+    "Effect",
+    "Lower",
+    "Upper",
+    "p",
+    "p adjusted",
+    "Significant"
+   ],
+   "formats": [
+    "text",
+    "pct2",
+    "pct2",
+    "pct2",
+    "float3",
+    "float3",
+    "text"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "rows": [
+    [
+     "1) $0 - $100",
+     0.004988239834,
+     0.002825204929,
+     0.007151274739,
+     0.0001486904747,
+     0.000933118534,
+     "yes"
+    ],
+    [
+     "2) $100 - $200",
+     0.004817665561,
+     0.002093086076,
+     0.007542245047,
+     0.003632033114,
+     0.006356057949,
+     "yes"
+    ],
+    [
+     "3) $200 - $350",
+     0.008479585199,
+     0.004653857225,
+     0.01230531317,
+     0.0002666052954,
+     0.000933118534,
+     "yes"
+    ],
+    [
+     "4) $350 - $500",
+     0.008729177275,
+     0.002438499143,
+     0.01501985541,
+     0.02246221811,
+     0.02620592113,
+     "yes"
+    ],
+    [
+     "5) $500 - $750",
+     0.008327887792,
+     0.00267897749,
+     0.01397679809,
+     0.015311754,
+     0.02143645559,
+     "yes"
+    ],
+    [
+     "6) $750 - $1,000",
+     0.02002156937,
+     0.0089376385,
+     0.03110550024,
+     0.00296640659,
+     0.006356057949,
+     "yes"
+    ],
+    [
+     "7) $1,000 +",
+     0.009283819629,
+     -0.005813219874,
+     0.02438085913,
+     0.3117813343,
+     0.3117813343,
+     "no"
+    ]
+   ]
+  },
+  "geo.estimates": {
+   "columns": [
+    "Method",
+    "Estimate",
+    "Lower",
+    "Upper",
+    "Truth (simulated)",
+    "Covers",
+    "Error"
+   ],
+   "formats": [
+    "text",
+    "usd0",
+    "usd0",
+    "usd0",
+    "usd0",
+    "text",
+    "spct1"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "Difference in differences",
+     169063.4641,
+     151588.4413,
+     186538.4869,
+     150477.6501,
+     "no",
+     0.1235121227
+    ],
+    [
+     "Synthetic control",
+     167951.8803,
+     131870.8213,
+     206046.3587,
+     150477.6501,
+     "yes",
+     0.1161250869
+    ]
+   ]
+  },
+  "geo.power": {
+   "columns": [
+    "Spend removed",
+    "Test length (weeks)",
+    "Simulations",
+    "Power",
+    "Mean true lift"
+   ],
+   "formats": [
+    "pct0",
+    "int",
+    "int",
+    "pct0",
+    "usd0"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     1.0,
+     4,
+     60,
+     1.0,
+     76604.65908
+    ],
+    [
+     1.0,
+     8,
+     60,
+     1.0,
+     152789.9969
+    ],
+    [
+     0.5,
+     4,
+     60,
+     1.0,
+     41681.23409
+    ],
+    [
+     0.5,
+     8,
+     60,
+     1.0,
+     87706.11324
+    ],
+    [
+     0.25,
+     4,
+     60,
+     0.5666666667,
+     18820.19058
+    ],
+    [
+     0.25,
+     8,
+     60,
+     0.8833333333,
+     39851.57916
+    ]
+   ]
+  }
+ },
+ "values": {
+  "email.arm.control": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 21306
+  },
+  "email.arm.mens": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 21307
+  },
+  "email.arm.womens": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 21387
+  },
+  "email.cost_per_email": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.12
+  },
+  "email.level": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.9
+  },
+  "email.margin_on_spend": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.3
+  },
+  "email.mens.conversion.control": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.005726086548
+  },
+  "email.mens.conversion.effect": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.00680500652
+  },
+  "email.mens.conversion.lower": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.005290305578
+  },
+  "email.mens.conversion.treated": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.01253109307
+  },
+  "email.mens.conversion.upper": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.008319707461
+  },
+  "email.mens.profit_per_email": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.1109481468
+  },
+  "email.mens.revenue_per_email": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.7698271559
+  },
+  "email.mens.spend.control": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.6527893551
+  },
+  "email.mens.spend.effect": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.7698271559
+  },
+  "email.mens.spend.lower": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.5309178245
+  },
+  "email.mens.spend.treated": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 1.422616511
+  },
+  "email.mens.spend.upper": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 1.008736487
+  },
+  "email.mens.visit.control": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.1061672768
+  },
+  "email.mens.visit.effect": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.07658956365
+  },
+  "email.mens.visit.lower": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.0710202738
+  },
+  "email.mens.visit.treated": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.1827568405
+  },
+  "email.mens.visit.upper": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.0821588535
+  },
+  "email.plan_hash": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "1a44a33031e3de84"
+  },
+  "email.registered_via": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "local"
+  },
+  "email.segments.correction": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "Benjamini-Hochberg across segments"
+  },
+  "email.segments.mens.conversion.count": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 7
+  },
+  "email.segments.mens.conversion.significant": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 6
+  },
+  "email.segments.mens.spend.significant": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 5
+  },
+  "email.srm_p": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.9036929576
+  },
+  "email.srm_passed": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "passed"
+  },
+  "email.window_days": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 14
+  },
+  "email.womens.conversion.control": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.005726086548
+  },
+  "email.womens.conversion.effect": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.003111057511
+  },
+  "email.womens.conversion.lower": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.001757874136
+  },
+  "email.womens.conversion.treated": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.008837144059
+  },
+  "email.womens.conversion.upper": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.004464240886
+  },
+  "email.womens.profit_per_email": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.007323664781
+  },
+  "email.womens.revenue_per_email": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.4244122159
+  },
+  "email.womens.spend.control": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.6527893551
+  },
+  "email.womens.spend.effect": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.4244122159
+  },
+  "email.womens.spend.lower": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.2100337409
+  },
+  "email.womens.spend.treated": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 1.077201571
+  },
+  "email.womens.spend.upper": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.638790691
+  },
+  "email.womens.visit.control": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.1061672768
+  },
+  "email.womens.visit.effect": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.04523310659
+  },
+  "email.womens.visit.lower": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.03991288987
+  },
+  "email.womens.visit.treated": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.1514003834
+  },
+  "email.womens.visit.upper": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.0505533233
+  },
+  "geo.channel": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "Display and retargeting"
+  },
+  "geo.control_geos": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 30
+  },
+  "geo.did.covers_truth": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "no"
+  },
+  "geo.did.delta_log": {
+   "fmt": "float4",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": -0.03165795568
+  },
+  "geo.did.error": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1235121227
+  },
+  "geo.did.estimate": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 169063.4641
+  },
+  "geo.did.lower": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 151588.4413
+  },
+  "geo.did.standard_error": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 10624.05951
+  },
+  "geo.did.upper": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 186538.4869
+  },
+  "geo.end_week": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 155
+  },
+  "geo.experiment_id": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "076102e0-ebd0-5218-8433-fab40b6cff08"
+  },
+  "geo.plan_hash": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "53733a76fe1af6ec"
+  },
+  "geo.power_at_true_effect": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "geo.power_simulations": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 60
+  },
+  "geo.pre_period_weeks": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 52
+  },
+  "geo.registered_at": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "2026-09-27T21:45:07+00:00"
+  },
+  "geo.registered_via": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "local"
+  },
+  "geo.result_posted_via": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "local"
+  },
+  "geo.sc.covers_truth": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "yes"
+  },
+  "geo.sc.error": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1161250869
+  },
+  "geo.sc.estimate": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 167951.8803
+  },
+  "geo.sc.largest_weight": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1564475976
+  },
+  "geo.sc.lower": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 131870.8213
+  },
+  "geo.sc.p_value": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.0
+  },
+  "geo.sc.placebo_permutations": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 200
+  },
+  "geo.sc.pre_period_rmse": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 3052.169651
+  },
+  "geo.sc.upper": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 206046.3587
+  },
+  "geo.spend_change": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": -1.0
+  },
+  "geo.srm_p": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "geo.srm_passed": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "passed"
+  },
+  "geo.start_week": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 148
+  },
+  "geo.treated_geo_ids": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "5, 8, 9, 11, 16, 19, 20, 21, 34, 35"
+  },
+  "geo.treated_geos": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 10
+  },
+  "geo.truth": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 150477.6501
+  },
+  "geo.window_weeks": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 8
+  }
+ }
+}

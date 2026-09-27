@@ -57,6 +57,307 @@
     ]
    ]
   },
+  "email.effects": {
+   "columns": [
+    "Arm",
+    "Outcome",
+    "No email",
+    "Email",
+    "Effect",
+    "Lower",
+    "Upper"
+   ],
+   "formats": [
+    "text",
+    "text",
+    "float4",
+    "float4",
+    "float4",
+    "float4",
+    "float4"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "rows": [
+    [
+     "mens",
+     "visit",
+     0.1061672768,
+     0.1827568405,
+     0.07658956365,
+     0.0710202738,
+     0.0821588535
+    ],
+    [
+     "mens",
+     "conversion",
+     0.005726086548,
+     0.01253109307,
+     0.00680500652,
+     0.005290305578,
+     0.008319707461
+    ],
+    [
+     "mens",
+     "spend",
+     0.6527893551,
+     1.422616511,
+     0.7698271559,
+     0.5309178245,
+     1.008736487
+    ],
+    [
+     "womens",
+     "visit",
+     0.1061672768,
+     0.1514003834,
+     0.04523310659,
+     0.03991288987,
+     0.0505533233
+    ],
+    [
+     "womens",
+     "conversion",
+     0.005726086548,
+     0.008837144059,
+     0.003111057511,
+     0.001757874136,
+     0.004464240886
+    ],
+    [
+     "womens",
+     "spend",
+     0.6527893551,
+     1.077201571,
+     0.4244122159,
+     0.2100337409,
+     0.638790691
+    ]
+   ]
+  },
+  "email.segments.mens.conversion": {
+   "columns": [
+    "History segment",
+    "Effect",
+    "Lower",
+    "Upper",
+    "p",
+    "p adjusted",
+    "Significant"
+   ],
+   "formats": [
+    "text",
+    "pct2",
+    "pct2",
+    "pct2",
+    "float3",
+    "float3",
+    "text"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "rows": [
+    [
+     "1) $0 - $100",
+     0.004988239834,
+     0.002825204929,
+     0.007151274739,
+     0.0001486904747,
+     0.000933118534,
+     "yes"
+    ],
+    [
+     "2) $100 - $200",
+     0.004817665561,
+     0.002093086076,
+     0.007542245047,
+     0.003632033114,
+     0.006356057949,
+     "yes"
+    ],
+    [
+     "3) $200 - $350",
+     0.008479585199,
+     0.004653857225,
+     0.01230531317,
+     0.0002666052954,
+     0.000933118534,
+     "yes"
+    ],
+    [
+     "4) $350 - $500",
+     0.008729177275,
+     0.002438499143,
+     0.01501985541,
+     0.02246221811,
+     0.02620592113,
+     "yes"
+    ],
+    [
+     "5) $500 - $750",
+     0.008327887792,
+     0.00267897749,
+     0.01397679809,
+     0.015311754,
+     0.02143645559,
+     "yes"
+    ],
+    [
+     "6) $750 - $1,000",
+     0.02002156937,
+     0.0089376385,
+     0.03110550024,
+     0.00296640659,
+     0.006356057949,
+     "yes"
+    ],
+    [
+     "7) $1,000 +",
+     0.009283819629,
+     -0.005813219874,
+     0.02438085913,
+     0.3117813343,
+     0.3117813343,
+     "no"
+    ]
+   ]
+  },
+  "geo.estimates": {
+   "columns": [
+    "Method",
+    "Estimate",
+    "Lower",
+    "Upper",
+    "Truth (simulated)",
+    "Covers",
+    "Error"
+   ],
+   "formats": [
+    "text",
+    "usd0",
+    "usd0",
+    "usd0",
+    "usd0",
+    "text",
+    "spct1"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "Difference in differences",
+     169063.4641,
+     151588.4413,
+     186538.4869,
+     150477.6501,
+     "no",
+     0.1235121227
+    ],
+    [
+     "Synthetic control",
+     167951.8803,
+     131870.8213,
+     206046.3587,
+     150477.6501,
+     "yes",
+     0.1161250869
+    ]
+   ]
+  },
+  "geo.power": {
+   "columns": [
+    "Spend removed",
+    "Test length (weeks)",
+    "Simulations",
+    "Power",
+    "Mean true lift"
+   ],
+   "formats": [
+    "pct0",
+    "int",
+    "int",
+    "pct0",
+    "usd0"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     1.0,
+     4,
+     60,
+     1.0,
+     76604.65908
+    ],
+    [
+     1.0,
+     8,
+     60,
+     1.0,
+     152789.9969
+    ],
+    [
+     0.5,
+     4,
+     60,
+     1.0,
+     41681.23409
+    ],
+    [
+     0.5,
+     8,
+     60,
+     1.0,
+     87706.11324
+    ],
+    [
+     0.25,
+     4,
+     60,
+     0.5666666667,
+     18820.19058
+    ],
+    [
+     0.25,
+     8,
+     60,
+     0.8833333333,
+     39851.57916
+    ]
+   ]
+  },
   "mmm.own.returns": {
    "columns": [
     "Channel",
@@ -95,86 +396,86 @@
    "rows": [
     [
      "Paid search",
-     1.920030332,
-     1.361215824,
-     2.540412312,
+     2.381309223,
+     2.240466991,
+     2.605079792,
      3.151569551,
      "no",
-     1.750079423,
+     2.174765749,
      2.351505118,
-     0.5632913948,
+     0.4071214445,
      0.4306765581
     ],
     [
      "Paid social",
-     4.273646558,
-     1.957811235,
-     5.372134499,
+     3.017638345,
+     2.577747686,
+     3.384320605,
      2.374067244,
-     "yes",
-     2.974280745,
+     "no",
+     2.669533449,
      2.331356542,
-     0.897936449,
+     0.8246699232,
      0.6602520221
     ],
     [
      "Online video",
-     0.9975521226,
-     0.1384532199,
-     1.629800236,
+     0.8476119319,
+     0.3606161197,
+     1.187729002,
      1.585994225,
-     "yes",
-     1.664275164,
+     "no",
+     1.023970507,
      1.434302168,
-     0.3266118605,
+     0.5525356732,
      1.609040551
     ],
     [
      "Display and retargeting",
-     2.419709502,
-     1.216697335,
-     3.235651538,
-     1.218086784,
+     1.618123045,
+     1.183791849,
+     1.916674019,
+     1.221477616,
      "yes",
-     1.631367616,
-     0.6706199111,
-     0.367857601,
+     0.7558918702,
+     0.6901508767,
+     0.441042893,
      0.5757166425
     ],
     [
      "Email",
-     2.612625738e-16,
-     2.969379323e-21,
-     15.31546832,
+     4.790209294,
+     3.213842436,
+     6.791500736,
      7.704426592,
-     "yes",
-     1.778729709e-16,
+     "no",
+     3.930224071,
      4.062671798,
-     0.8678289204,
+     0.2911036313,
      0.3653681296
     ],
     [
      "Affiliate and promo codes",
-     0.9530040957,
-     1.516178763e-16,
-     1.798244793,
+     1.595102322,
+     1.272127363,
+     2.002602226,
      2.744712217,
      "no",
-     1.548385327,
+     1.826447125,
      2.360405263,
-     0.05616843017,
+     0.315429658,
      0.5
     ],
     [
      "Direct mail",
-     5.794829741e-14,
-     1.250689426e-18,
-     5.676120451,
+     1.932920411,
+     0.383357495,
+     4.047615544,
      1.881982971,
      "yes",
-     3.118330889e-14,
+     1.27816711,
      1.524924318,
-     0.7042046709,
+     2.829352851,
      2.110010956
     ]
    ]
@@ -211,92 +512,92 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
    "rows": [
     [
      "rho 0.2, feedback off",
      "Paid search",
-     -0.0810199858,
-     -0.0810199858,
-     -0.0810199858,
-     0.0810199858,
-     0.0810199858,
-     0.0810199858,
-     1.0,
+     -0.004130774296,
+     -0.07787718238,
+     0.07682631333,
+     0.17994158,
+     0.1332435754,
+     0.2337236465,
+     0.15,
      null
     ],
     [
      "rho 0.2, feedback off",
      "Paid social",
-     -0.1097646079,
-     -0.1097646079,
-     -0.1097646079,
-     0.1097646079,
-     0.1097646079,
-     0.1097646079,
-     1.0,
+     0.2157219103,
+     0.03364714781,
+     0.4576139068,
+     0.1535336289,
+     0.1152595605,
+     0.2915321892,
+     0.3,
      null
     ],
     [
      "rho 0.2, feedback off",
      "Online video",
-     -1.0,
-     -1.0,
-     -1.0,
-     1.0,
-     1.0,
-     1.0,
-     0.0,
+     0.2169870258,
+     -0.1026803691,
+     0.616202276,
+     0.5105930954,
+     0.375090776,
+     0.6138929555,
+     0.5,
      null
     ],
     [
      "rho 0.2, feedback off",
      "Display and retargeting",
-     -0.3891715442,
-     -0.3891715442,
-     -0.3891715442,
-     0.3891715442,
-     0.3891715442,
-     0.3891715442,
-     1.0,
+     -0.07161625763,
+     -0.2154463964,
+     0.0904900567,
+     0.2852522128,
+     0.1578478144,
+     0.483458235,
+     0.55,
      null
     ],
     [
      "rho 0.2, feedback off",
      "Email",
-     -0.5583088752,
-     -0.5583088752,
-     -0.5583088752,
-     0.5583088752,
-     0.5583088752,
-     0.5583088752,
-     1.0,
+     -0.1477080173,
+     -0.330552206,
+     0.07743019136,
+     0.4895921102,
+     0.32183045,
+     0.5613856861,
+     0.3,
      null
     ],
     [
      "rho 0.2, feedback off",
      "Affiliate and promo codes",
-     -0.5356209185,
-     -0.5356209185,
-     -0.5356209185,
-     0.5356209185,
-     0.5356209185,
-     0.5356209185,
-     0.0,
+     0.07993364646,
+     -0.08749530134,
+     0.250104599,
+     0.3061348163,
+     0.1927735411,
+     0.5747150835,
+     0.3,
      null
     ],
     [
      "rho 0.2, feedback off",
      "Direct mail",
-     -0.597246984,
-     -0.597246984,
-     -0.597246984,
-     0.597246984,
-     0.597246984,
-     0.597246984,
-     0.0,
+     -0.6040095976,
+     -0.6744752916,
+     -0.5253143236,
+     0.6648887145,
+     0.5084684215,
+     0.7196076289,
+     0.1,
      null
     ],
     [
@@ -305,94 +606,94 @@
      null,
      null,
      null,
-     0.5356209185,
+     0.3439494021,
      null,
      null,
-     0.5714285714,
-     0.8571428571
+     0.3142857143,
+     0.7446428571
     ],
     [
      "rho 0.2, feedback on",
      "Paid search",
-     -0.2291296942,
-     -0.2291296942,
-     -0.2291296942,
-     0.2291296942,
-     0.2291296942,
-     0.2291296942,
-     0.0,
+     -0.04160829772,
+     -0.1211621195,
+     0.05956695623,
+     0.1849839496,
+     0.1277037383,
+     0.2090779233,
+     0.15,
      null
     ],
     [
      "rho 0.2, feedback on",
      "Paid social",
-     -0.2258888975,
-     -0.2258888975,
-     -0.2258888975,
-     0.2258888975,
-     0.2258888975,
-     0.2258888975,
-     0.0,
+     0.1607097417,
+     -0.01324097133,
+     0.3962400956,
+     0.1683367996,
+     0.08887663676,
+     0.3410631689,
+     0.3,
      null
     ],
     [
      "rho 0.2, feedback on",
      "Online video",
-     -1.0,
-     -1.0,
-     -1.0,
-     1.0,
-     1.0,
-     1.0,
-     0.0,
+     0.2685174843,
+     -0.05429432104,
+     0.6715820909,
+     0.5382518398,
+     0.4581156625,
+     0.6935703666,
+     0.35,
      null
     ],
     [
      "rho 0.2, feedback on",
      "Display and retargeting",
-     1.757430804,
-     1.757430804,
-     1.757430804,
-     1.757430804,
-     1.757430804,
-     1.757430804,
-     0.0,
+     0.2841503466,
+     0.07889338707,
+     0.5143957536,
+     0.3842782934,
+     0.2962395694,
+     0.5815641745,
+     0.3,
      null
     ],
     [
      "rho 0.2, feedback on",
      "Email",
-     -0.6106230282,
-     -0.6106230282,
-     -0.6106230282,
-     0.6106230282,
-     0.6106230282,
-     0.6106230282,
-     0.0,
+     -0.1970894687,
+     -0.3690745279,
+     0.01877640838,
+     0.4509935285,
+     0.2699150266,
+     0.5291770845,
+     0.3,
      null
     ],
     [
      "rho 0.2, feedback on",
      "Affiliate and promo codes",
-     -0.6020009667,
-     -0.6020009667,
-     -0.6020009667,
-     0.6020009667,
-     0.6020009667,
-     0.6020009667,
-     0.0,
+     0.02721311884,
+     -0.1295230924,
+     0.2200757631,
+     0.2301504148,
+     0.1662224329,
+     0.4829944736,
+     0.35,
      null
     ],
     [
      "rho 0.2, feedback on",
      "Direct mail",
-     -0.8419987412,
-     -0.8419987412,
-     -0.8419987412,
-     0.8419987412,
-     0.8419987412,
-     0.8419987412,
-     0.0,
+     -0.5386329901,
+     -0.6419277678,
+     -0.4102208016,
+     0.651041828,
+     0.4740922566,
+     0.7149143047,
+     0.15,
      null
     ],
     [
@@ -401,94 +702,94 @@
      null,
      null,
      null,
-     0.6106230282,
+     0.3439764747,
      null,
      null,
-     0.0,
-     0.7857142857
+     0.2714285714,
+     0.7428571429
     ],
     [
      "rho 0.6, feedback off",
      "Paid search",
-     -0.3146840691,
-     -0.3146840691,
-     -0.3146840691,
-     0.3146840691,
-     0.3146840691,
-     0.3146840691,
-     0.0,
+     -0.08408877203,
+     -0.1563552686,
+     -0.003656156224,
+     0.2129268229,
+     0.116651439,
+     0.2765102254,
+     0.15,
      null
     ],
     [
      "rho 0.6, feedback off",
      "Paid social",
-     -0.1819474408,
-     -0.1819474408,
-     -0.1819474408,
-     0.1819474408,
-     0.1819474408,
-     0.1819474408,
-     0.0,
+     0.2505477924,
+     0.077557982,
+     0.4398354218,
+     0.2308325446,
+     0.104975702,
+     0.4517863994,
+     0.4,
      null
     ],
     [
      "rho 0.6, feedback off",
      "Online video",
-     -0.9146696335,
-     -0.9146696335,
-     -0.9146696335,
-     0.9146696335,
-     0.9146696335,
-     0.9146696335,
-     0.0,
+     0.05262056217,
+     -0.1894970328,
+     0.3197788035,
+     0.5733233021,
+     0.4071248046,
+     0.6988229212,
+     0.55,
      null
     ],
     [
      "rho 0.6, feedback off",
      "Display and retargeting",
-     -0.7515577746,
-     -0.7515577746,
-     -0.7515577746,
-     0.7515577746,
-     0.7515577746,
-     0.7515577746,
-     0.0,
+     -0.1576278363,
+     -0.2993715085,
+     0.006189407034,
+     0.3417689906,
+     0.2344112273,
+     0.4366136308,
+     0.6,
      null
     ],
     [
      "rho 0.6, feedback off",
      "Email",
-     -0.2130323935,
-     -0.2130323935,
-     -0.2130323935,
-     0.2130323935,
-     0.2130323935,
-     0.2130323935,
-     0.0,
+     0.01463171738,
+     -0.2126151181,
+     0.2975644038,
+     0.293555276,
+     0.2391133404,
+     0.436824964,
+     0.45,
      null
     ],
     [
      "rho 0.6, feedback off",
      "Affiliate and promo codes",
-     0.9184979284,
-     0.9184979284,
-     0.9184979284,
-     0.9184979284,
-     0.9184979284,
-     0.9184979284,
-     1.0,
+     -0.02794766534,
+     -0.1560641567,
+     0.1180927237,
+     0.2376150479,
+     0.1543422089,
+     0.4385539638,
+     0.55,
      null
     ],
     [
      "rho 0.6, feedback off",
      "Direct mail",
-     -0.673721779,
-     -0.673721779,
-     -0.673721779,
-     0.673721779,
-     0.673721779,
-     0.673721779,
-     1.0,
+     -0.3938014649,
+     -0.534747696,
+     -0.2306106936,
+     0.4639592976,
+     0.3152598629,
+     0.7420387683,
+     0.4,
      null
     ],
     [
@@ -497,94 +798,94 @@
      null,
      null,
      null,
-     0.673721779,
+     0.3028154037,
      null,
      null,
-     0.2857142857,
-     0.9285714286
+     0.4428571429,
+     0.7053571429
     ],
     [
      "rho 0.6, feedback on",
      "Paid search",
-     -0.4110666026,
-     -0.4110666026,
-     -0.4110666026,
-     0.4110666026,
-     0.4110666026,
-     0.4110666026,
-     0.0,
+     -0.04436832109,
+     -0.1340223715,
+     0.05237876022,
+     0.2132368313,
+     0.1481927206,
+     0.29916174,
+     0.15,
      null
     ],
     [
      "rho 0.6, feedback on",
      "Paid social",
-     -0.1164418789,
-     -0.1164418789,
-     -0.1164418789,
-     0.1164418789,
-     0.1164418789,
-     0.1164418789,
-     1.0,
+     0.2073850719,
+     0.04628702845,
+     0.3965057328,
+     0.2519480604,
+     0.1150290429,
+     0.3776162285,
+     0.35,
      null
     ],
     [
      "rho 0.6, feedback on",
      "Online video",
-     -0.9999999999,
-     -0.9999999999,
-     -0.9999999999,
-     0.9999999999,
-     0.9999999999,
-     0.9999999999,
-     0.0,
+     -0.01196467249,
+     -0.2511338598,
+     0.2552115524,
+     0.597326789,
+     0.4606345373,
+     0.7554172814,
+     0.5,
      null
     ],
     [
      "rho 0.6, feedback on",
      "Display and retargeting",
-     3.414764323,
-     3.414764323,
-     3.414764323,
-     3.414764323,
-     3.414764323,
-     3.414764323,
-     0.0,
+     0.3336378917,
+     0.1583501749,
+     0.5207598153,
+     0.3612871579,
+     0.2135394366,
+     0.643789496,
+     0.55,
      null
     ],
     [
      "rho 0.6, feedback on",
      "Email",
-     -0.4570317593,
-     -0.4570317593,
-     -0.4570317593,
-     0.4570317593,
-     0.4570317593,
-     0.4570317593,
-     0.0,
+     0.006076462035,
+     -0.1956429854,
+     0.244024255,
+     0.3824290181,
+     0.2777980548,
+     0.4832272669,
+     0.35,
      null
     ],
     [
      "rho 0.6, feedback on",
      "Affiliate and promo codes",
-     -0.6953012613,
-     -0.6953012613,
-     -0.6953012613,
-     0.6953012613,
-     0.6953012613,
-     0.6953012613,
-     0.0,
+     -0.1092342931,
+     -0.2202637614,
+     0.0149428852,
+     0.2726047744,
+     0.2067108886,
+     0.4205624995,
+     0.5,
      null
     ],
     [
      "rho 0.6, feedback on",
      "Direct mail",
-     -0.6266190494,
-     -0.6266190494,
-     -0.6266190494,
-     0.6266190494,
-     0.6266190494,
-     0.6266190494,
-     1.0,
+     -0.456554222,
+     -0.5984568846,
+     -0.2996048508,
+     0.5623467661,
+     0.4670434884,
+     0.7909294956,
+     0.2,
      null
     ],
     [
@@ -593,94 +894,94 @@
      null,
      null,
      null,
-     0.6266190494,
+     0.3638268243,
      null,
      null,
-     0.2857142857,
-     0.6428571429
+     0.3714285714,
+     0.7267857143
     ],
     [
      "rho 0.9, feedback off",
      "Paid search",
-     -0.4186926109,
-     -0.4186926109,
-     -0.4186926109,
-     0.4186926109,
-     0.4186926109,
-     0.4186926109,
-     0.0,
+     -0.04179405296,
+     -0.1566552126,
+     0.08511073539,
+     0.2238101558,
+     0.1005808076,
+     0.2781124999,
+     0.45,
      null
     ],
     [
      "rho 0.9, feedback off",
      "Paid social",
-     -0.7013561709,
-     -0.7013561709,
-     -0.7013561709,
-     0.7013561709,
-     0.7013561709,
-     0.7013561709,
-     0.0,
+     0.09143081759,
+     -0.04383868085,
+     0.2400347429,
+     0.310542637,
+     0.1918210966,
+     0.3840591969,
+     0.45,
      null
     ],
     [
      "rho 0.9, feedback off",
      "Online video",
-     2.565802413,
-     2.565802413,
-     2.565802413,
-     2.565802413,
-     2.565802413,
-     2.565802413,
-     1.0,
+     0.05959809754,
+     -0.2750206107,
+     0.462708209,
+     0.5169633386,
+     0.2822870826,
+     0.9813732904,
+     0.7,
      null
     ],
     [
      "rho 0.9, feedback off",
      "Display and retargeting",
-     -0.1198329242,
-     -0.1198329242,
-     -0.1198329242,
-     0.1198329242,
-     0.1198329242,
-     0.1198329242,
+     0.09734477373,
+     -0.225151286,
+     0.4756123268,
+     0.8086112696,
+     0.6976131805,
      1.0,
+     0.45,
      null
     ],
     [
      "rho 0.9, feedback off",
      "Email",
-     0.06973294653,
-     0.06973294653,
-     0.06973294653,
-     0.06973294653,
-     0.06973294653,
-     0.06973294653,
-     1.0,
+     0.1149237606,
+     -0.1325410361,
+     0.3760564052,
+     0.4573387636,
+     0.1960307121,
+     0.8614254427,
+     0.75,
      null
     ],
     [
      "rho 0.9, feedback off",
      "Affiliate and promo codes",
-     -0.5838174894,
-     -0.5838174894,
-     -0.5838174894,
-     0.5838174894,
-     0.5838174894,
-     0.5838174894,
-     1.0,
+     -0.2158763838,
+     -0.3733052704,
+     -0.04572367843,
+     0.3361137445,
+     0.2465675298,
+     0.4740362092,
+     0.8,
      null
     ],
     [
      "rho 0.9, feedback off",
      "Direct mail",
-     -0.7893333104,
-     -0.7893333104,
-     -0.7893333104,
-     0.7893333104,
-     0.7893333104,
-     0.7893333104,
-     1.0,
+     -0.162124246,
+     -0.4255812604,
+     0.1286829183,
+     0.6871677808,
+     0.4443964022,
+     0.9545460971,
+     0.65,
      null
     ],
     [
@@ -689,94 +990,94 @@
      null,
      null,
      null,
-     0.5838174894,
+     0.4032032814,
      null,
      null,
-     0.7142857143,
-     0.25
+     0.6071428571,
+     0.4660714286
     ],
     [
      "rho 0.9, feedback on",
      "Paid search",
-     -0.5335539555,
-     -0.5335539555,
-     -0.5335539555,
-     0.5335539555,
-     0.5335539555,
-     0.5335539555,
-     0.0,
+     0.04188892581,
+     -0.1057313371,
+     0.208798423,
+     0.2685306957,
+     0.1938503436,
+     0.3985697875,
+     0.2,
      null
     ],
     [
      "rho 0.9, feedback on",
      "Paid social",
-     -0.6549387236,
-     -0.6549387236,
-     -0.6549387236,
-     0.6549387236,
-     0.6549387236,
-     0.6549387236,
-     0.0,
+     0.02660428285,
+     -0.1159157378,
+     0.1901762721,
+     0.3274118876,
+     0.1461546605,
+     0.4187502431,
+     0.5,
      null
     ],
     [
      "rho 0.9, feedback on",
      "Online video",
-     3.787735085,
-     3.787735085,
-     3.787735085,
-     3.787735085,
-     3.787735085,
-     3.787735085,
-     1.0,
+     0.1008383425,
+     -0.2280962546,
+     0.4898993749,
+     0.6825048092,
+     0.4365695175,
+     0.942771833,
+     0.75,
      null
     ],
     [
      "rho 0.9, feedback on",
      "Display and retargeting",
-     3.519058515,
-     3.519058515,
-     3.519058515,
-     3.519058515,
-     3.519058515,
-     3.519058515,
-     0.0,
+     0.678307205,
+     0.4037514102,
+     0.9679277004,
+     0.6299339308,
+     0.2997358761,
+     1.221094297,
+     0.45,
      null
     ],
     [
      "rho 0.9, feedback on",
      "Email",
-     -0.004471383055,
-     -0.004471383055,
-     -0.004471383055,
-     0.004471383055,
-     0.004471383055,
-     0.004471383055,
-     1.0,
+     0.03045958258,
+     -0.2325005519,
+     0.3178040323,
+     0.6042154436,
+     0.438132054,
+     0.8360170141,
+     0.5,
      null
     ],
     [
      "rho 0.9, feedback on",
      "Affiliate and promo codes",
-     -1.0,
-     -1.0,
-     -1.0,
-     1.0,
-     1.0,
-     1.0,
-     1.0,
+     -0.1759546636,
+     -0.3483736296,
+     0.02770794035,
+     0.4100257227,
+     0.3099163332,
+     0.5960328807,
+     0.75,
      null
     ],
     [
      "rho 0.9, feedback on",
      "Direct mail",
-     -1.0,
-     -1.0,
-     -1.0,
-     1.0,
-     1.0,
-     1.0,
-     0.0,
+     -0.2496805833,
+     -0.5314903481,
+     0.1118064135,
+     0.6529693587,
+     0.4355136978,
+     0.9468838912,
+     0.55,
      null
     ],
     [
@@ -785,11 +1086,11 @@
      null,
      null,
      null,
-     1.0,
+     0.4624006477,
      null,
      null,
-     0.4285714286,
-     -0.07142857143
+     0.5285714286,
+     0.5
     ]
    ]
   },
@@ -911,7 +1212,7 @@
     "seeds": null,
     "source": "static"
    },
-   "value": "data, simulate, recovery_own"
+   "value": "data, simulate, recovery_own, experiments"
   },
   "data.criteo.citation": {
    "fmt": "text",
@@ -1459,6 +1760,1182 @@
    },
    "value": "https://archive.ics.uci.edu/static/public/502/online+retail+ii.zip"
   },
+  "email.arm.control": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 21306
+  },
+  "email.arm.mens": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 21307
+  },
+  "email.arm.womens": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 21387
+  },
+  "email.cost_per_email": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.12
+  },
+  "email.level": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.9
+  },
+  "email.margin_on_spend": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.3
+  },
+  "email.mens.conversion.control": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.005726086548
+  },
+  "email.mens.conversion.effect": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.00680500652
+  },
+  "email.mens.conversion.lower": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.005290305578
+  },
+  "email.mens.conversion.treated": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.01253109307
+  },
+  "email.mens.conversion.upper": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.008319707461
+  },
+  "email.mens.profit_per_email": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.1109481468
+  },
+  "email.mens.revenue_per_email": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.7698271559
+  },
+  "email.mens.spend.control": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.6527893551
+  },
+  "email.mens.spend.effect": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.7698271559
+  },
+  "email.mens.spend.lower": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.5309178245
+  },
+  "email.mens.spend.treated": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 1.422616511
+  },
+  "email.mens.spend.upper": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 1.008736487
+  },
+  "email.mens.visit.control": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.1061672768
+  },
+  "email.mens.visit.effect": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.07658956365
+  },
+  "email.mens.visit.lower": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.0710202738
+  },
+  "email.mens.visit.treated": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.1827568405
+  },
+  "email.mens.visit.upper": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.0821588535
+  },
+  "email.plan_hash": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "1a44a33031e3de84"
+  },
+  "email.registered_via": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "local"
+  },
+  "email.segments.correction": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "Benjamini-Hochberg across segments"
+  },
+  "email.segments.mens.conversion.count": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 7
+  },
+  "email.segments.mens.conversion.significant": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 6
+  },
+  "email.segments.mens.spend.significant": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 5
+  },
+  "email.srm_p": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.9036929576
+  },
+  "email.srm_passed": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": "passed"
+  },
+  "email.window_days": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 14
+  },
+  "email.womens.conversion.control": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.005726086548
+  },
+  "email.womens.conversion.effect": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.003111057511
+  },
+  "email.womens.conversion.lower": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.001757874136
+  },
+  "email.womens.conversion.treated": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.008837144059
+  },
+  "email.womens.conversion.upper": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.004464240886
+  },
+  "email.womens.profit_per_email": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.007323664781
+  },
+  "email.womens.revenue_per_email": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.4244122159
+  },
+  "email.womens.spend.control": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.6527893551
+  },
+  "email.womens.spend.effect": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.4244122159
+  },
+  "email.womens.spend.lower": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.2100337409
+  },
+  "email.womens.spend.treated": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 1.077201571
+  },
+  "email.womens.spend.upper": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.638790691
+  },
+  "email.womens.visit.control": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.1061672768
+  },
+  "email.womens.visit.effect": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.04523310659
+  },
+  "email.womens.visit.lower": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.03991288987
+  },
+  "email.womens.visit.treated": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.1514003834
+  },
+  "email.womens.visit.upper": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_experiments.email",
+    "population": "64,000 recent buyers, three arms",
+    "seed": null,
+    "seeds": null,
+    "source": "real:hillstrom"
+   },
+   "value": 0.0505533233
+  },
+  "geo.channel": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "Display and retargeting"
+  },
+  "geo.control_geos": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 30
+  },
+  "geo.did.covers_truth": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "no"
+  },
+  "geo.did.delta_log": {
+   "fmt": "float4",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": -0.03165795568
+  },
+  "geo.did.error": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1235121227
+  },
+  "geo.did.estimate": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 169063.4641
+  },
+  "geo.did.lower": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 151588.4413
+  },
+  "geo.did.standard_error": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 10624.05951
+  },
+  "geo.did.upper": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 186538.4869
+  },
+  "geo.end_week": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 155
+  },
+  "geo.experiment_id": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "076102e0-ebd0-5218-8433-fab40b6cff08"
+  },
+  "geo.plan_hash": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "53733a76fe1af6ec"
+  },
+  "geo.power_at_true_effect": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "geo.power_simulations": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 60
+  },
+  "geo.pre_period_weeks": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 52
+  },
+  "geo.registered_at": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "2026-09-27T21:45:07+00:00"
+  },
+  "geo.registered_via": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "local"
+  },
+  "geo.result_posted_via": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "local"
+  },
+  "geo.sc.covers_truth": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "yes"
+  },
+  "geo.sc.error": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1161250869
+  },
+  "geo.sc.estimate": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 167951.8803
+  },
+  "geo.sc.largest_weight": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1564475976
+  },
+  "geo.sc.lower": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 131870.8213
+  },
+  "geo.sc.p_value": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.0
+  },
+  "geo.sc.placebo_permutations": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 200
+  },
+  "geo.sc.pre_period_rmse": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 3052.169651
+  },
+  "geo.sc.upper": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "synthetic_control",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 206046.3587
+  },
+  "geo.spend_change": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": -1.0
+  },
+  "geo.srm_p": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "geo.srm_passed": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "passed"
+  },
+  "geo.start_week": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 148
+  },
+  "geo.treated_geo_ids": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "5, 8, 9, 11, 16, 19, 20, 21, 34, 35"
+  },
+  "geo.treated_geos": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 10
+  },
+  "geo.truth": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 150477.6501
+  },
+  "geo.window_weeks": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "did",
+    "origin": "marginal_experiments.geo_lift",
+    "population": "10 treated geos of 40, 8 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 8
+  },
   "mmm.own.baseline_share": {
    "fmt": "pct1",
    "provenance": {
@@ -1471,7 +2948,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.6800450043
+   "value": 0.6609889541
   },
   "mmm.own.bootstrap_replicates": {
    "fmt": "int",
@@ -1541,7 +3018,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": "yes"
+   "value": "no"
   },
   "mmm.own.covered.online_video": {
    "fmt": "text",
@@ -1555,7 +3032,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": "yes"
+   "value": "no"
   },
   "mmm.own.covered.paid_search": {
    "fmt": "text",
@@ -1583,7 +3060,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": "yes"
+   "value": "no"
   },
   "mmm.own.covered_count": {
    "fmt": "int",
@@ -1597,7 +3074,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 5
+   "value": 2
   },
   "mmm.own.fit_seconds": {
    "fmt": "float1",
@@ -1611,7 +3088,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 20.63612795
+   "value": 12.6460588
   },
   "mmm.own.grid_evaluations": {
    "fmt": "int",
@@ -1639,7 +3116,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.05616843017
+   "value": 0.315429658
   },
   "mmm.own.half_life.direct_mail": {
    "fmt": "float1",
@@ -1653,7 +3130,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.7042046709
+   "value": 2.829352851
   },
   "mmm.own.half_life.display_retargeting": {
    "fmt": "float1",
@@ -1667,7 +3144,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.367857601
+   "value": 0.441042893
   },
   "mmm.own.half_life.email": {
    "fmt": "float1",
@@ -1681,7 +3158,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.8678289204
+   "value": 0.2911036313
   },
   "mmm.own.half_life.online_video": {
    "fmt": "float1",
@@ -1695,7 +3172,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.3266118605
+   "value": 0.5525356732
   },
   "mmm.own.half_life.paid_search": {
    "fmt": "float1",
@@ -1709,7 +3186,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.5632913948
+   "value": 0.4071214445
   },
   "mmm.own.half_life.paid_social": {
    "fmt": "float1",
@@ -1723,7 +3200,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.897936449
+   "value": 0.8246699232
   },
   "mmm.own.marginal.affiliate_promo": {
    "fmt": "float2",
@@ -1737,7 +3214,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1.548385327
+   "value": 1.826447125
   },
   "mmm.own.marginal.direct_mail": {
    "fmt": "float2",
@@ -1751,7 +3228,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 3.118330889e-14
+   "value": 1.27816711
   },
   "mmm.own.marginal.display_retargeting": {
    "fmt": "float2",
@@ -1765,7 +3242,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1.631367616
+   "value": 0.7558918702
   },
   "mmm.own.marginal.email": {
    "fmt": "float2",
@@ -1779,7 +3256,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1.778729709e-16
+   "value": 3.930224071
   },
   "mmm.own.marginal.online_video": {
    "fmt": "float2",
@@ -1793,7 +3270,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1.664275164
+   "value": 1.023970507
   },
   "mmm.own.marginal.paid_search": {
    "fmt": "float2",
@@ -1807,7 +3284,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1.750079423
+   "value": 2.174765749
   },
   "mmm.own.marginal.paid_social": {
    "fmt": "float2",
@@ -1821,7 +3298,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 2.974280745
+   "value": 2.669533449
   },
   "mmm.own.nelder_mead_evaluations": {
    "fmt": "int",
@@ -1849,7 +3326,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.02009331913
+   "value": 0.005746844216
   },
   "mmm.own.roas.affiliate_promo": {
    "fmt": "float2",
@@ -1863,7 +3340,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.9530040957
+   "value": 1.595102322
   },
   "mmm.own.roas.direct_mail": {
    "fmt": "float2",
@@ -1877,7 +3354,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 5.794829741e-14
+   "value": 1.932920411
   },
   "mmm.own.roas.display_retargeting": {
    "fmt": "float2",
@@ -1891,7 +3368,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 2.419709502
+   "value": 1.618123045
   },
   "mmm.own.roas.email": {
    "fmt": "float2",
@@ -1905,7 +3382,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 2.612625738e-16
+   "value": 4.790209294
   },
   "mmm.own.roas.online_video": {
    "fmt": "float2",
@@ -1919,7 +3396,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.9975521226
+   "value": 0.8476119319
   },
   "mmm.own.roas.paid_search": {
    "fmt": "float2",
@@ -1933,7 +3410,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1.920030332
+   "value": 2.381309223
   },
   "mmm.own.roas.paid_social": {
    "fmt": "float2",
@@ -1947,7 +3424,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 4.273646558
+   "value": 3.017638345
   },
   "mmm.own.roas_lower.affiliate_promo": {
    "fmt": "float2",
@@ -1961,7 +3438,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1.516178763e-16
+   "value": 1.272127363
   },
   "mmm.own.roas_lower.direct_mail": {
    "fmt": "float2",
@@ -1975,7 +3452,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1.250689426e-18
+   "value": 0.383357495
   },
   "mmm.own.roas_lower.display_retargeting": {
    "fmt": "float2",
@@ -1989,7 +3466,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1.216697335
+   "value": 1.183791849
   },
   "mmm.own.roas_lower.email": {
    "fmt": "float2",
@@ -2003,7 +3480,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 2.969379323e-21
+   "value": 3.213842436
   },
   "mmm.own.roas_lower.online_video": {
    "fmt": "float2",
@@ -2017,7 +3494,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.1384532199
+   "value": 0.3606161197
   },
   "mmm.own.roas_lower.paid_search": {
    "fmt": "float2",
@@ -2031,7 +3508,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1.361215824
+   "value": 2.240466991
   },
   "mmm.own.roas_lower.paid_social": {
    "fmt": "float2",
@@ -2045,7 +3522,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1.957811235
+   "value": 2.577747686
   },
   "mmm.own.roas_upper.affiliate_promo": {
    "fmt": "float2",
@@ -2059,7 +3536,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1.798244793
+   "value": 2.002602226
   },
   "mmm.own.roas_upper.direct_mail": {
    "fmt": "float2",
@@ -2073,7 +3550,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 5.676120451
+   "value": 4.047615544
   },
   "mmm.own.roas_upper.display_retargeting": {
    "fmt": "float2",
@@ -2087,7 +3564,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 3.235651538
+   "value": 1.916674019
   },
   "mmm.own.roas_upper.email": {
    "fmt": "float2",
@@ -2101,7 +3578,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 15.31546832
+   "value": 6.791500736
   },
   "mmm.own.roas_upper.online_video": {
    "fmt": "float2",
@@ -2115,7 +3592,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1.629800236
+   "value": 1.187729002
   },
   "mmm.own.roas_upper.paid_search": {
    "fmt": "float2",
@@ -2129,7 +3606,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 2.540412312
+   "value": 2.605079792
   },
   "mmm.own.roas_upper.paid_social": {
    "fmt": "float2",
@@ -2143,7 +3620,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 5.372134499
+   "value": 3.384320605
   },
   "mmm.own.spec_hash": {
    "fmt": "text",
@@ -2171,7 +3648,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.04384146059
+   "value": 0.003563770983
   },
   "palette.dark.first_three_all_pairs_cvd": {
    "fmt": "float1",
@@ -2700,10 +4177,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": "rho 0.2, feedback off"
+   "value": "rho 0.6, feedback off"
   },
   "recovery.own.best_condition_error": {
    "fmt": "pct1",
@@ -2714,10 +4191,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.5356209185
+   "value": 0.3028154037
   },
   "recovery.own.conditions": {
    "fmt": "int",
@@ -2728,7 +4205,7 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
    "value": 6
@@ -2742,7 +4219,7 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
    "value": "rho 0.2, feedback off, rho 0.2, feedback on, rho 0.6, feedback off, rho 0.6, feedback on, rho 0.9, feedback off, rho 0.9, feedback on"
@@ -2756,10 +4233,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.380952381
+   "value": 0.4226190476
   },
   "recovery.own.demonstration.coverage": {
    "fmt": "pct0",
@@ -2770,10 +4247,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.2857142857
+   "value": 0.3714285714
   },
   "recovery.own.demonstration.median_abs_error": {
    "fmt": "pct1",
@@ -2784,10 +4261,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.6266190494
+   "value": 0.3638268243
   },
   "recovery.own.error_floor": {
    "fmt": "pct0",
@@ -2798,7 +4275,7 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
    "value": 0.25
@@ -2812,10 +4289,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 6
+   "value": 120
   },
   "recovery.own.fits_that_ran": {
    "fmt": "int",
@@ -2826,10 +4303,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 6
+   "value": 120
   },
   "recovery.own.median_abs_error_overall": {
    "fmt": "pct1",
@@ -2840,10 +4317,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.6063119974
+   "value": 0.3710672593
   },
   "recovery.own.rho_02_feedback_off.coverage": {
    "fmt": "pct0",
@@ -2854,10 +4331,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.5714285714
+   "value": 0.3142857143
   },
   "recovery.own.rho_02_feedback_off.median_abs_error": {
    "fmt": "pct1",
@@ -2868,10 +4345,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.5356209185
+   "value": 0.3439494021
   },
   "recovery.own.rho_02_feedback_off.rank_agreement": {
    "fmt": "float2",
@@ -2882,10 +4359,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.8571428571
+   "value": 0.7446428571
   },
   "recovery.own.rho_02_feedback_off.rank_agreement_lower": {
    "fmt": "float2",
@@ -2896,10 +4373,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.8571428571
+   "value": 0.6625
   },
   "recovery.own.rho_02_feedback_off.rank_agreement_upper": {
    "fmt": "float2",
@@ -2910,10 +4387,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.8571428571
+   "value": 0.8125
   },
   "recovery.own.rho_02_feedback_on.coverage": {
    "fmt": "pct0",
@@ -2924,10 +4401,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.0
+   "value": 0.2714285714
   },
   "recovery.own.rho_02_feedback_on.median_abs_error": {
    "fmt": "pct1",
@@ -2938,10 +4415,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.6106230282
+   "value": 0.3439764747
   },
   "recovery.own.rho_02_feedback_on.rank_agreement": {
    "fmt": "float2",
@@ -2952,10 +4429,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.7857142857
+   "value": 0.7428571429
   },
   "recovery.own.rho_02_feedback_on.rank_agreement_lower": {
    "fmt": "float2",
@@ -2966,10 +4443,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.7857142857
+   "value": 0.6589285714
   },
   "recovery.own.rho_02_feedback_on.rank_agreement_upper": {
    "fmt": "float2",
@@ -2980,10 +4457,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.7857142857
+   "value": 0.8107142857
   },
   "recovery.own.rho_06_feedback_off.coverage": {
    "fmt": "pct0",
@@ -2994,10 +4471,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.2857142857
+   "value": 0.4428571429
   },
   "recovery.own.rho_06_feedback_off.median_abs_error": {
    "fmt": "pct1",
@@ -3008,10 +4485,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.673721779
+   "value": 0.3028154037
   },
   "recovery.own.rho_06_feedback_off.rank_agreement": {
    "fmt": "float2",
@@ -3022,10 +4499,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.9285714286
+   "value": 0.7053571429
   },
   "recovery.own.rho_06_feedback_off.rank_agreement_lower": {
    "fmt": "float2",
@@ -3036,10 +4513,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.9285714286
+   "value": 0.6303571429
   },
   "recovery.own.rho_06_feedback_off.rank_agreement_upper": {
    "fmt": "float2",
@@ -3050,10 +4527,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.9285714286
+   "value": 0.7785714286
   },
   "recovery.own.rho_06_feedback_on.coverage": {
    "fmt": "pct0",
@@ -3064,10 +4541,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.2857142857
+   "value": 0.3714285714
   },
   "recovery.own.rho_06_feedback_on.median_abs_error": {
    "fmt": "pct1",
@@ -3078,10 +4555,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.6266190494
+   "value": 0.3638268243
   },
   "recovery.own.rho_06_feedback_on.rank_agreement": {
    "fmt": "float2",
@@ -3092,10 +4569,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.6428571429
+   "value": 0.7267857143
   },
   "recovery.own.rho_06_feedback_on.rank_agreement_lower": {
    "fmt": "float2",
@@ -3106,10 +4583,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.6428571429
+   "value": 0.6607142857
   },
   "recovery.own.rho_06_feedback_on.rank_agreement_upper": {
    "fmt": "float2",
@@ -3120,10 +4597,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.6428571429
+   "value": 0.7910714286
   },
   "recovery.own.rho_09_feedback_off.coverage": {
    "fmt": "pct0",
@@ -3134,10 +4611,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.7142857143
+   "value": 0.6071428571
   },
   "recovery.own.rho_09_feedback_off.median_abs_error": {
    "fmt": "pct1",
@@ -3148,10 +4625,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.5838174894
+   "value": 0.4032032814
   },
   "recovery.own.rho_09_feedback_off.rank_agreement": {
    "fmt": "float2",
@@ -3162,10 +4639,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.25
+   "value": 0.4660714286
   },
   "recovery.own.rho_09_feedback_off.rank_agreement_lower": {
    "fmt": "float2",
@@ -3176,10 +4653,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.25
+   "value": 0.3499107143
   },
   "recovery.own.rho_09_feedback_off.rank_agreement_upper": {
    "fmt": "float2",
@@ -3190,10 +4667,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.25
+   "value": 0.575
   },
   "recovery.own.rho_09_feedback_on.coverage": {
    "fmt": "pct0",
@@ -3204,10 +4681,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 0.4285714286
+   "value": 0.5285714286
   },
   "recovery.own.rho_09_feedback_on.median_abs_error": {
    "fmt": "pct1",
@@ -3218,10 +4695,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 1.0
+   "value": 0.4624006477
   },
   "recovery.own.rho_09_feedback_on.rank_agreement": {
    "fmt": "float2",
@@ -3232,10 +4709,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": -0.07142857143
+   "value": 0.5
   },
   "recovery.own.rho_09_feedback_on.rank_agreement_lower": {
    "fmt": "float2",
@@ -3246,10 +4723,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": -0.07142857143
+   "value": 0.3857142857
   },
   "recovery.own.rho_09_feedback_on.rank_agreement_upper": {
    "fmt": "float2",
@@ -3260,10 +4737,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": -0.07142857143
+   "value": 0.6125892857
   },
   "recovery.own.seeds_per_condition": {
    "fmt": "int",
@@ -3274,10 +4751,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 1
+   "value": 20
   },
   "recovery.own.worst_condition": {
    "fmt": "text",
@@ -3288,7 +4765,7 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
    "value": "rho 0.9, feedback on"
@@ -3302,10 +4779,10 @@
     "origin": "marginal_evaluation.recovery",
     "population": "markets with known truth",
     "seed": 12,
-    "seeds": 1,
+    "seeds": 20,
     "source": "simulated"
    },
-   "value": 1.0
+   "value": 0.4624006477
   },
   "sim.baseline_share": {
    "fmt": "pct1",

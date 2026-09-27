@@ -169,6 +169,16 @@ def simulate_market(spec: MarketSpec) -> tuple[pl.DataFrame, pl.DataFrame, Marke
     geo_spend = weights[:, None, None] * national_spend[None, :, :] * alloc_noise
     geo_spend *= national_spend[None, :, :] / geo_spend.sum(axis=0, keepdims=True)
 
+    # A geo lift test changes one channel's spend in the treated geos over the window, after the
+    # plan is allocated, so everything else about the market (its noise included) is unchanged.
+    if spec.intervention is not None:
+        iv = spec.intervention
+        j = channels.index(iv.channel)
+        geo_idx = np.array(iv.geos, dtype=int)
+        window = np.arange(iv.start_week, iv.end_week + 1)
+        geo_spend[np.ix_(geo_idx, np.array([j]), window)] *= iv.spend_multiplier
+        national_spend = geo_spend.sum(axis=0)
+
     # Response: adstock the spend density, saturate, scale by size.
     density = geo_spend / weights[:, None, None]
     incremental = np.zeros((g, c, w))
