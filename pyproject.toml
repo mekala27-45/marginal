@@ -11,7 +11,7 @@ dependencies = [
   "marginal-contracts",
   "marginal-sim",
   "marginal-evaluation",
-  "marginal-mmm",
+  "marginal-mmm[bayes]",
   "marginal-experiments",
   "marginal-calibrate",
   "marginal-budget",

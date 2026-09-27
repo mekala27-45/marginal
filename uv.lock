@@ -998,7 +998,7 @@ dependencies = [
     { name = "marginal-core" },
     { name = "marginal-evaluation" },
     { name = "marginal-experiments" },
-    { name = "marginal-mmm" },
+    { name = "marginal-mmm", extra = ["bayes"] },
     { name = "marginal-registry" },
     { name = "marginal-render" },
     { name = "marginal-sim" },
@@ -1035,7 +1035,7 @@ requires-dist = [
     { name = "marginal-core", editable = "packages/core" },
     { name = "marginal-evaluation", editable = "packages/evaluation" },
     { name = "marginal-experiments", editable = "packages/experiments" },
-    { name = "marginal-mmm", editable = "packages/mmm" },
+    { name = "marginal-mmm", extras = ["bayes"], editable = "packages/mmm" },
     { name = "marginal-registry", editable = "packages/registry" },
     { name = "marginal-render", editable = "packages/render" },
     { name = "marginal-sim", editable = "packages/sim" },
@@ -1266,8 +1266,12 @@ dependencies = [
     { name = "numpy" },
     { name = "pandas" },
     { name = "polars" },
-    { name = "pymc-marketing" },
     { name = "scipy" },
+]
+
+[package.optional-dependencies]
+bayes = [
+    { name = "pymc-marketing" },
 ]
 
 [package.metadata]
@@ -1277,9 +1281,10 @@ requires-dist = [
     { name = "numpy", specifier = ">=1.26" },
     { name = "pandas", specifier = ">=2.2" },
     { name = "polars", specifier = ">=1.30" },
-    { name = "pymc-marketing", specifier = ">=0.19,<0.20" },
+    { name = "pymc-marketing", marker = "extra == 'bayes'", specifier = ">=0.19,<0.20" },
     { name = "scipy", specifier = ">=1.14" },
 ]
+provides-extras = ["bayes"]
 
 [[package]]
 name = "marginal-registry"

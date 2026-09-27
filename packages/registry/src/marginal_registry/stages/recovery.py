@@ -25,7 +25,7 @@ from marginal_core.frames import mean, median, total
 from marginal_core.manifest import Manifest, Scribe
 from marginal_core.paths import Paths
 from marginal_evaluation import ChannelEstimate, FitResult, floor_crossing, observed, run_recovery, summarise
-from marginal_mmm import MMMSpec, Model, fit
+from marginal_mmm import MMMSpec, Model, export_model, fit
 from marginal_sim import CONDITIONS, condition_name, demonstration_spec, response, truth_params
 from marginal_sim.spec import ChannelTruth
 
@@ -65,13 +65,25 @@ def seeds_for(backend: str) -> int:
     return POLICY.recovery_seeds_own if backend == "own" else POLICY.recovery_seeds_bayes
 
 
-def run(paths: Paths, as_of: str, seed: int, *, backend: str = "own") -> Manifest:
+def run(paths: Paths, as_of: str, seed: int, *, backend: str = "own", demo_only: bool = False) -> Manifest:
     if backend not in ("own", "bayes"):
         raise ValueError("backend must be own or bayes")
     manifest = Manifest(as_of=as_of, seed=seed)
     spec = demonstration_spec(seed)
     demo = _demonstration_fit(paths, manifest, backend, seed, spec.condition)
-    _recovery_study(paths, manifest, backend, seed, demo)
+    if demo_only:
+        # The study's manifest values are kept from the last full run so the documents still render.
+        previous = paths.results / "manifests" / f"recovery_{backend}.json"
+        if previous.exists():
+            old = Manifest.load(previous)
+            for key, value in old.values.items():
+                if key.startswith("recovery."):
+                    manifest.values[key] = value
+            for key, table in old.tables.items():
+                if key.startswith("recovery."):
+                    manifest.tables[key] = table
+    else:
+        _recovery_study(paths, manifest, backend, seed, demo)
     manifest.save(paths.results / "manifests" / f"recovery_{backend}.json")
     return manifest
 
@@ -137,6 +149,9 @@ def _demonstration_fit(paths: Paths, manifest: Manifest, backend: str, seed: int
     pl.DataFrame(curve_rows).write_parquet(out / f"{backend}_curves.parquet")
     diagnostics = model.diagnostics()
     diagnostics["fit_seconds"] = round(seconds, 1)
+    spec_hash = str(diagnostics.get("spec_hash", ""))[:8]
+    export = export_model(model, version=f"{backend}-{spec_hash}-uncalibrated")
+    (out / f"{backend}_model.json").write_text(json.dumps(export.model_dump(mode="json"), indent=1) + "\n")
     (out / f"{backend}_diagnostics.json").write_text(
         json.dumps(diagnostics, indent=1, sort_keys=True, default=str) + "\n"
     )

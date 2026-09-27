@@ -50,11 +50,14 @@ def simulate() -> None:
 
 
 @app.command()
-def recovery(backend: str = typer.Option("own", help="own or bayes")) -> None:
+def recovery(
+    backend: str = typer.Option("own", help="own or bayes"),
+    demo_only: bool = typer.Option(False, help="fit the demonstration brand only; keep the study on disk"),
+) -> None:
     """The recovery study over seeds and conditions for one backend."""
     from marginal_registry.stages import recovery as stage
 
-    manifest = stage.run(paths(), as_of(), DEMONSTRATION_SEED, backend=backend)
+    manifest = stage.run(paths(), as_of(), DEMONSTRATION_SEED, backend=backend, demo_only=demo_only)
     typer.echo(f"recovery {backend}: {manifest.counts()}")
 
 

@@ -37,3 +37,6 @@ web/tsconfig.tsbuildinfo
 .env
 *.log
 .DS_Store
+deploy/deploy-log.txt
+deploy/live-url.txt
+deploy/write-token.txt

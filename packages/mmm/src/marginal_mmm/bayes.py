@@ -161,6 +161,22 @@ class BayesModel:
         scaled = np.asarray(spend_grid, dtype=float) / self.channel_scale[j]
         return np.asarray(self.target_scale * self.beta[j] * hill(scaled, self.kappa[j], self.slope[j]))
 
+    def ceiling_draws(self) -> np.ndarray:
+        """Posterior draws of each channel's ceiling in dollars (draws by channel), for a plan's
+        expected outcome interval."""
+        idata = self.mmm.idata
+        if idata is None:
+            raise RuntimeError("the model has no trace")
+        posterior = idata["posterior"]
+        columns = [f"spend_{c}" for c in self.channels]
+        beta = (
+            posterior["saturation_beta"]
+            .sel(channel=columns)
+            .stack(sample=("chain", "draw"))
+            .transpose("sample", "channel")
+        )
+        return np.asarray(beta.to_numpy(), dtype=float) * self.target_scale
+
     def marginal_return(self, channel: str, at_spend: float) -> float:
         """The slope of the response curve by a central difference, one sided at zero spend."""
         x = max(float(at_spend), 0.0)

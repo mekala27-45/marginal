@@ -3,7 +3,7 @@
  "bootstrap_replicates": 200,
  "calibrated": 0,
  "data_source": "simulated",
- "fit_seconds": 12.6,
+ "fit_seconds": 13.0,
  "grid_evaluations": 336,
  "nelder_mead_converged": 0,
  "nelder_mead_evaluations": 989,

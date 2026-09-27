@@ -164,3 +164,93 @@ def design_columns(panel: pl.DataFrame, spec: MMMSpec) -> tuple[np.ndarray, list
         cols.append(np.cos(2 * np.pi * k * t / 52.18))
         names.append(f"cos_{k}")
     return np.column_stack(cols), names
+
+
+class CurveParams(StrictModel):
+    """One channel's fitted response curve in dollars: revenue at a steady weekly spend S is
+    ceiling times Hill(S; half_saturation, slope). The draws carry the ceiling's uncertainty
+    (bootstrap replicates for own, posterior draws for bayes) so a plan's expected outcome has
+    an interval."""
+
+    channel: str
+    ceiling: float
+    half_saturation: float
+    slope: float
+    carryover: float
+    weekly_spend_current: float
+    spend_last_year: float
+    ceiling_draws: list[float]
+
+    def response(self, spend: np.ndarray | float) -> np.ndarray:
+        from marginal_mmm.transforms import hill
+
+        return np.asarray(
+            self.ceiling * hill(np.asarray(spend, dtype=float), self.half_saturation, self.slope)
+        )
+
+    def marginal(self, spend: float) -> float:
+        from marginal_mmm.transforms import hill_slope
+
+        return float(self.ceiling * hill_slope(spend, self.half_saturation, self.slope))
+
+
+class ModelExport(StrictModel):
+    """Everything the optimizer and the API need from a fitted model, without the model."""
+
+    backend: str
+    spec_hash: str
+    data_source: str
+    calibrated: bool
+    version: str
+    channels: list[CurveParams]
+
+    def curve(self, channel: str) -> CurveParams:
+        for c in self.channels:
+            if c.channel == channel:
+                return c
+        raise KeyError(channel)
+
+
+def export_model(model: Model, version: str) -> ModelExport:
+    """The fitted response curves of either backend as one record."""
+    from marginal_mmm.own import OwnModel
+
+    channels: list[CurveParams] = []
+    returns = model.intervals()
+    if isinstance(model, OwnModel):
+        for j, r in enumerate(returns):
+            channels.append(
+                CurveParams(
+                    channel=r.channel,
+                    ceiling=float(model.beta[j]),
+                    half_saturation=r.half_saturation,
+                    slope=r.slope,
+                    carryover=r.carryover,
+                    weekly_spend_current=r.spend_last_year / model.spec.last_year_weeks,
+                    spend_last_year=r.spend_last_year,
+                    ceiling_draws=[float(v) for v in model.bootstrap_beta[:, j]],
+                )
+            )
+    else:
+        draws = model.ceiling_draws()  # type: ignore[attr-defined]
+        for j, r in enumerate(returns):
+            channels.append(
+                CurveParams(
+                    channel=r.channel,
+                    ceiling=float(model.response_curve(r.channel, np.array([1e12]))[0]),
+                    half_saturation=r.half_saturation,
+                    slope=r.slope,
+                    carryover=r.carryover,
+                    weekly_spend_current=r.spend_last_year / model.spec.last_year_weeks,
+                    spend_last_year=r.spend_last_year,
+                    ceiling_draws=[float(v) for v in draws[:, j]],
+                )
+            )
+    return ModelExport(
+        backend=model.backend,
+        spec_hash=model.spec_hash,
+        data_source=model.data_source,
+        calibrated=bool(model.diagnostics().get("calibrated", 0)),
+        version=version,
+        channels=channels,
+    )

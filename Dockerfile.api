@@ -1,0 +1,18 @@
+# The marginal API: the plan and experiment registry and the live optimizer.
+# Built after the pipeline, so results/mmm (and results/calibrate once the calibration stage has
+# run) hold the fitted response curves the optimizer needs; without them the optimizer answers 503.
+FROM python:3.12-slim AS base
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
+RUN pip install --no-cache-dir "uv>=0.8,<0.9"
+WORKDIR /app
+COPY pyproject.toml uv.lock README.md ./
+COPY packages ./packages
+# The API package pulls the mix model interface without the bayes extra, so the image stays small.
+RUN uv sync --frozen --no-dev --no-default-groups --package marginal-api
+COPY results/mmm ./results/mmm
+COPY results/experiments/registry.json ./results/experiments/registry.json
+COPY results/calibrate ./results/calibrate
+COPY results/clv ./results/clv
+ENV MARGINAL_ROOT=/app PORT=8080 PATH="/app/.venv/bin:$PATH" MARGINAL_ENV=production
+EXPOSE 8080
+CMD ["sh", "-c", "cd packages/api && alembic upgrade head && cd /app && uvicorn marginal_api.main:app --host 0.0.0.0 --port ${PORT}"]
