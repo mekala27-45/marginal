@@ -3,14 +3,14 @@
  "bootstrap_replicates": 200,
  "calibrated": 0,
  "data_source": "simulated",
- "fit_seconds": 20.6,
+ "fit_seconds": 12.6,
  "grid_evaluations": 336,
  "nelder_mead_converged": 0,
  "nelder_mead_evaluations": 989,
- "residual_share_of_sales": 0.020093319129187506,
+ "residual_share_of_sales": 0.0057468442157003865,
  "ridge": 0.1,
- "ridge_grid_errors": "0.0001: 0.0633, 0.001: 0.0633, 0.01: 0.0633, 0.1: 0.0630",
+ "ridge_grid_errors": "0.0001: 0.0239, 0.001: 0.0239, 0.01: 0.0238, 0.1: 0.0228",
  "spec_hash": "0c07159692e406de",
- "unexplained_variance_share": 0.04384146058806088,
- "validation_error": 0.05927071285967481
+ "unexplained_variance_share": 0.0035637709827804377,
+ "validation_error": 0.01733163324302433
 }
