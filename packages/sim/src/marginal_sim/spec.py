@@ -108,8 +108,8 @@ class MarketSpec(StrictModel):
     holiday_lift: float = 0.35
     price_elasticity: float = -1.2
     promo_lift: float = 0.08
-    competitor_noise: float = 0.04
-    sales_noise: float = 0.03
+    competitor_noise: float = 0.01
+    sales_noise: float = 0.02
     spend_shock_sd: float = 0.25
     """Standard deviation of the log spend shock per channel per week."""
     spend_seasonality: float = 0.30

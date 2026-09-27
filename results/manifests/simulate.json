@@ -67,9 +67,9 @@
     ],
     [
      "Display and retargeting",
-     4366116.258,
-     1.218086784,
-     0.6706199111,
+     4308418.507,
+     1.221477616,
+     0.6901508767,
      0.3,
      0.5757166425,
      49000.0,
@@ -121,7 +121,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.6192184881
+   "value": 0.6197577909
   },
   "sim.condition": {
    "fmt": "text",
@@ -261,7 +261,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.3810615652
+   "value": 0.3804341455
   },
   "sim.last_week": {
    "fmt": "text",
@@ -499,7 +499,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 2.443530637
+   "value": 2.444022667
   },
   "sim.sales_weekly_mean": {
    "fmt": "usd0",
@@ -513,7 +513,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 3154526.542
+   "value": 3159578.408
   },
   "sim.spend_correlation_achieved": {
    "fmt": "float2",
@@ -527,7 +527,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.5487363632
+   "value": 0.5474487369
   },
   "sim.spend_correlation_target": {
    "fmt": "float1",
@@ -555,7 +555,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 491939.3288
+   "value": 491816.8427
   },
   "sim.truth.carryover.affiliate_promo": {
    "fmt": "float2",
@@ -793,7 +793,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.6706199111
+   "value": 0.6901508767
   },
   "sim.truth.marginal.email": {
    "fmt": "float2",
@@ -891,7 +891,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1.218086784
+   "value": 1.221477616
   },
   "sim.truth.roas.email": {
    "fmt": "float2",
@@ -989,7 +989,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 4366116.258
+   "value": 4308418.507
   },
   "sim.truth.spend_last_year.email": {
    "fmt": "usd0",
@@ -1087,7 +1087,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 83963.77419
+   "value": 82854.20205
   },
   "sim.truth.weekly_spend_current.email": {
    "fmt": "usd0",

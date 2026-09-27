@@ -1,5 +1,5 @@
 {
- "achieved_spend_correlation": 0.5487363631717833,
+ "achieved_spend_correlation": 0.547448736886302,
  "spec": {
   "adstock_max_lag": 13,
   "baseline_weekly_revenue": 1750000.0,
@@ -61,7 +61,7 @@
     "slope": 1.4
    }
   ],
-  "competitor_noise": 0.04,
+  "competitor_noise": 0.01,
   "demand_feedback": true,
   "feedback_coefficient": 1.5,
   "first_week": "2023-10-02",
@@ -70,7 +70,7 @@
   "holiday_lift": 0.35,
   "price_elasticity": -1.2,
   "promo_lift": 0.08,
-  "sales_noise": 0.03,
+  "sales_noise": 0.02,
   "seasonal_amplitude": 0.18,
   "seed": 12,
   "spend_correlation": 0.6,

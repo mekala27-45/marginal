@@ -125,7 +125,7 @@ by construction here and in most real markets) is the one every rule over credit
 
 - Interval level everywhere: 90%.
 - Block bootstrap: 200 replicates of 8 week blocks.
-- Rolling origin validation: 4 origins.
+- Rolling origin validation: 8 origins.
 - Placebo permutations for synthetic control: 200.
 - Recovery study seeds: 20 per condition for `own`, 3 for `bayes`.
 - Lift test: Display and retargeting, spend change -100.0% in the treated geos,

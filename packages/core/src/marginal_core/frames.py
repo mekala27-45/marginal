@@ -23,3 +23,10 @@ def share(frame: pl.DataFrame, predicate: pl.Expr) -> float:
     if frame.height == 0:
         raise ValueError("share of an empty frame")
     return frame.filter(predicate).height / frame.height
+
+
+def median(frame: pl.DataFrame, column: str) -> float:
+    value = frame[column].median()
+    if not isinstance(value, int | float):
+        raise TypeError(f"{column} has no numeric median")
+    return float(value)

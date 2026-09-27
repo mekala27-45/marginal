@@ -1,0 +1,2075 @@
+{
+ "as_of": "2026-09-27",
+ "figures": {},
+ "seed": 12,
+ "tables": {
+  "mmm.own.returns": {
+   "columns": [
+    "Channel",
+    "Return",
+    "Lower",
+    "Upper",
+    "Truth (simulated)",
+    "Covers",
+    "Marginal return",
+    "True marginal",
+    "Half life (weeks)",
+    "True half life"
+   ],
+   "formats": [
+    "text",
+    "float2",
+    "float2",
+    "float2",
+    "float2",
+    "text",
+    "float2",
+    "float2",
+    "float1",
+    "float1"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "Paid search",
+     1.920030332,
+     1.361215824,
+     2.540412312,
+     3.151569551,
+     "no",
+     1.750079423,
+     2.351505118,
+     0.5632913948,
+     0.4306765581
+    ],
+    [
+     "Paid social",
+     4.273646558,
+     1.957811235,
+     5.372134499,
+     2.374067244,
+     "yes",
+     2.974280745,
+     2.331356542,
+     0.897936449,
+     0.6602520221
+    ],
+    [
+     "Online video",
+     0.9975521226,
+     0.1384532199,
+     1.629800236,
+     1.585994225,
+     "yes",
+     1.664275164,
+     1.434302168,
+     0.3266118605,
+     1.609040551
+    ],
+    [
+     "Display and retargeting",
+     2.419709502,
+     1.216697335,
+     3.235651538,
+     1.218086784,
+     "yes",
+     1.631367616,
+     0.6706199111,
+     0.367857601,
+     0.5757166425
+    ],
+    [
+     "Email",
+     2.612625738e-16,
+     2.969379323e-21,
+     15.31546832,
+     7.704426592,
+     "yes",
+     1.778729709e-16,
+     4.062671798,
+     0.8678289204,
+     0.3653681296
+    ],
+    [
+     "Affiliate and promo codes",
+     0.9530040957,
+     1.516178763e-16,
+     1.798244793,
+     2.744712217,
+     "no",
+     1.548385327,
+     2.360405263,
+     0.05616843017,
+     0.5
+    ],
+    [
+     "Direct mail",
+     5.794829741e-14,
+     1.250689426e-18,
+     5.676120451,
+     1.881982971,
+     "yes",
+     3.118330889e-14,
+     1.524924318,
+     0.7042046709,
+     2.110010956
+    ]
+   ]
+  },
+  "recovery.own.summary": {
+   "columns": [
+    "Condition",
+    "Channel",
+    "Bias",
+    "Bias lower",
+    "Bias upper",
+    "Median abs error",
+    "Error lower",
+    "Error upper",
+    "Coverage",
+    "Rank agreement"
+   ],
+   "formats": [
+    "text",
+    "text",
+    "spct1",
+    "spct1",
+    "spct1",
+    "pct1",
+    "pct1",
+    "pct1",
+    "pct0",
+    "float2"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "rho 0.2, feedback off",
+     "Paid search",
+     -0.0810199858,
+     -0.0810199858,
+     -0.0810199858,
+     0.0810199858,
+     0.0810199858,
+     0.0810199858,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.2, feedback off",
+     "Paid social",
+     -0.1097646079,
+     -0.1097646079,
+     -0.1097646079,
+     0.1097646079,
+     0.1097646079,
+     0.1097646079,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.2, feedback off",
+     "Online video",
+     -1.0,
+     -1.0,
+     -1.0,
+     1.0,
+     1.0,
+     1.0,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.2, feedback off",
+     "Display and retargeting",
+     -0.3891715442,
+     -0.3891715442,
+     -0.3891715442,
+     0.3891715442,
+     0.3891715442,
+     0.3891715442,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.2, feedback off",
+     "Email",
+     -0.5583088752,
+     -0.5583088752,
+     -0.5583088752,
+     0.5583088752,
+     0.5583088752,
+     0.5583088752,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.2, feedback off",
+     "Affiliate and promo codes",
+     -0.5356209185,
+     -0.5356209185,
+     -0.5356209185,
+     0.5356209185,
+     0.5356209185,
+     0.5356209185,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.2, feedback off",
+     "Direct mail",
+     -0.597246984,
+     -0.597246984,
+     -0.597246984,
+     0.597246984,
+     0.597246984,
+     0.597246984,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.2, feedback off",
+     "All channels",
+     null,
+     null,
+     null,
+     0.5356209185,
+     null,
+     null,
+     0.5714285714,
+     0.8571428571
+    ],
+    [
+     "rho 0.2, feedback on",
+     "Paid search",
+     -0.2291296942,
+     -0.2291296942,
+     -0.2291296942,
+     0.2291296942,
+     0.2291296942,
+     0.2291296942,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.2, feedback on",
+     "Paid social",
+     -0.2258888975,
+     -0.2258888975,
+     -0.2258888975,
+     0.2258888975,
+     0.2258888975,
+     0.2258888975,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.2, feedback on",
+     "Online video",
+     -1.0,
+     -1.0,
+     -1.0,
+     1.0,
+     1.0,
+     1.0,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.2, feedback on",
+     "Display and retargeting",
+     1.757430804,
+     1.757430804,
+     1.757430804,
+     1.757430804,
+     1.757430804,
+     1.757430804,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.2, feedback on",
+     "Email",
+     -0.6106230282,
+     -0.6106230282,
+     -0.6106230282,
+     0.6106230282,
+     0.6106230282,
+     0.6106230282,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.2, feedback on",
+     "Affiliate and promo codes",
+     -0.6020009667,
+     -0.6020009667,
+     -0.6020009667,
+     0.6020009667,
+     0.6020009667,
+     0.6020009667,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.2, feedback on",
+     "Direct mail",
+     -0.8419987412,
+     -0.8419987412,
+     -0.8419987412,
+     0.8419987412,
+     0.8419987412,
+     0.8419987412,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.2, feedback on",
+     "All channels",
+     null,
+     null,
+     null,
+     0.6106230282,
+     null,
+     null,
+     0.0,
+     0.7857142857
+    ],
+    [
+     "rho 0.6, feedback off",
+     "Paid search",
+     -0.3146840691,
+     -0.3146840691,
+     -0.3146840691,
+     0.3146840691,
+     0.3146840691,
+     0.3146840691,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.6, feedback off",
+     "Paid social",
+     -0.1819474408,
+     -0.1819474408,
+     -0.1819474408,
+     0.1819474408,
+     0.1819474408,
+     0.1819474408,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.6, feedback off",
+     "Online video",
+     -0.9146696335,
+     -0.9146696335,
+     -0.9146696335,
+     0.9146696335,
+     0.9146696335,
+     0.9146696335,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.6, feedback off",
+     "Display and retargeting",
+     -0.7515577746,
+     -0.7515577746,
+     -0.7515577746,
+     0.7515577746,
+     0.7515577746,
+     0.7515577746,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.6, feedback off",
+     "Email",
+     -0.2130323935,
+     -0.2130323935,
+     -0.2130323935,
+     0.2130323935,
+     0.2130323935,
+     0.2130323935,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.6, feedback off",
+     "Affiliate and promo codes",
+     0.9184979284,
+     0.9184979284,
+     0.9184979284,
+     0.9184979284,
+     0.9184979284,
+     0.9184979284,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.6, feedback off",
+     "Direct mail",
+     -0.673721779,
+     -0.673721779,
+     -0.673721779,
+     0.673721779,
+     0.673721779,
+     0.673721779,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.6, feedback off",
+     "All channels",
+     null,
+     null,
+     null,
+     0.673721779,
+     null,
+     null,
+     0.2857142857,
+     0.9285714286
+    ],
+    [
+     "rho 0.6, feedback on",
+     "Paid search",
+     -0.4110666026,
+     -0.4110666026,
+     -0.4110666026,
+     0.4110666026,
+     0.4110666026,
+     0.4110666026,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.6, feedback on",
+     "Paid social",
+     -0.1164418789,
+     -0.1164418789,
+     -0.1164418789,
+     0.1164418789,
+     0.1164418789,
+     0.1164418789,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.6, feedback on",
+     "Online video",
+     -0.9999999999,
+     -0.9999999999,
+     -0.9999999999,
+     0.9999999999,
+     0.9999999999,
+     0.9999999999,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.6, feedback on",
+     "Display and retargeting",
+     3.414764323,
+     3.414764323,
+     3.414764323,
+     3.414764323,
+     3.414764323,
+     3.414764323,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.6, feedback on",
+     "Email",
+     -0.4570317593,
+     -0.4570317593,
+     -0.4570317593,
+     0.4570317593,
+     0.4570317593,
+     0.4570317593,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.6, feedback on",
+     "Affiliate and promo codes",
+     -0.6953012613,
+     -0.6953012613,
+     -0.6953012613,
+     0.6953012613,
+     0.6953012613,
+     0.6953012613,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.6, feedback on",
+     "Direct mail",
+     -0.6266190494,
+     -0.6266190494,
+     -0.6266190494,
+     0.6266190494,
+     0.6266190494,
+     0.6266190494,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.6, feedback on",
+     "All channels",
+     null,
+     null,
+     null,
+     0.6266190494,
+     null,
+     null,
+     0.2857142857,
+     0.6428571429
+    ],
+    [
+     "rho 0.9, feedback off",
+     "Paid search",
+     -0.4186926109,
+     -0.4186926109,
+     -0.4186926109,
+     0.4186926109,
+     0.4186926109,
+     0.4186926109,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.9, feedback off",
+     "Paid social",
+     -0.7013561709,
+     -0.7013561709,
+     -0.7013561709,
+     0.7013561709,
+     0.7013561709,
+     0.7013561709,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.9, feedback off",
+     "Online video",
+     2.565802413,
+     2.565802413,
+     2.565802413,
+     2.565802413,
+     2.565802413,
+     2.565802413,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.9, feedback off",
+     "Display and retargeting",
+     -0.1198329242,
+     -0.1198329242,
+     -0.1198329242,
+     0.1198329242,
+     0.1198329242,
+     0.1198329242,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.9, feedback off",
+     "Email",
+     0.06973294653,
+     0.06973294653,
+     0.06973294653,
+     0.06973294653,
+     0.06973294653,
+     0.06973294653,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.9, feedback off",
+     "Affiliate and promo codes",
+     -0.5838174894,
+     -0.5838174894,
+     -0.5838174894,
+     0.5838174894,
+     0.5838174894,
+     0.5838174894,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.9, feedback off",
+     "Direct mail",
+     -0.7893333104,
+     -0.7893333104,
+     -0.7893333104,
+     0.7893333104,
+     0.7893333104,
+     0.7893333104,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.9, feedback off",
+     "All channels",
+     null,
+     null,
+     null,
+     0.5838174894,
+     null,
+     null,
+     0.7142857143,
+     0.25
+    ],
+    [
+     "rho 0.9, feedback on",
+     "Paid search",
+     -0.5335539555,
+     -0.5335539555,
+     -0.5335539555,
+     0.5335539555,
+     0.5335539555,
+     0.5335539555,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.9, feedback on",
+     "Paid social",
+     -0.6549387236,
+     -0.6549387236,
+     -0.6549387236,
+     0.6549387236,
+     0.6549387236,
+     0.6549387236,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.9, feedback on",
+     "Online video",
+     3.787735085,
+     3.787735085,
+     3.787735085,
+     3.787735085,
+     3.787735085,
+     3.787735085,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.9, feedback on",
+     "Display and retargeting",
+     3.519058515,
+     3.519058515,
+     3.519058515,
+     3.519058515,
+     3.519058515,
+     3.519058515,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.9, feedback on",
+     "Email",
+     -0.004471383055,
+     -0.004471383055,
+     -0.004471383055,
+     0.004471383055,
+     0.004471383055,
+     0.004471383055,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.9, feedback on",
+     "Affiliate and promo codes",
+     -1.0,
+     -1.0,
+     -1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     null
+    ],
+    [
+     "rho 0.9, feedback on",
+     "Direct mail",
+     -1.0,
+     -1.0,
+     -1.0,
+     1.0,
+     1.0,
+     1.0,
+     0.0,
+     null
+    ],
+    [
+     "rho 0.9, feedback on",
+     "All channels",
+     null,
+     null,
+     null,
+     1.0,
+     null,
+     null,
+     0.4285714286,
+     -0.07142857143
+    ]
+   ]
+  }
+ },
+ "values": {
+  "mmm.own.baseline_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.6800450043
+  },
+  "mmm.own.bootstrap_replicates": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 200
+  },
+  "mmm.own.covered.affiliate_promo": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "no"
+  },
+  "mmm.own.covered.direct_mail": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "yes"
+  },
+  "mmm.own.covered.display_retargeting": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "yes"
+  },
+  "mmm.own.covered.email": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "yes"
+  },
+  "mmm.own.covered.online_video": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "yes"
+  },
+  "mmm.own.covered.paid_search": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "no"
+  },
+  "mmm.own.covered.paid_social": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "yes"
+  },
+  "mmm.own.covered_count": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 5
+  },
+  "mmm.own.fit_seconds": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 20.63612795
+  },
+  "mmm.own.grid_evaluations": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 336
+  },
+  "mmm.own.half_life.affiliate_promo": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.05616843017
+  },
+  "mmm.own.half_life.direct_mail": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.7042046709
+  },
+  "mmm.own.half_life.display_retargeting": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.367857601
+  },
+  "mmm.own.half_life.email": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.8678289204
+  },
+  "mmm.own.half_life.online_video": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.3266118605
+  },
+  "mmm.own.half_life.paid_search": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.5632913948
+  },
+  "mmm.own.half_life.paid_social": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.897936449
+  },
+  "mmm.own.marginal.affiliate_promo": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.548385327
+  },
+  "mmm.own.marginal.direct_mail": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 3.118330889e-14
+  },
+  "mmm.own.marginal.display_retargeting": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.631367616
+  },
+  "mmm.own.marginal.email": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.778729709e-16
+  },
+  "mmm.own.marginal.online_video": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.664275164
+  },
+  "mmm.own.marginal.paid_search": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.750079423
+  },
+  "mmm.own.marginal.paid_social": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 2.974280745
+  },
+  "mmm.own.nelder_mead_evaluations": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 989
+  },
+  "mmm.own.residual_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.02009331913
+  },
+  "mmm.own.roas.affiliate_promo": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.9530040957
+  },
+  "mmm.own.roas.direct_mail": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 5.794829741e-14
+  },
+  "mmm.own.roas.display_retargeting": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 2.419709502
+  },
+  "mmm.own.roas.email": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 2.612625738e-16
+  },
+  "mmm.own.roas.online_video": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.9975521226
+  },
+  "mmm.own.roas.paid_search": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.920030332
+  },
+  "mmm.own.roas.paid_social": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 4.273646558
+  },
+  "mmm.own.roas_lower.affiliate_promo": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.516178763e-16
+  },
+  "mmm.own.roas_lower.direct_mail": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.250689426e-18
+  },
+  "mmm.own.roas_lower.display_retargeting": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.216697335
+  },
+  "mmm.own.roas_lower.email": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 2.969379323e-21
+  },
+  "mmm.own.roas_lower.online_video": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1384532199
+  },
+  "mmm.own.roas_lower.paid_search": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.361215824
+  },
+  "mmm.own.roas_lower.paid_social": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.957811235
+  },
+  "mmm.own.roas_upper.affiliate_promo": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.798244793
+  },
+  "mmm.own.roas_upper.direct_mail": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 5.676120451
+  },
+  "mmm.own.roas_upper.display_retargeting": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 3.235651538
+  },
+  "mmm.own.roas_upper.email": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 15.31546832
+  },
+  "mmm.own.roas_upper.online_video": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.629800236
+  },
+  "mmm.own.roas_upper.paid_search": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 2.540412312
+  },
+  "mmm.own.roas_upper.paid_social": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 5.372134499
+  },
+  "mmm.own.spec_hash": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "0c07159692e406de"
+  },
+  "mmm.own.unexplained_variance": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_mmm.own",
+    "population": "demonstration brand, 156 weeks",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.04384146059
+  },
+  "recovery.own.best_condition": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": "rho 0.2, feedback off"
+  },
+  "recovery.own.best_condition_error": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.5356209185
+  },
+  "recovery.own.conditions": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 6
+  },
+  "recovery.own.conditions_over_floor": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": "rho 0.2, feedback off, rho 0.2, feedback on, rho 0.6, feedback off, rho 0.6, feedback on, rho 0.9, feedback off, rho 0.9, feedback on"
+  },
+  "recovery.own.coverage_overall": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.380952381
+  },
+  "recovery.own.demonstration.coverage": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.2857142857
+  },
+  "recovery.own.demonstration.median_abs_error": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.6266190494
+  },
+  "recovery.own.error_floor": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.25
+  },
+  "recovery.own.fits": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 6
+  },
+  "recovery.own.fits_that_ran": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 6
+  },
+  "recovery.own.median_abs_error_overall": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.6063119974
+  },
+  "recovery.own.rho_02_feedback_off.coverage": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.2, feedback off",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.5714285714
+  },
+  "recovery.own.rho_02_feedback_off.median_abs_error": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.2, feedback off",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.5356209185
+  },
+  "recovery.own.rho_02_feedback_off.rank_agreement": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.2, feedback off",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.8571428571
+  },
+  "recovery.own.rho_02_feedback_off.rank_agreement_lower": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.2, feedback off",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.8571428571
+  },
+  "recovery.own.rho_02_feedback_off.rank_agreement_upper": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.2, feedback off",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.8571428571
+  },
+  "recovery.own.rho_02_feedback_on.coverage": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.2, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.0
+  },
+  "recovery.own.rho_02_feedback_on.median_abs_error": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.2, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.6106230282
+  },
+  "recovery.own.rho_02_feedback_on.rank_agreement": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.2, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.7857142857
+  },
+  "recovery.own.rho_02_feedback_on.rank_agreement_lower": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.2, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.7857142857
+  },
+  "recovery.own.rho_02_feedback_on.rank_agreement_upper": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.2, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.7857142857
+  },
+  "recovery.own.rho_06_feedback_off.coverage": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback off",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.2857142857
+  },
+  "recovery.own.rho_06_feedback_off.median_abs_error": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback off",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.673721779
+  },
+  "recovery.own.rho_06_feedback_off.rank_agreement": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback off",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.9285714286
+  },
+  "recovery.own.rho_06_feedback_off.rank_agreement_lower": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback off",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.9285714286
+  },
+  "recovery.own.rho_06_feedback_off.rank_agreement_upper": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback off",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.9285714286
+  },
+  "recovery.own.rho_06_feedback_on.coverage": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.2857142857
+  },
+  "recovery.own.rho_06_feedback_on.median_abs_error": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.6266190494
+  },
+  "recovery.own.rho_06_feedback_on.rank_agreement": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.6428571429
+  },
+  "recovery.own.rho_06_feedback_on.rank_agreement_lower": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.6428571429
+  },
+  "recovery.own.rho_06_feedback_on.rank_agreement_upper": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.6428571429
+  },
+  "recovery.own.rho_09_feedback_off.coverage": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.9, feedback off",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.7142857143
+  },
+  "recovery.own.rho_09_feedback_off.median_abs_error": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.9, feedback off",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.5838174894
+  },
+  "recovery.own.rho_09_feedback_off.rank_agreement": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.9, feedback off",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.25
+  },
+  "recovery.own.rho_09_feedback_off.rank_agreement_lower": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.9, feedback off",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.25
+  },
+  "recovery.own.rho_09_feedback_off.rank_agreement_upper": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.9, feedback off",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.25
+  },
+  "recovery.own.rho_09_feedback_on.coverage": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.9, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 0.4285714286
+  },
+  "recovery.own.rho_09_feedback_on.median_abs_error": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.9, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "recovery.own.rho_09_feedback_on.rank_agreement": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.9, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": -0.07142857143
+  },
+  "recovery.own.rho_09_feedback_on.rank_agreement_lower": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.9, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": -0.07142857143
+  },
+  "recovery.own.rho_09_feedback_on.rank_agreement_upper": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.9, feedback on",
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": -0.07142857143
+  },
+  "recovery.own.seeds_per_condition": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 1
+  },
+  "recovery.own.worst_condition": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": "rho 0.9, feedback on"
+  },
+  "recovery.own.worst_condition_error": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_evaluation.recovery",
+    "population": "markets with known truth",
+    "seed": 12,
+    "seeds": 1,
+    "source": "simulated"
+   },
+   "value": 1.0
+  }
+ }
+}

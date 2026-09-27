@@ -60,7 +60,7 @@ class Policy(StrictModel):
     placebo_permutations: int = 200
     bootstrap_replicates: int = 200
     bootstrap_block_weeks: int = 8
-    rolling_origins: int = 4
+    rolling_origins: int = 8
     interval_level: float = 0.90
 
     recovery_seeds_own: int = 20
