@@ -1,0 +1,7 @@
+{
+ "interior": true,
+ "reason": "the residual against the experiment shrinks as the weight grows and is not zero at the stated weight",
+ "residual_double": 1552.8174602988875,
+ "residual_half": 9299.151330116089,
+ "residual_one": 4605.661273994774
+}

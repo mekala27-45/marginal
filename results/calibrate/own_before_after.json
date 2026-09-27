@@ -1,0 +1,22 @@
+{
+ "backend": "own",
+ "channel": "display_retargeting",
+ "covers_after": false,
+ "covers_before": true,
+ "experiment_lift": 169063.46409394566,
+ "experiment_lower": 151588.44128042148,
+ "experiment_upper": 186538.48690746984,
+ "implied_lift_after": 173669.12536794043,
+ "implied_lift_before": 212747.98609180583,
+ "marginal_after": 0.5493139842739165,
+ "marginal_before": 0.7558918701516044,
+ "marginal_true": 0.6901508766945105,
+ "roas_after": 1.3094553925470218,
+ "roas_after_lower": 1.272206361019776,
+ "roas_after_upper": 1.3242514550136841,
+ "roas_before": 1.618123045284676,
+ "roas_before_lower": 1.1837918494760775,
+ "roas_before_upper": 1.9166740191120972,
+ "roas_true": 1.2214776164087378,
+ "truth_lift": 150477.6501144888
+}

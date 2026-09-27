@@ -1,0 +1,654 @@
+{
+ "as_of": "2026-09-27",
+ "figures": {},
+ "seed": 12,
+ "tables": {
+  "calibrate.own.before_after": {
+   "columns": [
+    "",
+    "Before",
+    "After",
+    "Truth (simulated)"
+   ],
+   "formats": [
+    "text",
+    "float2",
+    "float2",
+    "float2"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "Return on ad spend",
+     1.618123045,
+     1.309455393,
+     1.221477616
+    ],
+    [
+     "Interval lower",
+     1.183791849,
+     1.272206361,
+     null
+    ],
+    [
+     "Interval upper",
+     1.916674019,
+     1.324251455,
+     null
+    ],
+    [
+     "Marginal return",
+     0.7558918702,
+     0.5493139843,
+     0.6901508767
+    ]
+   ]
+  },
+  "calibrate.own.lift": {
+   "columns": [
+    "",
+    "Dollars"
+   ],
+   "formats": [
+    "text",
+    "usd0"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "Lift the model implied before",
+     212747.9861
+    ],
+    [
+     "Lift the experiment found",
+     169063.4641
+    ],
+    [
+     "Lift the model implies after",
+     173669.1254
+    ],
+    [
+     "True lift (simulated)",
+     150477.6501
+    ]
+   ]
+  },
+  "calibrate.own.recovery": {
+   "columns": [
+    "",
+    "Before",
+    "After"
+   ],
+   "formats": [
+    "text",
+    "pct1",
+    "pct1"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "Median absolute error, all channels",
+     0.3437994517,
+     0.2964570223
+    ],
+    [
+     "Median absolute error, tested channel",
+     0.3612871579,
+     0.1012861952
+    ],
+    [
+     "Interval coverage, all channels",
+     0.4285714286,
+     0.3571428571
+    ]
+   ]
+  }
+ },
+ "values": {
+  "calibrate.channel": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "none",
+    "origin": "marginal_calibrate.loop",
+    "population": "the posted lift result",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "Display and retargeting"
+  },
+  "calibrate.experiment_lift": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "none",
+    "origin": "marginal_calibrate.loop",
+    "population": "the posted lift result",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 169063.4641
+  },
+  "calibrate.experiment_se": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "none",
+    "origin": "marginal_calibrate.loop",
+    "population": "the posted lift result",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 10624.05951
+  },
+  "calibrate.geo_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "none",
+    "origin": "marginal_calibrate.loop",
+    "population": "the posted lift result",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2319079054
+  },
+  "calibrate.own.covers_after": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "no"
+  },
+  "calibrate.own.covers_before": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "yes"
+  },
+  "calibrate.own.error_after": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.07202569655
+  },
+  "calibrate.own.error_before": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.3247259086
+  },
+  "calibrate.own.implied_after": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 173669.1254
+  },
+  "calibrate.own.implied_before": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 212747.9861
+  },
+  "calibrate.own.marginal_after": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.5493139843
+  },
+  "calibrate.own.marginal_before": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.7558918702
+  },
+  "calibrate.own.marginal_true": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.6901508767
+  },
+  "calibrate.own.recovery.coverage_after": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 0.3571428571
+  },
+  "calibrate.own.recovery.coverage_before": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 0.4285714286
+  },
+  "calibrate.own.recovery.error_after": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 0.2964570223
+  },
+  "calibrate.own.recovery.error_before": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 0.3437994517
+  },
+  "calibrate.own.recovery.seeds": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 2
+  },
+  "calibrate.own.recovery.tested_bias_after": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 0.1012861952
+  },
+  "calibrate.own.recovery.tested_bias_before": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 0.3336378917
+  },
+  "calibrate.own.recovery.tested_error_after": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 0.1012861952
+  },
+  "calibrate.own.recovery.tested_error_before": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 2,
+    "source": "simulated"
+   },
+   "value": 0.3612871579
+  },
+  "calibrate.own.roas_after": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.309455393
+  },
+  "calibrate.own.roas_after_lower": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.272206361
+  },
+  "calibrate.own.roas_after_upper": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.324251455
+  },
+  "calibrate.own.roas_before": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.618123045
+  },
+  "calibrate.own.roas_before_lower": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.183791849
+  },
+  "calibrate.own.roas_before_upper": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.916674019
+  },
+  "calibrate.own.roas_true": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.221477616
+  },
+  "calibrate.plan_hash": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "none",
+    "origin": "marginal_calibrate.loop",
+    "population": "the posted lift result",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "53733a76fe1af6ec"
+  },
+  "calibrate.truth_lift": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "none",
+    "origin": "marginal_calibrate.loop",
+    "population": "the posted lift result",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 150477.6501
+  },
+  "calibrate.weight.interior": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop.weight_interior_test",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "interior"
+  },
+  "calibrate.weight.level": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop.weight_interior_test",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.9
+  },
+  "calibrate.weight.reason": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop.weight_interior_test",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "the residual against the experiment shrinks as the weight grows and is not zero at the stated weight"
+  },
+  "calibrate.weight.residual_double": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop.weight_interior_test",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1552.81746
+  },
+  "calibrate.weight.residual_half": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop.weight_interior_test",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 9299.15133
+  },
+  "calibrate.weight.residual_one": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "own",
+    "origin": "marginal_calibrate.loop.weight_interior_test",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 4605.661274
+  }
+ }
+}

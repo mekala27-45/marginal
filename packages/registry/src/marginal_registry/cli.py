@@ -71,11 +71,12 @@ def experiments() -> None:
 
 
 @app.command()
-def calibrate() -> None:
+def calibrate(backends: str = typer.Option("own,bayes", help="comma separated backends")) -> None:
     """The lift result into both backends; before and after."""
     from marginal_registry.stages import calibrate as stage
 
-    manifest = stage.run(paths(), as_of(), DEMONSTRATION_SEED)
+    chosen = tuple(b.strip() for b in backends.split(",") if b.strip())
+    manifest = stage.run(paths(), as_of(), DEMONSTRATION_SEED, backends=chosen)
     typer.echo(f"calibrate: {manifest.counts()}")
 
 
