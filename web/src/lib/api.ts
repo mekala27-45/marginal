@@ -115,26 +115,38 @@ export class ApiError extends Error {
 }
 
 const PROBE_TIMEOUT_MS = 6000;
+// The API's machine stops when idle and starts on the first request, which the first probe often
+// meets as a 503 or a timeout; one more try after a short pause finds it awake.
+const PROBE_ATTEMPTS = 2;
+const PROBE_PAUSE_MS = 4000;
 
 let probe: Promise<Source> | null = null;
 let session: Promise<RecordedSession> | null = null;
+
+async function probeOnce(): Promise<Source> {
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), PROBE_TIMEOUT_MS);
+  try {
+    const response = await fetch(`${API}/v1/health`, { signal: controller.signal, cache: "no-store" });
+    if (!response.ok) return "recorded";
+    const body = (await response.json()) as Partial<HealthResponse>;
+    return body.status === "ok" ? "live" : "recorded";
+  } catch {
+    return "recorded";
+  } finally {
+    window.clearTimeout(timer);
+  }
+}
 
 /** Whether this page visit talks to the live API or to the recording. Probed once, then fixed. */
 export function apiSource(): Promise<Source> {
   probe ??= (async (): Promise<Source> => {
     if (!API) return "recorded";
-    const controller = new AbortController();
-    const timer = window.setTimeout(() => controller.abort(), PROBE_TIMEOUT_MS);
-    try {
-      const response = await fetch(`${API}/v1/health`, { signal: controller.signal, cache: "no-store" });
-      if (!response.ok) return "recorded";
-      const body = (await response.json()) as Partial<HealthResponse>;
-      return body.status === "ok" ? "live" : "recorded";
-    } catch {
-      return "recorded";
-    } finally {
-      window.clearTimeout(timer);
+    for (let attempt = 1; attempt <= PROBE_ATTEMPTS; attempt += 1) {
+      if (attempt > 1) await new Promise((resolve) => window.setTimeout(resolve, PROBE_PAUSE_MS));
+      if ((await probeOnce()) === "live") return "live";
     }
+    return "recorded";
   })();
   return probe;
 }
