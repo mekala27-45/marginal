@@ -87,7 +87,9 @@ def test_a_channel_that_never_meets_its_allowance_is_held_at_its_floor(truth: pl
     search = next(a for a in plan.allocation if a.channel == "paid_search")
     assert search.at_bound == "allowance (infeasible)"
     assert search.spend == pytest.approx(search.last_year * (1.0 - plan.constraints.max_change_share))
-    assert abs(sum(plan.spend.values()) - plan.constraints.total_budget) < 1e-3 * plan.constraints.total_budget
+    assert (
+        abs(sum(plan.spend.values()) - plan.constraints.total_budget) < 1e-3 * plan.constraints.total_budget
+    )
     assert search.channel not in {a.channel for a in plan.allocation if a.at_bound == "interior"}
 
 
