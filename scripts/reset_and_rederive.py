@@ -138,12 +138,13 @@ def _same_scalar(a: Any, b: Any) -> bool:
     return bool(a == b)
 
 
-TIMING_SUFFIX = "_seconds"
+TIMING_SUFFIXES = ("_seconds", "_at")
 
 
 def compare(before: dict[str, Any], after: dict[str, Any]) -> list[str]:
-    """Every difference between two manifests, as one line each. Wall clock timings (keys ending
-    in ``_seconds``) are reported by ``timing_differences`` instead; they are not claims."""
+    """Every difference between two manifests, as one line each. Wall clock timings and
+    timestamps (keys ending in ``_seconds`` or ``_at``) are reported by ``timing_differences``
+    instead; when a stage ran is not a claim."""
     drift: list[str] = []
     for bucket in ("values", "tables"):
         old = before.get(bucket, {})
@@ -156,7 +157,7 @@ def compare(before: dict[str, Any], after: dict[str, Any]) -> list[str]:
                 drift.append(f"{bucket} {key}: new since the committed manifest")
                 continue
             if bucket == "values":
-                if key.endswith(TIMING_SUFFIX):
+                if key.endswith(TIMING_SUFFIXES):
                     continue
                 if not _same_scalar(old[key]["value"], new[key]["value"]):
                     drift.append(f"value {key}: {old[key]['value']!r} became {new[key]['value']!r}")
@@ -175,7 +176,7 @@ def compare(before: dict[str, Any], after: dict[str, Any]) -> list[str]:
 def timing_differences(before: dict[str, Any], after: dict[str, Any]) -> dict[str, list[Any]]:
     out: dict[str, list[Any]] = {}
     for key, entry in after.get("values", {}).items():
-        if key.endswith(TIMING_SUFFIX) and key in before.get("values", {}):
+        if key.endswith(TIMING_SUFFIXES) and key in before.get("values", {}):
             out[key] = [before["values"][key]["value"], entry["value"]]
     return out
 
