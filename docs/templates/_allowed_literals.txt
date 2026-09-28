@@ -35,3 +35,9 @@ utf-8
 .ps1
 # data/PROVENANCE.md names the days both Online Retail II sheets hold (the overlap dropped once); a date range.
 1 to 9 December 2010
+# The notebook file names, referenced from the README's skills matrix.
+01_simulator_and_recovery
+02_lift_test_and_calibration
+03_uplift_and_policy_value
+# The site's route and the Pages domain.
+mekala27-45

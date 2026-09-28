@@ -9,8 +9,155 @@ feeding an acquisition cost allowance, attribution rules beside incremental trut
 constrained budget optimizer that equalizes marginal returns, a plan and experiment
 registry on a live API, a quarterly review memo rendered from the manifest, and a site.
 
-Build in progress. Stage manifests present: {{ v('build.stages_present') }}. The Criteo run
-uses the full v2.1 release ({{ v('data.criteo.rows') }} rows), because the ten percent mirror no
-longer exists; see `data/PROVENANCE.md`.
+Every one of the eighteen mandatory steps in the build order is done; the checklist below
+carries one line of evidence per item. Every dataset is used in full. The Criteo run used the
+full v2.1 release ({{ v('data.criteo.rows') }} rows, every test row scored), not the ten
+percent file the brief names, because that mirror no longer exists; the two learners were
+fit on a seeded {{ v('targeting.criteo.rows_train_used') }} row subsample of its training
+split, and every Criteo figure is labeled with the release that ran. The API is live at
+{{ v('deploy.base_url') }} and was verified from a separate client ({{ v('deploy.client') }}):
+health {{ v('deploy.health_status') }}, database {{ v('deploy.health_database') }}, an
+experiment registered, its result posted, a plan saved and all three read back through the
+API, audit row before the response: {{ v('deploy.audit_before_response') }}.
+
+Site: https://mekala27-45.github.io/marginal/ (Overview, Mix, Budget, Experiments, Targeting,
+Report). Memo: `report/quarterly-review.md`. Results and the checklist: `RESULTS.md`.
+Decisions: `DECISIONS.md`. Architecture: `ARCHITECTURE.md`. Runbook: `docs/runbook.md`.
 
 {{ statement() }}
+
+## The two numbers
+
+On the demonstration brand, reallocating the same weekly budget of {{ v('budget.total_weekly') }}
+by marginal return, under the stated floors, ceilings, change limit and the acquisition cost
+allowance, gains {{ v('budget.headline.gain_over_last_year_weekly') }} a week over last year's
+mix on the true curves ({{ v('budget.headline.gain_over_last_year_annual') }} a year), and the
+calibrated model's plan captured {{ v('budget.headline.share_captured') }} of the truth optimal
+gain against {{ v('budget.headline.share_captured_uncalibrated') }} for the uncalibrated model.
+That is one seed. Across the {{ v('budget.regret.calibrated.seeds') }} seed regret study the
+calibrated plan captured {{ v('budget.regret.calibrated.share_captured') }} of the optimal gain
+({{ v('budget.regret.calibrated.share_captured_lower') }} to
+{{ v('budget.regret.calibrated.share_captured_upper') }}), a weekly gain of
+{{ v('budget.regret.calibrated.gain_weekly') }} ({{ v('budget.regret.calibrated.gain_lower') }} to
+{{ v('budget.regret.calibrated.gain_upper') }}), and the uncalibrated plan captured
+{{ v('budget.regret.uncalibrated.share_captured') }}: on the study the one lift test does not
+change how much of the gain the plan finds, because the plan depends on every channel's curve
+and the test corrected one.
+
+## What is here
+
+- **A market with known truth.** {{ v('sim.geos') }} geos over {{ v('sim.weeks') }} weeks,
+  seven paid channels with true carryover, saturation and return, spend planned with a stated
+  correlation between channels, and display and retargeting spend that follows demand.
+  {{ v('sim.customers') }} customers with known treatment effects and the four quadrants;
+  {{ v('sim.paths.users') }} user paths with the incremental credit of every touch known.
+- **Two mix model backends on one interface.** `own` (geometric adstock, Hill saturation, a
+  log linear baseline with additive media, a coarse grid then Nelder-Mead over rolling origins,
+  a moving block bootstrap of {{ v('mmm.own.bootstrap_replicates') }} replicates) and `bayes`
+  (PyMC-Marketing, the same transforms as priors, {{ v('mmm.bayes.chains') }} chains of
+  {{ v('mmm.bayes.draws') }} draws, divergences and R hat recorded). Graded on a recovery
+  study of six conditions with {{ v('recovery.own.seeds_per_condition') }} seeds for `own` and
+  {{ v('recovery.bayes.seeds_per_condition') }} for `bayes`. Median absolute error on a
+  channel's return: `own` {{ v('recovery.own.median_abs_error_overall') }} with
+  {{ v('recovery.own.coverage_overall') }} interval coverage, worst in
+  {{ v('recovery.own.worst_condition') }} at {{ v('recovery.own.worst_condition_error') }};
+  `bayes` {{ v('recovery.bayes.median_abs_error_overall') }} with
+  {{ v('recovery.bayes.coverage_overall') }} coverage, worst in
+  {{ v('recovery.bayes.worst_condition') }} at {{ v('recovery.bayes.worst_condition_error') }}.
+- **A geo lift test with power.** Stratified assignment, pre-registered under plan hash
+  `{{ v('geo.plan_hash') }}` before its data existed, the SRM gate {{ v('geo.srm_passed') }},
+  difference in differences {{ v('geo.did.estimate') }} ({{ v('geo.did.lower') }} to
+  {{ v('geo.did.upper') }}) and synthetic control {{ v('geo.sc.estimate') }} with
+  {{ v('geo.sc.placebo_permutations') }} placebo permutations, against a true lift of
+  {{ v('geo.truth') }}.
+- **The loop.** The posted result becomes a pseudo observation for `own` and a lift test
+  measurement for `bayes`. On the tested channel `own` moved from
+  {{ v('calibrate.own.roas_before') }} to {{ v('calibrate.own.roas_after') }} against a truth of
+  {{ v('calibrate.own.roas_true') }}, and its error on that channel across
+  {{ v('calibrate.own.recovery.seeds') }} seeds fell from
+  {{ v('calibrate.own.recovery.tested_error_before') }} to
+  {{ v('calibrate.own.recovery.tested_error_after') }}. The calibration weight passed its interior
+  test ({{ v('calibrate.weight.interior') }}).
+- **The real randomized experiment.** Hillstrom's {{ v('data.hillstrom.rows') }} customers: the
+  men's email raised conversion by {{ v('email.mens.conversion.effect') }}
+  ({{ v('email.mens.conversion.lower') }} to {{ v('email.mens.conversion.upper') }}) and spend by
+  {{ v('email.mens.spend.effect') }} per customer, with Benjamini-Hochberg across segments.
+- **Uplift evaluated as uplift.** T and X learners with Qini and a policy value curve at a
+  stated cost per email. On the real test split the sure things rule earned
+  {{ v('targeting.hillstrom.sure_things.policy_value_test') }} per thousand customers and the T
+  learner {{ v('targeting.hillstrom.t_learner.policy_value_test') }}, with every Qini interval
+  including zero; on the simulator, where the effects are known, the X learner's Qini is
+  {{ v('targeting.sim.x_learner.qini') }} against {{ v('targeting.sim.everyone.qini') }} for everyone.
+- **Lifetime value with a holdout.** BG/NBD and Gamma-Gamma fit by maximum likelihood on
+  {{ v('clv.customers') }} customers of Online Retail II and checked on the next year: the model
+  over predicts holdout purchases by {{ v('clv.holdout.purchases_predicted_over_actual') }} overall
+  (the fitted dropout probability after a purchase is {{ v('clv.bgnbd.dropout_after_purchase') }})
+  and by {{ v('clv.holdout.top_decile_purchases_predicted_over_actual') }} in the top decile; the
+  PyMC-Marketing cross check agrees to {{ v('clv.crosscheck.max_relative_difference') }}. The
+  allowance it feeds into the optimizer holds {{ v('budget.allowance_infeasible') }} at its floor,
+  because that channel's fitted curve never pays back within it.
+- **Attribution beside the truth.** Six rules including exact Shapley over
+  {{ v('attribution.shapley.coalitions') }} coalitions. Last touch hands display and retargeting
+  {{ v('attribution.over_credit.last_touch_share') }} of conversions against a true incremental
+  share of {{ v('attribution.over_credit.true_share') }}; the calibrated mix model says
+  {{ v('attribution.over_credit.model_share') }}. Every rule over credits that channel most.
+- **A registry on a live API.** Plans stored with the model version, the spec hash, the inputs'
+  hash and the expected outcome with its interval; experiments with their plan hash; results
+  refused without one; the audit row committed before the response. Writes are token gated,
+  because this is a demonstration.
+
+## The skills matrix
+
+| Skill | Where it lives |
+|---|---|
+| Marketing mix modeling | `packages/mmm`, the mix page, `notebooks/01_simulator_and_recovery.ipynb` |
+| Carryover and saturation transforms | `packages/mmm/src/marginal_mmm/transforms.py`, `docs/definitions.md` |
+| Bayesian modeling | `packages/mmm/src/marginal_mmm/bayes.py`, the lifetime value cross check in `packages/clv` |
+| Model validation against known truth | `packages/sim`, `packages/evaluation`, the recovery study in `RESULTS.md` |
+| Geo experiments and synthetic control | `packages/experiments`, the experiments page, `notebooks/02_lift_test_and_calibration.ipynb` |
+| Experiment design, power, pre-registration | `packages/experiments` (the plan hash, the power curve, the SRM gate) |
+| Calibrating models with experiments | `packages/calibrate`, the before and after table in `report/quarterly-review.md` |
+| Causal inference, uplift, heterogeneous treatment effects | `packages/targeting`, the targeting page, `notebooks/03_uplift_and_policy_value.ipynb` |
+| Policy evaluation at a cost | the policy value curve and the chosen share, `packages/targeting/src/marginal_targeting/metrics.py` |
+| Customer lifetime value | `packages/clv`, the holdout by decile in `report/cards/clv-bgnbd-gamma-gamma.md` |
+| Attribution and its limits | `packages/attribution`, the three answers chart on the mix page |
+| Budget optimization under constraints | `packages/budget`, the budget page, the regret study |
+| Statistics | block bootstrap, placebo inference, Benjamini-Hochberg and coverage in `packages/evaluation` and `packages/experiments` |
+| Simulation | `packages/sim` |
+| SQL | the marts in `web/public/data`, queried in the browser by DuckDB-WASM (`web/src/lib/data.ts`) |
+| APIs, persistence, deployment | `packages/api`, `fly.toml`, `scripts/check_persistence.py`, `deploy/` |
+| Visualization | `web/`, the validated palette (`web/src/theme/palette.json`), one callout per chart |
+| Communication | `report/quarterly-review.md` and the pushback paragraph on every page |
+| Data licensing and provenance | `data/PROVENANCE.md`, the three declared licenses |
+
+## The checklist (Section 20 of the brief)
+
+Each line is done or not done, with one sentence of evidence.
+
+{% include '_checklist.md.j2' %}
+
+Stretch items, listed and never counted: the Criteo full release (done, and it replaced the ten
+percent run because the mirror is gone); the registry gates and the models page (not done);
+the customers, attribution and explore pages (not done); Markov attribution (not done); the geo
+hierarchy (not done); the containers in CI (`Dockerfile.api` is built by Fly on every deploy;
+the pipeline container is not built in CI); the demo GIF (not done); the release workflow
+(`.github/workflows/release.yml`, done); the load test (`scripts/load_test.py`, not run against
+the live API).
+
+## Running it
+
+`docs/runbook.md` has every target. In short: `make setup`, place the three datasets under
+`data/external` or let `make data` fetch them, then `make pipeline` (the bayes recovery is about
+an hour of sampling), `make gates`, `make check`. `make rederive` runs the pipeline again from
+the committed inputs and proves every published figure reproduces. `make deploy` (or
+`deploy/deploy.ps1` on Windows) ships the API; `npm --prefix web run build` builds the site.
+
+## Licensing and provenance
+
+Code is Apache 2.0. Hillstrom's data is a public challenge release without a formal license
+text, used with attribution; Online Retail II is CC BY 4.0 (the same source `pricepoint`, the
+second project of this series, priced; here it is the purchase history); Criteo's uplift release is
+CC BY-NC-SA 4.0, and the derived tables in `data/criteo` and `results/targeting` carry the
+same terms. `data/PROVENANCE.md` has the checksums. No raw row of any of the three is committed,
+and `scripts/scan_for_planted_identifiers.py` proves nothing that looks like a real person's
+identity is either.

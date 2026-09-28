@@ -83,11 +83,17 @@ with a named reason when those are missing locally; CI requires all three.
 
 ## Rederiving before a release
 
-`make rederive` is wired to `scripts/reset_and_rederive.py`, which this build has not written yet, so
-the target fails today. Until it exists, the manual equivalent is to run `make pipeline` and
-`make check` from a clean clone and read `git status` and `git diff --stat`: every document is
-rendered from the manifest, so a document that changed means a figure moved. `make demo` is in the
-same state: `scripts/build_demo_gif.py` does not exist yet.
+`make rederive` runs `scripts/reset_and_rederive.py`: it snapshots `results/manifest.json`, runs
+every stage in the registry's order with the committed manifest's as of date, merges, renders and
+writes the marts, then compares every value and table of the new manifest with the snapshot
+(floats may differ by one part in a billion, nothing else may differ) and runs the gates. The
+summary lands in `results/rederive.json` and the log in `logs/rederive.log`. With `--reset` and
+`DATABASE_URL` set it first deletes the plans and experiments the site recording and the separate
+client verification created in the registry, by their stated notes and names, and leaves the
+audit log alone. `--stages clv,budget` reruns a subset; `--compare-only` judges the last run.
+
+The demo GIF (`scripts/build_demo_gif.py`) is a stretch item and was not built; the Makefile has
+no target for it.
 
 ## Deploying the API
 

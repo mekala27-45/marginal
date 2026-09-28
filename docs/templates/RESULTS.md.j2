@@ -1,0 +1,276 @@
+{#- Every figure here is rendered from results/manifest.json by the claim gate; do not edit by hand. -#}
+# Results
+
+Rendered from `results/manifest.json` (as of {{ manifest.as_of }}, demonstration seed
+{{ manifest.seed }}); `scripts/check_published_numbers.py` re-renders this file and fails CI if
+it differs. Stages present in the manifest: {{ v('build.stages_present') }}. Every table names
+its source, model, population, seed count and condition in the line beneath it.
+
+{{ statement() }}
+
+## The checklist (Section 20 of the brief)
+
+{% include '_checklist.md.j2' %}
+
+Stretch items, never counted: Criteo full release (done, in place of the ten percent run,
+whose mirror is gone); registry gates and the models page (not done); customers, attribution
+and explore pages (not done); Markov attribution (not done); geo hierarchy (not done);
+containers in CI (not done; Fly builds `Dockerfile.api` on deploy); demo GIF (not done);
+release workflow (done); load test against the live API (not run).
+
+## The two numbers
+
+| | Demonstration brand (one seed) | Regret study ({{ v('budget.regret.calibrated.seeds') }} seeds) |
+|---|---:|---:|
+| Weekly gain over last year's mix, same budget, true curves | {{ v('budget.headline.gain_over_last_year_weekly') }} | {{ v('budget.regret.calibrated.gain_weekly') }} ({{ v('budget.regret.calibrated.gain_lower') }} to {{ v('budget.regret.calibrated.gain_upper') }}) |
+| Annual | {{ v('budget.headline.gain_over_last_year_annual') }} | |
+| Share of the truth optimal gain captured, calibrated model | {{ v('budget.headline.share_captured') }} | {{ v('budget.regret.calibrated.share_captured') }} ({{ v('budget.regret.calibrated.share_captured_lower') }} to {{ v('budget.regret.calibrated.share_captured_upper') }}) |
+| Share captured, uncalibrated model | {{ v('budget.headline.share_captured_uncalibrated') }} | {{ v('budget.regret.uncalibrated.share_captured') }} ({{ v('budget.regret.uncalibrated.share_captured_lower') }} to {{ v('budget.regret.uncalibrated.share_captured_upper') }}) |
+
+{{ label('budget.headline.gain_over_last_year_weekly') }} {{ label('budget.regret.calibrated.share_captured') }}
+
+{{ table('budget.regret') }}
+
+{{ label('budget.regret') }}
+
+{{ table('budget.comparison') }}
+
+{{ label('budget.comparison') }}
+
+The plan on the demonstration brand. Marginal returns are equal across the interior channels
+({{ v('budget.marginal_equalized') }}; spread {{ v('budget.marginal_spread') }}), the solver
+reported "{{ v('budget.solver_status') }}" on the kept solution from {{ v('budget.starts') }}
+starts, and the allocation is {{ v('budget.interior') }}: {{ v('budget.interior_reason') }}.
+The allowance was applied ({{ v('budget.allowance_applied') }}); it cannot be met by
+{{ v('budget.allowance_infeasible') }} at any admissible spend, so that channel is held at its
+floor and labeled.
+
+{{ table('budget.allocation') }}
+
+{{ label('budget.allocation') }}
+
+## The recovery study
+
+Median absolute error of the estimated return per channel, interval coverage against the
+nominal {{ v('policy.interval_level') }}, and the agreement between the estimated and the true
+ranking of channels by marginal return, by condition. The stated floor for the error is
+{{ v('recovery.own.error_floor') }}; `own` crosses it in every condition
+({{ v('recovery.own.conditions_over_floor') }}) and `bayes` in
+{{ v('recovery.bayes.conditions_over_floor') }}. The worst condition for `own` is
+{{ v('recovery.own.worst_condition') }} ({{ v('recovery.own.worst_condition_error') }}), which is
+the one that looks like a real market; the worst for `bayes` is
+{{ v('recovery.bayes.worst_condition') }} ({{ v('recovery.bayes.worst_condition_error') }}), and
+its intervals cover the truth {{ v('recovery.bayes.coverage_overall') }} of the time against
+{{ v('recovery.own.coverage_overall') }} for `own`, whose block bootstrap intervals are too narrow.
+
+{% set conditions = [
+  ('rho_02_feedback_off', 'rho 0.2, feedback off'),
+  ('rho_02_feedback_on', 'rho 0.2, feedback on'),
+  ('rho_06_feedback_off', 'rho 0.6, feedback off'),
+  ('rho_06_feedback_on', 'rho 0.6, feedback on'),
+  ('rho_09_feedback_off', 'rho 0.9, feedback off'),
+  ('rho_09_feedback_on', 'rho 0.9, feedback on'),
+] %}
+| Condition | own error | own coverage | own rank agreement | bayes error | bayes coverage | bayes rank agreement |
+|---|---:|---:|---:|---:|---:|---:|
+{% for key, name in conditions %}
+| {{ name }} | {{ v('recovery.own.' ~ key ~ '.median_abs_error') }} | {{ v('recovery.own.' ~ key ~ '.coverage') }} | {{ v('recovery.own.' ~ key ~ '.rank_agreement') }} ({{ v('recovery.own.' ~ key ~ '.rank_agreement_lower') }} to {{ v('recovery.own.' ~ key ~ '.rank_agreement_upper') }}) | {{ v('recovery.bayes.' ~ key ~ '.median_abs_error') }} | {{ v('recovery.bayes.' ~ key ~ '.coverage') }} | {{ v('recovery.bayes.' ~ key ~ '.rank_agreement') }} ({{ v('recovery.bayes.' ~ key ~ '.rank_agreement_lower') }} to {{ v('recovery.bayes.' ~ key ~ '.rank_agreement_upper') }}) |
+{% endfor %}
+
+{{ label('recovery.own.median_abs_error_overall') }} {{ label('recovery.bayes.median_abs_error_overall') }}
+`own`: {{ v('recovery.own.fits') }} fits, {{ v('recovery.own.fits_that_ran') }} ran. `bayes`:
+{{ v('recovery.bayes.fits') }} fits, {{ v('recovery.bayes.fits_that_ran') }} ran, each with
+{{ v('mmm.bayes.chains') }} chains of {{ v('mmm.bayes.draws') }} draws.
+
+Per channel and condition, `own`:
+
+{{ table('recovery.own.summary') }}
+
+{{ label('recovery.own.summary') }}
+
+Per channel and condition, `bayes`:
+
+{{ table('recovery.bayes.summary') }}
+
+{{ label('recovery.bayes.summary') }}
+
+## The cross check
+
+Both backends on the demonstration brand ({{ v('sim.condition') }}), the truth in the last
+column. Disagreements beyond the intervals: {{ v('mmm.crosscheck.disagreements') }}.
+
+{{ table('mmm.crosscheck') }}
+
+{{ label('mmm.crosscheck') }}
+
+{{ table('mmm.own.returns') }}
+
+{{ label('mmm.own.returns') }} Residual as a share of sales {{ v('mmm.own.residual_share') }}.
+
+{{ table('mmm.bayes.returns') }}
+
+{{ label('mmm.bayes.returns') }} Divergences {{ v('mmm.bayes.divergences') }}, largest R hat
+{{ v('mmm.bayes.max_rhat') }}, residual share {{ v('mmm.bayes.residual_share') }}.
+
+## The geo lift test
+
+{{ v('geo.channel') }}, spend change {{ v('geo.spend_change') }} in {{ v('geo.treated_geos') }}
+treated geos against {{ v('geo.control_geos') }} controls, weeks {{ v('geo.start_week') }} to
+{{ v('geo.end_week') }} after a {{ v('geo.pre_period_weeks') }} week pre period. Plan hash
+`{{ v('geo.plan_hash') }}`, registered {{ v('geo.registered_at') }} ({{ v('geo.registered_via') }}).
+SRM gate {{ v('geo.srm_passed') }} (p {{ v('geo.srm_p') }}). Power at the true effect
+{{ v('geo.power_at_true_effect') }}.
+
+{{ table('geo.estimates') }}
+
+{{ label('geo.estimates') }} Synthetic control: {{ v('geo.sc.placebo_permutations') }} placebo
+permutations, p {{ v('geo.sc.p_value') }}, largest donor weight {{ v('geo.sc.largest_weight') }}.
+
+{{ table('geo.power') }}
+
+{{ label('geo.power') }}
+
+## Calibration, before and after
+
+{{ table('calibrate.own.before_after') }}
+
+{{ label('calibrate.own.before_after') }}
+
+{{ table('calibrate.own.lift') }}
+
+{{ table('calibrate.own.recovery') }}
+
+{{ label('calibrate.own.recovery') }}
+
+{{ table('calibrate.bayes.before_after') }}
+
+{{ label('calibrate.bayes.before_after') }}
+
+{{ table('calibrate.bayes.lift') }}
+
+{{ table('calibrate.bayes.recovery') }}
+
+{{ label('calibrate.bayes.recovery') }}
+
+The weight the experiment carries in `own` is {{ v('calibrate.weight.interior') }}:
+{{ v('calibrate.weight.reason') }} (residual against the experiment at half the weight
+{{ v('calibrate.weight.residual_half') }}, at the stated weight
+{{ v('calibrate.weight.residual_one') }}, at double {{ v('calibrate.weight.residual_double') }}).
+After calibration the `bayes` interval covers the truth: {{ v('calibrate.bayes.covers_after') }}
+(before: {{ v('calibrate.bayes.covers_before') }}); the lift test measurement pulls the posterior
+to the experiment's estimate, which itself sits above the truth.
+
+## The Hillstrom experiment
+
+SRM gate {{ v('email.srm_passed') }} (p {{ v('email.srm_p') }}). Cost per email
+{{ v('email.cost_per_email') }}, margin on spend {{ v('email.margin_on_spend') }}.
+
+{{ table('email.effects') }}
+
+{{ label('email.effects') }}
+
+{{ table('email.segments.mens.conversion') }}
+
+{{ label('email.segments.mens.conversion') }} {{ v('email.segments.correction') }}.
+
+## Targeting
+
+{{ table('targeting.hillstrom.policies') }}
+
+{{ label('targeting.hillstrom.policies') }}
+
+{{ table('targeting.hillstrom.qini_differences') }}
+
+{{ table('targeting.sim.policies') }}
+
+{{ label('targeting.sim.policies') }} PEHE: T learner {{ v('targeting.sim.pehe.t_learner') }},
+X learner {{ v('targeting.sim.pehe.x_learner') }}. Regret against the oracle policy (per thousand
+customers): T learner {{ v('targeting.sim.regret.t_learner') }}, X learner
+{{ v('targeting.sim.regret.x_learner') }}, sure things {{ v('targeting.sim.regret.sure_things') }},
+everyone {{ v('targeting.sim.regret.everyone') }}.
+
+{{ table('targeting.sim.quadrants') }}
+
+{{ label('targeting.sim.quadrants') }}
+
+{{ table('targeting.criteo.policies') }}
+
+{{ label('targeting.criteo.policies') }} The full v2.1 release: {{ v('targeting.criteo.rows_total') }}
+rows, {{ v('targeting.criteo.rows_train_used') }} used to fit, {{ v('targeting.criteo.rows_test') }}
+scored on test. Visit is the outcome and there is no cost per contact, so the chosen shares are
+not interior.
+
+## Lifetime value
+
+{{ table('clv.parameters') }}
+
+{{ label('clv.parameters') }}
+
+{{ table('clv.holdout_by_decile') }}
+
+{{ label('clv.holdout_by_decile') }} Predicted over actual purchases
+{{ v('clv.holdout.purchases_predicted_over_actual') }} overall,
+{{ v('clv.holdout.top_decile_purchases_predicted_over_actual') }} in the top decile; the fitted
+dropout probability after a purchase is {{ v('clv.bgnbd.dropout_after_purchase') }}.
+
+{{ table('clv.segments') }}
+
+{{ table('clv.allowance_by_channel') }}
+
+{{ label('clv.allowance_by_channel') }}
+
+## Attribution beside the truth
+
+{{ table('attribution.comparison') }}
+
+{{ label('attribution.comparison') }}
+
+{{ table('attribution.grades') }}
+
+{{ label('attribution.grades') }} Shapley over {{ v('attribution.shapley.coalitions') }}
+coalitions ({{ v('attribution.shapley.coalitions_observed') }} observed on
+{{ v('attribution.paths') }} paths with {{ v('attribution.conversions') }} conversions); credit
+sums to the conversion count: {{ v('attribution.shapley.sums_to_conversions') }}.
+
+## The live API, from a separate client
+
+{{ v('deploy.base_url') }}, checked from {{ v('deploy.client') }} at {{ v('deploy.checked_at') }}:
+health {{ v('deploy.health_status') }}, database {{ v('deploy.health_database') }}, serving model
+{{ v('deploy.model_version') }}; experiment `{{ v('deploy.experiment_id') }}` registered under plan
+hash `{{ v('deploy.plan_hash') }}`, its result read back as {{ v('deploy.result_read_back') }}, plan
+`{{ v('deploy.plan_id') }}` saved and read back, {{ v('deploy.audit_entries') }} audit entries,
+audit row before the response {{ v('deploy.audit_before_response') }}, statement present
+{{ v('deploy.statement_present') }}, passed {{ v('deploy.passed') }}.
+
+## Limitations
+
+- The market is simulated. The recovery study says how far the models are from a known truth
+  under six conditions; it says nothing about how far they would be on a real brand's panel,
+  whose conditions are unknown. The demonstration brand is one seed of one condition.
+- `own` under covers: its block bootstrap intervals hold the truth
+  {{ v('recovery.own.coverage_overall') }} of the time against a nominal
+  {{ v('policy.interval_level') }}, and its search rarely reports convergence. The pages show the
+  intervals anyway and this line says what they are worth.
+- `bayes` ran on {{ v('recovery.bayes.seeds_per_condition') }} seeds per condition, so its
+  recovery figures are coarse, and several fits reported divergences or an R hat above the
+  library's warning level while staying under the stated ceilings.
+- One experiment. The calibration table has one row per backend, and on the regret study one
+  test does not change how much of the optimal gain the plan captures.
+- The email test is a catalog retailer's from 2008 and the men's arm only; the effects are
+  small and the uplift learners did not beat the sure things rule on its test split.
+- The purchase history is a UK online gift retailer's, largely wholesale customers, 2009 to
+  2011, printed in the repository's dollar format; the lifetime value model over predicts the
+  holdout, and the allowance built on it is a demonstration of the mechanism.
+- Criteo publishes no cost per impression, so its policy value is incremental visits per
+  thousand users and no share is interior.
+- The geo test was registered locally: the build sandbox could not reach the live API, so the
+  registry client fell back to the local record with the same hash.
+- The API serves the `own` backend only, in one region, behind one shared write token.
+
+## Model cards
+
+`report/cards/mmm-own.md`, `report/cards/mmm-bayes.md`, `report/cards/uplift-t-learner.md`,
+`report/cards/uplift-x-learner.md`, `report/cards/clv-bgnbd-gamma-gamma.md`, each under the
+contract in `docs/models.md`.
+
+{{ statement() }}
