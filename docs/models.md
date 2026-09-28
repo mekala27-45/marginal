@@ -51,9 +51,8 @@ request turns it off. `/v1/models` also lists the other exports on disk, the unc
 model and the calibrated bayes model, as files; no route uses them.
 
 The calibrated export in this build is `own-0c071596-calibrated`. When a separate client last
-checked the live instance, `/v1/health` named the uncalibrated own export: the image it runs was built
-without the calibrated export, and the redeploy in `docs/runbook.md` is what puts the calibrated
-curves behind the live URL. Bayes, the two learners and the lifetime value model itself are not
+checked the live instance (2026-09-28T04:44:12.5119589Z), `/v1/health` named
+`own-0c071596-calibrated`. Bayes, the two learners and the lifetime value model itself are not
 served.
 
 > Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here.

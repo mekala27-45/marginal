@@ -270,7 +270,8 @@ audit row before the response {{ v('deploy.audit_before_response') }}, statement
 - Criteo publishes no cost per impression, so its policy value is incremental visits per
   thousand users and no share is interior.
 - The geo test was registered locally: the build sandbox could not reach the live API, so the
-  registry client fell back to the local record with the same hash.
+  registry client fell back to the local record with the same hash; the replay to the live
+  registry ({{ v('geo.replay.status') }}) came after the data existed.
 - The API serves the `own` backend only, in one region, behind one shared write token.
 
 ## Model cards

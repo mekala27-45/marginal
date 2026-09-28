@@ -88,8 +88,10 @@ effect this design's power is 100%, and the smaller designs that were
 considered are in `docs/experiments.md`. The design was hashed and registered before any of the
 test's weeks were read: plan hash `53733a76fe1af6ec`, registered at 2026-09-27T21:45:07+00:00.
 It was registered locally in this build, in `results/experiments/registry.json`, because the build
-sandbox could not reach the live API; `docs/serving.md` says what was verified on the live registry
-and what was not. The sample ratio gate passed (p = 1.000).
+sandbox could not reach the live API; the same design and result were replayed to the live registry
+from a separate client afterwards (replayed, experiment
+`076102e0-ebd0-5218-8433-fab40b6cff08`, same plan hash: yes), which
+`docs/serving.md` records as a replay, not a pre-registration. The sample ratio gate passed (p = 1.000).
 
 **The result against the truth.** Difference in differences puts the revenue the channel caused in
 the treated geos over the window at $169,063 ($151,588 to
@@ -559,10 +561,10 @@ hold the truth 42% of the time in the recovery study against a
 stated 90%. Read them as a floor on the uncertainty; bayes's are the ones to
 quote.
 
-**The API serves the own backend only.** The API serves own's curves: the calibrated export once it
-is redeployed, and, when a separate client last checked the live instance, the uncalibrated one.
-Bayes is not served, the uplift learners are not served, and lifetime value reaches the API only as
-the allowance file. A plan saved through the API is an own plan.
+**The API serves the own backend only.** The API serves own's calibrated curves: when a separate
+client last checked the live instance, `/v1/health` named own-0c071596-calibrated. Bayes is
+not served, the uplift learners are not served, and lifetime value reaches the API only as the
+allowance file. A plan saved through the API is an own plan.
 
 ## What the CMO would push back on
 

@@ -1,0 +1,14 @@
+{
+    "reset_at":  "2026-09-28T04:45:30.4238638Z",
+    "client":  "AJAY, Windows, PowerShell 5.1.26100.9444",
+    "plans_removed":  2,
+    "results_removed":  2,
+    "experiments_removed":  2,
+    "experiments_remaining":  [
+                                  {
+                                      "plan_hash":  "53733a76fe1af6ec",
+                                      "experiment_id":  "076102e0-ebd0-5218-8433-fab40b6cff08",
+                                      "name":  "display_retargeting holdout, 8 weeks, 10 geos"
+                                  }
+                              ]
+}

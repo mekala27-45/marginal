@@ -475,8 +475,10 @@ effect this design's power is 100%, and the smaller designs that were
 considered are in <code>docs/experiments.md</code>. The design was hashed and registered before any of the
 test's weeks were read: plan hash <code>53733a76fe1af6ec</code>, registered at 2026-09-27T21:45:07+00:00.
 It was registered locally in this build, in <code>results/experiments/registry.json</code>, because the build
-sandbox could not reach the live API; <code>docs/serving.md</code> says what was verified on the live registry
-and what was not. The sample ratio gate passed (p = 1.000).</p>
+sandbox could not reach the live API; the same design and result were replayed to the live registry
+from a separate client afterwards (replayed, experiment
+<code>076102e0-ebd0-5218-8433-fab40b6cff08</code>, same plan hash: yes), which
+<code>docs/serving.md</code> records as a replay, not a pre-registration. The sample ratio gate passed (p = 1.000).</p>
 <p><strong>The result against the truth.</strong> Difference in differences puts the revenue the channel caused in
 the treated geos over the window at $169,063 ($151,588 to
 $186,538). Synthetic control, fit on the pre period, puts it at $167,952
@@ -1699,10 +1701,10 @@ held at their searched values, so its intervals leave out the uncertainty of the
 hold the truth 42% of the time in the recovery study against a
 stated 90%. Read them as a floor on the uncertainty; bayes's are the ones to
 quote.</p>
-<p><strong>The API serves the own backend only.</strong> The API serves own's curves: the calibrated export once it
-is redeployed, and, when a separate client last checked the live instance, the uncalibrated one.
-Bayes is not served, the uplift learners are not served, and lifetime value reaches the API only as
-the allowance file. A plan saved through the API is an own plan.</p>
+<p><strong>The API serves the own backend only.</strong> The API serves own's calibrated curves: when a separate
+client last checked the live instance, <code>/v1/health</code> named own-0c071596-calibrated. Bayes is
+not served, the uplift learners are not served, and lifetime value reaches the API only as the
+allowance file. A plan saved through the API is an own plan.</p>
 <h2>What the CMO would push back on</h2>
 <p><strong>&quot;The market is simulated.&quot;</strong> It is, on purpose: a simulated market is the only place a mix model
 can be graded against the answer. The build did that grading, 120 own fits and

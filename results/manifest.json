@@ -7838,7 +7838,7 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": 3
+   "value": 6
   },
   "deploy.base_url": {
    "fmt": "text",
@@ -7866,7 +7866,7 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": "2026-09-28T00:03:22.3292486Z"
+   "value": "2026-09-28T04:44:12.5119589Z"
   },
   "deploy.client": {
    "fmt": "text",
@@ -7894,7 +7894,7 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": "2fb962a7-49d4-5a58-91a3-c5c7bd10009a"
+   "value": "f43681df-ebd2-5f35-992a-354f231d2419"
   },
   "deploy.health_database": {
    "fmt": "text",
@@ -7936,7 +7936,7 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": "own-0c071596-uncalibrated"
+   "value": "own-0c071596-calibrated"
   },
   "deploy.passed": {
    "fmt": "text",
@@ -7964,7 +7964,7 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": -10994.4222
+   "value": 30089.54411
   },
   "deploy.plan_hash": {
    "fmt": "text",
@@ -7978,7 +7978,7 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": "b5b891c8e2b241d3"
+   "value": "370a225bdd954ae5"
   },
   "deploy.plan_id": {
    "fmt": "text",
@@ -7992,7 +7992,7 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": "09bfc021-89cd-42a1-9bb7-cfbcfda2681f"
+   "value": "f461a56a-0734-4918-8afa-81485cb4ff87"
   },
   "deploy.result_read_back": {
    "fmt": "usd0",
@@ -8960,6 +8960,118 @@
    },
    "value": "local"
   },
+  "geo.replay.client": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/replay-registration.ps1",
+    "population": "the live registry, from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "AJAY, Windows, PowerShell 5.1.26100.9444"
+  },
+  "geo.replay.experiment_id": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/replay-registration.ps1",
+    "population": "the live registry, from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "076102e0-ebd0-5218-8433-fab40b6cff08"
+  },
+  "geo.replay.plan_hash": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/replay-registration.ps1",
+    "population": "the live registry, from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "53733a76fe1af6ec"
+  },
+  "geo.replay.plan_hash_matches": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/replay-registration.ps1",
+    "population": "the live registry, from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "yes"
+  },
+  "geo.replay.registered_at_on_live": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/replay-registration.ps1",
+    "population": "the live registry, from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "2026-09-28T04:44:53.121537+00:00"
+  },
+  "geo.replay.replayed_at": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/replay-registration.ps1",
+    "population": "the live registry, from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "2026-09-28T04:44:53.6655930Z"
+  },
+  "geo.replay.result_read_back": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/replay-registration.ps1",
+    "population": "the live registry, from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": 169063.4641
+  },
+  "geo.replay.results_on_live": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/replay-registration.ps1",
+    "population": "the live registry, from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": 1
+  },
   "geo.replay.status": {
    "fmt": "text",
    "provenance": {
@@ -8972,7 +9084,7 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": "not replayed"
+   "value": "replayed"
   },
   "geo.result_posted_via": {
    "fmt": "text",

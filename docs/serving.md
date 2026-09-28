@@ -62,13 +62,15 @@ against its plan hash; saved a plan; read the experiment, its result and the pla
 API; found the registration's audit row timed before the response's `served_at`; found the
 statement in the body; and passed.
 
-Two things it did not show. The model version `/v1/health` named was the uncalibrated own export:
-the image the live instance runs was built without the calibrated export, which the API would
-otherwise have loaded, so the calibrated curves reach the live URL only after the redeploy in
-`docs/runbook.md`. And the experiment it registered
-was a verification experiment with its own plan hash, not the geo lift design: in this build the
-design (plan hash `53733a76fe1af6ec`) and its result were registered locally, because the build
-sandbox could not reach the API, and no record in the repository shows them on the live registry.
+The model version `/v1/health` named at that check (2026-09-28T04:44:12.5119589Z) was
+`own-0c071596-calibrated`. The experiment the check registered was a verification experiment
+with its own plan hash, not the geo lift design: in this build the design (plan hash
+`53733a76fe1af6ec`) and its result were registered locally, because the build sandbox could
+not reach the API. The same design and result were then replayed to the live registry from a
+separate client (replayed, 2026-09-28T04:44:53.6655930Z, experiment
+`076102e0-ebd0-5218-8433-fab40b6cff08`, plan hash matches: yes), and
+the verification's own rows were removed afterwards by `deploy/reset-registry.ps1`, which leaves
+the audit log alone (`results/deploy/reset.json`).
 
 ## The site
 

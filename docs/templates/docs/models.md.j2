@@ -52,9 +52,8 @@ request turns it off. `/v1/models` also lists the other exports on disk, the unc
 model and the calibrated bayes model, as files; no route uses them.
 
 The calibrated export in this build is `{{ v('budget.model_version') }}`. When a separate client last
-checked the live instance, `/v1/health` named the uncalibrated own export: the image it runs was built
-without the calibrated export, and the redeploy in `docs/runbook.md` is what puts the calibrated
-curves behind the live URL. Bayes, the two learners and the lifetime value model itself are not
+checked the live instance ({{ v('deploy.checked_at') }}), `/v1/health` named
+`{{ v('deploy.model_version') }}`. Bayes, the two learners and the lifetime value model itself are not
 served.
 
 {{ statement() }}

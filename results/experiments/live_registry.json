@@ -1,0 +1,13 @@
+{
+    "base_url":  "https://marginal-alderquist-api.fly.dev",
+    "replayed":  true,
+    "replayed_at":  "2026-09-28T04:44:53.6655930Z",
+    "client":  "AJAY, Windows, PowerShell 5.1.26100.9444",
+    "experiment_id":  "076102e0-ebd0-5218-8433-fab40b6cff08",
+    "plan_hash":  "53733a76fe1af6ec",
+    "plan_hash_matches_pipeline":  true,
+    "registered_at_on_live":  "2026-09-28T04:44:53.121537+00:00",
+    "registered_locally_at":  "2026-09-27T21:45:07+00:00",
+    "results_on_live":  1,
+    "result_read_back":  169063.46409394566
+}

@@ -128,7 +128,7 @@ Not applicable to people, because the model sees weekly national spend and sales
 Tests check that every step of the search and the bootstrap ran and that a fit is reproducible from its seed, and the recovery stage counts the fits that ran ({{ v('recovery.own.fits_that_ran') }} of {{ v('recovery.own.fits') }}); no diagnostic bound fails an own fit.
 {% endcall %}
 {% call m.line('served', 'met') %}
-The API loads the calibrated export ({{ v('budget.model_version') }}) when `results/calibrate/own_calibrated_model.json` exists and the uncalibrated one otherwise, answers `/v1/optimize` and `/v1/plans` with it and names it in `/v1/health` and `/v1/models`; when a separate client last checked the live instance it named the uncalibrated export, so the live URL serves the calibrated curves only after the redeploy in `docs/runbook.md`.
+The API loads the calibrated export ({{ v('budget.model_version') }}) when `results/calibrate/own_calibrated_model.json` exists and the uncalibrated one otherwise, answers `/v1/optimize` and `/v1/plans` with it and names it in `/v1/health` and `/v1/models`; when a separate client last checked the live instance ({{ v('deploy.checked_at') }}) it named {{ v('deploy.model_version') }}.
 {% endcall %}
 {% call m.line('integrated', 'met') %}
 The budget stage builds the plan from its curves, the attribution stage reads its channel shares, and the site's Mix and Budget pages draw its returns, curves and plan from the marts.
