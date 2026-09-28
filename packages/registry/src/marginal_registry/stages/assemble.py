@@ -46,6 +46,7 @@ def run(paths: Paths, as_of: str, seed: int) -> Manifest:
     _palette(merged, paths.root)
     _crosscheck(merged)
     _deploy(merged, paths.results / "deploy" / "verification.json")
+    _live_registry(merged, paths.results / "experiments" / "live_registry.json")
     merged.put(
         "build.stages_present",
         ", ".join(present) if present else "none",
@@ -219,3 +220,27 @@ def _deploy(manifest: Manifest, path: Path) -> None:
     w.put("deploy.audit_before_response", "yes" if seen["audit_before_response"] else "no", "text")
     w.put("deploy.statement_present", "yes" if seen["statement_present"] else "no", "text")
     w.put("deploy.passed", "yes" if seen["passed"] else "no", "text")
+
+
+def _live_registry(manifest: Manifest, path: Path) -> None:
+    """The canonical experiment as the live registry holds it after the replay from a separate
+    client; "not replayed" until that has happened."""
+    w = Scribe(
+        manifest,
+        source="recorded",
+        population="the live registry, from a separate client",
+        origin="deploy/replay-registration.ps1",
+    )
+    if not path.exists():
+        w.put("geo.replay.status", "not replayed", "text")
+        return
+    seen = json.loads(path.read_text(encoding="utf-8"))
+    w.put("geo.replay.status", "replayed" if seen.get("replayed") else "not replayed", "text")
+    w.put("geo.replay.experiment_id", str(seen["experiment_id"]), "text")
+    w.put("geo.replay.plan_hash", str(seen["plan_hash"]), "text")
+    w.put("geo.replay.plan_hash_matches", "yes" if seen.get("plan_hash_matches_pipeline") else "no", "text")
+    w.put("geo.replay.registered_at_on_live", str(seen["registered_at_on_live"]), "text")
+    w.put("geo.replay.replayed_at", str(seen["replayed_at"]), "text")
+    w.put("geo.replay.client", str(seen["client"]), "text")
+    w.put("geo.replay.results_on_live", int(seen["results_on_live"]), "int")
+    w.put("geo.replay.result_read_back", float(seen["result_read_back"]), "usd0")

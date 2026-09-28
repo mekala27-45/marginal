@@ -119,7 +119,13 @@ treated geos against {{ v('geo.control_geos') }} controls, weeks {{ v('geo.start
 {{ v('geo.end_week') }} after a {{ v('geo.pre_period_weeks') }} week pre period. Plan hash
 `{{ v('geo.plan_hash') }}`, registered {{ v('geo.registered_at') }} ({{ v('geo.registered_via') }}).
 SRM gate {{ v('geo.srm_passed') }} (p {{ v('geo.srm_p') }}). Power at the true effect
-{{ v('geo.power_at_true_effect') }}.
+{{ v('geo.power_at_true_effect') }}. On the live registry: {{ v('geo.replay.status') }}
+{%- if raw('geo.replay.status') == 'replayed' %} from {{ v('geo.replay.client') }} at
+{{ v('geo.replay.replayed_at') }}, as experiment `{{ v('geo.replay.experiment_id') }}` under the
+same plan hash ({{ v('geo.replay.plan_hash_matches') }}) with its result read back as
+{{ v('geo.replay.result_read_back') }}; a replay after the data existed, so the pre-registration
+is the local record above
+{%- endif %}.
 
 {{ table('geo.estimates') }}
 

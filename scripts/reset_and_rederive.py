@@ -42,7 +42,11 @@ if __package__ in {None, ""}:
 
 from marginal_registry.stages.assemble import ORDER
 
-RECORDING_NOTES = ("recorded session for the site's fallback bundle", "persistence check")
+RECORDING_NOTES = (
+    "recorded session for the site's fallback bundle",
+    "persistence check",
+    "verification from a separate client",
+)
 RECORDING_NAMES = ("verification from a separate client", "persistence check")
 RELATIVE_TOLERANCE = 1e-9
 STAGE_COMMANDS: dict[str, list[str]] = {

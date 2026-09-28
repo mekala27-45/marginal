@@ -8960,6 +8960,20 @@
    },
    "value": "local"
   },
+  "geo.replay.status": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/replay-registration.ps1",
+    "population": "the live registry, from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "not replayed"
+  },
   "geo.result_posted_via": {
    "fmt": "text",
    "provenance": {

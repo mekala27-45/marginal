@@ -271,7 +271,7 @@ treated geos against 30 controls, weeks 148 to
 155 after a 52 week pre period. Plan hash
 `53733a76fe1af6ec`, registered 2026-09-27T21:45:07+00:00 (local).
 SRM gate passed (p 1.000). Power at the true effect
-100%.
+100%. On the live registry: not replayed.
 
 | Method | Estimate | Lower | Upper | Truth (simulated) | Covers | Error |
 |---|---:|---:|---:|---:|---|---:|
