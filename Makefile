@@ -4,7 +4,7 @@
 PY := uv run python
 M := uv run marginal
 
-.PHONY: help setup data simulate recovery recovery-bayes experiments calibrate budget targeting clv attribution manifest render marts pipeline gates lint types test check rederive web deploy verify-api demo load-test clean
+.PHONY: help setup data simulate recovery recovery-bayes experiments calibrate budget targeting clv attribution manifest render marts pipeline gates lint types test check rederive web deploy verify-api load-test clean
 
 help:
 	@grep -E '^[a-z-]+:' Makefile | sed 's/:.*//' | tr '\n' ' '; echo
@@ -90,9 +90,6 @@ deploy:
 
 verify-api:
 	$(PY) scripts/check_persistence.py --base-url "$${MARGINAL_API_BASE:-http://127.0.0.1:8080}"
-
-demo:
-	$(PY) scripts/build_demo_gif.py
 
 load-test:
 	$(PY) scripts/load_test.py --base-url "$${MARGINAL_API_BASE:-http://127.0.0.1:8080}"
