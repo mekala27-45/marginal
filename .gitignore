@@ -40,3 +40,5 @@ web/tsconfig.tsbuildinfo
 deploy/deploy-log.txt
 deploy/live-url.txt
 deploy/write-token.txt
+deploy/verify-log.txt
+deploy/verify-result.json

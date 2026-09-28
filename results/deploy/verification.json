@@ -1,0 +1,19 @@
+{
+    "base_url":  "https://marginal-alderquist-api.fly.dev",
+    "client":  "AJAY, Windows, PowerShell 5.1.26100.9444",
+    "checked_at":  "2026-09-28T00:03:22.3292486Z",
+    "health":  {
+                   "status":  "ok",
+                   "database":  "ok",
+                   "model_version":  "own-0c071596-uncalibrated"
+               },
+    "experiment_id":  "2fb962a7-49d4-5a58-91a3-c5c7bd10009a",
+    "plan_hash":  "b5b891c8e2b241d3",
+    "result_read_back":  123456.0,
+    "plan_id":  "09bfc021-89cd-42a1-9bb7-cfbcfda2681f",
+    "plan_expected_profit":  -10994.422202571994,
+    "audit_entries":  3,
+    "audit_before_response":  true,
+    "statement_present":  true,
+    "passed":  true
+}
