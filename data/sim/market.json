@@ -68,6 +68,7 @@
   "geo_spend_noise": 0.06,
   "geos": 40,
   "holiday_lift": 0.35,
+  "intervention": null,
   "price_elasticity": -1.2,
   "promo_lift": 0.08,
   "sales_noise": 0.02,

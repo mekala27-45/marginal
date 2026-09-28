@@ -138,12 +138,12 @@ def _same_scalar(a: Any, b: Any) -> bool:
     return bool(a == b)
 
 
-TIMING_SUFFIXES = ("_seconds", "_at")
+TIMING_SUFFIXES = ("_seconds", ".seconds", "_at")
 
 
 def compare(before: dict[str, Any], after: dict[str, Any]) -> list[str]:
     """Every difference between two manifests, as one line each. Wall clock timings and
-    timestamps (keys ending in ``_seconds`` or ``_at``) are reported by ``timing_differences``
+    timestamps (keys ending in ``seconds`` or ``_at``) are reported by ``timing_differences``
     instead; when a stage ran is not a claim."""
     drift: list[str] = []
     for bucket in ("values", "tables"):

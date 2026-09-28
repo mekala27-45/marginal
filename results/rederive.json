@@ -1,0 +1,53 @@
+{
+ "drift": [],
+ "finished_at": "2026-09-28T07:01:49.148057+00:00",
+ "gates_passed": true,
+ "note": "Run in a detached worktree of the same commit series from the committed inputs (data/external mounted), own and bayes recovery, the experiments, calibration, lifetime value, the budget study, targeting and attribution reproduced; the manifest was merged with the release commit's code and compared against the committed manifest.",
+ "reproduced": true,
+ "stages": {
+  "attribution": 1.4090855121612549,
+  "budget": 324.73182010650635,
+  "calibrate": 2601.235463619232,
+  "clv": 6.630039215087891,
+  "data": 4.0557849407196045,
+  "experiments": 10.381080389022827,
+  "manifest_render_marts": 1.7864406108856201,
+  "recovery_bayes": 4519.826972723007,
+  "recovery_own": 1872.0361821651459,
+  "simulate": 2.3397927284240723,
+  "targeting": 309.6706528663635
+ },
+ "started_at": "2026-09-28T04:19:51.913416+00:00",
+ "tables_compared": 33,
+ "timing_differences": {
+  "deploy.checked_at": [
+   "2026-09-28T04:44:12.5119589Z",
+   "2026-09-28T04:44:12.5119589Z"
+  ],
+  "geo.registered_at": [
+   "2026-09-27T21:45:07+00:00",
+   "2026-09-28T06:06:40+00:00"
+  ],
+  "geo.replay.replayed_at": [
+   "2026-09-28T04:44:53.6655930Z",
+   "2026-09-28T04:44:53.6655930Z"
+  ],
+  "mmm.bayes.fit_seconds": [
+   258.9456842,
+   247.8996155
+  ],
+  "mmm.own.fit_seconds": [
+   13.02655482,
+   14.0220449
+  ],
+  "targeting.criteo.budget_seconds": [
+   900,
+   900
+  ],
+  "targeting.criteo.seconds": [
+   286,
+   296
+  ]
+ },
+ "values_compared": 916
+}
