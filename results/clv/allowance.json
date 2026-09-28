@@ -1,0 +1,22 @@
+{
+ "allowance_by_channel": {
+  "paid_search": 626.601774170265,
+  "paid_social": 477.2006208178946,
+  "online_video": 517.7292363106785,
+  "display_retargeting": 450.20455094284165,
+  "email": 730.7133916110888,
+  "affiliate_promo": 420.82802085840734,
+  "direct_mail": 671.8913100818115
+ },
+ "allowance_by_segment": {
+  "one_time": 239.88517072055467,
+  "occasional": 366.328043304119,
+  "regular": 604.3740642422489,
+  "frequent": 1957.6286260153377
+ },
+ "revenue_per_acquisition": 443.2426176746367,
+ "margin": 0.42,
+ "payback_share": 0.7,
+ "horizon_months": 12,
+ "discount_rate_annual": 0.1
+}

@@ -1,0 +1,922 @@
+{
+ "as_of": "2026-09-27",
+ "figures": {},
+ "seed": 12,
+ "tables": {
+  "clv.allowance_by_channel": {
+   "columns": [
+    "Channel",
+    "Allowance"
+   ],
+   "formats": [
+    "text",
+    "usd2"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "rows": [
+    [
+     "Paid search",
+     626.6017742
+    ],
+    [
+     "Paid social",
+     477.2006208
+    ],
+    [
+     "Online video",
+     517.7292363
+    ],
+    [
+     "Display and retargeting",
+     450.2045509
+    ],
+    [
+     "Email",
+     730.7133916
+    ],
+    [
+     "Affiliate and promo codes",
+     420.8280209
+    ],
+    [
+     "Direct mail",
+     671.8913101
+    ]
+   ]
+  },
+  "clv.holdout_by_decile": {
+   "columns": [
+    "Decile",
+    "Customers",
+    "Predicted purchases",
+    "Actual purchases",
+    "Predicted revenue",
+    "Actual revenue"
+   ],
+   "formats": [
+    "text",
+    "int",
+    "int",
+    "int",
+    "usd2",
+    "usd2"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "rows": [
+    [
+     "1",
+     427,
+     889.561392,
+     379,
+     379157.7763,
+     141437.86
+    ],
+    [
+     "2",
+     427,
+     833.1512219,
+     377,
+     355114.0679,
+     124717.32
+    ],
+    [
+     "3",
+     426,
+     902.1801115,
+     333,
+     384536.2534,
+     106853.801
+    ],
+    [
+     "4",
+     427,
+     1119.357077,
+     562,
+     467779.3494,
+     272297.72
+    ],
+    [
+     "5",
+     426,
+     1311.962062,
+     639,
+     517517.0179,
+     283728.18
+    ],
+    [
+     "6",
+     427,
+     1410.781915,
+     810,
+     569778.7912,
+     310921.931
+    ],
+    [
+     "7",
+     427,
+     1789.272339,
+     1036,
+     724786.4352,
+     410357.61
+    ],
+    [
+     "8",
+     426,
+     2099.835985,
+     1383,
+     887311.6453,
+     781357.76
+    ],
+    [
+     "9",
+     427,
+     2853.144554,
+     2075,
+     1197973.309,
+     1069345.52
+    ],
+    [
+     "10",
+     426,
+     5848.2321,
+     5241,
+     3775160.085,
+     3638901.181
+    ],
+    [
+     "All customers",
+     4266,
+     19057.47876,
+     12835,
+     9259114.73,
+     7139918.883
+    ]
+   ]
+  },
+  "clv.parameters": {
+   "columns": [
+    "Parameter",
+    "Repository",
+    "PyMC-Marketing"
+   ],
+   "formats": [
+    "text",
+    "float3",
+    "float3"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd_pymc",
+    "origin": "marginal_clv.crosscheck",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30; PyMC-Marketing fit by MAP under flat priors beside the repository's fit",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "rows": [
+    [
+     "BG/NBD r",
+     0.8960321095,
+     0.8960319731
+    ],
+    [
+     "BG/NBD alpha",
+     73.94771402,
+     73.94770599
+    ],
+    [
+     "BG/NBD a",
+     0.3403987387,
+     0.340400705
+    ],
+    [
+     "BG/NBD b",
+     308.6815062,
+     308.682825
+    ],
+    [
+     "Gamma-Gamma p",
+     2.162236214,
+     2.162236224
+    ],
+    [
+     "Gamma-Gamma q",
+     3.620659435,
+     3.620659426
+    ],
+    [
+     "Gamma-Gamma v",
+     516.5965379,
+     516.5965323
+    ]
+   ]
+  },
+  "clv.segments": {
+   "columns": [
+    "Segment",
+    "Customers",
+    "Mean lifetime value",
+    "Allowance"
+   ],
+   "formats": [
+    "text",
+    "int",
+    "usd2",
+    "usd2"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "rows": [
+    [
+     "One time (no repeat purchase)",
+     1508,
+     815.9359548,
+     239.8851707
+    ],
+    [
+     "Occasional (1 to 2 repeat purchases)",
+     1371,
+     1246.013753,
+     366.3280433
+    ],
+    [
+     "Regular (3 to 5 repeat purchases)",
+     778,
+     2055.694096,
+     604.3740642
+    ],
+    [
+     "Frequent (6 or more repeat purchases)",
+     609,
+     6658.600769,
+     1957.628626
+    ],
+    [
+     "All customers",
+     4266,
+     2014.330556,
+     592.2131833
+    ]
+   ]
+  }
+ },
+ "values": {
+  "clv.allowance.channel.affiliate_promo": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 420.8280209
+  },
+  "clv.allowance.channel.direct_mail": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 671.8913101
+  },
+  "clv.allowance.channel.display_retargeting": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 450.2045509
+  },
+  "clv.allowance.channel.email": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 730.7133916
+  },
+  "clv.allowance.channel.online_video": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 517.7292363
+  },
+  "clv.allowance.channel.paid_search": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 626.6017742
+  },
+  "clv.allowance.channel.paid_social": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 477.2006208
+  },
+  "clv.allowance.frequent": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 1957.628626
+  },
+  "clv.allowance.occasional": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 366.3280433
+  },
+  "clv.allowance.one_time": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 239.8851707
+  },
+  "clv.allowance.overall": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 592.2131833
+  },
+  "clv.allowance.regular": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 604.3740642
+  },
+  "clv.bgnbd.a": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 0.3403987387
+  },
+  "clv.bgnbd.alpha": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 73.94771402
+  },
+  "clv.bgnbd.b": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 308.6815062
+  },
+  "clv.bgnbd.converged": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": "yes"
+  },
+  "clv.bgnbd.dropout_after_purchase": {
+   "fmt": "pct2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 0.001101535953
+  },
+  "clv.bgnbd.evaluations": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 43
+  },
+  "clv.bgnbd.r": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 0.8960321095
+  },
+  "clv.calibration_end": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": "2010-11-30"
+  },
+  "clv.clv.mean": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 2014.330556
+  },
+  "clv.clv.median": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 1149.2045
+  },
+  "clv.clv.p90": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 3301.146689
+  },
+  "clv.crosscheck.available": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd_pymc",
+    "origin": "marginal_clv.crosscheck",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30; PyMC-Marketing fit by MAP under flat priors beside the repository's fit",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": "yes"
+  },
+  "clv.crosscheck.max_relative_difference": {
+   "fmt": "pct3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd_pymc",
+    "origin": "marginal_clv.crosscheck",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30; PyMC-Marketing fit by MAP under flat priors beside the repository's fit",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 5.776384645e-06
+  },
+  "clv.customers": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 4266
+  },
+  "clv.customers_in_file": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 5878
+  },
+  "clv.customers_new_in_holdout": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 1612
+  },
+  "clv.customers_repeat": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 2758
+  },
+  "clv.gg.correlation": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 0.1838080863
+  },
+  "clv.gg.p": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 2.162236214
+  },
+  "clv.gg.q": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 3.620659435
+  },
+  "clv.gg.v": {
+   "fmt": "float3",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 516.5965379
+  },
+  "clv.holdout.actual_purchases_total": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 12835
+  },
+  "clv.holdout.actual_revenue_total": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 7139918.883
+  },
+  "clv.holdout.mae_purchases": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 2.590539205
+  },
+  "clv.holdout.mae_revenue": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 1365.091462
+  },
+  "clv.holdout.predicted_purchases_total": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 19057.47876
+  },
+  "clv.holdout.predicted_revenue_total": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 9259114.73
+  },
+  "clv.holdout.purchases_predicted_over_actual": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 0.4848055129
+  },
+  "clv.holdout.revenue_predicted_over_actual": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 0.2968095131
+  },
+  "clv.holdout.top_decile_purchases_predicted_over_actual": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 0.1158618776
+  },
+  "clv.holdout_end": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": "2011-12-09"
+  },
+  "clv.holdout_start": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": "2010-12-01"
+  },
+  "clv.revenue_per_acquisition": {
+   "fmt": "usd2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "bgnbd",
+    "origin": "marginal_clv",
+    "population": "4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 443.2426177
+  }
+ }
+}

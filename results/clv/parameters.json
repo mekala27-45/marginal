@@ -1,0 +1,127 @@
+{
+ "bgnbd": {
+  "a": 0.34039873868733483,
+  "alpha": 73.94771402249312,
+  "b": 308.68150620502433,
+  "fit": {
+   "beyond_limit": [],
+   "converged": true,
+   "customers": 4266,
+   "evaluations": 43,
+   "gradient_max": 1.491907735734088e-09,
+   "iterations": 40,
+   "message": "Optimization terminated successfully.",
+   "method": "BFGS on log parameters, analytic gradient",
+   "neg_log_likelihood": 60243.609327542,
+   "status": 0,
+   "success": true
+  },
+  "r": 0.8960321094980629
+ },
+ "crosscheck": {
+  "available": true,
+  "bgnbd_log_likelihood_gap": -5.238689482212067e-10,
+  "customers": 4266,
+  "gamma_gamma_log_likelihood_gap": -7.275957614183426e-12,
+  "library_version": "0.19.4",
+  "max_relative_difference": 5.776384645086322e-06,
+  "method": "MAP by pymc.find_MAP (L-BFGS-B), HalfFlat priors on every parameter, tolerances tightened",
+  "parameters": [
+   {
+    "model": "bgnbd",
+    "parameter": "r",
+    "pymc": 0.8960319731442296,
+    "relative_difference": 1.521751641376072e-07,
+    "repository": 0.8960321094980629
+   },
+   {
+    "model": "bgnbd",
+    "parameter": "alpha",
+    "pymc": 73.94770599223254,
+    "relative_difference": 1.0859376357989756e-07,
+    "repository": 73.94771402249312
+   },
+   {
+    "model": "bgnbd",
+    "parameter": "a",
+    "pymc": 0.3404007049613822,
+    "relative_difference": 5.776384645086322e-06,
+    "repository": 0.34039873868733483
+   },
+   {
+    "model": "bgnbd",
+    "parameter": "b",
+    "pymc": 308.6828249731756,
+    "relative_difference": 4.2722616184762714e-06,
+    "repository": 308.68150620502433
+   },
+   {
+    "model": "gamma_gamma",
+    "parameter": "p",
+    "pymc": 2.162236223996458,
+    "relative_difference": 4.762793642192e-09,
+    "repository": 2.162236213698173
+   },
+   {
+    "model": "gamma_gamma",
+    "parameter": "q",
+    "pymc": 3.620659425891411,
+    "relative_difference": 2.544892724848779e-09,
+    "repository": 3.6206594351056007
+   },
+   {
+    "model": "gamma_gamma",
+    "parameter": "v",
+    "pymc": 516.5965323042275,
+    "relative_difference": 1.0882775622722789e-08,
+    "repository": 516.5965379262317
+   }
+  ],
+  "reason": null,
+  "repeat_customers": 2758,
+  "seconds": 1.9
+ },
+ "customers": {
+  "calibration": 4266,
+  "in_file": 5878,
+  "new_in_holdout": 1612,
+  "repeat": 2758
+ },
+ "gamma_gamma": {
+  "fit": {
+   "beyond_limit": [],
+   "converged": true,
+   "customers": 2758,
+   "evaluations": 19,
+   "gradient_max": 4.432757941495381e-09,
+   "iterations": 17,
+   "message": "Optimization terminated successfully.",
+   "method": "BFGS on log parameters, analytic gradient",
+   "neg_log_likelihood": 18907.06089922595,
+   "status": 0,
+   "success": true
+  },
+  "independence": {
+   "correlation": 0.1838080862519754,
+   "customers": 2758,
+   "threshold": 0.3,
+   "weak": true
+  },
+  "p": 2.162236213698173,
+  "population_mean_spend": 426.2300271497085,
+  "q": 3.6206594351056007,
+  "v": 516.5965379262317
+ },
+ "settings": {
+  "calibration_end": "2010-11-30",
+  "days_per_month": 30.4375,
+  "discount_rate_annual": 0.1,
+  "discount_rate_monthly": 0.007974140428903764,
+  "holdout_days": 374,
+  "holdout_end": "2011-12-09",
+  "holdout_start": "2010-12-01",
+  "horizon_months": 12,
+  "margin": 0.42,
+  "payback_share": 0.7
+ }
+}
