@@ -1434,6 +1434,119 @@
     ]
    ]
   },
+  "mmm.crosscheck": {
+   "columns": [
+    "Channel",
+    "own",
+    "own lower",
+    "own upper",
+    "bayes",
+    "bayes lower",
+    "bayes upper",
+    "Truth (simulated)",
+    "Disagree"
+   ],
+   "formats": [
+    "text",
+    "float2",
+    "float2",
+    "float2",
+    "float2",
+    "float2",
+    "float2",
+    "float2",
+    "text"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "both",
+    "origin": "marginal_registry.stages.assemble",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "Paid search",
+     2.381309223,
+     2.240466991,
+     2.605079792,
+     2.978340085,
+     1.846004026,
+     5.026483343,
+     3.151569551,
+     "no"
+    ],
+    [
+     "Paid social",
+     3.017638345,
+     2.577747686,
+     3.384320605,
+     3.839490166,
+     2.092379279,
+     6.737001843,
+     2.374067244,
+     "no"
+    ],
+    [
+     "Online video",
+     0.8476119319,
+     0.3606161197,
+     1.187729002,
+     0.9938563638,
+     0.2273503334,
+     2.703880998,
+     1.585994225,
+     "no"
+    ],
+    [
+     "Display and retargeting",
+     1.618123045,
+     1.183791849,
+     1.916674019,
+     2.258905239,
+     1.118141554,
+     4.558747223,
+     1.221477616,
+     "no"
+    ],
+    [
+     "Email",
+     4.790209294,
+     3.213842436,
+     6.791500736,
+     8.443492549,
+     3.993862886,
+     17.59848097,
+     7.704426592,
+     "no"
+    ],
+    [
+     "Affiliate and promo codes",
+     1.595102322,
+     1.272127363,
+     2.002602226,
+     1.65155557,
+     0.6551651356,
+     3.807021266,
+     2.744712217,
+     "no"
+    ],
+    [
+     "Direct mail",
+     1.932920411,
+     0.383357495,
+     4.047615544,
+     1.798592152,
+     0.3704770559,
+     5.144891377,
+     1.881982971,
+     "no"
+    ]
+   ]
+  },
   "mmm.own.returns": {
    "columns": [
     "Channel",
@@ -5639,7 +5752,7 @@
     "seeds": null,
     "source": "static"
    },
-   "value": "data, simulate, recovery_own, recovery_bayes, experiments, calibrate, budget, targeting, clv, attribution"
+   "value": "data, simulate, recovery_own, recovery_bayes, experiments, calibrate, clv, budget, targeting, attribution"
   },
   "calibrate.bayes.covers_after": {
    "fmt": "text",
@@ -7699,6 +7812,230 @@
    },
    "value": "https://archive.ics.uci.edu/static/public/502/online+retail+ii.zip"
   },
+  "deploy.audit_before_response": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "yes"
+  },
+  "deploy.audit_entries": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": 3
+  },
+  "deploy.base_url": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "https://marginal-alderquist-api.fly.dev"
+  },
+  "deploy.checked_at": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "2026-09-28T00:03:22.3292486Z"
+  },
+  "deploy.client": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "AJAY, Windows, PowerShell 5.1.26100.9444"
+  },
+  "deploy.experiment_id": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "2fb962a7-49d4-5a58-91a3-c5c7bd10009a"
+  },
+  "deploy.health_database": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "ok"
+  },
+  "deploy.health_status": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "ok"
+  },
+  "deploy.model_version": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "own-0c071596-uncalibrated"
+  },
+  "deploy.passed": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "yes"
+  },
+  "deploy.plan_expected_profit": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": -10994.4222
+  },
+  "deploy.plan_hash": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "b5b891c8e2b241d3"
+  },
+  "deploy.plan_id": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "09bfc021-89cd-42a1-9bb7-cfbcfda2681f"
+  },
+  "deploy.result_read_back": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": 123456.0
+  },
+  "deploy.statement_present": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "yes"
+  },
+  "deploy.status": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "deploy/verify.ps1",
+    "population": "the live API, checked from a separate client",
+    "seed": null,
+    "seeds": null,
+    "source": "recorded"
+   },
+   "value": "deployed"
+  },
   "email.arm.control": {
    "fmt": "int",
    "provenance": {
@@ -9616,6 +9953,34 @@
     "source": "simulated"
    },
    "value": 0.005643504512
+  },
+  "mmm.crosscheck.disagreement_count": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "both",
+    "origin": "marginal_registry.stages.assemble",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0
+  },
+  "mmm.crosscheck.disagreements": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "both",
+    "origin": "marginal_registry.stages.assemble",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "none"
   },
   "mmm.own.baseline_share": {
    "fmt": "pct1",
