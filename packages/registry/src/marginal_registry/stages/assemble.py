@@ -80,6 +80,9 @@ def _policy(manifest: Manifest) -> None:
         "budget_floor_share": "pct0",
         "budget_ceiling_share": "pct0",
         "optimizer_starts": "int",
+        "attribution_half_life_days": "float1",
+        "attribution_position_first": "pct0",
+        "attribution_position_last": "pct0",
     }
     for field, fmt in fmts.items():
         value = getattr(POLICY, field)

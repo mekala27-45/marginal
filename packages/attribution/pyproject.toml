@@ -6,6 +6,8 @@ requires-python = ">=3.12,<3.13"
 license = "Apache-2.0"
 dependencies = [
   "marginal-core",
+  "marginal-evaluation",
+  "marginal-mmm",
   "marginal-sim",
   "numpy>=1.26",
   "polars>=1.30",

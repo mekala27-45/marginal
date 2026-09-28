@@ -1,0 +1,15 @@
+{
+ "coalitions_observed": 127,
+ "conversions": 10861,
+ "incremental_conversions_expected": 6513.04328695373,
+ "last_touch_share": 0.22999723782340487,
+ "model_label": "Calibrated model",
+ "model_version": "own-0c071596-calibrated",
+ "over_credit_channel": "display_retargeting",
+ "over_credit_points": 16.46634038436722,
+ "paths": 60000,
+ "shapley_sums_to_conversions": true,
+ "true_share": 0.06533383397973265,
+ "worst_points": 16.837158580535817,
+ "worst_rule": "time_decay"
+}

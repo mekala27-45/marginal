@@ -1,0 +1,1426 @@
+{
+ "as_of": "2026-09-27",
+ "figures": {},
+ "seed": 12,
+ "tables": {
+  "attribution.comparison": {
+   "columns": [
+    "Channel",
+    "Last touch",
+    "First touch",
+    "Linear",
+    "Position based",
+    "Time decay",
+    "Shapley",
+    "Truth (simulated)",
+    "Calibrated model"
+   ],
+   "formats": [
+    "text",
+    "pct1",
+    "pct1",
+    "pct1",
+    "pct1",
+    "pct1",
+    "pct1",
+    "pct1",
+    "pct1"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "both",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "Paid search",
+     0.2891998895,
+     0.2945400976,
+     0.2888412815,
+     0.290725444,
+     0.2883284007,
+     0.2738660827,
+     0.3284307463,
+     0.4216132533
+    ],
+    [
+     "Paid social",
+     0.1735567627,
+     0.1666513212,
+     0.1690328217,
+     0.1696200473,
+     0.1695950377,
+     0.1638132944,
+     0.2182304139,
+     0.2668014534
+    ],
+    [
+     "Online video",
+     0.08001104871,
+     0.07421047786,
+     0.07713524289,
+     0.07719178713,
+     0.07741592963,
+     0.08295978183,
+     0.06113843908,
+     0.03455534217
+    ],
+    [
+     "Display and retargeting",
+     0.2299972378,
+     0.2329435595,
+     0.2335688856,
+     0.2322759458,
+     0.2337054198,
+     0.2321510779,
+     0.06533383398,
+     0.09923969363
+    ],
+    [
+     "Email",
+     0.1128809502,
+     0.1222723506,
+     0.1173660527,
+     0.1175102705,
+     0.1166281023,
+     0.1221872931,
+     0.2044866224,
+     0.09787587213
+    ],
+    [
+     "Affiliate and promo codes",
+     0.06748918148,
+     0.06380627935,
+     0.06687715475,
+     0.06615193725,
+     0.06704808224,
+     0.07254791061,
+     0.07927469692,
+     0.03981526207
+    ],
+    [
+     "Direct mail",
+     0.04686492956,
+     0.04557591382,
+     0.04717856083,
+     0.04652456803,
+     0.04727902767,
+     0.05247455948,
+     0.0431052474,
+     0.04009912339
+    ]
+   ]
+  },
+  "attribution.grades": {
+   "columns": [
+    "Rule",
+    "Mean share error (points)",
+    "Largest share error (points)",
+    "Rank agreement with truth",
+    "Over credits most",
+    "By (points)",
+    "Ratio to truth"
+   ],
+   "formats": [
+    "text",
+    "float1",
+    "float1",
+    "float2",
+    "text",
+    "float1",
+    "float1"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "Last touch",
+     5.35130559,
+     16.46634038,
+     0.7142857143,
+     "Display and retargeting",
+     16.46634038,
+     3.520338909
+    ],
+    [
+     "First touch",
+     5.232926593,
+     16.76097255,
+     0.7142857143,
+     "Display and retargeting",
+     16.76097255,
+     3.565435324
+    ],
+    [
+     "Linear",
+     5.380147682,
+     16.82350516,
+     0.7142857143,
+     "Display and retargeting",
+     16.82350516,
+     3.575006568
+    ],
+    [
+     "Position based",
+     5.326136586,
+     16.69421118,
+     0.7142857143,
+     "Display and retargeting",
+     16.69421118,
+     3.555216825
+    ],
+    [
+     "Time decay",
+     5.394938761,
+     16.83715858,
+     0.7142857143,
+     "Display and retargeting",
+     16.83715858,
+     3.577096361
+    ],
+    [
+     "Shapley",
+     5.657368536,
+     16.68172439,
+     0.7142857143,
+     "Display and retargeting",
+     16.68172439,
+     3.553305596
+    ]
+   ]
+  }
+ },
+ "values": {
+  "attribution.conversions": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 10861
+  },
+  "attribution.grade.first_touch.mean_abs_error_points": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 5.232926593
+  },
+  "attribution.grade.first_touch.rank_agreement": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.7142857143
+  },
+  "attribution.grade.last_touch.mean_abs_error_points": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 5.35130559
+  },
+  "attribution.grade.last_touch.rank_agreement": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.7142857143
+  },
+  "attribution.grade.linear.mean_abs_error_points": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 5.380147682
+  },
+  "attribution.grade.linear.rank_agreement": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.7142857143
+  },
+  "attribution.grade.position_based.mean_abs_error_points": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 5.326136586
+  },
+  "attribution.grade.position_based.rank_agreement": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.7142857143
+  },
+  "attribution.grade.shapley.mean_abs_error_points": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 5.657368536
+  },
+  "attribution.grade.shapley.rank_agreement": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.7142857143
+  },
+  "attribution.grade.time_decay.mean_abs_error_points": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 5.394938761
+  },
+  "attribution.grade.time_decay.rank_agreement": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.7142857143
+  },
+  "attribution.half_life_days": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 7.0
+  },
+  "attribution.incremental_conversions_expected": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 6513.043287
+  },
+  "attribution.incremental_share_of_conversions": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.5996725243
+  },
+  "attribution.model_label": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_attribution",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "Calibrated model"
+  },
+  "attribution.model_version": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_attribution",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "own-0c071596-calibrated"
+  },
+  "attribution.over_credit.channel": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "Display and retargeting"
+  },
+  "attribution.over_credit.every_rule": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "yes"
+  },
+  "attribution.over_credit.last_touch_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2299972378
+  },
+  "attribution.over_credit.model_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_attribution",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.09923969363
+  },
+  "attribution.over_credit.points": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 16.46634038
+  },
+  "attribution.over_credit.ratio": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 3.520338909
+  },
+  "attribution.over_credit.true_share": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.06533383398
+  },
+  "attribution.over_credit.worst_points": {
+   "fmt": "float1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 16.83715858
+  },
+  "attribution.over_credit.worst_rule": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "Time decay"
+  },
+  "attribution.paths": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 60000
+  },
+  "attribution.shapley.coalitions": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 128
+  },
+  "attribution.shapley.coalitions_observed": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 127
+  },
+  "attribution.shapley.sums_to_conversions": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "yes"
+  },
+  "attribution.share.first_touch.affiliate_promo": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.06380627935
+  },
+  "attribution.share.first_touch.direct_mail": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.04557591382
+  },
+  "attribution.share.first_touch.display_retargeting": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2329435595
+  },
+  "attribution.share.first_touch.email": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1222723506
+  },
+  "attribution.share.first_touch.online_video": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.07421047786
+  },
+  "attribution.share.first_touch.paid_search": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2945400976
+  },
+  "attribution.share.first_touch.paid_social": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1666513212
+  },
+  "attribution.share.last_touch.affiliate_promo": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.06748918148
+  },
+  "attribution.share.last_touch.direct_mail": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.04686492956
+  },
+  "attribution.share.last_touch.display_retargeting": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2299972378
+  },
+  "attribution.share.last_touch.email": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1128809502
+  },
+  "attribution.share.last_touch.online_video": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.08001104871
+  },
+  "attribution.share.last_touch.paid_search": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2891998895
+  },
+  "attribution.share.last_touch.paid_social": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1735567627
+  },
+  "attribution.share.linear.affiliate_promo": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.06687715475
+  },
+  "attribution.share.linear.direct_mail": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.04717856083
+  },
+  "attribution.share.linear.display_retargeting": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2335688856
+  },
+  "attribution.share.linear.email": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1173660527
+  },
+  "attribution.share.linear.online_video": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.07713524289
+  },
+  "attribution.share.linear.paid_search": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2888412815
+  },
+  "attribution.share.linear.paid_social": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1690328217
+  },
+  "attribution.share.model.affiliate_promo": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_attribution",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.03981526207
+  },
+  "attribution.share.model.direct_mail": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_attribution",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.04009912339
+  },
+  "attribution.share.model.display_retargeting": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_attribution",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.09923969363
+  },
+  "attribution.share.model.email": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_attribution",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.09787587213
+  },
+  "attribution.share.model.online_video": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_attribution",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.03455534217
+  },
+  "attribution.share.model.paid_search": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_attribution",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.4216132533
+  },
+  "attribution.share.model.paid_social": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "own",
+    "origin": "marginal_attribution",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2668014534
+  },
+  "attribution.share.position_based.affiliate_promo": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.06615193725
+  },
+  "attribution.share.position_based.direct_mail": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.04652456803
+  },
+  "attribution.share.position_based.display_retargeting": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2322759458
+  },
+  "attribution.share.position_based.email": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1175102705
+  },
+  "attribution.share.position_based.online_video": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.07719178713
+  },
+  "attribution.share.position_based.paid_search": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.290725444
+  },
+  "attribution.share.position_based.paid_social": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1696200473
+  },
+  "attribution.share.shapley.affiliate_promo": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.07254791061
+  },
+  "attribution.share.shapley.direct_mail": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.05247455948
+  },
+  "attribution.share.shapley.display_retargeting": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2321510779
+  },
+  "attribution.share.shapley.email": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1221872931
+  },
+  "attribution.share.shapley.online_video": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.08295978183
+  },
+  "attribution.share.shapley.paid_search": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2738660827
+  },
+  "attribution.share.shapley.paid_social": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1638132944
+  },
+  "attribution.share.time_decay.affiliate_promo": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.06704808224
+  },
+  "attribution.share.time_decay.direct_mail": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.04727902767
+  },
+  "attribution.share.time_decay.display_retargeting": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2337054198
+  },
+  "attribution.share.time_decay.email": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1166281023
+  },
+  "attribution.share.time_decay.online_video": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.07741592963
+  },
+  "attribution.share.time_decay.paid_search": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2883284007
+  },
+  "attribution.share.time_decay.paid_social": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1695950377
+  },
+  "attribution.share.true.affiliate_promo": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.07927469692
+  },
+  "attribution.share.true.direct_mail": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.0431052474
+  },
+  "attribution.share.true.display_retargeting": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.06533383398
+  },
+  "attribution.share.true.email": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2044866224
+  },
+  "attribution.share.true.online_video": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.06113843908
+  },
+  "attribution.share.true.paid_search": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.3284307463
+  },
+  "attribution.share.true.paid_social": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "rules",
+    "origin": "marginal_attribution",
+    "population": "60,000 user paths, demonstration seed",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.2182304139
+  }
+ }
+}

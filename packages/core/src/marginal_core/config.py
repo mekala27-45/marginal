@@ -73,5 +73,11 @@ class Policy(StrictModel):
     budget_ceiling_share: float = 2.00
     optimizer_starts: int = 8
 
+    attribution_half_life_days: float = 7.0
+    """The time decay rule halves a touch's weight every this many days before the path ends."""
+    attribution_position_first: float = 0.40
+    attribution_position_last: float = 0.40
+    """The position based rule: first and last touch shares, the rest split across the middle."""
+
 
 POLICY = Policy()

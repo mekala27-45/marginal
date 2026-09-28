@@ -1100,6 +1100,8 @@ version = "0.1.0"
 source = { editable = "packages/attribution" }
 dependencies = [
     { name = "marginal-core" },
+    { name = "marginal-evaluation" },
+    { name = "marginal-mmm" },
     { name = "marginal-sim" },
     { name = "numpy" },
     { name = "polars" },
@@ -1108,6 +1110,8 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "marginal-core", editable = "packages/core" },
+    { name = "marginal-evaluation", editable = "packages/evaluation" },
+    { name = "marginal-mmm", editable = "packages/mmm" },
     { name = "marginal-sim", editable = "packages/sim" },
     { name = "numpy", specifier = ">=1.26" },
     { name = "polars", specifier = ">=1.30" },
