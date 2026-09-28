@@ -95,8 +95,23 @@ def _transactions() -> pl.DataFrame:
     )
 
 
+def test_retail_sheet_overlap_is_dropped_once() -> None:
+    frame = _transactions().with_columns(pl.Series("sheet", [0, 0, 0, 0, 1, 1], dtype=pl.Int8))
+    # The fourth row is the first sheet's copy of a December 2010 day: dropped. The fifth is the
+    # second sheet's, kept.
+    kept, dropped = retail.drop_sheet_overlap(frame)
+    assert dropped == 1
+    assert kept.height == 5
+    assert "sheet" not in kept.columns
+    _, summary = retail.clean(frame)
+    assert summary.overlap_rows == 1
+    assert summary.kept_rows == 2
+    assert retail.drop_sheet_overlap(_transactions())[1] == 0
+
+
 def test_retail_cleaning_removes_credit_notes_missing_ids_and_adjustments() -> None:
     purchases, summary = retail.clean(_transactions())
+    assert summary.overlap_rows == 0
     assert summary.cancellation_rows == 1
     assert summary.no_customer_rows == 1
     assert summary.adjustment_rows == 1

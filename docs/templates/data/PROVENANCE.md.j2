@@ -35,7 +35,9 @@ anywhere published.
 - SHA-256 of the verified copy: `{{ v('data.retail.sha256') }}` (the UCI page publishes no checksum;
   a different copy fails verification on purpose so the row counts below stay tied to this file).
 - Rows: {{ v('data.retail.raw_rows') }} transactions from {{ v('data.retail.first_date') }} to
-  {{ v('data.retail.last_date') }}. Cleaning removed {{ v('data.retail.cancellation_rows') }} credit
+  {{ v('data.retail.last_date') }}. The workbook's two sheets both hold 1 to 9 December 2010, so the
+  first sheet's {{ v('data.retail.overlap_rows') }} rows for those days were dropped before anything
+  else. Cleaning then removed {{ v('data.retail.cancellation_rows') }} credit
   notes (invoices starting with C), {{ v('data.retail.no_customer_rows') }} rows without a customer id
   ({{ v('data.retail.no_customer_rate') }} of the non credit rows) and {{ v('data.retail.adjustment_rows') }}
   non positive adjustments, leaving {{ v('data.retail.kept_rows') }} rows,

@@ -379,7 +379,7 @@
     "seeds": null,
     "source": "real:retail"
    },
-   "value": 71
+   "value": 70
   },
   "data.retail.calibration_end": {
    "fmt": "text",
@@ -407,7 +407,7 @@
     "seeds": null,
     "source": "real:retail"
    },
-   "value": 19494
+   "value": 19165
   },
   "data.retail.citation": {
    "fmt": "text",
@@ -477,7 +477,7 @@
     "seeds": null,
     "source": "real:retail"
    },
-   "value": 805549
+   "value": 791045
   },
   "data.retail.last_date": {
    "fmt": "text",
@@ -533,7 +533,7 @@
     "seeds": null,
     "source": "real:retail"
    },
-   "value": 0.2311883933
+   "value": 0.2286944407
   },
   "data.retail.no_customer_rows": {
    "fmt": "int",
@@ -547,7 +547,21 @@
     "seeds": null,
     "source": "real:retail"
    },
-   "value": 242257
+   "value": 234568
+  },
+  "data.retail.overlap_rows": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": null,
+    "model": "none",
+    "origin": "marginal_contracts.retail",
+    "population": "UK online gift retailer, 2009 to 2011",
+    "seed": null,
+    "seeds": null,
+    "source": "real:retail"
+   },
+   "value": 22523
   },
   "data.retail.purchases": {
    "fmt": "int",

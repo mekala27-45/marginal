@@ -131,7 +131,9 @@ def _hillstrom(paths: Paths, manifest: Manifest) -> None:
 
 def _retail(paths: Paths, manifest: Manifest) -> None:
     zip_path = paths.external / source("retail").filename
-    transactions = retail_mod.read_workbook(zip_path, cache=paths.external / "online_retail_ii.parquet")
+    transactions = retail_mod.read_workbook(
+        zip_path, cache=paths.external / "online_retail_ii_sheets.parquet"
+    )
     purchases, summary = retail_mod.clean(transactions)
     out = paths.data / "retail"
     out.mkdir(parents=True, exist_ok=True)
@@ -144,6 +146,7 @@ def _retail(paths: Paths, manifest: Manifest) -> None:
         origin="marginal_contracts.retail",
     )
     w.put("data.retail.raw_rows", summary.raw_rows, "int")
+    w.put("data.retail.overlap_rows", summary.overlap_rows, "int")
     w.put("data.retail.cancellation_rows", summary.cancellation_rows, "int")
     w.put("data.retail.no_customer_rows", summary.no_customer_rows, "int")
     w.put("data.retail.no_customer_rate", summary.no_customer_rate, "pct1")
