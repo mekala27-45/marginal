@@ -204,6 +204,13 @@ def _write_manifest(
     w.put("budget.margin", constraints.margin, "pct0")
     w.put("budget.max_change_share", constraints.max_change_share, "pct0")
     w.put("budget.allowance_applied", "yes" if allowance else "no", "text")
+    held = [CHANNEL_LABELS[a.channel] for a in plan.allocation if a.at_bound == "allowance (infeasible)"]
+    w.put(
+        "budget.allowance_infeasible",
+        ", ".join(held) if held else "none",
+        "text",
+    )
+    w.put("budget.allowance_infeasible_count", len(held), "int")
     w.put("budget.model_version", plan.model_version, "text")
     w.put("budget.inputs_hash", plan.inputs_hash, "text")
     w.put("budget.solver_status", plan.solver_status, "text")

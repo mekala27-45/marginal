@@ -76,6 +76,21 @@ def test_the_allowance_constraint_binds_when_it_is_tight(truth: pl.DataFrame) ->
     assert search_tight.implied_acquisition_cost is not None
 
 
+def test_a_channel_that_never_meets_its_allowance_is_held_at_its_floor(truth: pl.DataFrame) -> None:
+    model = truth_export(truth)
+    # Paid search would need a return of 60 / 1 = 60 to one to meet a one dollar allowance:
+    # no admissible spend gets there, so it is held at its floor and labelled, not failed.
+    plan = optimize(
+        model,
+        constraints_for(model, allowance={"paid_search": 1.0}, revenue_per_acquisition=60.0),
+    )
+    search = next(a for a in plan.allocation if a.channel == "paid_search")
+    assert search.at_bound == "allowance (infeasible)"
+    assert search.spend == pytest.approx(search.last_year * (1.0 - plan.constraints.max_change_share))
+    assert abs(sum(plan.spend.values()) - plan.constraints.total_budget) < 1e-3 * plan.constraints.total_budget
+    assert search.channel not in {a.channel for a in plan.allocation if a.at_bound == "interior"}
+
+
 def test_an_impossible_budget_is_refused(truth: pl.DataFrame) -> None:
     model = truth_export(truth)
     with pytest.raises(ValueError, match="cannot satisfy"):

@@ -2,40 +2,48 @@
  "model_version": "own-0c071596-calibrated",
  "backend": "own",
  "spec_hash": "0c07159692e406de",
- "inputs_hash": "fcaea5116fc59607",
+ "inputs_hash": "aeacfc8e6e7cbdd1",
  "constraints": {
   "total_budget": 500233.22517442255,
   "floor_share": 0.25,
   "ceiling_share": 2.0,
   "max_change_share": 0.3,
   "margin": 0.42,
-  "allowance": null,
-  "revenue_per_acquisition": null,
+  "allowance": {
+   "paid_search": 626.601774170265,
+   "paid_social": 477.2006208178946,
+   "online_video": 517.7292363106785,
+   "display_retargeting": 450.20455094284165,
+   "email": 730.7133916110888,
+   "affiliate_promo": 420.82802085840734,
+   "direct_mail": 671.8913100818115
+  },
+  "revenue_per_acquisition": 443.2426176746367,
   "floors": null,
   "ceilings": null
  },
  "allocation": [
   {
    "channel": "paid_search",
-   "spend": 165675.97855727444,
+   "spend": 162628.57804396708,
    "last_year": 129669.39555038983,
-   "change": 0.27767988625266904,
-   "expected_revenue": 572550.5757700811,
-   "marginal_return": 1.97369266152748,
-   "marginal_profit": -0.1710490821584585,
+   "change": 0.2541785774020149,
+   "expected_revenue": 566447.3185371374,
+   "marginal_return": 2.0321698744798553,
+   "marginal_profit": -0.1464886527184608,
    "at_bound": "interior",
-   "implied_acquisition_cost": null
+   "implied_acquisition_cost": 127.25617066573854
   },
   {
    "channel": "paid_social",
-   "spend": 143413.2152717401,
+   "spend": 139752.79910821866,
    "last_year": 110747.02387663507,
-   "change": 0.2949622504663696,
-   "expected_revenue": 382029.03380634927,
-   "marginal_return": 1.9736926615238812,
-   "marginal_profit": -0.17104908215996995,
+   "change": 0.26191020052957925,
+   "expected_revenue": 374697.915951621,
+   "marginal_return": 2.03216987023121,
+   "marginal_profit": -0.14648865450289184,
    "at_bound": "interior",
-   "implied_acquisition_cost": null
+   "implied_acquisition_cost": 165.3182306786099
   },
   {
    "channel": "online_video",
@@ -45,8 +53,8 @@
    "expected_revenue": 22803.658776055116,
    "marginal_return": 0.8435902062071586,
    "marginal_profit": -0.6456921133929934,
-   "at_bound": "change limit",
-   "implied_acquisition_cost": null
+   "at_bound": "allowance (infeasible)",
+   "implied_acquisition_cost": 870.3656244901518
   },
   {
    "channel": "display_retargeting",
@@ -57,7 +65,7 @@
    "marginal_return": 1.0255537759261888,
    "marginal_profit": -0.5692674141110008,
    "at_bound": "change limit",
-   "implied_acquisition_cost": null
+   "implied_acquisition_cost": 268.0396403180135
   },
   {
    "channel": "email",
@@ -68,18 +76,18 @@
    "marginal_return": 2.793566409689381,
    "marginal_profit": 0.17329789206953983,
    "at_bound": "change limit",
-   "implied_acquisition_cost": null
+   "implied_acquisition_cost": 68.5497138824618
   },
   {
    "channel": "affiliate_promo",
-   "spend": 28231.062350331747,
+   "spend": 34938.87902716055,
    "last_year": 40330.0890719025,
-   "change": -0.30000000000000004,
-   "expected_revenue": 25910.683048077244,
-   "marginal_return": 1.5494435825602104,
-   "marginal_profit": -0.3492336953247116,
-   "at_bound": "change limit",
-   "implied_acquisition_cost": null
+   "change": -0.13367711722952635,
+   "expected_revenue": 36799.83135872669,
+   "marginal_return": 1.6840706752349281,
+   "marginal_profit": -0.29269031640133025,
+   "at_bound": "allowance",
+   "implied_acquisition_cost": 420.8280208584073
   },
   {
    "channel": "direct_mail",
@@ -90,29 +98,29 @@
    "marginal_return": 0.8512649264610372,
    "marginal_profit": -0.6424687308863644,
    "at_bound": "change limit",
-   "implied_acquisition_cost": null
+   "implied_acquisition_cost": 530.2625872688844
   }
  ],
- "expected_revenue": 1262578.5108199883,
- "expected_profit": 30049.74936997256,
- "profit_lower": 19986.637258173898,
- "profit_upper": 55643.37786236486,
+ "expected_revenue": 1260033.2840429659,
+ "expected_profit": 28980.754123623075,
+ "profit_lower": 18568.01665470586,
+ "profit_upper": 53742.249229414294,
  "level": 0.9,
  "solver_status": "Optimization terminated successfully",
  "starts": 8,
  "starts_converged": 8,
  "marginal_equalized": true,
- "marginal_spread": 1.5114576257246881e-12,
+ "marginal_spread": 1.7844310473691394e-09,
  "interior_channels": 2,
  "degenerate": false,
  "degenerate_reason": null,
  "spend": {
-  "paid_search": 165675.97855727444,
-  "paid_social": 143413.2152717401,
+  "paid_search": 162628.57804396708,
+  "paid_social": 139752.79910821866,
   "online_video": 44778.006265297045,
   "display_retargeting": 57997.94143423569,
   "email": 20089.91253149763,
-  "affiliate_promo": 28231.062350331747,
+  "affiliate_promo": 34938.87902716055,
   "direct_mail": 40047.10876404588
  }
 }

@@ -1,9 +1,9 @@
 {
  "calibrated": {
-  "expected_profit": 30049.74936997256,
-  "gain_over_last_year": 15171.867493475089,
-  "true_profit": 33192.24804015149,
-  "true_revenue": 1270060.6505108906
+  "expected_profit": 28980.754123623075,
+  "gain_over_last_year": 18333.548962645466,
+  "true_profit": 36353.92950932187,
+  "true_revenue": 1277588.4635327249
  },
  "equal_split": {
   "gain_over_last_year": -74099.75517040223,
@@ -14,15 +14,15 @@
   "true_profit": 18020.380546676402
  },
  "truth": {
-  "expected_profit": 38871.88498440484,
-  "gain_over_last_year": 20851.504437728378,
-  "true_profit": 38871.88498440478,
+  "expected_profit": 38871.88498440478,
+  "gain_over_last_year": 20851.50443772832,
+  "true_profit": 38871.88498440472,
   "true_revenue": 1283583.5956162554
  },
  "uncalibrated": {
-  "expected_profit": -11045.061183887068,
-  "gain_over_last_year": 19245.971914487774,
-  "true_profit": 37266.35246116418,
-  "true_revenue": 1279760.8991323495
+  "expected_profit": -17743.98959125753,
+  "gain_over_last_year": 12841.875265737879,
+  "true_profit": 30862.25581241428,
+  "true_revenue": 1264513.0499686592
  }
 }

@@ -38,21 +38,21 @@
     [
      "Paid search",
      129669.3956,
-     165675.9786,
-     0.2776798863,
-     572550.5758,
-     1.973692662,
-     -0.1710490822,
+     162628.578,
+     0.2541785774,
+     566447.3185,
+     2.032169874,
+     -0.1464886527,
      "interior"
     ],
     [
      "Paid social",
      110747.0239,
-     143413.2153,
-     0.2949622505,
-     382029.0338,
-     1.973692662,
-     -0.1710490822,
+     139752.7991,
+     0.2619102005,
+     374697.916,
+     2.03216987,
+     -0.1464886545,
      "interior"
     ],
     [
@@ -63,7 +63,7 @@
      22803.65878,
      0.8435902062,
      -0.6456921134,
-     "change limit"
+     "allowance (infeasible)"
     ],
     [
      "Display and retargeting",
@@ -88,12 +88,12 @@
     [
      "Affiliate and promo codes",
      40330.08907,
-     28231.06235,
-     -0.3,
-     25910.68305,
-     1.549443583,
-     -0.3492336953,
-     "change limit"
+     34938.87903,
+     -0.1336771172,
+     36799.83136,
+     1.684070675,
+     -0.2926903164,
+     "allowance"
     ],
     [
      "Direct mail",
@@ -133,15 +133,15 @@
    "rows": [
     [
      "Calibrated model's plan",
-     33192.24804,
-     15171.86749,
-     788937.1097
+     36353.92951,
+     18333.54896,
+     953344.5461
     ],
     [
      "Uncalibrated model's plan",
-     37266.35246,
-     19245.97191,
-     1000790.54
+     30862.25581,
+     12841.87527,
+     667777.5138
     ],
     [
      "Truth optimal plan",
@@ -193,31 +193,31 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
    "rows": [
     [
      "uncalibrated",
-     2,
-     0.3167434226,
-     -0.01112420646,
-     0.6446110517,
-     5574.094161,
-     -213.0841956,
-     11361.27252,
-     0.5
+     10,
+     0.6776055961,
+     0.5302101988,
+     0.8071304157,
+     12249.85311,
+     9646.196774,
+     14730.31534,
+     0.9
     ],
     [
      "calibrated",
-     2,
-     0.2892263533,
-     -0.04284007543,
-     0.6212927821,
-     5064.843096,
-     -820.6017252,
-     10950.28792,
-     0.5
+     10,
+     0.672271725,
+     0.5279920394,
+     0.8023212943,
+     12149.44279,
+     9554.811623,
+     14640.1713,
+     0.9
     ]
    ]
   }
@@ -235,7 +235,35 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": "no"
+   "value": "yes"
+  },
+  "budget.allowance_infeasible": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "Online video"
+  },
+  "budget.allowance_infeasible_count": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "optimizer",
+    "origin": "marginal_budget.optimizer",
+    "population": "demonstration brand, calibrated own curves",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1
   },
   "budget.bound.affiliate_promo": {
    "fmt": "text",
@@ -249,7 +277,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": "change limit"
+   "value": "allowance"
   },
   "budget.bound.direct_mail": {
    "fmt": "text",
@@ -305,7 +333,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": "change limit"
+   "value": "allowance (infeasible)"
   },
   "budget.bound.paid_search": {
    "fmt": "text",
@@ -347,7 +375,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 30049.74937
+   "value": 28980.75412
   },
   "budget.calibrated.true_profit_weekly": {
    "fmt": "usd0",
@@ -361,7 +389,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 33192.24804
+   "value": 36353.92951
   },
   "budget.change.affiliate_promo": {
    "fmt": "spct1",
@@ -375,7 +403,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": -0.3
+   "value": -0.1336771172
   },
   "budget.change.direct_mail": {
    "fmt": "spct1",
@@ -445,7 +473,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.2776798863
+   "value": 0.2541785774
   },
   "budget.change.paid_social": {
    "fmt": "spct1",
@@ -459,7 +487,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.2949622505
+   "value": 0.2619102005
   },
   "budget.expected_profit_lower": {
    "fmt": "usd0",
@@ -473,7 +501,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 19986.63726
+   "value": 18568.01665
   },
   "budget.expected_profit_upper": {
    "fmt": "usd0",
@@ -487,7 +515,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 55643.37786
+   "value": 53742.24923
   },
   "budget.expected_profit_weekly": {
    "fmt": "usd0",
@@ -501,7 +529,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 30049.74937
+   "value": 28980.75412
   },
   "budget.expected_revenue_weekly": {
    "fmt": "usd0",
@@ -515,7 +543,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1262578.511
+   "value": 1260033.284
   },
   "budget.headline.equal_split_gain_annual": {
    "fmt": "usd0",
@@ -557,7 +585,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 788937.1097
+   "value": 953344.5461
   },
   "budget.headline.gain_over_last_year_weekly": {
    "fmt": "usd0",
@@ -571,7 +599,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 15171.86749
+   "value": 18333.54896
   },
   "budget.headline.last_year_profit_weekly": {
    "fmt": "usd0",
@@ -599,7 +627,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.7276150044
+   "value": 0.8792434626
   },
   "budget.headline.share_captured_uncalibrated": {
    "fmt": "pct0",
@@ -613,7 +641,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 0.9230015979
+   "value": 0.6158728405
   },
   "budget.inputs_hash": {
    "fmt": "text",
@@ -627,7 +655,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": "fcaea5116fc59607"
+   "value": "aeacfc8e6e7cbdd1"
   },
   "budget.interior": {
    "fmt": "text",
@@ -725,7 +753,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 1.511457626e-12
+   "value": 1.784431047e-09
   },
   "budget.max_change_share": {
    "fmt": "pct0",
@@ -767,7 +795,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 28231.06235
+   "value": 34938.87903
   },
   "budget.plan.direct_mail": {
    "fmt": "usd0",
@@ -837,7 +865,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 165675.9786
+   "value": 162628.578
   },
   "budget.plan.paid_social": {
    "fmt": "usd0",
@@ -851,7 +879,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 143413.2153
+   "value": 139752.7991
   },
   "budget.regret.calibrated.beats_last_year": {
    "fmt": "pct0",
@@ -862,10 +890,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": 0.5
+   "value": 0.9
   },
   "budget.regret.calibrated.equal_split_gain_mean": {
    "fmt": "usd0",
@@ -876,10 +904,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": -75336.49028
+   "value": -76541.46911
   },
   "budget.regret.calibrated.gain_lower": {
    "fmt": "usd0",
@@ -890,10 +918,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": -820.6017252
+   "value": 9554.811623
   },
   "budget.regret.calibrated.gain_upper": {
    "fmt": "usd0",
@@ -904,10 +932,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": 10950.28792
+   "value": 14640.1713
   },
   "budget.regret.calibrated.gain_weekly": {
    "fmt": "usd0",
@@ -918,10 +946,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": 5064.843096
+   "value": 12149.44279
   },
   "budget.regret.calibrated.optimal_gain_mean": {
    "fmt": "usd0",
@@ -932,10 +960,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": 18390.00306
+   "value": 18111.91454
   },
   "budget.regret.calibrated.seeds": {
    "fmt": "int",
@@ -946,10 +974,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": 2
+   "value": 10
   },
   "budget.regret.calibrated.share_captured": {
    "fmt": "pct0",
@@ -960,10 +988,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": 0.2892263533
+   "value": 0.672271725
   },
   "budget.regret.calibrated.share_captured_lower": {
    "fmt": "pct0",
@@ -974,10 +1002,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": -0.04284007543
+   "value": 0.5279920394
   },
   "budget.regret.calibrated.share_captured_upper": {
    "fmt": "pct0",
@@ -988,10 +1016,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": 0.6212927821
+   "value": 0.8023212943
   },
   "budget.regret.uncalibrated.beats_last_year": {
    "fmt": "pct0",
@@ -1002,10 +1030,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": 0.5
+   "value": 0.9
   },
   "budget.regret.uncalibrated.equal_split_gain_mean": {
    "fmt": "usd0",
@@ -1016,10 +1044,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": -75336.49028
+   "value": -76541.46911
   },
   "budget.regret.uncalibrated.gain_lower": {
    "fmt": "usd0",
@@ -1030,10 +1058,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": -213.0841956
+   "value": 9646.196774
   },
   "budget.regret.uncalibrated.gain_upper": {
    "fmt": "usd0",
@@ -1044,10 +1072,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": 11361.27252
+   "value": 14730.31534
   },
   "budget.regret.uncalibrated.gain_weekly": {
    "fmt": "usd0",
@@ -1058,10 +1086,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": 5574.094161
+   "value": 12249.85311
   },
   "budget.regret.uncalibrated.optimal_gain_mean": {
    "fmt": "usd0",
@@ -1072,10 +1100,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": 18390.00306
+   "value": 18111.91454
   },
   "budget.regret.uncalibrated.seeds": {
    "fmt": "int",
@@ -1086,10 +1114,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": 2
+   "value": 10
   },
   "budget.regret.uncalibrated.share_captured": {
    "fmt": "pct0",
@@ -1100,10 +1128,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": 0.3167434226
+   "value": 0.6776055961
   },
   "budget.regret.uncalibrated.share_captured_lower": {
    "fmt": "pct0",
@@ -1114,10 +1142,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": -0.01112420646
+   "value": 0.5302101988
   },
   "budget.regret.uncalibrated.share_captured_upper": {
    "fmt": "pct0",
@@ -1128,10 +1156,10 @@
     "origin": "marginal_budget.regret",
     "population": "markets with known truth, demonstration condition",
     "seed": 12,
-    "seeds": 2,
+    "seeds": 10,
     "source": "simulated"
    },
-   "value": 0.6446110517
+   "value": 0.8071304157
   },
   "budget.solver_status": {
    "fmt": "text",
@@ -1187,7 +1215,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 700326.5152
+   "value": 675314.854
   },
   "budget.surface.budget_min": {
    "fmt": "usd0",
@@ -1215,7 +1243,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 37
+   "value": 31
   },
   "budget.total_annual": {
    "fmt": "usd0",
@@ -1285,7 +1313,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": -11045.06118
+   "value": -17743.98959
   },
   "budget.uncalibrated.true_profit_weekly": {
    "fmt": "usd0",
@@ -1299,7 +1327,7 @@
     "seeds": null,
     "source": "simulated"
    },
-   "value": 37266.35246
+   "value": 30862.25581
   }
  }
 }

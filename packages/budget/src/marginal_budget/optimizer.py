@@ -52,7 +52,8 @@ class ChannelAllocation(StrictModel):
     marginal_return: float
     marginal_profit: float
     at_bound: str
-    """'floor', 'ceiling', 'change limit', 'allowance' or 'interior'."""
+    """'floor', 'ceiling', 'change limit', 'allowance', 'allowance (infeasible)' or 'interior'.
+    A channel whose curve cannot meet its allowance at any admissible spend is held at its floor."""
     implied_acquisition_cost: float | None
 
 
@@ -120,7 +121,6 @@ def optimize(
     if tuple(channels) != CHANNELS:
         raise ValueError("the model's channels are not in the fixed order")
     bounds = _bounds(model, constraints)
-    _feasible_budget(bounds, constraints.total_budget)
     margin = constraints.margin
     curves = model.channels
 
@@ -134,6 +134,7 @@ def optimize(
         return np.array([margin * c.marginal(float(x[j])) - 1.0 for j, c in enumerate(curves)])
 
     ineq: list[Callable[[np.ndarray], float]] = []
+    infeasible: set[str] = set()
     if constraints.allowance and constraints.revenue_per_acquisition:
         rpa = constraints.revenue_per_acquisition
         for j, c in enumerate(curves):
@@ -141,7 +142,15 @@ def optimize(
             if limit is None:
                 continue
             # spend / customers <= allowance, customers = revenue / revenue per acquisition.
-            ineq.append(_allowance_constraint(j, c, limit, rpa))
+            fun = _allowance_constraint(j, c, limit, rpa)
+            if _allowance_reachable(fun, j, bounds[j], len(curves)):
+                ineq.append(fun)
+            else:
+                # The curve never pays back within the allowance at any admissible spend: the
+                # channel is held at its floor and the plan says so, instead of failing outright.
+                infeasible.add(c.channel)
+                bounds[j] = (bounds[j][0], bounds[j][0])
+    _feasible_budget(bounds, constraints.total_budget)
     cons: list[dict[str, Any]] = [
         {
             "type": "eq",
@@ -183,7 +192,7 @@ def optimize(
     x = np.asarray(best.x, dtype=float)
 
     allocation, interior, marginal_profits, degenerate_reason = _describe(
-        x, curves, bounds, last, constraints
+        x, curves, bounds, last, constraints, infeasible
     )
     spread = float(max(marginal_profits) - min(marginal_profits)) if len(marginal_profits) > 1 else 0.0
     equalized = spread <= 0.05 or len(marginal_profits) <= 1
@@ -243,6 +252,18 @@ def _allowance_constraint(
     return inner
 
 
+def _allowance_reachable(
+    fun: Callable[[np.ndarray], float], j: int, bound: tuple[float, float], width: int, points: int = 41
+) -> bool:
+    """Whether the allowance holds anywhere in the channel's admissible range."""
+    probe = np.zeros(width)
+    for spend in np.linspace(bound[0], bound[1], points):
+        probe[j] = spend
+        if fun(probe) >= 0.0:
+            return True
+    return False
+
+
 def _project(x: np.ndarray, lows: np.ndarray, highs: np.ndarray, total: float) -> np.ndarray:
     """Scale a start onto the budget while staying inside the box."""
     x = np.clip(x, lows, highs)
@@ -263,6 +284,7 @@ def _describe(
     bounds: list[tuple[float, float]],
     last: np.ndarray,
     constraints: Constraints,
+    infeasible: set[str] | None = None,
 ) -> tuple[list[ChannelAllocation], int, list[float], str | None]:
     allocation = []
     interior = 0
@@ -274,7 +296,9 @@ def _describe(
         marginal_return = c.marginal(spend)
         marginal_profit = constraints.margin * marginal_return - 1.0
         at = "interior"
-        if spend <= low + tol * max(low, 1.0):
+        if infeasible and c.channel in infeasible:
+            at = "allowance (infeasible)"
+        elif spend <= low + tol * max(low, 1.0):
             at = (
                 "floor"
                 if math.isclose(low, constraints.floor_share * last[j], rel_tol=1e-6)
@@ -292,7 +316,12 @@ def _describe(
             customers = rev / constraints.revenue_per_acquisition
             cac = spend / customers if customers > 0 else None
             limit = constraints.allowance.get(c.channel)
-            if limit is not None and cac is not None and cac >= limit * (1.0 - 1e-4):
+            if (
+                limit is not None
+                and cac is not None
+                and cac >= limit * (1.0 - 1e-4)
+                and at != "allowance (infeasible)"
+            ):
                 at = "allowance"
         if at == "interior":
             interior += 1
