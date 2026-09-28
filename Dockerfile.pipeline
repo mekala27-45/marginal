@@ -1,0 +1,22 @@
+# The pipeline image: every stage from the simulator to the marts, with the bayes extra. Built
+# for reproduction on a machine without uv; not built in CI (the runners run the stages
+# directly). The three external datasets are mounted or fetched at run time, never baked in.
+FROM python:3.12-slim AS base
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential git \
+    && rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir "uv>=0.8,<0.9"
+WORKDIR /app
+COPY pyproject.toml uv.lock README.md ./
+COPY packages ./packages
+RUN uv sync --frozen --no-dev --no-default-groups
+COPY scripts ./scripts
+COPY docs ./docs
+COPY report ./report
+COPY data ./data
+COPY results ./results
+COPY web/src/theme ./web/src/theme
+COPY Makefile ./
+ENV MARGINAL_ROOT=/app PATH="/app/.venv/bin:$PATH"
+VOLUME ["/app/data/external", "/app/results"]
+CMD ["marginal", "--help"]
