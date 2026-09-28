@@ -1,0 +1,1356 @@
+{
+ "base_url": "http://127.0.0.1:8766",
+ "budget_current": 500233.2251744225,
+ "recorded": true,
+ "recorded_at": "2026-09-28T00:18:59.512709+00:00",
+ "responses": {
+  "audit": {
+   "body": {
+    "entries": [
+     {
+      "action": "save",
+      "actor": "token",
+      "at": "2026-09-28T00:19:03.627080+00:00",
+      "detail": {
+       "inputs_hash": "3daa47fa307ceacf"
+      },
+      "resource": "plan",
+      "resource_id": "891fb4b7-ded9-4ed1-8799-8267ab62c69a"
+     },
+     {
+      "action": "post_result",
+      "actor": "token",
+      "at": "2026-09-28T00:18:59.733485+00:00",
+      "detail": {
+       "method": "did"
+      },
+      "resource": "experiment",
+      "resource_id": "076102e0-ebd0-5218-8433-fab40b6cff08"
+     },
+     {
+      "action": "register",
+      "actor": "token",
+      "at": "2026-09-28T00:18:59.669474+00:00",
+      "detail": {
+       "plan_hash": "53733a76fe1af6ec"
+      },
+      "resource": "experiment",
+      "resource_id": "076102e0-ebd0-5218-8433-fab40b6cff08"
+     }
+    ],
+    "served_at": "2026-09-28T00:19:03.865716+00:00",
+    "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here."
+   },
+   "method": "GET",
+   "path": "/v1/audit?limit=20",
+   "status": 200
+  },
+  "experiment": {
+   "body": {
+    "design": {
+     "analysis": "difference in differences with geo and week fixed effects on log sales; synthetic control with placebo inference",
+     "assignment": "stratified",
+     "channel": "display_retargeting",
+     "control_geos": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      10,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      36,
+      37,
+      38,
+      39
+     ],
+     "end_week": 155,
+     "interval_level": 0.9,
+     "name": "display_retargeting holdout, 8 weeks, 10 geos",
+     "placebo_permutations": 200,
+     "power_at_true_effect": 1.0,
+     "pre_period_weeks": 52,
+     "primary_outcome": "sales",
+     "spend_change": -1.0,
+     "start_week": 148,
+     "treated_geos": [
+      5,
+      8,
+      9,
+      11,
+      16,
+      19,
+      20,
+      21,
+      34,
+      35
+     ]
+    },
+    "experiment_id": "076102e0-ebd0-5218-8433-fab40b6cff08",
+    "kind": "geo_lift",
+    "name": "display_retargeting holdout, 8 weeks, 10 geos",
+    "plan_hash": "53733a76fe1af6ec",
+    "registered_at": "2026-09-28T00:18:59.662615+00:00",
+    "results": [
+     {
+      "channel": "display_retargeting",
+      "end_week": 155,
+      "geos": [
+       5,
+       8,
+       9,
+       11,
+       16,
+       19,
+       20,
+       21,
+       34,
+       35
+      ],
+      "incremental_revenue": 169063.46409394566,
+      "level": 0.9,
+      "lower": 151588.44128042148,
+      "method": "did",
+      "posted_at": "2026-09-28T00:18:59.729829+00:00",
+      "result_id": 1,
+      "standard_error": 10624.059507296055,
+      "start_week": 148,
+      "truth": 150477.6501144888,
+      "upper": 186538.48690746984
+     }
+    ],
+    "served_at": "2026-09-28T00:18:59.791619+00:00",
+    "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here."
+   },
+   "method": "GET",
+   "path": "/v1/experiments/076102e0-ebd0-5218-8433-fab40b6cff08",
+   "status": 200
+  },
+  "experiments": {
+   "body": {
+    "experiments": [
+     {
+      "design": {
+       "analysis": "difference in differences with geo and week fixed effects on log sales; synthetic control with placebo inference",
+       "assignment": "stratified",
+       "channel": "display_retargeting",
+       "control_geos": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        10,
+        12,
+        13,
+        14,
+        15,
+        17,
+        18,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        36,
+        37,
+        38,
+        39
+       ],
+       "end_week": 155,
+       "interval_level": 0.9,
+       "name": "display_retargeting holdout, 8 weeks, 10 geos",
+       "placebo_permutations": 200,
+       "power_at_true_effect": 1.0,
+       "pre_period_weeks": 52,
+       "primary_outcome": "sales",
+       "spend_change": -1.0,
+       "start_week": 148,
+       "treated_geos": [
+        5,
+        8,
+        9,
+        11,
+        16,
+        19,
+        20,
+        21,
+        34,
+        35
+       ]
+      },
+      "experiment_id": "076102e0-ebd0-5218-8433-fab40b6cff08",
+      "kind": "geo_lift",
+      "name": "display_retargeting holdout, 8 weeks, 10 geos",
+      "plan_hash": "53733a76fe1af6ec",
+      "registered_at": "2026-09-28T00:18:59.662615+00:00",
+      "results": [
+       {
+        "channel": "display_retargeting",
+        "end_week": 155,
+        "geos": [
+         5,
+         8,
+         9,
+         11,
+         16,
+         19,
+         20,
+         21,
+         34,
+         35
+        ],
+        "incremental_revenue": 169063.46409394566,
+        "level": 0.9,
+        "lower": 151588.44128042148,
+        "method": "did",
+        "posted_at": "2026-09-28T00:18:59.729829+00:00",
+        "result_id": 1,
+        "standard_error": 10624.059507296055,
+        "start_week": 148,
+        "truth": 150477.6501144888,
+        "upper": 186538.48690746984
+       }
+      ]
+     }
+    ],
+    "served_at": "2026-09-28T00:18:59.838775+00:00",
+    "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here."
+   },
+   "method": "GET",
+   "path": "/v1/experiments",
+   "status": 200
+  },
+  "health": {
+   "body": {
+    "database": "ok",
+    "environment": "record",
+    "model_version": "own-0c071596-calibrated",
+    "served_at": "2026-09-28T00:18:59.556046+00:00",
+    "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here.",
+    "status": "ok",
+    "writes": "token gated"
+   },
+   "method": "GET",
+   "path": "/v1/health",
+   "status": 200
+  },
+  "models": {
+   "body": {
+    "models": [
+     {
+      "backend": "own",
+      "calibrated": false,
+      "data_source": "simulated",
+      "file": "results/mmm/own_model.json",
+      "spec_hash": "0c07159692e406de",
+      "version": "own-0c071596-uncalibrated"
+     },
+     {
+      "backend": "bayes",
+      "calibrated": true,
+      "data_source": "simulated",
+      "file": "results/calibrate/bayes_calibrated_model.json",
+      "spec_hash": "85e6f23579765fde",
+      "version": "bayes-85e6f235-calibrated"
+     },
+     {
+      "backend": "own",
+      "calibrated": true,
+      "data_source": "simulated",
+      "file": "results/calibrate/own_calibrated_model.json",
+      "spec_hash": "0c07159692e406de",
+      "version": "own-0c071596-calibrated"
+     }
+    ],
+    "served_at": "2026-09-28T00:18:59.602286+00:00",
+    "serving": "own-0c071596-calibrated",
+    "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here."
+   },
+   "method": "GET",
+   "path": "/v1/models",
+   "status": 200
+  },
+  "optimize_100": {
+   "body": {
+    "plan": {
+     "allocation": [
+      {
+       "at_bound": "interior",
+       "change": 0.25417860503620626,
+       "channel": "paid_search",
+       "expected_revenue": 566447.3258190296,
+       "implied_acquisition_cost": 127.25617183373679,
+       "last_year": 129669.39555038983,
+       "marginal_profit": -0.14648868206320498,
+       "marginal_return": 2.0321698046114167,
+       "spend": 162628.58162727597
+      },
+      {
+       "at_bound": "interior",
+       "change": 0.2619102117467529,
+       "channel": "paid_social",
+       "expected_revenue": 374697.91847612173,
+       "implied_acquisition_cost": 165.31823103431083,
+       "last_year": 110747.02387663507,
+       "marginal_profit": -0.14648866294150242,
+       "marginal_return": 2.03216985013928,
+       "spend": 139752.80035048726
+      },
+      {
+       "at_bound": "allowance (infeasible)",
+       "change": -0.30000000000000004,
+       "channel": "online_video",
+       "expected_revenue": 22803.658776055116,
+       "implied_acquisition_cost": 870.3656244901518,
+       "last_year": 63968.58037899578,
+       "marginal_profit": -0.6456921133929934,
+       "marginal_return": 0.8435902062071586,
+       "spend": 44778.006265297045
+      },
+      {
+       "at_bound": "change limit",
+       "change": -0.30000000000000004,
+       "channel": "display_retargeting",
+       "expected_revenue": 95908.05057994723,
+       "implied_acquisition_cost": 268.0396403180135,
+       "last_year": 82854.20204890813,
+       "marginal_profit": -0.5692674141110008,
+       "marginal_return": 1.0255537759261888,
+       "spend": 57997.94143423569
+      },
+      {
+       "at_bound": "change limit",
+       "change": 0.30000000000000004,
+       "channel": "email",
+       "expected_revenue": 129901.42357973769,
+       "implied_acquisition_cost": 68.5497138824618,
+       "last_year": 15453.778870382792,
+       "marginal_profit": 0.17329789206953983,
+       "marginal_return": 2.793566409689381,
+       "spend": 20089.91253149763
+      },
+      {
+       "at_bound": "allowance",
+       "change": -0.13367711722952802,
+       "channel": "affiliate_promo",
+       "expected_revenue": 36799.83135872658,
+       "implied_acquisition_cost": 420.8280208584077,
+       "last_year": 40330.0890719025,
+       "marginal_profit": -0.2926903164013308,
+       "marginal_return": 1.6840706752349268,
+       "spend": 34938.87902716048
+      },
+      {
+       "at_bound": "change limit",
+       "change": -0.30000000000000004,
+       "channel": "direct_mail",
+       "expected_revenue": 33475.08525974066,
+       "implied_acquisition_cost": 530.2625872688844,
+       "last_year": 57210.1553772084,
+       "marginal_profit": -0.6424687308863644,
+       "marginal_return": 0.8512649264610372,
+       "spend": 40047.10876404588
+      }
+     ],
+     "backend": "own",
+     "constraints": {
+      "allowance": {
+       "affiliate_promo": 420.82802085840734,
+       "direct_mail": 671.8913100818115,
+       "display_retargeting": 450.20455094284165,
+       "email": 730.7133916110888,
+       "online_video": 517.7292363106785,
+       "paid_search": 626.601774170265,
+       "paid_social": 477.2006208178946
+      },
+      "ceiling_share": 2.0,
+      "ceilings": null,
+      "floor_share": 0.25,
+      "floors": null,
+      "margin": 0.42,
+      "max_change_share": 0.3,
+      "revenue_per_acquisition": 443.2426176746367,
+      "total_budget": 500233.23
+     },
+     "degenerate": false,
+     "degenerate_reason": null,
+     "expected_profit": 28980.753416730673,
+     "expected_revenue": 1260033.2938493588,
+     "inputs_hash": "3daa47fa307ceacf",
+     "interior_channels": 2,
+     "level": 0.9,
+     "marginal_equalized": true,
+     "marginal_spread": 1.9121702554691922e-08,
+     "model_version": "own-0c071596-calibrated",
+     "profit_lower": 18568.01577858447,
+     "profit_upper": 53742.248861271204,
+     "solver_status": "Optimization terminated successfully",
+     "spec_hash": "0c07159692e406de",
+     "spend": {
+      "affiliate_promo": 34938.87902716048,
+      "direct_mail": 40047.10876404588,
+      "display_retargeting": 57997.94143423569,
+      "email": 20089.91253149763,
+      "online_video": 44778.006265297045,
+      "paid_search": 162628.58162727597,
+      "paid_social": 139752.80035048726
+     },
+     "starts": 8,
+     "starts_converged": 8
+    },
+    "served_at": "2026-09-28T00:19:01.614834+00:00",
+    "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here.",
+    "stored": false
+   },
+   "method": "POST",
+   "path": "/v1/optimize",
+   "request": {
+    "total_budget": 500233.23
+   },
+   "status": 200
+  },
+  "optimize_110": {
+   "body": {
+    "plan": {
+     "allocation": [
+      {
+       "at_bound": "change limit",
+       "change": 0.30000000000000004,
+       "channel": "paid_search",
+       "expected_revenue": 578184.6237996903,
+       "implied_acquisition_cost": 129.22775863500144,
+       "last_year": 129669.39555038983,
+       "marginal_profit": -0.19365379887632272,
+       "marginal_return": 1.919871907437327,
+       "spend": 168570.2142155068
+      },
+      {
+       "at_bound": "change limit",
+       "change": 0.30000000000000004,
+       "channel": "paid_social",
+       "expected_revenue": 383127.73596892395,
+       "implied_acquisition_cost": 166.5610056400559,
+       "last_year": 110747.02387663507,
+       "marginal_profit": -0.1747385651215061,
+       "marginal_return": 1.9649081782821285,
+       "spend": 143971.1310396256
+      },
+      {
+       "at_bound": "allowance (infeasible)",
+       "change": -0.30000000000000004,
+       "channel": "online_video",
+       "expected_revenue": 22803.658776055116,
+       "implied_acquisition_cost": 870.3656244901518,
+       "last_year": 63968.58037899578,
+       "marginal_profit": -0.6456921133929934,
+       "marginal_return": 0.8435902062071586,
+       "spend": 44778.006265297045
+      },
+      {
+       "at_bound": "interior",
+       "change": -0.14625625485862637,
+       "channel": "display_retargeting",
+       "expected_revenue": 107034.35142732125,
+       "implied_acquisition_cost": 292.92767407650325,
+       "last_year": 82854.20204890813,
+       "marginal_profit": -0.6896913570466106,
+       "marginal_return": 0.7388301022699748,
+       "spend": 70736.2567579349
+      },
+      {
+       "at_bound": "change limit",
+       "change": 0.30000000000000004,
+       "channel": "email",
+       "expected_revenue": 129901.42357973769,
+       "implied_acquisition_cost": 68.5497138824618,
+       "last_year": 15453.778870382792,
+       "marginal_profit": 0.17329789206953983,
+       "marginal_return": 2.793566409689381,
+       "spend": 20089.91253149763
+      },
+      {
+       "at_bound": "change limit",
+       "change": 0.30000000000000004,
+       "channel": "affiliate_promo",
+       "expected_revenue": 67187.29682164856,
+       "implied_acquisition_cost": 345.8811356610181,
+       "last_year": 40330.0890719025,
+       "marginal_profit": -0.27354405268725746,
+       "marginal_return": 1.729657017411292,
+       "spend": 52429.11579347325
+      },
+      {
+       "at_bound": "interior",
+       "change": -0.13158925947937905,
+       "channel": "direct_mail",
+       "expected_revenue": 41137.684293314844,
+       "implied_acquisition_cost": 535.3033775042359,
+       "last_year": 57210.1553772084,
+       "marginal_profit": -0.6896913570465215,
+       "marginal_return": 0.7388301022701869,
+       "spend": 49681.91339642133
+      }
+     ],
+     "backend": "own",
+     "constraints": {
+      "allowance": {
+       "affiliate_promo": 420.82802085840734,
+       "direct_mail": 671.8913100818115,
+       "display_retargeting": 450.20455094284165,
+       "email": 730.7133916110888,
+       "online_video": 517.7292363106785,
+       "paid_search": 626.601774170265,
+       "paid_social": 477.2006208178946
+      },
+      "ceiling_share": 2.0,
+      "ceilings": null,
+      "floor_share": 0.25,
+      "floors": null,
+      "margin": 0.42,
+      "max_change_share": 0.3,
+      "revenue_per_acquisition": 443.2426176746367,
+      "total_budget": 550256.55
+     },
+     "degenerate": false,
+     "degenerate_reason": null,
+     "expected_profit": 8081.695360253914,
+     "expected_revenue": 1329376.7746666917,
+     "inputs_hash": "2f739b3596eb31fb",
+     "interior_channels": 2,
+     "level": 0.9,
+     "marginal_equalized": true,
+     "marginal_spread": 8.903988657493755e-14,
+     "model_version": "own-0c071596-calibrated",
+     "profit_lower": -3877.2265368576814,
+     "profit_upper": 36700.879788653736,
+     "solver_status": "Positive directional derivative for linesearch",
+     "spec_hash": "0c07159692e406de",
+     "spend": {
+      "affiliate_promo": 52429.11579347325,
+      "direct_mail": 49681.91339642133,
+      "display_retargeting": 70736.2567579349,
+      "email": 20089.91253149763,
+      "online_video": 44778.006265297045,
+      "paid_search": 168570.2142155068,
+      "paid_social": 143971.1310396256
+     },
+     "starts": 8,
+     "starts_converged": 3
+    },
+    "served_at": "2026-09-28T00:19:02.432161+00:00",
+    "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here.",
+    "stored": false
+   },
+   "method": "POST",
+   "path": "/v1/optimize",
+   "request": {
+    "total_budget": 550256.55
+   },
+   "status": 200
+  },
+  "optimize_120": {
+   "body": {
+    "plan": {
+     "allocation": [
+      {
+       "at_bound": "change limit",
+       "change": 0.30000000000000004,
+       "channel": "paid_search",
+       "expected_revenue": 578184.6237996903,
+       "implied_acquisition_cost": 129.22775863500144,
+       "last_year": 129669.39555038983,
+       "marginal_profit": -0.19365379887632272,
+       "marginal_return": 1.919871907437327,
+       "spend": 168570.2142155068
+      },
+      {
+       "at_bound": "change limit",
+       "change": 0.30000000000000004,
+       "channel": "paid_social",
+       "expected_revenue": 383127.73596892395,
+       "implied_acquisition_cost": 166.5610056400559,
+       "last_year": 110747.02387663507,
+       "marginal_profit": -0.1747385651215061,
+       "marginal_return": 1.9649081782821285,
+       "spend": 143971.1310396256
+      },
+      {
+       "at_bound": "allowance (infeasible)",
+       "change": -0.30000000000000004,
+       "channel": "online_video",
+       "expected_revenue": 22803.658776055116,
+       "implied_acquisition_cost": 870.3656244901518,
+       "last_year": 63968.58037899578,
+       "marginal_profit": -0.6456921133929934,
+       "marginal_return": 0.8435902062071586,
+       "spend": 44778.006265297045
+      },
+      {
+       "at_bound": "interior",
+       "change": 0.1594860102269109,
+       "channel": "display_retargeting",
+       "expected_revenue": 121024.64512807991,
+       "implied_acquisition_cost": 351.8420523056899,
+       "last_year": 82854.20204890813,
+       "marginal_profit": -0.8294069103914735,
+       "marginal_return": 0.40617402287744403,
+       "spend": 96068.28816422285
+      },
+      {
+       "at_bound": "change limit",
+       "change": 0.30000000000000004,
+       "channel": "email",
+       "expected_revenue": 129901.42357973769,
+       "implied_acquisition_cost": 68.5497138824618,
+       "last_year": 15453.778870382792,
+       "marginal_profit": 0.17329789206953983,
+       "marginal_return": 2.793566409689381,
+       "spend": 20089.91253149763
+      },
+      {
+       "at_bound": "change limit",
+       "change": 0.30000000000000004,
+       "channel": "affiliate_promo",
+       "expected_revenue": 67187.29682164856,
+       "implied_acquisition_cost": 345.8811356610181,
+       "last_year": 40330.0890719025,
+       "marginal_profit": -0.27354405268725746,
+       "marginal_return": 1.729657017411292,
+       "spend": 52429.11579347325
+      },
+      {
+       "at_bound": "change limit",
+       "change": 0.299999999999927,
+       "channel": "direct_mail",
+       "expected_revenue": 56100.313203133555,
+       "implied_acquisition_cost": 587.614771698161,
+       "last_year": 57210.1553772084,
+       "marginal_profit": -0.7953290066529949,
+       "marginal_return": 0.48731188892144084,
+       "spend": 74373.20199036674
+      }
+     ],
+     "backend": "own",
+     "constraints": {
+      "allowance": {
+       "affiliate_promo": 420.82802085840734,
+       "direct_mail": 671.8913100818115,
+       "display_retargeting": 450.20455094284165,
+       "email": 730.7133916110888,
+       "online_video": 517.7292363106785,
+       "paid_search": 626.601774170265,
+       "paid_social": 477.2006208178946
+      },
+      "ceiling_share": 2.0,
+      "ceilings": null,
+      "floor_share": 0.25,
+      "floors": null,
+      "margin": 0.42,
+      "max_change_share": 0.3,
+      "revenue_per_acquisition": 443.2426176746367,
+      "total_budget": 600279.87
+     },
+     "degenerate": false,
+     "degenerate_reason": null,
+     "expected_profit": -29781.39714353683,
+     "expected_revenue": 1358329.697277269,
+     "inputs_hash": "e80741997569526b",
+     "interior_channels": 1,
+     "level": 0.9,
+     "marginal_equalized": true,
+     "marginal_spread": 0.0,
+     "model_version": "own-0c071596-calibrated",
+     "profit_lower": -44015.89777601411,
+     "profit_upper": 2630.1252385381213,
+     "solver_status": "Positive directional derivative for linesearch",
+     "spec_hash": "0c07159692e406de",
+     "spend": {
+      "affiliate_promo": 52429.11579347325,
+      "direct_mail": 74373.20199036674,
+      "display_retargeting": 96068.28816422285,
+      "email": 20089.91253149763,
+      "online_video": 44778.006265297045,
+      "paid_search": 168570.2142155068,
+      "paid_social": 143971.1310396256
+     },
+     "starts": 8,
+     "starts_converged": 7
+    },
+    "served_at": "2026-09-28T00:19:03.173849+00:00",
+    "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here.",
+    "stored": false
+   },
+   "method": "POST",
+   "path": "/v1/optimize",
+   "request": {
+    "total_budget": 600279.87
+   },
+   "status": 200
+  },
+  "optimize_80": {
+   "body": {
+    "plan": {
+     "allocation": [
+      {
+       "at_bound": "interior",
+       "change": -0.07020863356562279,
+       "channel": "paid_search",
+       "expected_revenue": 461037.63346472505,
+       "implied_acquisition_cost": 115.91192792147866,
+       "last_year": 129669.39555038983,
+       "marginal_profit": 0.2789025948520152,
+       "marginal_return": 3.045006178219084,
+       "spend": 120565.48447351671
+      },
+      {
+       "at_bound": "interior",
+       "change": -0.2541511887176885,
+       "channel": "paid_social",
+       "expected_revenue": 229820.7759229583,
+       "implied_acquisition_cost": 159.3070848374353,
+       "last_year": 110747.02387663507,
+       "marginal_profit": 0.2789025949148909,
+       "marginal_return": 3.045006178368788,
+       "spend": 82600.53611144204
+      },
+      {
+       "at_bound": "allowance (infeasible)",
+       "change": -0.30000000000000004,
+       "channel": "online_video",
+       "expected_revenue": 22803.658776055116,
+       "implied_acquisition_cost": 870.3656244901518,
+       "last_year": 63968.58037899578,
+       "marginal_profit": -0.6456921133929934,
+       "marginal_return": 0.8435902062071586,
+       "spend": 44778.006265297045
+      },
+      {
+       "at_bound": "change limit",
+       "change": -0.30000000000000004,
+       "channel": "display_retargeting",
+       "expected_revenue": 95908.05057994723,
+       "implied_acquisition_cost": 268.0396403180135,
+       "last_year": 82854.20204890813,
+       "marginal_profit": -0.5692674141110008,
+       "marginal_return": 1.0255537759261888,
+       "spend": 57997.94143423569
+      },
+      {
+       "at_bound": "interior",
+       "change": 0.2462080689669628,
+       "channel": "email",
+       "expected_revenue": 127476.41304825967,
+       "implied_acquisition_cost": 66.96331248187427,
+       "last_year": 15453.778870382792,
+       "marginal_profit": 0.27890259928962924,
+       "marginal_return": 3.0450061887848316,
+       "spend": 19258.623924302192
+      },
+      {
+       "at_bound": "allowance",
+       "change": -0.1336771172295267,
+       "channel": "affiliate_promo",
+       "expected_revenue": 36799.83135872666,
+       "implied_acquisition_cost": 420.8280208584074,
+       "last_year": 40330.0890719025,
+       "marginal_profit": -0.29269031640133025,
+       "marginal_return": 1.684070675234928,
+       "spend": 34938.87902716053
+      },
+      {
+       "at_bound": "change limit",
+       "change": -0.30000000000000004,
+       "channel": "direct_mail",
+       "expected_revenue": 33475.08525974066,
+       "implied_acquisition_cost": 530.2625872688844,
+       "last_year": 57210.1553772084,
+       "marginal_profit": -0.6424687308863644,
+       "marginal_return": 0.8512649264610372,
+       "spend": 40047.10876404588
+      }
+     ],
+     "backend": "own",
+     "constraints": {
+      "allowance": {
+       "affiliate_promo": 420.82802085840734,
+       "direct_mail": 671.8913100818115,
+       "display_retargeting": 450.20455094284165,
+       "email": 730.7133916110888,
+       "online_video": 517.7292363106785,
+       "paid_search": 626.601774170265,
+       "paid_social": 477.2006208178946
+      },
+      "ceiling_share": 2.0,
+      "ceilings": null,
+      "floor_share": 0.25,
+      "floors": null,
+      "margin": 0.42,
+      "max_change_share": 0.3,
+      "revenue_per_acquisition": 443.2426176746367,
+      "total_budget": 400186.58
+     },
+     "degenerate": false,
+     "degenerate_reason": null,
+     "expected_profit": 22888.428332373325,
+     "expected_revenue": 1007321.4484104128,
+     "inputs_hash": "beed491071fa8648",
+     "interior_channels": 3,
+     "level": 0.9,
+     "marginal_equalized": true,
+     "marginal_spread": 4.437614053998118e-09,
+     "model_version": "own-0c071596-calibrated",
+     "profit_lower": 12930.251528336657,
+     "profit_upper": 43251.271557388725,
+     "solver_status": "Optimization terminated successfully",
+     "spec_hash": "0c07159692e406de",
+     "spend": {
+      "affiliate_promo": 34938.87902716053,
+      "direct_mail": 40047.10876404588,
+      "display_retargeting": 57997.94143423569,
+      "email": 19258.623924302192,
+      "online_video": 44778.006265297045,
+      "paid_search": 120565.48447351671,
+      "paid_social": 82600.53611144204
+     },
+     "starts": 8,
+     "starts_converged": 8
+    },
+    "served_at": "2026-09-28T00:19:00.448918+00:00",
+    "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here.",
+    "stored": false
+   },
+   "method": "POST",
+   "path": "/v1/optimize",
+   "request": {
+    "total_budget": 400186.58
+   },
+   "status": 200
+  },
+  "optimize_90": {
+   "body": {
+    "plan": {
+     "allocation": [
+      {
+       "at_bound": "interior",
+       "change": 0.08295126069346126,
+       "channel": "paid_search",
+       "expected_revenue": 516134.43413393595,
+       "implied_acquisition_cost": 120.59382614329927,
+       "last_year": 129669.39555038983,
+       "marginal_profit": 0.057501429720368424,
+       "marginal_return": 2.517860546953258,
+       "spend": 140425.63538465375
+      },
+      {
+       "at_bound": "interior",
+       "change": 0.010703607871169085,
+       "channel": "paid_social",
+       "expected_revenue": 311554.3980680647,
+       "implied_acquisition_cost": 159.24415652941263,
+       "last_year": 110747.02387663507,
+       "marginal_profit": 0.05750142827394278,
+       "marginal_return": 2.5178605435093875,
+       "spend": 111932.41659310958
+      },
+      {
+       "at_bound": "allowance (infeasible)",
+       "change": -0.30000000000000004,
+       "channel": "online_video",
+       "expected_revenue": 22803.658776055116,
+       "implied_acquisition_cost": 870.3656244901518,
+       "last_year": 63968.58037899578,
+       "marginal_profit": -0.6456921133929934,
+       "marginal_return": 0.8435902062071586,
+       "spend": 44778.006265297045
+      },
+      {
+       "at_bound": "change limit",
+       "change": -0.30000000000000004,
+       "channel": "display_retargeting",
+       "expected_revenue": 95908.05057994723,
+       "implied_acquisition_cost": 268.0396403180135,
+       "last_year": 82854.20204890813,
+       "marginal_profit": -0.5692674141110008,
+       "marginal_return": 1.0255537759261888,
+       "spend": 57997.94143423569
+      },
+      {
+       "at_bound": "change limit",
+       "change": 0.30000000000000004,
+       "channel": "email",
+       "expected_revenue": 129901.42357973769,
+       "implied_acquisition_cost": 68.5497138824618,
+       "last_year": 15453.778870382792,
+       "marginal_profit": 0.17329789206953983,
+       "marginal_return": 2.793566409689381,
+       "spend": 20089.91253149763
+      },
+      {
+       "at_bound": "allowance",
+       "change": -0.1336771172295278,
+       "channel": "affiliate_promo",
+       "expected_revenue": 36799.83135872659,
+       "implied_acquisition_cost": 420.82802085840774,
+       "last_year": 40330.0890719025,
+       "marginal_profit": -0.2926903164013305,
+       "marginal_return": 1.6840706752349275,
+       "spend": 34938.87902716049
+      },
+      {
+       "at_bound": "change limit",
+       "change": -0.30000000000000004,
+       "channel": "direct_mail",
+       "expected_revenue": 33475.08525974066,
+       "implied_acquisition_cost": 530.2625872688844,
+       "last_year": 57210.1553772084,
+       "marginal_profit": -0.6424687308863644,
+       "marginal_return": 0.8512649264610372,
+       "spend": 40047.10876404588
+      }
+     ],
+     "backend": "own",
+     "constraints": {
+      "allowance": {
+       "affiliate_promo": 420.82802085840734,
+       "direct_mail": 671.8913100818115,
+       "display_retargeting": 450.20455094284165,
+       "email": 730.7133916110888,
+       "online_video": 517.7292363106785,
+       "paid_search": 626.601774170265,
+       "paid_social": 477.2006208178946
+      },
+      "ceiling_share": 2.0,
+      "ceilings": null,
+      "floor_share": 0.25,
+      "floors": null,
+      "margin": 0.42,
+      "max_change_share": 0.3,
+      "revenue_per_acquisition": 443.2426176746367,
+      "total_budget": 450209.9
+     },
+     "degenerate": false,
+     "degenerate_reason": null,
+     "expected_profit": 31352.3903376073,
+     "expected_revenue": 1146576.881756208,
+     "inputs_hash": "2375a1881c344901",
+     "interior_channels": 2,
+     "level": 0.9,
+     "marginal_equalized": true,
+     "marginal_spread": 1.4464256459234548e-09,
+     "model_version": "own-0c071596-calibrated",
+     "profit_lower": 21065.963845810027,
+     "profit_upper": 54589.053780418006,
+     "solver_status": "Optimization terminated successfully",
+     "spec_hash": "0c07159692e406de",
+     "spend": {
+      "affiliate_promo": 34938.87902716049,
+      "direct_mail": 40047.10876404588,
+      "display_retargeting": 57997.94143423569,
+      "email": 20089.91253149763,
+      "online_video": 44778.006265297045,
+      "paid_search": 140425.63538465375,
+      "paid_social": 111932.41659310958
+     },
+     "starts": 8,
+     "starts_converged": 8
+    },
+    "served_at": "2026-09-28T00:19:01.156294+00:00",
+    "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here.",
+    "stored": false
+   },
+   "method": "POST",
+   "path": "/v1/optimize",
+   "request": {
+    "total_budget": 450209.9
+   },
+   "status": 200
+  },
+  "plan": {
+   "body": {
+    "allocation": {
+     "affiliate_promo": 34938.87902716048,
+     "direct_mail": 40047.10876404588,
+     "display_retargeting": 57997.94143423569,
+     "email": 20089.91253149763,
+     "online_video": 44778.006265297045,
+     "paid_search": 162628.58162727597,
+     "paid_social": 139752.80035048726
+    },
+    "backend": "own",
+    "constraints": {
+     "allowance": {
+      "affiliate_promo": 420.82802085840734,
+      "direct_mail": 671.8913100818115,
+      "display_retargeting": 450.20455094284165,
+      "email": 730.7133916110888,
+      "online_video": 517.7292363106785,
+      "paid_search": 626.601774170265,
+      "paid_social": 477.2006208178946
+     },
+     "ceiling_share": 2.0,
+     "ceilings": null,
+     "floor_share": 0.25,
+     "floors": null,
+     "margin": 0.42,
+     "max_change_share": 0.3,
+     "revenue_per_acquisition": 443.2426176746367,
+     "total_budget": 500233.23
+    },
+    "created_at": "2026-09-28T00:19:03.621810+00:00",
+    "degenerate": false,
+    "expected_profit": 28980.753416730673,
+    "inputs_hash": "3daa47fa307ceacf",
+    "level": 0.9,
+    "model_version": "own-0c071596-calibrated",
+    "note": "recorded session for the site's fallback bundle",
+    "plan_id": "891fb4b7-ded9-4ed1-8799-8267ab62c69a",
+    "profit_lower": 18568.01577858447,
+    "profit_upper": 53742.248861271204,
+    "served_at": "2026-09-28T00:19:03.766173+00:00",
+    "spec_hash": "0c07159692e406de",
+    "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here.",
+    "total_budget": 500233.23
+   },
+   "method": "GET",
+   "path": "/v1/plans/891fb4b7-ded9-4ed1-8799-8267ab62c69a",
+   "status": 200
+  },
+  "plans": {
+   "body": {
+    "plans": [
+     {
+      "allocation": {
+       "affiliate_promo": 34938.87902716048,
+       "direct_mail": 40047.10876404588,
+       "display_retargeting": 57997.94143423569,
+       "email": 20089.91253149763,
+       "online_video": 44778.006265297045,
+       "paid_search": 162628.58162727597,
+       "paid_social": 139752.80035048726
+      },
+      "backend": "own",
+      "constraints": {
+       "allowance": {
+        "affiliate_promo": 420.82802085840734,
+        "direct_mail": 671.8913100818115,
+        "display_retargeting": 450.20455094284165,
+        "email": 730.7133916110888,
+        "online_video": 517.7292363106785,
+        "paid_search": 626.601774170265,
+        "paid_social": 477.2006208178946
+       },
+       "ceiling_share": 2.0,
+       "ceilings": null,
+       "floor_share": 0.25,
+       "floors": null,
+       "margin": 0.42,
+       "max_change_share": 0.3,
+       "revenue_per_acquisition": 443.2426176746367,
+       "total_budget": 500233.23
+      },
+      "created_at": "2026-09-28T00:19:03.621810+00:00",
+      "degenerate": false,
+      "expected_profit": 28980.753416730673,
+      "inputs_hash": "3daa47fa307ceacf",
+      "level": 0.9,
+      "model_version": "own-0c071596-calibrated",
+      "note": "recorded session for the site's fallback bundle",
+      "plan_id": "891fb4b7-ded9-4ed1-8799-8267ab62c69a",
+      "profit_lower": 18568.01577858447,
+      "profit_upper": 53742.248861271204,
+      "spec_hash": "0c07159692e406de",
+      "total_budget": 500233.23
+     }
+    ],
+    "served_at": "2026-09-28T00:19:03.816323+00:00",
+    "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here."
+   },
+   "method": "GET",
+   "path": "/v1/plans?limit=20",
+   "status": 200
+  },
+  "post_result": {
+   "body": {
+    "experiment_id": "076102e0-ebd0-5218-8433-fab40b6cff08",
+    "posted_at": "2026-09-28T00:18:59.729829+00:00",
+    "result_id": 1,
+    "served_at": "2026-09-28T00:18:59.735405+00:00",
+    "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here."
+   },
+   "method": "POST",
+   "path": "/v1/experiments/076102e0-ebd0-5218-8433-fab40b6cff08/result",
+   "request": {
+    "channel": "display_retargeting",
+    "end_week": 155,
+    "geos": [
+     5,
+     8,
+     9,
+     11,
+     16,
+     19,
+     20,
+     21,
+     34,
+     35
+    ],
+    "incremental_revenue": 169063.46409394566,
+    "level": 0.9,
+    "lower": 151588.44128042148,
+    "method": "did",
+    "plan_hash": "53733a76fe1af6ec",
+    "standard_error": 10624.059507296055,
+    "start_week": 148,
+    "truth": 150477.6501144888,
+    "upper": 186538.48690746984
+   },
+   "status": 201
+  },
+  "register_experiment": {
+   "body": {
+    "already_registered": false,
+    "experiment_id": "076102e0-ebd0-5218-8433-fab40b6cff08",
+    "plan_hash": "53733a76fe1af6ec",
+    "registered_at": "2026-09-28T00:18:59.662615+00:00",
+    "served_at": "2026-09-28T00:18:59.674784+00:00",
+    "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here."
+   },
+   "method": "POST",
+   "path": "/v1/experiments",
+   "request": {
+    "design": {
+     "analysis": "difference in differences with geo and week fixed effects on log sales; synthetic control with placebo inference",
+     "assignment": "stratified",
+     "channel": "display_retargeting",
+     "control_geos": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      10,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      36,
+      37,
+      38,
+      39
+     ],
+     "end_week": 155,
+     "interval_level": 0.9,
+     "name": "display_retargeting holdout, 8 weeks, 10 geos",
+     "placebo_permutations": 200,
+     "power_at_true_effect": 1.0,
+     "pre_period_weeks": 52,
+     "primary_outcome": "sales",
+     "spend_change": -1.0,
+     "start_week": 148,
+     "treated_geos": [
+      5,
+      8,
+      9,
+      11,
+      16,
+      19,
+      20,
+      21,
+      34,
+      35
+     ]
+    },
+    "kind": "geo_lift",
+    "name": "display_retargeting holdout, 8 weeks, 10 geos",
+    "plan_hash": "53733a76fe1af6ec"
+   },
+   "status": 201
+  },
+  "save_plan": {
+   "body": {
+    "created_at": "2026-09-28T00:19:03.621810+00:00",
+    "plan": {
+     "allocation": [
+      {
+       "at_bound": "interior",
+       "change": 0.25417860503620626,
+       "channel": "paid_search",
+       "expected_revenue": 566447.3258190296,
+       "implied_acquisition_cost": 127.25617183373679,
+       "last_year": 129669.39555038983,
+       "marginal_profit": -0.14648868206320498,
+       "marginal_return": 2.0321698046114167,
+       "spend": 162628.58162727597
+      },
+      {
+       "at_bound": "interior",
+       "change": 0.2619102117467529,
+       "channel": "paid_social",
+       "expected_revenue": 374697.91847612173,
+       "implied_acquisition_cost": 165.31823103431083,
+       "last_year": 110747.02387663507,
+       "marginal_profit": -0.14648866294150242,
+       "marginal_return": 2.03216985013928,
+       "spend": 139752.80035048726
+      },
+      {
+       "at_bound": "allowance (infeasible)",
+       "change": -0.30000000000000004,
+       "channel": "online_video",
+       "expected_revenue": 22803.658776055116,
+       "implied_acquisition_cost": 870.3656244901518,
+       "last_year": 63968.58037899578,
+       "marginal_profit": -0.6456921133929934,
+       "marginal_return": 0.8435902062071586,
+       "spend": 44778.006265297045
+      },
+      {
+       "at_bound": "change limit",
+       "change": -0.30000000000000004,
+       "channel": "display_retargeting",
+       "expected_revenue": 95908.05057994723,
+       "implied_acquisition_cost": 268.0396403180135,
+       "last_year": 82854.20204890813,
+       "marginal_profit": -0.5692674141110008,
+       "marginal_return": 1.0255537759261888,
+       "spend": 57997.94143423569
+      },
+      {
+       "at_bound": "change limit",
+       "change": 0.30000000000000004,
+       "channel": "email",
+       "expected_revenue": 129901.42357973769,
+       "implied_acquisition_cost": 68.5497138824618,
+       "last_year": 15453.778870382792,
+       "marginal_profit": 0.17329789206953983,
+       "marginal_return": 2.793566409689381,
+       "spend": 20089.91253149763
+      },
+      {
+       "at_bound": "allowance",
+       "change": -0.13367711722952802,
+       "channel": "affiliate_promo",
+       "expected_revenue": 36799.83135872658,
+       "implied_acquisition_cost": 420.8280208584077,
+       "last_year": 40330.0890719025,
+       "marginal_profit": -0.2926903164013308,
+       "marginal_return": 1.6840706752349268,
+       "spend": 34938.87902716048
+      },
+      {
+       "at_bound": "change limit",
+       "change": -0.30000000000000004,
+       "channel": "direct_mail",
+       "expected_revenue": 33475.08525974066,
+       "implied_acquisition_cost": 530.2625872688844,
+       "last_year": 57210.1553772084,
+       "marginal_profit": -0.6424687308863644,
+       "marginal_return": 0.8512649264610372,
+       "spend": 40047.10876404588
+      }
+     ],
+     "backend": "own",
+     "constraints": {
+      "allowance": {
+       "affiliate_promo": 420.82802085840734,
+       "direct_mail": 671.8913100818115,
+       "display_retargeting": 450.20455094284165,
+       "email": 730.7133916110888,
+       "online_video": 517.7292363106785,
+       "paid_search": 626.601774170265,
+       "paid_social": 477.2006208178946
+      },
+      "ceiling_share": 2.0,
+      "ceilings": null,
+      "floor_share": 0.25,
+      "floors": null,
+      "margin": 0.42,
+      "max_change_share": 0.3,
+      "revenue_per_acquisition": 443.2426176746367,
+      "total_budget": 500233.23
+     },
+     "degenerate": false,
+     "degenerate_reason": null,
+     "expected_profit": 28980.753416730673,
+     "expected_revenue": 1260033.2938493588,
+     "inputs_hash": "3daa47fa307ceacf",
+     "interior_channels": 2,
+     "level": 0.9,
+     "marginal_equalized": true,
+     "marginal_spread": 1.9121702554691922e-08,
+     "model_version": "own-0c071596-calibrated",
+     "profit_lower": 18568.01577858447,
+     "profit_upper": 53742.248861271204,
+     "solver_status": "Optimization terminated successfully",
+     "spec_hash": "0c07159692e406de",
+     "spend": {
+      "affiliate_promo": 34938.87902716048,
+      "direct_mail": 40047.10876404588,
+      "display_retargeting": 57997.94143423569,
+      "email": 20089.91253149763,
+      "online_video": 44778.006265297045,
+      "paid_search": 162628.58162727597,
+      "paid_social": 139752.80035048726
+     },
+     "starts": 8,
+     "starts_converged": 8
+    },
+    "plan_id": "891fb4b7-ded9-4ed1-8799-8267ab62c69a",
+    "served_at": "2026-09-28T00:19:03.701812+00:00",
+    "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here."
+   },
+   "method": "POST",
+   "path": "/v1/plans",
+   "request": {
+    "note": "recorded session for the site's fallback bundle",
+    "total_budget": 500233.23
+   },
+   "status": 201
+  }
+ }
+}

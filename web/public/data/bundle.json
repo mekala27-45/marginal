@@ -1,0 +1,93 @@
+{
+ "brand": "Alderquist",
+ "channels": [
+  {
+   "key": "paid_search",
+   "label": "Paid search"
+  },
+  {
+   "key": "paid_social",
+   "label": "Paid social"
+  },
+  {
+   "key": "online_video",
+   "label": "Online video"
+  },
+  {
+   "key": "display_retargeting",
+   "label": "Display and retargeting"
+  },
+  {
+   "key": "email",
+   "label": "Email"
+  },
+  {
+   "key": "affiliate_promo",
+   "label": "Affiliate and promo codes"
+  },
+  {
+   "key": "direct_mail",
+   "label": "Direct mail"
+  }
+ ],
+ "files": [
+  "returns.parquet",
+  "crosscheck.parquet",
+  "contributions.parquet",
+  "curves.parquet",
+  "current_spend.parquet",
+  "recovery.parquet",
+  "recovery_ranks.parquet",
+  "attribution.parquet",
+  "budget_plan.parquet",
+  "budget_surface.parquet",
+  "budget_comparison.parquet",
+  "budget_regret.parquet",
+  "allowance.parquet",
+  "geo_series.parquet",
+  "geo_placebo.parquet",
+  "geo_power.parquet",
+  "geo_result.parquet",
+  "calibration.parquet",
+  "email_effects.parquet",
+  "email_segments.parquet",
+  "email_srm.parquet",
+  "qini.parquet",
+  "policy_value.parquet",
+  "quadrants.parquet",
+  "targeting_summary.parquet",
+  "clv_deciles.parquet",
+  "clv_distribution.parquet",
+  "clv_segments.parquet",
+  "kpi.parquet",
+  "manifest.json"
+ ],
+ "policy": {
+  "attribution_half_life_days": 7.0,
+  "attribution_position_first": 0.4,
+  "attribution_position_last": 0.4,
+  "bootstrap_block_weeks": 8,
+  "bootstrap_replicates": 200,
+  "budget_ceiling_share": 2.0,
+  "budget_floor_share": 0.25,
+  "budget_max_change_share": 0.3,
+  "clv_discount_rate_annual": 0.1,
+  "clv_horizon_months": 12,
+  "clv_payback_share": 0.7,
+  "contribution_margin": 0.42,
+  "email_cost_per_contact": 0.12,
+  "email_margin_on_spend": 0.3,
+  "interval_level": 0.9,
+  "lift_test_channel": "display_retargeting",
+  "lift_test_length_weeks": 8,
+  "lift_test_pre_period_weeks": 52,
+  "lift_test_spend_change": -1.0,
+  "optimizer_starts": 8,
+  "placebo_permutations": 200,
+  "recovery_seeds_bayes": 3,
+  "recovery_seeds_own": 20,
+  "rolling_origins": 8,
+  "srm_alpha": 0.001
+ },
+ "statement": "Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here."
+}
