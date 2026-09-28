@@ -15,6 +15,7 @@ import json
 import os
 import time
 from collections.abc import Callable
+from pathlib import Path
 
 import numpy as np
 import polars as pl
@@ -178,8 +179,27 @@ def run(paths: Paths, as_of: str, seed: int, *, backends: tuple[str, ...] = ("ow
         w.put("calibrate.weight.reason", test.reason, "text")
         w.put("calibrate.weight.level", POLICY.interval_level, "pct0")
 
-    manifest.save(paths.results / "manifests" / "calibrate.json")
+    target = paths.results / "manifests" / "calibrate.json"
+    _carry_over(manifest, target, backends)
+    manifest.save(target)
     return manifest
+
+
+def _carry_over(manifest: Manifest, target: Path, backends: tuple[str, ...]) -> None:
+    """A run of one backend keeps the other backend's entries from the previous manifest, so
+    ``--backends bayes`` after an ``own`` run leaves both halves on the page."""
+    if not target.exists():
+        return
+    previous = Manifest.load(target)
+    prefixes = [f"calibrate.{b}." for b in ("own", "bayes") if b not in backends]
+    if "own" not in backends:
+        prefixes.append("calibrate.weight.")
+    for key, value in previous.values.items():
+        if any(key.startswith(p) for p in prefixes) and key not in manifest.values:
+            manifest.values[key] = value
+    for key, table in previous.tables.items():
+        if any(key.startswith(p) for p in prefixes) and key not in manifest.tables:
+            manifest.tables[key] = table
 
 
 def _write_summary(manifest: Manifest, backend: str, s: BeforeAfter, condition: str) -> None:

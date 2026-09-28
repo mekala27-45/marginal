@@ -3,6 +3,133 @@
  "figures": {},
  "seed": 12,
  "tables": {
+  "calibrate.bayes.before_after": {
+   "columns": [
+    "",
+    "Before",
+    "After",
+    "Truth (simulated)"
+   ],
+   "formats": [
+    "text",
+    "float2",
+    "float2",
+    "float2"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "Return on ad spend",
+     2.258905239,
+     1.41585242,
+     1.221477616
+    ],
+    [
+     "Interval lower",
+     1.118141554,
+     1.250710377,
+     null
+    ],
+    [
+     "Interval upper",
+     4.558747223,
+     1.587476389,
+     null
+    ],
+    [
+     "Marginal return",
+     1.410887642,
+     1.151515514,
+     0.6901508767
+    ]
+   ]
+  },
+  "calibrate.bayes.lift": {
+   "columns": [
+    "",
+    "Dollars"
+   ],
+   "formats": [
+    "text",
+    "usd0"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "Lift the model implied before",
+     319341.5328
+    ],
+    [
+     "Lift the experiment found",
+     169063.4641
+    ],
+    [
+     "Lift the model implies after",
+     170634.2678
+    ],
+    [
+     "True lift (simulated)",
+     150477.6501
+    ]
+   ]
+  },
+  "calibrate.bayes.recovery": {
+   "columns": [
+    "",
+    "Before",
+    "After"
+   ],
+   "formats": [
+    "text",
+    "pct1",
+    "pct1"
+   ],
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 3,
+    "source": "simulated"
+   },
+   "rows": [
+    [
+     "Median absolute error, all channels",
+     0.177083208,
+     0.1473743304
+    ],
+    [
+     "Median absolute error, tested channel",
+     0.5776459406,
+     0.1473743304
+    ],
+    [
+     "Interval coverage, all channels",
+     1.0,
+     1.0
+    ]
+   ]
+  },
   "calibrate.own.before_after": {
    "columns": [
     "",
@@ -132,6 +259,356 @@
   }
  },
  "values": {
+  "calibrate.bayes.covers_after": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "no"
+  },
+  "calibrate.bayes.covers_before": {
+   "fmt": "text",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": "yes"
+  },
+  "calibrate.bayes.error_after": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.1591308764
+  },
+  "calibrate.bayes.error_before": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.8493218448
+  },
+  "calibrate.bayes.implied_after": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 170634.2678
+  },
+  "calibrate.bayes.implied_before": {
+   "fmt": "usd0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 319341.5328
+  },
+  "calibrate.bayes.marginal_after": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.151515514
+  },
+  "calibrate.bayes.marginal_before": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.410887642
+  },
+  "calibrate.bayes.marginal_true": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 0.6901508767
+  },
+  "calibrate.bayes.recovery.coverage_after": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 3,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "calibrate.bayes.recovery.coverage_before": {
+   "fmt": "pct0",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 3,
+    "source": "simulated"
+   },
+   "value": 1.0
+  },
+  "calibrate.bayes.recovery.error_after": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 3,
+    "source": "simulated"
+   },
+   "value": 0.1473743304
+  },
+  "calibrate.bayes.recovery.error_before": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 3,
+    "source": "simulated"
+   },
+   "value": 0.177083208
+  },
+  "calibrate.bayes.recovery.seeds": {
+   "fmt": "int",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 3,
+    "source": "simulated"
+   },
+   "value": 3
+  },
+  "calibrate.bayes.recovery.tested_bias_after": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 3,
+    "source": "simulated"
+   },
+   "value": 0.1558297247
+  },
+  "calibrate.bayes.recovery.tested_bias_before": {
+   "fmt": "spct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 3,
+    "source": "simulated"
+   },
+   "value": 0.01366072126
+  },
+  "calibrate.bayes.recovery.tested_error_after": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 3,
+    "source": "simulated"
+   },
+   "value": 0.1473743304
+  },
+  "calibrate.bayes.recovery.tested_error_before": {
+   "fmt": "pct1",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "markets with known truth, demonstration condition",
+    "seed": 12,
+    "seeds": 3,
+    "source": "simulated"
+   },
+   "value": 0.5776459406
+  },
+  "calibrate.bayes.roas_after": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.41585242
+  },
+  "calibrate.bayes.roas_after_lower": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.250710377
+  },
+  "calibrate.bayes.roas_after_upper": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.587476389
+  },
+  "calibrate.bayes.roas_before": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 2.258905239
+  },
+  "calibrate.bayes.roas_before_lower": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.118141554
+  },
+  "calibrate.bayes.roas_before_upper": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 4.558747223
+  },
+  "calibrate.bayes.roas_true": {
+   "fmt": "float2",
+   "provenance": {
+    "as_of": "2026-09-27",
+    "condition": "rho 0.6, feedback on",
+    "model": "bayes",
+    "origin": "marginal_calibrate.loop",
+    "population": "demonstration brand",
+    "seed": 12,
+    "seeds": null,
+    "source": "simulated"
+   },
+   "value": 1.221477616
+  },
   "calibrate.channel": {
    "fmt": "text",
    "provenance": {

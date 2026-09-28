@@ -1,0 +1,22 @@
+{
+ "backend": "bayes",
+ "channel": "display_retargeting",
+ "covers_after": false,
+ "covers_before": true,
+ "experiment_lift": 169063.46409394566,
+ "experiment_lower": 151588.44128042148,
+ "experiment_upper": 186538.48690746984,
+ "implied_lift_after": 170634.26784830974,
+ "implied_lift_before": 319341.5328009709,
+ "marginal_after": 1.151515514152117,
+ "marginal_before": 1.4108876421439545,
+ "marginal_true": 0.6901508766945105,
+ "roas_after": 1.4158524200060443,
+ "roas_after_lower": 1.2507103766048429,
+ "roas_after_upper": 1.5874763893611528,
+ "roas_before": 2.2589052389239757,
+ "roas_before_lower": 1.1181415543067956,
+ "roas_before_upper": 4.558747222880275,
+ "roas_true": 1.2214776164087378,
+ "truth_lift": 150477.6501144888
+}
