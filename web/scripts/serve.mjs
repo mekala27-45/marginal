@@ -37,9 +37,15 @@ function send404(res, head) {
 }
 
 createServer((req, res) => {
-  const head = req.method === "HEAD";
-  if (req.method !== "GET" && !head) {
-    res.writeHead(405, { Allow: "GET, HEAD" });
+  // GitHub Pages answers HEAD with a 503, so the tests see the same refusal here and the data
+  // layer has to size a mart from the bundle or from a one byte range, never from HEAD.
+  if (req.method === "HEAD") {
+    res.writeHead(503);
+    return res.end();
+  }
+  const head = false;
+  if (req.method !== "GET") {
+    res.writeHead(405, { Allow: "GET" });
     return res.end();
   }
   const url = new URL(req.url ?? "/", "http://localhost");

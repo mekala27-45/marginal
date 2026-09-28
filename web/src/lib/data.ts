@@ -42,6 +42,19 @@ async function boot(): Promise<AsyncDuckDBConnection> {
   return db.connect();
 }
 
+const BYTES: Record<string, number> = (bundleJson as { bytes?: Record<string, number> }).bytes ?? {};
+
+async function byteLengthOf(name: string, url: string): Promise<number> {
+  const known = BYTES[`${name}.parquet`];
+  if (known) return known;
+  const probe = await fetch(url, { headers: { Range: "bytes=0-0" } });
+  const range = probe.headers.get("Content-Range");
+  const total = range?.split("/")[1];
+  if (probe.status === 206 && total && Number.isFinite(Number(total))) return Number(total);
+  if (probe.status === 200) return (await probe.arrayBuffer()).byteLength;
+  throw new Error(`cannot size ${url}: ${probe.status}`);
+}
+
 /** A mart as an Arrow IPC stream, read over byte ranges. Runs while the engine is still starting. */
 async function decode(name: string): Promise<Uint8Array> {
   const [{ asyncBufferFromUrl, parquetMetadataAsync, parquetReadObjects }, { decompress }, arrow] = await Promise.all([
@@ -49,7 +62,10 @@ async function decode(name: string): Promise<Uint8Array> {
     import("fzstd"),
     import("apache-arrow"),
   ]);
-  const file = await asyncBufferFromUrl({ url: new URL(martPath(name), window.location.href).href });
+  const url = new URL(martPath(name), window.location.href).href;
+  // hyparquet learns a file's length with a HEAD request unless told; GitHub Pages answers HEAD
+  // with a 503, so the length comes from the bundle the pipeline wrote, or from a one byte range.
+  const file = await asyncBufferFromUrl({ url, byteLength: await byteLengthOf(name, url) });
   const metadata = await parquetMetadataAsync(file);
   const rows = await parquetReadObjects({
     file,

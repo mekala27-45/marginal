@@ -159,6 +159,9 @@ def run(paths: Paths) -> list[Path]:
         "channels": [{"key": c, "label": CHANNEL_LABELS[c]} for c in CHANNELS],
         "policy": POLICY.model_dump(),
         "files": [p.name for p in written],
+        # Byte lengths, so the site can read a mart over byte ranges without a HEAD request,
+        # which GitHub Pages refuses.
+        "bytes": {p.name: p.stat().st_size for p in written if p.suffix == ".parquet"},
     }
     (out / "bundle.json").write_text(json.dumps(bundle, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     written.append(out / "bundle.json")
