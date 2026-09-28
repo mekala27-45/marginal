@@ -1,0 +1,565 @@
+{#- The quarterly review memo. Renders to report/quarterly-review.md, and quarterly-review.html.j2
+    includes it for the HTML form. Every figure is a manifest value or table. Sentences that make
+    a claim about direction (an interval misses, a policy lost, a plan cuts) sit inside m.holds,
+    so a rerun that changes the result stops the render instead of leaving the sentence standing. -#}
+{% import '_macros.j2' as m %}
+{% set tested = v('geo.channel') %}
+{% set tested_key = m.key_of(tested) %}
+{% set infeasible = raw('budget.allowance_infeasible') %}
+{% set infeasible_key = m.key_of(infeasible) %}
+{% set interior = [] %}
+{% set binds = [] %}
+{% set cuts = [] %}
+{% for key, name in m.channels %}
+{% if raw('budget.bound.' ~ key) == 'interior' %}{% set _ = interior.append(name) %}{% endif %}
+{% if raw('budget.bound.' ~ key) == 'allowance' %}{% set _ = binds.append(name) %}{% endif %}
+{% if raw('budget.bound.' ~ key) == 'change limit' and raw('budget.change.' ~ key) < 0 %}{% set _ = cuts.append(name) %}{% endif %}
+{% endfor %}
+# Alderquist quarterly marketing review
+
+As of {{ manifest.as_of }}. For the chief marketing officer, from marketing science. The simulated
+weekly panel behind the mix model runs from {{ v('sim.first_week') }} to {{ v('sim.last_week') }}.
+
+Every figure below is a value or a table in `results/manifest.json`, rendered by the claim gate;
+none is typed by hand. Alderquist's market is simulated with known truth, so each mix model figure
+sits beside the answer it was trying to find, and each public dataset is named where it is used.
+
+## The budget numbers
+
+**Reallocating the same budget.** Moving last year's {{ v('budget.total_weekly') }} a week between
+the channels, without adding a dollar, gains {{ v('budget.headline.gain_over_last_year_annual') }} a
+year over last year's mix on the demonstration brand, or {{ v('budget.headline.gain_over_last_year_weekly') }}
+a week, judged on the simulator's true response curves. Across {{ v('budget.regret.calibrated.seeds') }}
+simulated markets the same procedure gained {{ v('budget.regret.calibrated.gain_weekly') }} a week
+({{ v('budget.regret.calibrated.gain_lower') }} to {{ v('budget.regret.calibrated.gain_upper') }}, a
+{{ v('policy.interval_level') }} bootstrap interval over seeds) and beat last year's mix in
+{{ v('budget.regret.calibrated.beats_last_year') }} of them.
+
+**The share of the available gain captured.** On the demonstration brand the calibrated plan
+captures {{ v('budget.headline.share_captured') }} of the gain the truth optimal plan makes, which is
+{{ v('budget.headline.gain_optimal_annual') }} a year; the plan built on the uncalibrated model
+captures {{ v('budget.headline.share_captured_uncalibrated') }}. Across the {{ v('budget.regret.calibrated.seeds') }}
+markets the calibrated plan captured {{ v('budget.regret.calibrated.share_captured') }}
+({{ v('budget.regret.calibrated.share_captured_lower') }} to {{ v('budget.regret.calibrated.share_captured_upper') }})
+and the uncalibrated plan {{ v('budget.regret.uncalibrated.share_captured') }}
+({{ v('budget.regret.uncalibrated.share_captured_lower') }} to {{ v('budget.regret.uncalibrated.share_captured_upper') }}).
+
+{% call m.holds((raw('budget.regret.calibrated.share_captured') - raw('budget.regret.uncalibrated.share_captured'))|abs < 0.01 and raw('calibrate.own.recovery.tested_error_after') < raw('calibrate.own.recovery.tested_error_before'), 'the caveat that the study shares are within a point and calibration helped the tested channel') %}
+The demonstration figures come from one seed and the study is the honest number: across seeds the
+calibrated and uncalibrated plans are within a point of each other, so calibration bought a better
+estimate of the channel it tested, not a better budget on average.
+{% endcall %}
+
+The plan at last year's budget, week by week:
+
+{{ table('budget.allocation') }}
+
+{{ label('budget.allocation') }}
+
+{{ m.join_and(interior)|lower|capitalize }} are the interior channels, and their marginal returns
+are equal at the optimum (a spread of {{ v('budget.marginal_spread') }}), which is the condition the
+optimizer is built to meet. Every other channel sits at a bound: the change limit of
+{{ v('policy.budget_max_change_share') }} of last year's spend, or the acquisition cost allowance
+from the lifetime value model (below).
+{% set alloc = manifest.tables['budget.allocation'] %}
+{% set col_profit = alloc.columns.index('Marginal profit') %}
+{% set col_bound = alloc.columns.index('Bound') %}
+{% set losing = [] %}
+{% for row in alloc.rows if row[col_bound] == 'interior' and row[col_profit] < 0 %}{% set _ = losing.append(row[0]) %}{% endfor %}
+{% if interior and losing|length == interior|length %}
+
+At this total the marginal profit column is negative in the interior channels: the next dollar
+there returns less than the breakeven return of {{ v('policy.contribution_margin_breakeven') }} at a
+{{ v('policy.contribution_margin') }} margin. The plan says where last year's budget does the most;
+it does not say that budget is the right size, and the budget page's slider is where a smaller
+total can be tried against the same curves.
+{% endif %}
+
+Every plan judged on the true curves, and the study across markets:
+
+{{ table('budget.comparison') }}
+
+{{ label('budget.comparison') }}
+
+{{ table('budget.regret') }}
+
+{{ label('budget.regret') }}
+
+## What the lift test said, and how it moved the model
+
+**The design.** The test switched {{ tested|lower }} off in {{ v('geo.treated_geos') }} of the
+{{ v('sim.geos') }} simulated geos for {{ v('geo.window_weeks') }} weeks, weeks {{ v('geo.start_week') }}
+to {{ v('geo.end_week') }} of the panel (a spend change of {{ v('geo.spend_change') }}), with the other
+{{ v('geo.control_geos') }} geos as controls and the {{ v('geo.pre_period_weeks') }} weeks before it as the
+pre period. Geos were assigned by a stratified draw across the size distribution. Power was
+estimated by simulation, {{ v('geo.power_simulations') }} runs for each candidate design; at the true
+effect this design's power is {{ v('geo.power_at_true_effect') }}, and the smaller designs that were
+considered are in `docs/experiments.md`. The design was hashed and registered before any of the
+test's weeks were read: plan hash `{{ v('geo.plan_hash') }}`, registered at {{ v('geo.registered_at') }}.
+It was registered locally in this build, in `results/experiments/registry.json`, because the build
+sandbox could not reach the live API; `docs/serving.md` says what was verified on the live registry
+and what was not. The sample ratio gate {{ v('geo.srm_passed') }} (p = {{ v('geo.srm_p') }}).
+
+**The result against the truth.** Difference in differences puts the revenue the channel caused in
+the treated geos over the window at {{ v('geo.did.estimate') }} ({{ v('geo.did.lower') }} to
+{{ v('geo.did.upper') }}). Synthetic control, fit on the pre period, puts it at {{ v('geo.sc.estimate') }}
+({{ v('geo.sc.lower') }} to {{ v('geo.sc.upper') }}){% if raw('geo.sc.p_value') == 0 %}, and none of its
+{{ v('geo.sc.placebo_permutations') }} placebo assignments produced a gap as large (placebo p value
+{{ v('geo.sc.p_value') }}){% else %}, with a placebo p value of {{ v('geo.sc.p_value') }} from
+{{ v('geo.sc.placebo_permutations') }} permutations{% endif %}. The truth, known only because the market is
+simulated, is {{ v('geo.truth') }}. The difference in differences interval
+{{ 'covers' if raw('geo.did.covers_truth') == 'yes' else 'misses' }} it and the synthetic control's
+{{ 'covers' if raw('geo.sc.covers_truth') == 'yes' else 'misses' }} it.
+{% call m.holds(raw('geo.did.estimate') > raw('geo.truth') and raw('geo.sc.estimate') > raw('geo.truth'), 'that both lift estimates sit above the truth') %}
+Both estimates sit above the truth, by {{ v('geo.did.error') }} and {{ v('geo.sc.error') }}.
+{% endcall %}
+
+{{ table('geo.estimates') }}
+
+{{ label('geo.estimates') }}
+
+**How it moved the model.** The difference in differences result was posted against its plan hash
+({{ v('calibrate.experiment_lift') }}, standard error {{ v('calibrate.experiment_se') }}) and taken into
+both mix models: in own as a pseudo observation weighted by the experiment's precision, in bayes as
+a lift test measurement. On the tested channel, own's return on ad spend went from
+{{ v('calibrate.own.roas_before') }} ({{ v('calibrate.own.roas_before_lower') }} to
+{{ v('calibrate.own.roas_before_upper') }}) to {{ v('calibrate.own.roas_after') }}
+({{ v('calibrate.own.roas_after_lower') }} to {{ v('calibrate.own.roas_after_upper') }}), and bayes's from
+{{ v('calibrate.bayes.roas_before') }} ({{ v('calibrate.bayes.roas_before_lower') }} to
+{{ v('calibrate.bayes.roas_before_upper') }}) to {{ v('calibrate.bayes.roas_after') }}
+({{ v('calibrate.bayes.roas_after_lower') }} to {{ v('calibrate.bayes.roas_after_upper') }}). The true
+return is {{ v('calibrate.own.roas_true') }}.
+{% set own_closer = (raw('calibrate.own.roas_after') - raw('calibrate.own.roas_true'))|abs < (raw('calibrate.own.roas_before') - raw('calibrate.own.roas_true'))|abs %}
+{% set bayes_closer = (raw('calibrate.bayes.roas_after') - raw('calibrate.bayes.roas_true'))|abs < (raw('calibrate.bayes.roas_before') - raw('calibrate.bayes.roas_true'))|abs %}
+{% call m.holds(own_closer and bayes_closer and raw('calibrate.own.covers_before') == 'yes' and raw('calibrate.bayes.covers_before') == 'yes' and raw('calibrate.own.covers_after') == 'no' and raw('calibrate.bayes.covers_after') == 'no' and raw('calibrate.own.roas_after_lower') > raw('calibrate.own.roas_true') and raw('calibrate.bayes.roas_after_lower') > raw('calibrate.bayes.roas_true') and raw('geo.did.estimate') > raw('geo.truth'), 'that calibration moved both estimates toward the truth and narrowed both intervals past it') %}
+Both estimates moved toward the truth, and both intervals narrowed until neither covers it: before
+calibration each interval held the true return, and after it each sits wholly above it. The
+experiment's own estimate sits above the truth, and the calibrated models follow the experiment.
+That is what calibration should do with a test it is told to trust; it is also why one test is not
+enough.
+{% endcall %}
+
+{{ table('calibrate.own.before_after') }}
+
+{{ label('calibrate.own.before_after') }}
+
+{{ table('calibrate.bayes.before_after') }}
+
+{{ label('calibrate.bayes.before_after') }}
+
+The lift each model implies for the test's geos and weeks tells the same story: own implied
+{{ v('calibrate.own.implied_before') }} before and {{ v('calibrate.own.implied_after') }} after, bayes
+{{ v('calibrate.bayes.implied_before') }} and {{ v('calibrate.bayes.implied_after') }}, against the
+experiment's {{ v('calibrate.experiment_lift') }} and a true {{ v('calibrate.truth_lift') }}.
+
+**Across markets.** One market is one draw.
+{% call m.holds(raw('calibrate.own.recovery.tested_error_after') < raw('calibrate.own.recovery.tested_error_before') and raw('calibrate.bayes.recovery.tested_error_after') < raw('calibrate.bayes.recovery.tested_error_before'), 'that calibration cut the tested channel error for both backends') %}
+Across {{ v('calibrate.own.recovery.seeds') }} seeds of the demonstration condition, each with its own
+geo test, calibration cut own's median absolute error on the tested channel from
+{{ v('calibrate.own.recovery.tested_error_before') }} to {{ v('calibrate.own.recovery.tested_error_after') }}
+and across all channels from {{ v('calibrate.own.recovery.error_before') }} to
+{{ v('calibrate.own.recovery.error_after') }}, while interval coverage
+{% if raw('calibrate.own.recovery.coverage_after') == raw('calibrate.own.recovery.coverage_before') %}stayed at {{ v('calibrate.own.recovery.coverage_after') }}{% else %}went from {{ v('calibrate.own.recovery.coverage_before') }} to {{ v('calibrate.own.recovery.coverage_after') }}{% endif %}.
+Bayes, on its {{ v('calibrate.bayes.recovery.seeds') }} seeds, went from
+{{ v('calibrate.bayes.recovery.tested_error_before') }} to {{ v('calibrate.bayes.recovery.tested_error_after') }}
+on the tested channel; with so few seeds that is a direction, not a measurement.
+{% endcall %}
+
+{{ table('calibrate.own.recovery') }}
+
+{{ label('calibrate.own.recovery') }}
+
+{{ table('calibrate.bayes.recovery') }}
+
+{{ label('calibrate.bayes.recovery') }}
+
+{% call m.holds(raw('calibrate.weight.interior') == 'interior', 'that the calibration weight passed its interior test') %}
+**The weight passed its interior test.** Refit with the experiment's weight halved, as stated and
+doubled, the gap between the lift own implies and the lift the experiment found is
+{{ v('calibrate.weight.residual_half') }}, {{ v('calibrate.weight.residual_one') }} and
+{{ v('calibrate.weight.residual_double') }}: {{ v('calibrate.weight.reason') }}. At the stated weight
+the data still has a say; the experiment does not simply overwrite the fit.
+{% endcall %}
+
+## The targeting result
+
+**The email experiment.** Hillstrom's file is the one real randomized test in this build:
+{{ v('data.hillstrom.rows') }} recent buyers of a catalog retailer in 2008, assigned in equal thirds
+to no email ({{ v('email.arm.control') }}), a men's merchandise email ({{ v('email.arm.mens') }}) or a
+women's ({{ v('email.arm.womens') }}). The sample ratio gate {{ v('email.srm_passed') }} (p = {{ v('email.srm_p') }}).
+{% call m.holds(raw('email.mens.conversion.lower') > 0 and raw('email.mens.spend.lower') > 0, "that the men's email raised conversion and spend") %}
+Over the {{ v('email.window_days') }} days after the send, the men's email raised the conversion rate
+from {{ v('email.mens.conversion.control') }} to {{ v('email.mens.conversion.treated') }}, a difference of
+{{ v('email.mens.conversion.effect') }} of customers ({{ v('email.mens.conversion.lower') }} to
+{{ v('email.mens.conversion.upper') }}), and spend per customer from {{ v('email.mens.spend.control') }}
+to {{ v('email.mens.spend.treated') }}, a difference of {{ v('email.mens.spend.effect') }}
+({{ v('email.mens.spend.lower') }} to {{ v('email.mens.spend.upper') }}), with intervals at
+{{ v('email.level') }}. At a {{ v('email.margin_on_spend') }} margin on that spend and
+{{ v('email.cost_per_email') }} per email, each men's email sent earned {{ v('email.mens.profit_per_email') }}
+of incremental profit; the women's email earned {{ v('email.womens.profit_per_email') }}.
+{% endcall %}
+
+{{ table('email.effects') }}
+
+{{ label('email.effects') }} Visit and conversion are rates as fractions of customers; spend is
+dollars per customer.
+
+Split by purchase history, the men's email effect on conversion stays significant in
+{{ v('email.segments.mens.conversion.significant') }} of {{ v('email.segments.mens.conversion.count') }}
+segments once the p values are corrected by {{ v('email.segments.correction') }}, and the effect on
+spend in {{ v('email.segments.mens.spend.significant') }} of the same segments. The conversion family,
+with each p value before and after the correction:
+
+{{ table('email.segments.mens.conversion') }}
+
+{{ label('email.segments.mens.conversion') }}
+
+**Who to email.** Four policies were compared on the same customers: the T learner and the X
+learner, uplift models that rank customers by how much the email changes their chance of buying;
+the sure things rule, which emails the customers most likely to buy and is the rule most retailers
+run; and everyone. The models were fit on {{ v('targeting.split.train') }} of customers; each policy
+chose how many to contact on a {{ v('targeting.split.validation') }} validation split and is reported
+on the {{ v('targeting.split.test') }} test split, which took no part in either. On test, per thousand
+customers on the list, the T learner earned {{ v('targeting.hillstrom.t_learner.policy_value_test') }}
+contacting {{ v('targeting.hillstrom.t_learner.chosen_share') }}, the X learner
+{{ v('targeting.hillstrom.x_learner.policy_value_test') }} at {{ v('targeting.hillstrom.x_learner.chosen_share') }},
+the sure things rule {{ v('targeting.hillstrom.sure_things.policy_value_test') }} at
+{{ v('targeting.hillstrom.sure_things.chosen_share') }}, and emailing everyone
+{{ v('targeting.hillstrom.everyone.policy_value_test') }}.
+{% set hs = 'targeting.hillstrom.' %}
+{% call m.holds(raw(hs ~ 't_learner.policy_value_test') < raw(hs ~ 'sure_things.policy_value_test') and raw(hs ~ 'x_learner.policy_value_test') < raw(hs ~ 'sure_things.policy_value_test') and raw(hs ~ 't_learner.policy_value_test') < raw(hs ~ 'everyone.policy_value_test') and raw(hs ~ 'x_learner.policy_value_test') < raw(hs ~ 'everyone.policy_value_test') and raw(hs ~ 't_learner.qini_lower') < 0 < raw(hs ~ 't_learner.qini_upper') and raw(hs ~ 'x_learner.qini_lower') < 0 < raw(hs ~ 'x_learner.qini_upper') and raw(hs ~ 'sure_things.qini_lower') < 0 < raw(hs ~ 'sure_things.qini_upper'), 'that the learners did not beat the sure things rule on Hillstrom and every Qini interval includes zero') %}
+The learners did not beat the sure things rule, or emailing everyone, on this test, and every Qini
+interval includes zero: {{ v(hs ~ 't_learner.qini') }} ({{ v(hs ~ 't_learner.qini_lower') }} to
+{{ v(hs ~ 't_learner.qini_upper') }}) for the T learner, {{ v(hs ~ 'x_learner.qini') }}
+({{ v(hs ~ 'x_learner.qini_lower') }} to {{ v(hs ~ 'x_learner.qini_upper') }}) for the X learner and
+{{ v(hs ~ 'sure_things.qini') }} ({{ v(hs ~ 'sure_things.qini_lower') }} to {{ v(hs ~ 'sure_things.qini_upper') }})
+for the rule. On this data the build cannot tell the policies apart. Emailing everyone involves no
+ranking at all, yet its value moves from {{ v(hs ~ 'everyone.policy_value_validation') }} on
+validation to {{ v(hs ~ 'everyone.policy_value_test') }} on test: that is the noise a split of
+{{ v(hs ~ 'rows_test') }} customers carries.
+{% endcall %}
+
+{{ table('targeting.hillstrom.policies') }}
+
+{{ label('targeting.hillstrom.policies') }}
+
+{% set ts = 'targeting.sim.' %}
+{% call m.holds(raw(ts ~ 't_learner.qini_lower') > raw(ts ~ 'sure_things.qini_upper') and raw(ts ~ 'x_learner.qini_lower') > raw(ts ~ 'sure_things.qini_upper') and raw(ts ~ 't_learner.qini_lower') > 0 and raw(ts ~ 'x_learner.qini_lower') > 0 and raw(ts ~ 'sure_things.qini_upper') < 0 and raw(ts ~ 't_learner.policy_value_test') > raw(ts ~ 'everyone.policy_value_test') and raw(ts ~ 'x_learner.policy_value_test') > raw(ts ~ 'everyone.policy_value_test') and raw(ts ~ 'sure_things.chosen_share') == 1 and raw(ts ~ 'everyone.chosen_share') == 1, 'that the learners win clearly on the simulator') %}
+**Where the answer is known.** On {{ v('sim.customers') }} simulated customers under a randomized
+email, where each customer's response with and without the email is known, the learners win
+clearly. Their Qini coefficients are {{ v(ts ~ 't_learner.qini') }} ({{ v(ts ~ 't_learner.qini_lower') }}
+to {{ v(ts ~ 't_learner.qini_upper') }}) and {{ v(ts ~ 'x_learner.qini') }} ({{ v(ts ~ 'x_learner.qini_lower') }}
+to {{ v(ts ~ 'x_learner.qini_upper') }}), against {{ v(ts ~ 'sure_things.qini') }}
+({{ v(ts ~ 'sure_things.qini_lower') }} to {{ v(ts ~ 'sure_things.qini_upper') }}) for the sure things
+rule, which ranks worse than random here because the customers most likely to buy would mostly buy
+anyway. On test they earn {{ v(ts ~ 't_learner.policy_value_test') }} and
+{{ v(ts ~ 'x_learner.policy_value_test') }} per thousand customers on the list, against
+{{ v(ts ~ 'everyone.policy_value_test') }} for emailing everyone. The error in predicted uplift (PEHE)
+is {{ v('targeting.sim.pehe.t_learner') }} for the T learner and {{ v('targeting.sim.pehe.x_learner') }}
+for the X learner, against an average true effect of {{ v('sim.customers.ate_true') }}. An oracle that
+emails exactly the persuadables collects {{ v('targeting.sim.oracle_conversions') }} incremental
+conversions on the test split; the T learner leaves {{ v('targeting.sim.regret.t_learner') }} of them on
+the table and the X learner {{ v('targeting.sim.regret.x_learner') }}, while the sure things rule and
+everyone, which both end up emailing the whole list, give up {{ v('targeting.sim.regret.sure_things') }}
+and {{ v('targeting.sim.regret.everyone') }}: the sleeping dogs they wake.
+{% endcall %}
+
+{{ table('targeting.sim.quadrants') }}
+
+{{ label('targeting.sim.quadrants') }}
+
+{% set tc = 'targeting.criteo.' %}
+{% set diffs = manifest.tables['targeting.criteo.qini_differences'] %}
+{% set x_vs_rule = [] %}
+{% set t_vs_rule = [] %}
+{% for row in diffs.rows %}
+{% if row[0] == 'X learner minus Sure things' and row[2] < 0 < row[3] %}{% set _ = x_vs_rule.append(row[0]) %}{% endif %}
+{% if row[0] == 'T learner minus Sure things' and row[3] < 0 %}{% set _ = t_vs_rule.append(row[0]) %}{% endif %}
+{% endfor %}
+{% call m.holds(raw(tc ~ 't_learner.qini_lower') > 0 and raw(tc ~ 'x_learner.qini_lower') > 0 and raw(tc ~ 't_learner.interior') == 'degenerate' and raw(tc ~ 'x_learner.interior') == 'degenerate' and raw(tc ~ 't_learner.chosen_share') == 1 and raw(tc ~ 'x_learner.chosen_share') == 1 and x_vs_rule and t_vs_rule, 'the Criteo reading: learners beat everyone by Qini, choose the whole list, and do not beat the rule') %}
+**At scale.** Criteo's full v2.1 release, all {{ v('data.criteo.rows') }} rows, is ranked on
+{{ v('targeting.criteo.outcome') }}. Both learners beat everyone by Qini,
+{{ v(tc ~ 't_learner.qini') }} ({{ v(tc ~ 't_learner.qini_lower') }} to {{ v(tc ~ 't_learner.qini_upper') }})
+and {{ v(tc ~ 'x_learner.qini') }} ({{ v(tc ~ 'x_learner.qini_lower') }} to {{ v(tc ~ 'x_learner.qini_upper') }}),
+but the release carries no cost per contact and no value per visit, so the policy value keeps
+rising to the end of the list and both learners chose {{ v(tc ~ 't_learner.chosen_share') }} of it:
+a degenerate operating point, the same list as emailing everyone. The paired differences show that
+the X learner and the sure things rule cannot be told apart and that the T learner ranks below the
+rule.
+{% endcall %}
+
+{{ table('targeting.criteo.policies') }}
+
+{{ label('targeting.criteo.policies') }} Values are {{ v('targeting.criteo.value_unit') }}.
+
+{{ table('targeting.criteo.qini_differences') }}
+
+{{ label('targeting.criteo.qini_differences') }}
+
+## Lifetime value and the allowance
+
+BG/NBD (how often a customer buys, and whether they are still a customer) and Gamma-Gamma (how
+much they spend when they buy) were fit on the {{ v('clv.customers') }} Online Retail II customers
+who bought by {{ v('clv.calibration_end') }}, of {{ v('clv.customers_in_file') }} in the file, and
+judged on what those customers did from {{ v('clv.holdout_start') }} to {{ v('clv.holdout_end') }}.
+
+{% call m.holds(raw('clv.holdout.purchases_predicted_over_actual') > 0 and raw('clv.holdout.top_decile_purchases_predicted_over_actual') < raw('clv.holdout.purchases_predicted_over_actual'), 'that BG/NBD over predicts the holdout and the top decile is closer') %}
+**The model over predicts.** It expected {{ v('clv.holdout.predicted_purchases_total') }} purchases in
+the holdout and the customers made {{ v('clv.holdout.actual_purchases_total') }}, a difference of
+{{ v('clv.holdout.purchases_predicted_over_actual') }}; revenue is over by
+{{ v('clv.holdout.revenue_predicted_over_actual') }}. The cause is in the parameters: the fitted chance
+that a customer stops buying after a purchase is {{ v('clv.bgnbd.dropout_after_purchase') }}, close to
+zero, so the model treats nearly every customer who went quiet as still active and keeps predicting
+purchases for them. Among the customers who bought most often in the calibration window, the tenth
+decile, the gap is much smaller: {{ v('clv.holdout.top_decile_purchases_predicted_over_actual') }}.
+{% endcall %}
+
+{{ table('clv.holdout_by_decile') }}
+
+{{ label('clv.holdout_by_decile') }} Deciles are of purchase frequency in the calibration window.
+
+PyMC-Marketing fit the same two models to the same frame, by maximum a posteriori under flat
+priors; the largest relative difference across the seven parameters is
+{{ v('clv.crosscheck.max_relative_difference') }}. The two fits agree, which points the over prediction
+at the model on this data rather than at the repository's code.
+
+{{ table('clv.parameters') }}
+
+{{ label('clv.parameters') }}
+
+Over a {{ v('policy.clv_horizon_months') }} month horizon at {{ v('policy.clv_discount_rate_annual') }} a
+year, lifetime value per customer has a mean of {{ v('clv.clv.mean') }}, a median of
+{{ v('clv.clv.median') }} and a ninetieth percentile of {{ v('clv.clv.p90') }}. The allowance is that
+value times the {{ v('policy.contribution_margin') }} contribution margin times a payback share of
+{{ v('policy.clv_payback_share') }}: {{ v('clv.allowance.overall') }} per acquired customer overall, from
+{{ v('clv.allowance.one_time') }} for one time buyers to {{ v('clv.allowance.frequent') }} for frequent
+ones. A channel's allowance weights the segment allowances by the mix of customers the channel is
+assumed to bring; the mixes are stated in `marginal_clv.value`, not measured, because the retail
+file records no channel.
+
+{{ table('clv.segments') }}
+
+{{ label('clv.segments') }}
+
+{{ table('clv.allowance_by_channel') }}
+
+{{ label('clv.allowance_by_channel') }}
+
+{% call m.holds(raw('budget.allowance_applied') == 'yes' and raw('budget.allowance_infeasible_count') >= 1 and infeasible_key, 'that the allowance holds a channel it cannot pay back at its floor') %}
+**Where it binds.** {% if binds %}In the plan the allowance binds on {{ m.join_and(binds)|lower }},
+and {% else %}In the plan {% endif %}{{ infeasible|lower }} cannot meet its allowance of
+{{ v('clv.allowance.channel.' ~ infeasible_key) }} at any spend the constraints allow: every dollar it
+could be given acquires a customer for more than that. The optimizer holds it at the lowest spend
+the constraints allow, {{ v('budget.change.' ~ infeasible_key) }} from last year, and labels it
+"{{ v('budget.bound.' ~ infeasible_key) }}" instead of failing the plan.
+{% endcall %}
+
+Read the allowance as a demonstration of the mechanism, not a number for Alderquist. The
+transactions are a UK online gift retailer's, largely wholesale customers, from
+{{ v('data.retail.first_date') }} to {{ v('data.retail.last_date') }}, and Alderquist's market is
+simulated. The retailer's amounts are pounds sterling, printed here in the repository's dollar
+format and applied to Alderquist's dollars one for one. And because the purchase model over
+predicts, the allowance leans optimistic: it lets a channel pay more per customer than the holdout
+supports.
+
+## Attribution beside the truth
+
+On {{ v('attribution.paths') }} simulated user paths with {{ v('attribution.conversions') }} conversions,
+{{ v('attribution.incremental_share_of_conversions') }} of them incremental, six credit rules (last
+touch, first touch, linear, position based, time decay and Shapley) are set beside each channel's
+true incremental share and the calibrated own model's share.
+
+{{ table('attribution.comparison') }}
+
+{{ label('attribution.comparison') }}
+
+{{ table('attribution.grades') }}
+
+{{ label('attribution.grades') }}
+
+{% set oc = 'attribution.over_credit.' %}
+{% call m.holds(raw(oc ~ 'every_rule') == 'yes' and raw(oc ~ 'last_touch_share') > raw(oc ~ 'true_share') and (raw(oc ~ 'model_share') - raw(oc ~ 'true_share'))|abs < (raw(oc ~ 'last_touch_share') - raw(oc ~ 'true_share'))|abs, 'that every rule over credits the same channel and the model is closer') %}
+**Every rule over credits {{ v(oc ~ 'channel')|lower }}.** Last touch gives it
+{{ v(oc ~ 'last_touch_share') }} of conversions against a true incremental share of
+{{ v(oc ~ 'true_share') }}: {{ v(oc ~ 'points') }} points too much, {{ v(oc ~ 'ratio') }} times the
+truth. The worst rule, {{ v(oc ~ 'worst_rule')|lower }}, over credits it by {{ v(oc ~ 'worst_points') }}
+points. The channel reaches people who were about to buy anyway, and a rule that shares out the
+touches on converting paths cannot see that. The calibrated model gives it {{ v(oc ~ 'model_share') }},
+much closer. The model is a third answer rather than a second truth, since it measures the weekly
+panel and not the paths, and it has errors of its own: paid search at
+{{ v('attribution.share.model.paid_search') }} against a true {{ v('attribution.share.true.paid_search') }},
+email at {{ v('attribution.share.model.email') }} against {{ v('attribution.share.true.email') }}.
+{% endcall %}
+
+The rules agree with one another far more than with the truth. Last touch ranks the channels with
+a rank correlation of {{ v('attribution.grade.last_touch.rank_agreement') }} against the truth and misses
+each channel's share by {{ v('attribution.grade.last_touch.mean_abs_error_points') }} points on average;
+the grades table shows the other five.
+
+## The mix model itself
+
+Two backends estimate the same model family, geometric carryover and Hill saturation on a weekly
+panel: own, written in the repository and fit by a stated search with block bootstrap intervals,
+and bayes, fit by PyMC-Marketing with posterior intervals. On the demonstration brand, each
+channel's return on ad spend with its {{ v('policy.interval_level') }} interval, beside the truth:
+
+| Channel | own | own interval | bayes | bayes interval | Truth (simulated) |
+|---|---:|---:|---:|---:|---:|
+{% for key, name in m.channels %}
+| {{ name }} | {{ v('mmm.own.roas.' ~ key) }} | {{ v('mmm.own.roas_lower.' ~ key) }} to {{ v('mmm.own.roas_upper.' ~ key) }} | {{ v('mmm.bayes.roas.' ~ key) }} | {{ v('mmm.bayes.roas_lower.' ~ key) }} to {{ v('mmm.bayes.roas_upper.' ~ key) }} | {{ v('sim.truth.roas.' ~ key) }} |
+{% endfor %}
+
+{{ label('mmm.own.returns') }} {{ label('mmm.bayes.returns') }}
+
+{% set disagree = [] %}
+{% set own_miss = [] %}
+{% set bayes_miss = [] %}
+{% for key, name in m.channels %}
+{% if raw('mmm.own.roas_lower.' ~ key) > raw('mmm.bayes.roas_upper.' ~ key) or raw('mmm.bayes.roas_lower.' ~ key) > raw('mmm.own.roas_upper.' ~ key) %}{% set _ = disagree.append(name) %}{% endif %}
+{% if raw('mmm.own.covered.' ~ key) == 'no' %}{% set _ = own_miss.append(name) %}{% endif %}
+{% if raw('mmm.bayes.covered.' ~ key) == 'no' %}{% set _ = bayes_miss.append(name) %}{% endif %}
+{% endfor %}
+{% if disagree %}
+The backends disagree, with intervals that do not overlap, on {{ m.join_and(disagree)|lower }}.
+{% else %}
+By the rule the site uses, the backends disagree on a channel when their intervals do not overlap,
+and on that rule they disagree nowhere.
+{% endif %}
+The overlap hides a real difference in the intervals themselves: own's miss the truth in
+{{ m.join_and(own_miss)|lower if own_miss else 'no channel' }}{% if bayes_miss %}, and bayes's in
+{{ m.join_and(bayes_miss)|lower }}{% else %}, while bayes's cover it in every channel{% endif %}.
+{% set gap = namespace(size=-1, key='', name='') %}
+{% for key, name in m.channels %}
+{% set d = (raw('mmm.own.roas.' ~ key) - raw('mmm.bayes.roas.' ~ key))|abs %}
+{% if d > gap.size %}{% set gap.size = d %}{% set gap.key = key %}{% set gap.name = name %}{% endif %}
+{% endfor %}
+Own covers the truth in {{ v('mmm.own.covered_count') }} of {{ v('policy.channel_count') }} channels here
+and bayes in {{ v('mmm.bayes.covered_count') }}. The point estimates differ most on
+{{ gap.name|lower }}: {{ v('mmm.own.roas.' ~ gap.key) }} for own and {{ v('mmm.bayes.roas.' ~ gap.key) }}
+for bayes, against a true {{ v('sim.truth.roas.' ~ gap.key) }}. Own puts
+{{ v('mmm.own.baseline_share') }} of sales in the baseline and bayes {{ v('mmm.bayes.baseline_share') }},
+against a true {{ v('sim.baseline_share') }}; each leaves {{ v('mmm.own.residual_share') }} and
+{{ v('mmm.bayes.residual_share') }} of sales unexplained.
+
+{% set floor_all = raw('recovery.own.best_condition_error') > raw('recovery.own.error_floor') %}
+{% call m.holds(raw('recovery.bayes.median_abs_error_overall') < raw('recovery.own.median_abs_error_overall') and raw('recovery.bayes.coverage_overall') >= raw('policy.interval_level') and raw('recovery.own.coverage_overall') < raw('policy.interval_level'), 'that bayes recovers returns better than own and only its intervals reach the stated level') %}
+**The recovery study.** Each backend was refit on fresh simulated markets under
+{{ v('recovery.own.conditions') }} conditions (three levels of correlation between the channels'
+spend, each with and without retargeting spend that follows demand) and every fit was graded
+against the truth. Own ran {{ v('recovery.own.seeds_per_condition') }} seeds per condition, bayes
+{{ v('recovery.bayes.seeds_per_condition') }}. Own's median absolute error in return across channels
+runs from {{ v('recovery.own.best_condition_error') }} ({{ v('recovery.own.best_condition') }}) to
+{{ v('recovery.own.worst_condition_error') }} ({{ v('recovery.own.worst_condition') }}){% if floor_all %},
+over the {{ v('recovery.own.error_floor') }} floor in every condition{% endif %}, and its intervals hold
+the truth {{ v('recovery.own.coverage_overall') }} of the time against a stated
+{{ v('policy.interval_level') }}. Bayes runs from {{ v('recovery.bayes.best_condition_error') }}
+({{ v('recovery.bayes.best_condition') }}) to {{ v('recovery.bayes.worst_condition_error') }}
+({{ v('recovery.bayes.worst_condition') }}), and it is over the floor under these conditions:
+{{ v('recovery.bayes.conditions_over_floor')|replace(', rho', '; rho') }}. Its intervals hold the truth
+{{ v('recovery.bayes.coverage_overall') }} of the time. Bayes is the more accurate backend on this study
+and the only one whose intervals reach the stated level; its figures rest on
+{{ v('recovery.bayes.seeds_per_condition') }} seeds per condition, so its intervals over seeds are wide.
+Both tables, every condition and channel, are in `docs/evaluation.md`.
+{% endcall %}
+
+{% call m.holds(raw('mmm.bayes.divergences') == 0 and raw('mmm.bayes.max_rhat') < 1.01, 'that the demonstration bayes fit is clean') %}
+**Bayes diagnostics.** The demonstration fit ran {{ v('mmm.bayes.chains') }} chains of
+{{ v('mmm.bayes.draws') }} draws after {{ v('mmm.bayes.tune') }} tuning steps, in
+{{ v('mmm.bayes.fit_seconds') }} seconds, with {{ v('mmm.bayes.divergences') }} divergences and a largest
+R hat of {{ v('mmm.bayes.max_rhat') }}, just under the level PyMC warns at. That is a clean fit on fewer
+chains than PyMC recommends for R hat. The recovery fits were less clean: most reported a few
+divergences and an R hat above that level, though every one stayed under the ceilings the backend
+enforces and is marked ok in `results/recovery/bayes_diagnostics.json`.
+{% endcall %}
+
+## Limitations
+
+**The market is simulated.** Every mix model, budget and attribution figure describes the
+simulator, which was written with the effects it asks the models to find: geometric carryover,
+Hill saturation and retargeting spend that follows demand. A real market can break those
+assumptions in ways the recovery study cannot show. None of these returns applies to a real brand
+until the pipeline has run on that brand's weekly panel.
+
+**Bayes rests on {{ v('recovery.bayes.seeds_per_condition') }} seeds per condition.** Each bayes fit
+samples for minutes ({{ v('mmm.bayes.fit_seconds') }} seconds on the demonstration brand), so its
+recovery study ran that many seeds against own's {{ v('recovery.own.seeds_per_condition') }}, and its
+calibration study {{ v('calibrate.bayes.recovery.seeds') }}. Those figures are indicative: the
+intervals over seeds are wide, and the order of the conditions could change with more.
+
+**One experiment.** A single geo test on a single channel calibrates both models. It measured
+{{ tested|lower }} at {{ v('geo.did.estimate') }} against a true {{ v('geo.truth') }}, off by
+{{ v('geo.did.error') }}, and the calibrated models inherited that error. A second test on another
+channel, or a repeat of this one, is what would show whether calibration pays on average; for the
+budget, the regret study says it did not.
+
+**Hillstrom is catalog retail in 2008.** The email experiment is a real randomized test of
+{{ v('data.hillstrom.rows') }} recent buyers of a catalog retailer over {{ v('email.window_days') }} days
+in 2008. It shows the analysis and the targeting protocol working on data the build did not write;
+it says nothing about Alderquist's customers or about email as it is sent today.
+
+**The purchase history is a UK gift wholesaler's.** Lifetime value is fit on a UK online gift
+retailer whose customers are largely wholesale buyers, from {{ v('data.retail.first_date') }} to
+{{ v('data.retail.last_date') }}, in pounds sterling. Their purchase rhythm and basket sizes are not
+those of a direct to consumer home goods brand, and the model over predicts their holdout purchases
+by {{ v('clv.holdout.purchases_predicted_over_actual') }}.
+
+**Criteo has no cost.** Criteo publishes no cost per impression and no value per visit, so its policy
+value counts incremental visits and a policy that ranks well still chooses the whole list. It tests
+the ranking at scale, not the operating point.
+
+**The allowance is a mechanism.** The allowance is lifetime value at margin times a payback share,
+weighted by channel mixes that are stated, not measured. It shows how an acquisition cost limit
+enters the plan and where it binds; the number itself is the retailer's, leans optimistic because
+the purchase model over predicts, and moves one for one with the stated mixes and payback share.
+
+**Own's intervals are too narrow.** Own's bootstrap resamples weeks with carryover and saturation
+held at their searched values, so its intervals leave out the uncertainty of the search itself. They
+hold the truth {{ v('recovery.own.coverage_overall') }} of the time in the recovery study against a
+stated {{ v('policy.interval_level') }}. Read them as a floor on the uncertainty; bayes's are the ones to
+quote.
+
+**The API serves the own backend only.** The API serves own's curves: the calibrated export once it
+is redeployed, and, when a separate client last checked the live instance, the uncalibrated one.
+Bayes is not served, the uplift learners are not served, and lifetime value reaches the API only as
+the allowance file. A plan saved through the API is an own plan.
+
+## What the CMO would push back on
+
+**"The market is simulated."** It is, on purpose: a simulated market is the only place a mix model
+can be graded against the answer. The build did that grading, {{ v('recovery.own.fits') }} own fits and
+{{ v('recovery.bayes.fits') }} bayes fits across {{ v('recovery.own.conditions') }} conditions, and
+published where each backend falls short. It did not run on a real brand's panel, and until it does,
+no return in this memo applies to one.
+
+**"The email test is from a catalog retailer in 2008."** It is, and it is used only for what it can
+support: a real randomized test on which to show the sample ratio gate, a segment analysis with a
+multiple testing correction and the targeting protocol. The build does not carry its effect sizes
+over to Alderquist, and on it the uplift learners did not beat the simple rule; the simulator, where
+the effects are known, is where the learners were shown to work. An Alderquist holdout is the next
+step, and the protocol is ready for it.
+
+{% call m.holds(raw('attribution.over_credit.every_rule') == 'yes' and raw('geo.channel') == raw('attribution.over_credit.channel'), 'that the lift test measured the channel every rule over credits') %}
+**"The agency's attribution report says otherwise."** It probably does, and on these paths every
+rule does too: each gives {{ v('attribution.over_credit.channel')|lower }} about
+{{ v('attribution.over_credit.last_touch_share') }} of conversions against a true incremental share of
+{{ v('attribution.over_credit.true_share') }}. The build graded the rules against the truth on
+simulated paths and ran a geo test on that channel, which measured it directly. It has not seen the
+agency's report or any real path data; the answer to the agency is a holdout on the channel, and
+this build shows how to design, register and read one.
+{% endcall %}
+
+{% call m.holds(tested in cuts and raw('calibrate.own.roas_after') < raw('policy.contribution_margin_breakeven') and raw('calibrate.own.roas_true') < raw('calibrate.own.roas_after'), 'that the lift tested channel is cut and stays below breakeven after calibration') %}
+**"The model says cut the channel the CFO likes."** The plan cuts {{ m.join_and(cuts)|lower }} as far as
+the change limit allows{% if infeasible %} and holds {{ infeasible|lower }} at its floor{% endif %}.
+{{ tested }} is the one channel the build measured directly: after calibration its return is
+{{ v('calibrate.own.roas_after') }} against a breakeven of {{ v('policy.contribution_margin_breakeven') }}
+at the {{ v('policy.contribution_margin') }} margin, and the truth is lower still at
+{{ v('calibrate.own.roas_true') }}, so that cut survives taking the experiment at its word. The other
+cuts rest on the model alone{% if infeasible %}, and the {{ infeasible|lower }} cut rests on the
+allowance, the weakest number in this memo{% endif %}. The build did not test those channels. A
+holdout on whichever one the CFO would defend is the cheapest way to settle it, and no plan here
+moves a channel by more than {{ v('policy.budget_max_change_share') }} of last year's spend, so a wrong
+cut is bounded.
+{% endcall %}
+
+{{ statement() }}

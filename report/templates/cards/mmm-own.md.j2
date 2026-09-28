@@ -1,0 +1,174 @@
+{#- Model card: the own mix model backend. -#}
+{% import '_macros.j2' as m %}
+{% set card = 'mmm-own' %}
+{% set title = "own, the repository's marketing mix model" %}
+{% set floor_all = raw('recovery.own.best_condition_error') > raw('recovery.own.error_floor') %}
+{% set conditions = ['rho_02_feedback_off', 'rho_02_feedback_on', 'rho_06_feedback_off', 'rho_06_feedback_on', 'rho_09_feedback_off', 'rho_09_feedback_on'] %}
+{% set rank = namespace(lowest_two_at_high_rho=true) %}
+{% for c in conditions if not c.startswith('rho_09') %}
+{% if raw('recovery.own.' ~ c ~ '.rank_agreement') <= [raw('recovery.own.rho_09_feedback_on.rank_agreement'), raw('recovery.own.rho_09_feedback_off.rank_agreement')]|max %}{% set rank.lowest_two_at_high_rho = false %}{% endif %}
+{% endfor %}
+{% set intended %}
+The own backend estimates what each of Alderquist's {{ v('policy.channel_count') }} paid channels
+returns per dollar, how long its effect lasts and where it saturates, from a weekly panel of spend
+and sales, so that the budget optimizer can move money until the next dollar earns the same in
+every channel; it is the backend the quarterly review's plan is built on and the one the API
+serves. It is meant for reallocating a stated budget across these channels within the stated
+constraints. It is not meant for forecasting sales, for judging a single campaign or creative, for
+a channel it was not fit on, for a budget far outside the spend it has seen (its curves are
+extrapolations there), or for any real brand before it has been fit and graded on that brand's
+own panel.
+{% endset %}
+{% set data %}
+The demonstration brand's national weekly panel: {{ v('sim.weeks') }} weeks from
+{{ v('sim.first_week') }} to {{ v('sim.last_week') }}, summed over {{ v('sim.geos') }} simulated geos, with
+spend in each channel, sales, a price index, promotions and holidays. Spend averages
+{{ v('sim.spend_weekly_mean') }} a week and sales {{ v('sim.sales_weekly_mean') }}. The market is
+simulated under the demonstration condition, {{ v('sim.condition') }}: the channels' weekly spend is
+correlated (a target of {{ v('sim.spend_correlation_target') }}, {{ v('sim.spend_correlation_achieved') }}
+achieved) and retargeting spend follows last week's demand. The truth is known:
+{{ v('sim.incremental_share') }} of sales are caused by paid media and {{ v('sim.baseline_share') }} are
+baseline. The true channel parameters the model is trying to recover:
+
+{{ table('sim.truth_channels') }}
+
+{{ label('sim.truth_channels') }}
+{% endset %}
+{% set fit %}
+Sales in a week are organic demand, multiplicative in trend, price, promotion, holidays and
+seasonality, plus each channel's adstocked and saturated spend times a non negative ceiling
+(`marginal_mmm.own`). Carryover is geometric; saturation is a Hill curve with a half saturation
+point and a slope. The transforms are searched in stated steps: a grid over carryover, half
+saturation and slope, one channel at a time ({{ v('mmm.own.grid_evaluations') }} evaluations); a ridge
+penalty chosen on forecast error at {{ v('policy.rolling_origins') }} rolling origins held out in time;
+then Nelder-Mead from the grid optimum, channel by channel and then jointly
+({{ v('mmm.own.nelder_mead_evaluations') }} evaluations). The Nelder-Mead step ends at its evaluation cap
+and does not report convergence, on this fit and on every recovery fit
+(`results/mmm/own_diagnostics.json`, `results/recovery/own_diagnostics.json`). Intervals come from a
+moving block bootstrap over weeks, {{ v('mmm.own.bootstrap_replicates') }} replicates of
+{{ v('policy.bootstrap_block_weeks') }} week blocks at the {{ v('policy.interval_level') }} level, with the
+transforms held at their searched values. The fit took {{ v('mmm.own.fit_seconds') }} seconds; its spec
+hash is `{{ v('mmm.own.spec_hash') }}`.
+
+Calibration adds the posted lift result as a pseudo observation: the lift the model implies for the
+test's geos and weeks is pulled toward the experiment's estimate, with a weight set by the
+experiment's precision against a stated residual scale, and the search runs again with that row in
+place. The calibrated export, `{{ v('budget.model_version') }}`, is the one the plan and the API use.
+{% endset %}
+{% set metrics %}
+Return on ad spend on the demonstration brand, with the marginal return at current spend and the
+half life of carryover, each beside the truth:
+
+{{ table('mmm.own.returns') }}
+
+{{ label('mmm.own.returns') }}
+
+The intervals cover the truth in {{ v('mmm.own.covered_count') }} of {{ v('policy.channel_count') }}
+channels. The model puts {{ v('mmm.own.baseline_share') }} of sales in the baseline against a true
+{{ v('sim.baseline_share') }}, leaves {{ v('mmm.own.residual_share') }} of sales unexplained, and has an
+unexplained variance share of {{ v('mmm.own.unexplained_variance') }}.
+
+**Recovery.** Refit on markets with known truth, {{ v('recovery.own.seeds_per_condition') }} seeds in
+each of {{ v('recovery.own.conditions') }} conditions ({{ v('recovery.own.fits_that_ran') }} of
+{{ v('recovery.own.fits') }} fits ran), the median absolute error in return across channels is
+{{ v('recovery.own.median_abs_error_overall') }} overall, from {{ v('recovery.own.best_condition_error') }}
+({{ v('recovery.own.best_condition') }}) to {{ v('recovery.own.worst_condition_error') }} in the worst
+condition ({{ v('recovery.own.worst_condition') }}){% if floor_all %}, over the stated
+{{ v('recovery.own.error_floor') }} floor in every condition{% endif %}. Intervals hold the truth
+{{ v('recovery.own.coverage_overall') }} of the time against a stated {{ v('policy.interval_level') }}.
+{% if rank.lowest_two_at_high_rho %}
+Rank agreement with the true order of the channels is lowest where the channels' spend moves most
+closely together: {{ v('recovery.own.rho_09_feedback_on.rank_agreement') }}
+({{ v('recovery.own.rho_09_feedback_on.rank_agreement_lower') }} to
+{{ v('recovery.own.rho_09_feedback_on.rank_agreement_upper') }}) with feedback on and
+{{ v('recovery.own.rho_09_feedback_off.rank_agreement') }}
+({{ v('recovery.own.rho_09_feedback_off.rank_agreement_lower') }} to
+{{ v('recovery.own.rho_09_feedback_off.rank_agreement_upper') }}) with it off.
+{% endif %}
+Every channel and condition, with intervals over seeds:
+
+{{ table('recovery.own.summary') }}
+
+{{ label('recovery.own.summary') }}
+
+**Calibration.** The lift test on {{ v('calibrate.channel')|lower }} moved that channel's return from
+{{ v('calibrate.own.roas_before') }} to {{ v('calibrate.own.roas_after') }} against a true
+{{ v('calibrate.own.roas_true') }}; the interval {{ 'covered' if raw('calibrate.own.covers_before') == 'yes' else 'missed' }}
+the truth before and {{ 'covers' if raw('calibrate.own.covers_after') == 'yes' else 'misses' }} it after,
+because the experiment's estimate sits {{ 'above' if raw('geo.did.estimate') > raw('geo.truth') else 'below' }}
+the truth and the calibrated fit follows it. Across {{ v('calibrate.own.recovery.seeds') }} seeds, each
+with its own test, the error on the tested channel went from
+{{ v('calibrate.own.recovery.tested_error_before') }} to {{ v('calibrate.own.recovery.tested_error_after') }}.
+
+{{ table('calibrate.own.before_after') }}
+
+{{ label('calibrate.own.before_after') }}
+
+{{ table('calibrate.own.recovery') }}
+
+{{ label('calibrate.own.recovery') }}
+{% endset %}
+{% set contract %}
+{% call m.line('trained', 'met') %}
+Fit in the pipeline (`make recovery`) on the {{ v('sim.weeks') }} weeks of the demonstration panel, with the transform search scored on {{ v('policy.rolling_origins') }} rolling origins held out in time, and its plan judged on the true curves against last year's mix and an equal split (the `budget.comparison` table in the memo).
+{% endcall %}
+{% call m.line('timed', 'met') %}
+The panel runs from {{ v('sim.first_week') }} to {{ v('sim.last_week') }} and the manifest is as of {{ manifest.as_of }}; the fit sees no week after the panel's last, and the lift test it is calibrated on ran inside the panel, weeks {{ v('geo.start_week') }} to {{ v('geo.end_week') }}.
+{% endcall %}
+{% call m.line('calibrated', 'partly') %}
+Its {{ v('policy.interval_level') }} bootstrap intervals are checked against the truth and fall short: they cover it in {{ v('mmm.own.covered_count') }} of {{ v('policy.channel_count') }} channels here and {{ v('recovery.own.coverage_overall') }} of the time across the recovery study.
+{% endcall %}
+{% call m.line('useful', 'met') %}
+It sets the weekly plan: at the {{ v('policy.contribution_margin') }} contribution margin its calibrated curves move last year's {{ v('budget.total_weekly') }} a week between channels for a true gain of {{ v('budget.headline.gain_over_last_year_weekly') }} a week on the demonstration brand.
+{% endcall %}
+{% call m.line('fair', 'not applicable') %}
+Not applicable to people, because the model sees weekly national spend and sales and no customer; the parties a plan affects are the channels and the teams behind them, and the change limit of {{ v('policy.budget_max_change_share') }} bounds how far one plan moves any of them.
+{% endcall %}
+{% call m.line('gated', 'partly') %}
+Tests check that every step of the search and the bootstrap ran and that a fit is reproducible from its seed, and the recovery stage counts the fits that ran ({{ v('recovery.own.fits_that_ran') }} of {{ v('recovery.own.fits') }}); no diagnostic bound fails an own fit.
+{% endcall %}
+{% call m.line('served', 'met') %}
+The API loads the calibrated export ({{ v('budget.model_version') }}) when `results/calibrate/own_calibrated_model.json` exists and the uncalibrated one otherwise, answers `/v1/optimize` and `/v1/plans` with it and names it in `/v1/health` and `/v1/models`; when a separate client last checked the live instance it named the uncalibrated export, so the live URL serves the calibrated curves only after the redeploy in `docs/runbook.md`.
+{% endcall %}
+{% call m.line('integrated', 'met') %}
+The budget stage builds the plan from its curves, the attribution stage reads its channel shares, and the site's Mix and Budget pages draw its returns, curves and plan from the marts.
+{% endcall %}
+{% call m.line('monitored', 'not built') %}
+There is no scheduled refit or drift check, and the weekly refresh is a stretch goal; what exists is the recovery study, rerun with the pipeline, and its log in `logs/recovery_own.log`.
+{% endcall %}
+{% call m.line('documented', 'met') %}
+This card, `docs/models.md` and `docs/evaluation.md`, all rendered from the manifest by the claim gate.
+{% endcall %}
+{% call m.line('bounded', 'met') %}
+The statement closes this card: the brand is fictional and the market simulated, so every return here describes the simulator.
+{% endcall %}
+{% call m.line('validated', 'met') %}
+Graded against the simulator's known truth, never against itself: the truth sits beside every estimate on the demonstration brand, and the recovery study grades {{ v('recovery.own.fits') }} fits across {{ v('recovery.own.conditions') }} conditions.
+{% endcall %}
+{% call m.line('explainable at the decision', 'met') %}
+A reader of the plan sees each channel's return with its interval and the truth, the response curves on the Mix page, and in the allocation table the marginal return, the marginal profit and the bound each channel sits at.
+{% endcall %}
+{% endset %}
+{% set limitations %}
+The intervals are too narrow. The bootstrap holds carryover and saturation at their searched
+values, so the uncertainty of the search itself is left out, and coverage in the recovery study is
+{{ v('recovery.own.coverage_overall') }} against a stated {{ v('policy.interval_level') }}. Quote bayes's
+intervals, or treat these as a floor, before reading a channel's interval as the range of its
+return.
+
+The error in return is {{ 'over the stated floor in every condition of the recovery study' if floor_all else 'over the stated floor in some conditions of the recovery study' }},
+and worst in {{ v('recovery.own.worst_condition') }}{% if raw('recovery.own.worst_condition').startswith('rho 0.9') %},
+where the channels' spend moves most closely together: a brand that plans every channel on the
+same calendar gives this model the least to learn from{% endif %}.
+
+The Nelder-Mead step stops at its evaluation cap rather than at a convergence test, so a longer
+search could move the transforms.
+
+The simulator was written with the model family this backend fits, so the recovery study measures
+estimation error, not the error of assuming the wrong family.
+
+Calibration pulls the tested channel toward one experiment, and that experiment sits
+{{ 'above' if raw('geo.did.estimate') > raw('geo.truth') else 'below' }} the truth; with one test the
+model cannot tell the experiment's error from its own.
+{% endset %}
+{% include 'cards/_card.md.j2' %}

@@ -1,0 +1,30 @@
+{#- Model card: the X learner. The body is shared with the T learner in cards/_uplift.md.j2. -#}
+{% import '_macros.j2' as m %}
+{% set card = 'uplift-x-learner' %}
+{% set learner = 'x_learner' %}
+{% set learner_name = 'X learner' %}
+{% set reads = namespace(ahead_of_t=false, level_with_rule=false) %}
+{% for row in manifest.tables['targeting.criteo.qini_differences'].rows %}
+{% if row[0] == 'T learner minus X learner' and row[3] < 0 %}{% set reads.ahead_of_t = true %}{% endif %}
+{% if row[0] == 'X learner minus Sure things' and row[2] < 0 < row[3] %}{% set reads.level_with_rule = true %}{% endif %}
+{% endfor %}
+{% set method %}
+The X learner is the two stage learner of Kunzel, Sekhon, Bickel and Yu
+(`marginal_targeting.learners.XLearner`). Stage one fits an outcome model per arm, as the T learner
+does. Each customer then gets an imputed effect from the other arm's model: a contacted customer's
+outcome less what the no contact model predicts for them, and the contact model's prediction for an
+uncontacted customer less that customer's outcome. Stage two regresses the imputed effects on the
+features, once per arm, and blends the two effect models with the propensity score as the weight;
+because assignment is randomized, the propensity is the contacted share of the training split.
+{% endset %}
+{% set weakness %}
+{% call m.holds(reads.ahead_of_t and reads.level_with_rule and raw('targeting.sim.pehe.x_learner') < raw('targeting.sim.pehe.t_learner'), 'that the X learner leads the T learner and ties the rule on Criteo') %}
+Its score rests on imputed effects, which carry the errors of the stage one outcome models into
+stage two; where those models are poor, as on Hillstrom's few features, the imputations are poor
+too. It is the better of the two learners where there is signal: on the simulator its PEHE is
+{{ v('targeting.sim.pehe.x_learner') }} against the T learner's {{ v('targeting.sim.pehe.t_learner') }},
+and on Criteo the paired difference puts it ahead of the T learner, while it cannot be told apart
+from the sure things rule.
+{% endcall %}
+{% endset %}
+{% include 'cards/_uplift.md.j2' %}

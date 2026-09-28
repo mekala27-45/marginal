@@ -1,0 +1,107 @@
+{#- The API, the site, how each was checked, and what is not built. -#}
+# Serving: the API and the site
+
+Rendered from `results/manifest.json` by the claim gate; do not edit by hand.
+
+## The API
+
+A FastAPI application (`packages/api/src/marginal_api/app.py`) that keeps the plan and experiment
+registry in Postgres, runs the budget optimizer live on the served model, and lists the models on
+disk. It is live at https://marginal-alderquist-api.fly.dev.
+
+| Route | Token | What it does |
+|---|---|---|
+| `GET /v1/health` | no | Status, whether the database answers, the environment, and the model version it serves. |
+| `GET /v1/models` | no | Every model export on disk (version, backend, spec hash, whether calibrated, data source, file) and which one is served. |
+| `POST /v1/optimize` | no | A plan for a stated total budget and constraints, with the allowance unless turned off; not stored. |
+| `POST /v1/plans` | yes | The same plan, stored with its model version, spec hash, inputs hash and expected profit with its interval. |
+| `GET /v1/plans`, `GET /v1/plans/{plan_id}` | no | Stored plans, newest first, or one plan. |
+| `POST /v1/experiments` | yes | Registers a design under its plan hash; the same design twice returns the same id. |
+| `POST /v1/experiments/{experiment_id}/result` | yes | Posts a result against the registered plan hash; refused without a registered experiment or when the hash does not match. |
+| `GET /v1/experiments`, `GET /v1/experiments/{experiment_id}` | no | Registered experiments with their results. |
+| `GET /v1/audit` | no | The audit log, newest first. |
+| `GET /v1/ping-db` | no | A bare database round trip. |
+
+**The envelope.** Every response body, errors included, carries the statement and `served_at`, the
+time the response was built. A test walks the route table, not a hand kept list, and fails if any
+route's body lacks the statement (`tests/api/test_registry.py`).
+
+**Token gated writes.** The three routes that store something need the write token as a bearer
+token; without it the request is refused as unauthorized and nothing is written. The token is one
+shared secret, set on Fly and never committed. `/v1/optimize` stores nothing and needs no token.
+
+**The audit row before the response.** Every write adds its row, then its audit row, then commits,
+and only then builds the response, so a response can never exist without its audit record. Tests
+read the rows back through a second database connection, never the application's own session, and
+check that the audit row's time precedes the response's `served_at`.
+
+**The out of process check.** `scripts/check_persistence.py --start-server` runs the migrations on
+the database named by `MARGINAL_TEST_DATABASE_URL` (or `DATABASE_URL`), starts the API in a child
+process against it, registers an experiment, posts a result and saves a plan over HTTP, then reads
+all three back through a psycopg connection it opens itself. CI runs it on every push to main and
+every pull request, against a fresh Postgres service. With `--base-url` the same check drives a live
+server and reads back through the API's own GET routes.
+
+**Fly and Neon.** `Dockerfile.api` builds the image on Python 3.12 with the API package only (the
+bayes extra is left out, so the image stays small) and copies the fitted exports it serves:
+`results/mmm`, `results/calibrate`, `results/clv` and the experiment registry. On start it runs the
+migrations and serves on the port Fly routes to. `fly.toml` runs one shared CPU machine in one
+region that stops when idle and starts on the first request, with a health check on `/v1/health`.
+The database is Postgres on Neon; its connection string and the write token are Fly secrets, set by
+`deploy/deploy.sh` or `deploy/deploy.ps1` and never seen by the deploy workflow.
+
+**What is served.** The API loads `results/calibrate/own_calibrated_model.json` when the calibration
+stage has run, and `results/mmm/own_model.json` otherwise, and names the one it loaded in
+`/v1/health`. The calibrated export in this build is `{{ v('budget.model_version') }}`.
+
+## The separate client verification
+
+`results/deploy/verification.json` records a check of the live URL from a Windows machine running
+PowerShell, outside the build sandbox and outside Fly, made with `deploy/verify.ps1`. It found the
+health route ok and the database ok; registered a verification experiment and posted a result
+against its plan hash; saved a plan; read the experiment, its result and the plan back through the
+API; found the registration's audit row timed before the response's `served_at`; found the
+statement in the body; and passed.
+
+Two things it did not show. The model version `/v1/health` named was the uncalibrated own export:
+the image the live instance runs was built without the calibrated export, which the API would
+otherwise have loaded, so the calibrated curves reach the live URL only after the redeploy in
+`docs/runbook.md`. And the experiment it registered
+was a verification experiment with its own plan hash, not the geo lift design: in this build the
+design (plan hash `{{ v('geo.plan_hash') }}`) and its result were registered locally, because the build
+sandbox could not reach the API, and no record in the repository shows them on the live registry.
+
+## The site
+
+A Next.js 15 static export served by GitHub Pages under `/marginal`, with six pages: Overview, Mix,
+Budget, Experiments, Targeting and Report. Everything a page shows comes from `web/public/data`,
+written by `make marts` and committed; the site never recomputes it.
+
+- **The marts.** Every chart is a query over a parquet file in `web/public/data`, run in the browser
+  by DuckDB-WASM in a worker that starts after the first paint. Printed figures come from the
+  manifest copied beside the marts, through a formatter that mirrors `marginal_core.formats`.
+- **The live API.** The Budget and Experiments pages call the API named at build time by the
+  `MARGINAL_API_URL` repository variable, and the Fly address when it is empty. The first call
+  probes `/v1/health` and gives up after a few seconds.
+- **The recorded session.** If the API is asleep or unreachable, those pages answer for the rest of
+  the visit from `web/public/data/recorded_session.json`, a session recorded by
+  `scripts/record_session.py` against the API running locally on a Postgres database, not against
+  the live URL. The budget slider then reads the precomputed surface, labelled "precomputed", and a
+  saved plan shows the recorded save, labelled "recorded". A chip beside each affected control says
+  which source it is using.
+- **Saving a plan** from the site needs the write token, typed beside the button and held in memory
+  only.
+
+## What is not built
+
+- **Authentication beyond the token.** There are no users, roles or per client keys; one shared
+  token gates every write, and reads are open.
+- **More than one region.** One machine in one region, stopped when idle, so the first request after
+  a quiet spell waits for it to start; the site falls back to the recording in the meantime.
+- **Rate limiting.** None, on any route.
+- **Automatic redeploys by default.** The deploy workflow redeploys on a push that touches the API,
+  the model exports or the Fly configuration only when the `FLY_DEPLOY_ENABLED` repository variable
+  is set to true.
+- **A scheduled refresh.** Nothing refits or re-records on a schedule.
+
+{{ statement() }}

@@ -1,0 +1,139 @@
+{#- The budget optimizer: objective, constraints, solver, checks, the surface, the regret study and
+    how a plan is stored. -#}
+{% import '_macros.j2' as m %}
+{% set infeasible = raw('budget.allowance_infeasible') %}
+{% set infeasible_key = m.key_of(infeasible) %}
+{% set change_binds_first = (1 - raw('policy.budget_max_change_share')) > raw('policy.budget_floor_share') and (1 + raw('policy.budget_max_change_share')) < raw('policy.budget_ceiling_share') %}
+# The budget optimizer
+
+Rendered from `results/manifest.json` by the claim gate; do not edit by hand.
+
+The optimizer answers one question: given a weekly budget, how should it be split across the
+{{ v('policy.channel_count') }} channels so that the next dollar earns the same everywhere it is free to
+go. It reads fitted response curves, never raw data, and it runs in the pipeline (`make budget`)
+and live behind the API (`/v1/optimize`, `/v1/plans`) on the same code (`marginal_budget`).
+
+## The objective
+
+Maximize expected incremental profit: the contribution margin of {{ v('policy.contribution_margin') }}
+times the incremental revenue the curves predict at each channel's spend, less the spend, summed over
+channels, at a stated total. Average return plays no part. A channel can have a high average return
+and a low marginal one at the same time, and it is the margin the next dollar sees.
+
+## The constraints
+
+- **Floors and ceilings.** No channel below {{ v('policy.budget_floor_share') }} or above
+  {{ v('policy.budget_ceiling_share') }} of last year's spend.
+- **The change limit.** No channel moves by more than {{ v('policy.budget_max_change_share') }} of last
+  year's spend in one plan.{% if change_binds_first %} With these values the change limit is always the
+  tighter bound: every channel's spend stays within {{ v('policy.budget_max_change_share') }} of last
+  year's, and the floor and ceiling never bind.{% endif +%}
+- **The acquisition cost allowance.** A channel's spend per acquired customer may not exceed its
+  allowance from the lifetime value model, where customers are the channel's incremental revenue
+  divided by the revenue one acquisition brings ({{ v('clv.revenue_per_acquisition') }}). A channel
+  whose curve cannot meet its allowance anywhere in its admissible range is held at the lowest spend
+  it is allowed and labelled "allowance (infeasible)", rather than failing the plan.
+- **The total.** The allocation spends exactly the stated budget, and a budget the bounds cannot
+  meet is refused with the bounds named.
+
+## The solver
+
+SLSQP from {{ v('policy.optimizer_starts') }} starting points, keeping the best feasible answer and
+recording the solver's status. On the demonstration brand {{ v('budget.starts_converged') }} of
+{{ v('budget.starts') }} starts converged, with the status "{{ v('budget.solver_status') }}".
+
+**The equalization check.** At an optimum the marginal profit is equal across every channel that is
+not at a bound. The plan is published only when it is equal within tolerance; here it is
+({{ v('budget.marginal_equalized') }}), with a spread of {{ v('budget.marginal_spread') }} across the
+{{ v('budget.interior_channels') }} interior channels.
+
+**The interior test.** Budget is moved between every pair of interior channels, in both directions,
+and each move must lower expected profit; otherwise the optimizer stopped on a bound or a flat spot
+and the page says the plan is degenerate. This plan reads {{ v('budget.interior') }}:
+{{ v('budget.interior_reason') }}.
+
+## The plan on the demonstration brand
+
+The calibrated own curves at last year's budget of {{ v('budget.total_weekly') }} a week
+({{ v('budget.total_annual') }} a year):
+
+{{ table('budget.allocation') }}
+
+{{ label('budget.allocation') }}
+
+{% if infeasible_key %}
+{{ infeasible }} is held by its allowance of {{ v('clv.allowance.channel.' ~ infeasible_key) }}, which its
+curve cannot meet at any admissible spend, so it sits at {{ v('budget.change.' ~ infeasible_key) }} from
+last year.
+
+{% endif %}
+Every plan evaluated on the simulator's true curves:
+
+{{ table('budget.comparison') }}
+
+{{ label('budget.comparison') }}
+
+## The two headline numbers
+
+**The gain from reallocating the same budget:** {{ v('budget.headline.gain_over_last_year_annual') }} a
+year over last year's mix, {{ v('budget.headline.gain_over_last_year_weekly') }} a week, judged on the
+true curves. **The share of the truth optimal gain captured:** {{ v('budget.headline.share_captured') }}
+for the calibrated plan and {{ v('budget.headline.share_captured_uncalibrated') }} for the uncalibrated
+one, against the truth optimal plan's {{ v('budget.headline.gain_optimal_annual') }} a year. Both come
+from one simulated market. The regret study below is the number to quote.
+
+## The regret study
+
+For each of {{ v('budget.regret.calibrated.seeds') }} seeds of the demonstration condition the market is
+simulated, the geo test is run on it, own is fit before and after calibration, each fit's plan is
+optimized under the same constraints, and every plan is judged on that market's true curves. The
+calibrated plan captured {{ v('budget.regret.calibrated.share_captured') }} of the truth optimal gain
+({{ v('budget.regret.calibrated.share_captured_lower') }} to {{ v('budget.regret.calibrated.share_captured_upper') }},
+a bootstrap interval over seeds) and the uncalibrated plan {{ v('budget.regret.uncalibrated.share_captured') }}
+({{ v('budget.regret.uncalibrated.share_captured_lower') }} to {{ v('budget.regret.uncalibrated.share_captured_upper') }}).
+{% if (raw('budget.regret.calibrated.share_captured') - raw('budget.regret.uncalibrated.share_captured'))|abs < 0.01 %}
+The two are within a point of each other: across markets, calibration did not buy a better budget
+on average.
+{% endif %}
+Against last year's mix, an equal split's weekly gain averages
+{{ v('budget.regret.calibrated.equal_split_gain_mean') }} across the same markets, which is why no plan here
+starts from one.
+
+{{ table('budget.regret') }}
+
+{{ label('budget.regret') }}
+
+## The surface behind the slider
+
+The site's budget slider asks the live API for a plan at the chosen total. So that it still works
+while the API is asleep, the pipeline solves a surface in advance: a grid over the total budget from
+{{ v('budget.surface.budget_min') }} to {{ v('budget.surface.budget_max') }} a week
+({{ v('budget.surface.points') }} points), at the stated constraints and again with the change limit
+tightened and loosened (`results/budget/surface.parquet`). The page labels answers from it
+"precomputed".
+
+## How a plan is stored
+
+A plan is saved with what a review would need months later to ask what the model said and why:
+the model version, the backend, the spec hash of the fit, an inputs hash over the model version, the
+spec hash and every constraint, the total budget, the allocation, the expected profit with its
+interval and level, the constraints themselves, whether the plan is degenerate, and a note. Through
+the API it goes to the `plans` table with an audit row written before the response. The
+demonstration plan's record:
+
+| Field | Value |
+|---|---|
+| Model version | `{{ v('budget.model_version') }}` |
+| Spec hash | `{{ v('mmm.own.spec_hash') }}` |
+| Inputs hash | `{{ v('budget.inputs_hash') }}` |
+| Expected weekly profit | {{ v('budget.expected_profit_weekly') }} ({{ v('budget.expected_profit_lower') }} to {{ v('budget.expected_profit_upper') }}, at {{ v('budget.level') }}) |
+| True weekly profit of the same plan | {{ v('budget.calibrated.true_profit_weekly') }} |
+
+{{ label('budget.inputs_hash') }}
+{% if raw('budget.expected_profit_lower') <= raw('budget.calibrated.true_profit_weekly') <= raw('budget.expected_profit_upper') %}
+
+The interval on expected profit holds the plan's true profit, though the point estimate sits
+{{ 'below' if raw('budget.expected_profit_weekly') < raw('budget.calibrated.true_profit_weekly') else 'above' }} it.
+{% endif %}
+
+{{ statement() }}

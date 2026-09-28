@@ -1,0 +1,125 @@
+{#- The two experiments: the geo lift test on the simulator and the Hillstrom email experiment. -#}
+# Experiments
+
+Rendered from `results/manifest.json` by the claim gate; do not edit by hand.
+
+Two experiments run in this build, in the order a measurement team works: design first, power
+before data, registration of the design's hash before a single outcome is read, the sample ratio
+gate, and only then the analysis, posted against the hash it was registered under.
+
+## The geo lift test
+
+**Design.** The test switches {{ v('geo.channel')|lower }} off, a spend change of
+{{ v('geo.spend_change') }}, in {{ v('geo.treated_geos') }} of the {{ v('sim.geos') }} simulated geos for
+{{ v('geo.window_weeks') }} weeks, weeks {{ v('geo.start_week') }} to {{ v('geo.end_week') }} of the panel.
+The other {{ v('geo.control_geos') }} geos are controls, and the {{ v('geo.pre_period_weeks') }} weeks
+before the test are the pre period. Assignment is stratified: the geos are sorted by pre period
+sales, cut into strata of four, and one geo is drawn from each, so the treated group spans the size
+distribution. The treated geos are {{ v('geo.treated_geo_ids') }}. The channel is the one whose spend
+follows last week's demand in the simulator, and the one every attribution rule over credits.
+
+**Power by simulation.** Before the test's weeks are read, each candidate design is run on
+{{ v('geo.power_simulations') }} fresh simulated markets from the same specification with the test
+applied, and power is the share of runs whose difference in differences interval excludes zero.
+The design above has power of {{ v('geo.power_at_true_effect') }} at the true effect; the table shows
+how power falls when the test removes less of the channel's spend or runs for fewer weeks.
+
+{{ table('geo.power') }}
+
+{{ label('geo.power') }}
+
+**Pre-registration.** The design (units, assignment, channel, spend change, window, primary outcome
+and analysis plan) is hashed with `marginal_core.hashing.design_hash` and registered before the
+test's data is read: plan hash `{{ v('geo.plan_hash') }}`, experiment id `{{ v('geo.experiment_id') }}`,
+registered at {{ v('geo.registered_at') }}. Changing any part of the design changes the hash, and a
+result can only be posted against the hash that was registered. In this build the registration and
+the result went to the local registry, `results/experiments/registry.json`, because the build
+sandbox could not reach the live API. The registry records the route each one took:
+`{{ v('geo.registered_via') }}` for the registration and `{{ v('geo.result_posted_via') }}` for the result.
+
+**The sample ratio gate.** A chi square test of the observed treated and control counts against the
+planned ratio; no result is shown while it fails at p below {{ v('policy.srm_alpha') }}, and the gate
+refuses to pass on an empty assignment. Here it {{ v('geo.srm_passed') }} (p = {{ v('geo.srm_p') }}).
+
+**Difference in differences** on log sales with geo and week fixed effects, standard errors
+clustered by geo, gives a change of
+{{ v('geo.did.delta_log') }} in log sales in the treated geos over the window, which is
+{{ v('geo.did.estimate') }} of revenue the channel caused there (standard error
+{{ v('geo.did.standard_error') }}, interval {{ v('geo.did.lower') }} to {{ v('geo.did.upper') }}).
+
+**Synthetic control** builds each treated aggregate from a weighted set of control geos fit on the
+pre period (root mean squared error on the weekly pre period {{ v('geo.sc.pre_period_rmse') }}, largest
+weight {{ v('geo.sc.largest_weight') }}) and reads the gap in the window: {{ v('geo.sc.estimate') }}
+({{ v('geo.sc.lower') }} to {{ v('geo.sc.upper') }}). Inference is by placebo: the fit is repeated
+{{ v('geo.sc.placebo_permutations') }} times with groups of control geos of the same size in place of the
+treated ones, the p value is the share of placebos with a gap at least as large
+({{ v('geo.sc.p_value') }}), and the interval is the placebo distribution around the estimate.
+
+**Against the truth.** The simulator knows the true lift, {{ v('geo.truth') }}. Difference in
+differences is off by {{ v('geo.did.error') }} and its interval {{ 'covers' if raw('geo.did.covers_truth') == 'yes' else 'misses' }}
+the truth; synthetic control is off by {{ v('geo.sc.error') }} and its interval
+{{ 'covers' if raw('geo.sc.covers_truth') == 'yes' else 'misses' }} it. The difference in differences result is
+the one posted and used to calibrate both mix models ({{ v('calibrate.experiment_lift') }}, standard
+error {{ v('calibrate.experiment_se') }}); `docs/evaluation.md` grades what that did.
+
+{{ table('geo.estimates') }}
+
+{{ label('geo.estimates') }}
+
+## The registry
+
+The API keeps the registry in Postgres. Writes need the token; reads do not.
+
+| Route | What it does |
+|---|---|
+| `POST /v1/experiments` | Registers a design under its plan hash. Registering the same design twice returns the same experiment id. |
+| `POST /v1/experiments/{experiment_id}/result` | Posts a result against the registered plan hash; refused when no experiment has that id, when the experiment has no plan hash, or when the hash does not match. |
+| `GET /v1/experiments` | Every registered experiment with its results. |
+| `GET /v1/experiments/{experiment_id}` | One experiment with its results. |
+| `GET /v1/audit` | The audit log; every write adds its row there before its response is sent. |
+
+When the API does not answer, the pipeline registers locally and says so in the registry file, as
+it did in this build. The site's recorded session (`web/public/data/recorded_session.json`)
+replays this design and its difference in differences result through the API code running against
+a local Postgres, and a separate Windows client checked the live registry with its own verification
+experiment (`docs/serving.md`). No record in the repository shows this design registered on the live
+registry itself.
+
+## The email experiment (Hillstrom)
+
+Kevin Hillstrom's MineThatData file is a real randomized test: {{ v('data.hillstrom.rows') }} recent
+buyers of a catalog retailer, assigned in equal thirds to no email
+({{ v('email.arm.control') }}), a men's merchandise email ({{ v('email.arm.mens') }}) or a women's
+merchandise email ({{ v('email.arm.womens') }}) in 2008, with visits, conversions and spend recorded
+over the {{ v('email.window_days') }} days that followed. The design was hashed and registered before
+the analysis ran (plan hash `{{ v('email.plan_hash') }}`, through the `{{ v('email.registered_via') }}`
+route), with the men's email as the primary arm and the correction for segments stated in advance.
+
+The sample ratio gate {{ v('email.srm_passed') }} (p = {{ v('email.srm_p') }}). Effects are treated minus
+control with {{ v('email.level') }} intervals. The men's email raised conversion by
+{{ v('email.mens.conversion.effect') }} of customers ({{ v('email.mens.conversion.lower') }} to
+{{ v('email.mens.conversion.upper') }}) and spend by {{ v('email.mens.spend.effect') }} per customer
+({{ v('email.mens.spend.lower') }} to {{ v('email.mens.spend.upper') }}); at a {{ v('email.margin_on_spend') }}
+margin on that spend and {{ v('email.cost_per_email') }} per email, each email earned
+{{ v('email.mens.profit_per_email') }}. The women's email earned {{ v('email.womens.profit_per_email') }}.
+
+{{ table('email.effects') }}
+
+{{ label('email.effects') }} Visit and conversion are rates as fractions of customers; spend is
+dollars per customer.
+
+**Segments, with Benjamini-Hochberg.** The effect is estimated in each of the
+{{ v('email.segments.mens.conversion.count') }} purchase history segments, and the p values are corrected
+by {{ v('email.segments.correction') }} at the false discovery rate set in `marginal_experiments.email`.
+On conversion {{ v('email.segments.mens.conversion.significant') }} of the
+{{ v('email.segments.mens.conversion.count') }} segments stay significant after the correction; on spend,
+{{ v('email.segments.mens.spend.significant') }}.
+
+{{ table('email.segments.mens.conversion') }}
+
+{{ label('email.segments.mens.conversion') }}
+
+The targeting models built on this experiment, and why they did not beat a simple rule on it, are
+in `report/cards/uplift-t-learner.md` and `report/cards/uplift-x-learner.md`.
+
+{{ statement() }}

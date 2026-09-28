@@ -80,8 +80,10 @@ loses it on sleeping dogs.
 
 **Qini** is the cumulative incremental outcome as a share of the population is contacted in
 descending order of predicted uplift, against the random diagonal; the Qini coefficient is
-the area between the two. **Policy value per thousand contacts** is expected incremental
-profit per thousand customers contacted at a stated cost per contact. On Hillstrom the cost
+the area between the two. **Policy value per thousand customers** is the expected incremental profit per thousand
+customers on the list when the policy contacts its chosen share of them, at a stated cost per
+contact; the value per thousand contacted is published beside it, and it is not the number the
+share is chosen on, because it falls as more people are contacted whenever the ranking works. On Hillstrom the cost
 per email is $0.12 and the margin on the spend the email
 causes is 30%; the share contacted is chosen on the
 validation split and reported on the test split, and the choice must be strictly interior,

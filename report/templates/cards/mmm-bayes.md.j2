@@ -1,0 +1,159 @@
+{#- Model card: the bayes mix model backend. -#}
+{% import '_macros.j2' as m %}
+{% set card = 'mmm-bayes' %}
+{% set title = 'bayes, the PyMC-Marketing mix model' %}
+{% set clean_demo = raw('mmm.bayes.divergences') == 0 and raw('mmm.bayes.max_rhat') < 1.01 %}
+{% set intended %}
+The bayes backend fits the same model family as own, geometric carryover and Hill saturation on
+the weekly panel, as a Bayesian model with PyMC-Marketing, so that every return comes with a
+posterior interval. It is the build's cross check on own and the backend whose intervals can be
+quoted, since on the recovery study they hold the truth at the stated level. It does not set the
+plan and is not served: the plan and the API use own's curves. It is not meant for forecasting
+sales, for a channel or a level of spend outside what it was fit on, for any real brand before it
+has been fit and graded on that brand's panel, or, after calibration, for reading its narrow
+interval on the tested channel as certainty, because that interval follows one experiment.
+{% endset %}
+{% set data %}
+The same panel own is fit on: the demonstration brand's {{ v('sim.weeks') }} weeks from
+{{ v('sim.first_week') }} to {{ v('sim.last_week') }}, summed over {{ v('sim.geos') }} simulated geos,
+simulated under {{ v('sim.condition') }}, with {{ v('sim.incremental_share') }} of sales caused by paid
+media and {{ v('sim.baseline_share') }} baseline. The true channel parameters are in the table on
+`report/cards/mmm-own.md`. The channel priors are stated in `marginal_mmm.bayes` and recorded with
+every fit in `results/mmm/bayes_diagnostics.json`.
+{% endset %}
+{% set fit %}
+PyMC-Marketing's `MMM`, with geometric adstock on normalized weights over the same lags own and the
+simulator use, Hill saturation with the ceiling in front, an intercept, the controls (trend, log
+price, promotion, holiday) and yearly Fourier seasonality. The baseline is additive here, where
+own's is multiplicative; the recovery study grades what that difference costs. Sampling is NUTS on
+one core, so a seed fixes every draw: {{ v('mmm.bayes.chains') }} chains of {{ v('mmm.bayes.draws') }}
+draws after {{ v('mmm.bayes.tune') }} tuning steps, in {{ v('mmm.bayes.fit_seconds') }} seconds on the
+demonstration brand. The return is the posterior median of incremental revenue over spend, with
+its {{ v('policy.interval_level') }} posterior interval. Spec hash `{{ v('mmm.bayes.spec_hash') }}`.
+
+Calibration adds the posted lift result as the library's lift test measurement: the experiment's
+revenue, turned into a national weekly change for the channel's change in spend, enters the
+likelihood with the experiment's standard error, and the model is sampled again.
+{% endset %}
+{% set metrics %}
+Return on ad spend on the demonstration brand, with the marginal return at current spend and the
+half life of carryover, each beside the truth:
+
+{{ table('mmm.bayes.returns') }}
+
+{{ label('mmm.bayes.returns') }}
+
+The posterior intervals cover the truth in {{ v('mmm.bayes.covered_count') }} of
+{{ v('policy.channel_count') }} channels. The model puts {{ v('mmm.bayes.baseline_share') }} of sales in
+the baseline against a true {{ v('sim.baseline_share') }}, leaves {{ v('mmm.bayes.residual_share') }} of
+sales unexplained, and has an unexplained variance share of {{ v('mmm.bayes.unexplained_variance') }}.
+
+**Diagnostics.** The demonstration fit reported {{ v('mmm.bayes.divergences') }} divergences and a
+largest R hat of {{ v('mmm.bayes.max_rhat') }}{% if clean_demo %}, just under the level PyMC warns at{% endif %}.
+The recovery fits were less clean: most reported a few divergences and an R hat above the level
+PyMC warns at, though every one stayed under the ceilings the backend enforces and is marked ok in
+`results/recovery/bayes_diagnostics.json`. Those per fit figures are not in the manifest.
+
+**Recovery.** Refit on markets with known truth, {{ v('recovery.bayes.seeds_per_condition') }} seeds in
+each of {{ v('recovery.bayes.conditions') }} conditions ({{ v('recovery.bayes.fits_that_ran') }} of
+{{ v('recovery.bayes.fits') }} fits ran), the median absolute error in return across channels is
+{{ v('recovery.bayes.median_abs_error_overall') }} overall, from {{ v('recovery.bayes.best_condition_error') }}
+({{ v('recovery.bayes.best_condition') }}) to {{ v('recovery.bayes.worst_condition_error') }}
+({{ v('recovery.bayes.worst_condition') }}). Against the stated floor of {{ v('recovery.bayes.error_floor') }}
+it is over under these conditions:
+{{ v('recovery.bayes.conditions_over_floor')|replace(', rho', '; rho') }}. Intervals hold the truth
+{{ v('recovery.bayes.coverage_overall') }} of the time against a stated {{ v('policy.interval_level') }}.
+With {{ v('recovery.bayes.seeds_per_condition') }} seeds per condition, the intervals over seeds are wide:
+
+{{ table('recovery.bayes.summary') }}
+
+{{ label('recovery.bayes.summary') }}
+
+{% call m.holds(raw('calibrate.bayes.covers_before') == 'yes' and raw('calibrate.bayes.covers_after') == 'no' and raw('calibrate.bayes.roas_after_lower') > raw('calibrate.bayes.roas_true') and raw('geo.did.estimate') > raw('geo.truth'), 'that bayes calibration narrows the interval past the truth') %}
+**Calibration.** The lift test on {{ v('calibrate.channel')|lower }} moved that channel's return from
+{{ v('calibrate.bayes.roas_before') }} ({{ v('calibrate.bayes.roas_before_lower') }} to
+{{ v('calibrate.bayes.roas_before_upper') }}) to {{ v('calibrate.bayes.roas_after') }}
+({{ v('calibrate.bayes.roas_after_lower') }} to {{ v('calibrate.bayes.roas_after_upper') }}) against a true
+{{ v('calibrate.bayes.roas_true') }}. The interval narrowed past the truth: it held it before and sits
+wholly above it after. The experiment's own estimate, {{ v('calibrate.experiment_lift') }}, sits above the
+true lift of {{ v('calibrate.truth_lift') }}, and the calibrated model follows the experiment, implying
+{{ v('calibrate.bayes.implied_after') }} for the test where it implied {{ v('calibrate.bayes.implied_before') }}
+before. Across {{ v('calibrate.bayes.recovery.seeds') }} seeds the error on the tested channel went from
+{{ v('calibrate.bayes.recovery.tested_error_before') }} to {{ v('calibrate.bayes.recovery.tested_error_after') }},
+a direction rather than a measurement at that count.
+{% endcall %}
+
+{{ table('calibrate.bayes.before_after') }}
+
+{{ label('calibrate.bayes.before_after') }}
+
+{{ table('calibrate.bayes.lift') }}
+
+{{ label('calibrate.bayes.lift') }}
+
+{{ table('calibrate.bayes.recovery') }}
+
+{{ label('calibrate.bayes.recovery') }}
+{% endset %}
+{% set contract %}
+{% call m.line('trained', 'met') %}
+Fit in the pipeline (`make recovery-bayes`) on the same {{ v('sim.weeks') }} weeks as own, and set beside own and the truth, channel by channel, as the cross check in the quarterly review.
+{% endcall %}
+{% call m.line('timed', 'met') %}
+The panel runs from {{ v('sim.first_week') }} to {{ v('sim.last_week') }} and the manifest is as of {{ manifest.as_of }}; the fit sees no week after the panel's last, and the lift test it is calibrated on ran inside the panel, weeks {{ v('geo.start_week') }} to {{ v('geo.end_week') }}.
+{% endcall %}
+{% call m.line('calibrated', 'met') %}
+Its {{ v('policy.interval_level') }} posterior intervals hold the truth in {{ v('mmm.bayes.covered_count') }} of {{ v('policy.channel_count') }} channels here and {{ v('recovery.bayes.coverage_overall') }} of the time across the recovery study; after lift calibration the tested channel's interval {{ 'covers' if raw('calibrate.bayes.covers_after') == 'yes' else 'misses' }} the truth, as the metrics say.
+{% endcall %}
+{% call m.line('useful', 'partly') %}
+It informs the budget only through the cross check and the calibration comparison; the plan and the API use own's curves, so no dollar moves on bayes's estimates alone.
+{% endcall %}
+{% call m.line('fair', 'not applicable') %}
+Not applicable to people, because the model sees weekly national spend and sales and no customer; the parties a plan affects are the channels and the teams behind them.
+{% endcall %}
+{% call m.line('gated', 'partly') %}
+Each fit is checked against ceilings on divergences and R hat set in `marginal_mmm.interface` and marked failed when it crosses them (a test checks this); the status is reported, not raised, so a failed fit would not stop the pipeline, and every fit in this build is marked ok.
+{% endcall %}
+{% call m.line('served', 'not served') %}
+The API image is built without the bayes extra and no route fits or reads bayes curves; `/v1/models` lists the calibrated bayes export only as a file on disk.
+{% endcall %}
+{% call m.line('integrated', 'met') %}
+The site's Mix page sets its returns and curves beside own's and the truth, and its recovery fits are the "before" of the bayes calibration study.
+{% endcall %}
+{% call m.line('monitored', 'not built') %}
+There is no scheduled refit or drift check, and the weekly refresh is a stretch goal; the recovery study's fits are logged in `logs/recovery_bayes.log`.
+{% endcall %}
+{% call m.line('documented', 'met') %}
+This card, `docs/models.md` and `docs/evaluation.md`, all rendered from the manifest by the claim gate.
+{% endcall %}
+{% call m.line('bounded', 'met') %}
+The statement closes this card: the brand is fictional and the market simulated, so every return here describes the simulator.
+{% endcall %}
+{% call m.line('validated', 'met') %}
+Graded against the simulator's known truth, never against itself: {{ v('recovery.bayes.fits') }} recovery fits across {{ v('recovery.bayes.conditions') }} conditions at {{ v('recovery.bayes.seeds_per_condition') }} seeds each, and the truth beside every estimate on the demonstration brand.
+{% endcall %}
+{% call m.line('explainable at the decision', 'met') %}
+A reader sees each channel's return with its posterior interval and the truth beside own's, and the response curves on the Mix page.
+{% endcall %}
+{% endset %}
+{% set limitations %}
+The recovery study rests on {{ v('recovery.bayes.seeds_per_condition') }} seeds per condition, because
+each fit samples for minutes; its per condition figures are indicative and the order of the
+conditions could change with more seeds.
+
+The demonstration fit ran {{ v('mmm.bayes.chains') }} chains, fewer than PyMC recommends for a
+reliable R hat, and most recovery fits reported a few divergences and an R hat above PyMC's warning
+level while staying under the backend's ceilings. More chains and a higher target acceptance are
+the first things to change if the study is rerun.
+
+The baseline is additive where the simulator's demand is multiplicative, so some of the recovery
+error may be the cost of that choice rather than of the sampler.
+
+Calibration narrows the tested channel's interval until it follows one experiment, and that
+experiment sits {{ 'above' if raw('geo.did.estimate') > raw('geo.truth') else 'below' }} the truth: the
+calibrated interval {{ 'misses' if raw('calibrate.bayes.covers_after') == 'no' else 'covers' }} the true
+return. One experiment is not enough to make that interval trustworthy.
+
+It is not served, so nothing a visitor to the API does uses it.
+{% endset %}
+{% include 'cards/_card.md.j2' %}

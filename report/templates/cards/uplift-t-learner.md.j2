@@ -1,0 +1,26 @@
+{#- Model card: the T learner. The body is shared with the X learner in cards/_uplift.md.j2. -#}
+{% import '_macros.j2' as m %}
+{% set card = 'uplift-t-learner' %}
+{% set learner = 't_learner' %}
+{% set learner_name = 'T learner' %}
+{% set below = namespace(x=false, rule=false) %}
+{% for row in manifest.tables['targeting.criteo.qini_differences'].rows %}
+{% if row[0] == 'T learner minus X learner' and row[3] < 0 %}{% set below.x = true %}{% endif %}
+{% if row[0] == 'T learner minus Sure things' and row[3] < 0 %}{% set below.rule = true %}{% endif %}
+{% endfor %}
+{% set method %}
+The T learner fits one outcome model per arm, one on the customers who were contacted and one on
+those who were not, and scores each customer by the difference between the two predicted chances
+of converting (`marginal_targeting.learners.TLearner`). It is simple and hard to get wrong, but each
+arm's model sees only its own arm, and the two models' errors do not cancel, so the difference is
+noisier than either model.
+{% endset %}
+{% set weakness %}
+{% call m.holds(below.x and below.rule and raw('targeting.sim.pehe.t_learner') > raw('targeting.sim.pehe.x_learner'), 'that the T learner trails the X learner and the rule') %}
+Its score is the difference of two separately fit models, so the noise in each arm's model lands in
+the ranking. On Criteo it ranks below the X learner and below the sure things rule by paired
+difference, and on the simulator its PEHE is {{ v('targeting.sim.pehe.t_learner') }} against the X
+learner's {{ v('targeting.sim.pehe.x_learner') }}.
+{% endcall %}
+{% endset %}
+{% include 'cards/_uplift.md.j2' %}

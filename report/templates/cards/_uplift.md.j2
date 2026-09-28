@@ -1,0 +1,185 @@
+{#- The shared body of the two uplift learner cards. The card sets `card`, `learner` (the manifest
+    key, t_learner or x_learner), `learner_name`, `other_name` and `method` (how this learner turns
+    outcome models into an uplift score), then includes this file, which sets the sections and
+    includes the card shape. -#}
+{% import '_macros.j2' as m %}
+{% set title = 'the ' ~ learner_name ~ ' for email targeting' %}
+{% set datasets = [('hillstrom', 'Hillstrom'), ('sim', 'Simulator'), ('criteo', 'Criteo v2.1')] %}
+{% set hs = 'targeting.hillstrom.' %}
+{% set lost_on_hillstrom = raw(hs ~ learner ~ '.policy_value_test') < raw(hs ~ 'sure_things.policy_value_test') %}
+{% set zero_in_hillstrom = raw(hs ~ learner ~ '.qini_lower') < 0 < raw(hs ~ learner ~ '.qini_upper') %}
+{% set intended %}
+The {{ learner_name }} ranks customers by how much a marketing contact changes their chance of
+converting, so that a campaign can contact the customers the message moves and leave alone the ones
+who would buy anyway, the ones who will not buy either way and the ones it puts off. With the policy
+value curve it chooses how many to contact: the share where profit per thousand customers on the
+list peaks. It is meant for one decision, whether to send one marketing contact to a customer, on
+data from a randomized holdout it can learn from. It is not meant for any other decision about a
+person, for Alderquist's customers before it has been fit and graded on an Alderquist holdout, for a
+channel with no randomized holdout to learn from, or for pricing ad exposure on Criteo, which
+publishes no costs.
+{% endset %}
+{% set data %}
+Three datasets, each split by customer into training, validation and test shares of
+{{ v('targeting.split.train') }}, {{ v('targeting.split.validation') }} and {{ v('targeting.split.test') }}
+with one seeded draw per customer, so no customer sits in two splits.
+
+- **Hillstrom**: {{ v(hs ~ 'treatment') }}, outcome {{ v(hs ~ 'outcome') }}; the women's arm is
+  dropped. {{ v(hs ~ 'rows_train') }} customers to fit on, {{ v(hs ~ 'rows_validation') }} to choose on
+  and {{ v(hs ~ 'rows_test') }} to report on. Features: recency, purchase history in dollars, whether
+  the customer bought men's or women's merchandise, whether they are new, zip code class and purchase
+  channel. {{ label('data.hillstrom.rows') }}
+- **The simulator**: {{ v('sim.customers') }} simulated customers under a randomized email, where both
+  potential outcomes are known ({{ v('targeting.sim.rows_train') }} to fit on,
+  {{ v('targeting.sim.rows_validation') }} to choose on, {{ v('targeting.sim.rows_test') }} to report on).
+  Features: recency, frequency, spend, tenure, category affinity, engagement, region and the share of
+  visits on mobile. The true average effect is {{ v('sim.customers.ate_true') }}, and
+  {{ v('sim.customers.negative_effect_share') }} of customers have a true effect below zero: the email
+  makes them less likely to buy. {{ label('sim.customers') }}
+- **Criteo**: the full v2.1 release, {{ v('data.criteo.rows') }} rows with a treated share of
+  {{ v('data.criteo.treated_share') }}, outcome {{ v('targeting.criteo.outcome') }}. The learners are fit
+  on a seeded {{ v('targeting.criteo.rows_train_used') }} of the {{ v('targeting.criteo.rows_train') }}
+  training rows; the {{ v('targeting.criteo.rows_validation') }} validation and
+  {{ v('targeting.criteo.rows_test') }} test rows are scored whole. Features: the twelve anonymized fields
+  the release carries. {{ label('data.criteo.rows') }}
+{% endset %}
+{% set fit %}
+{{ method|trim }}
+
+Every model is LightGBM, single threaded and seeded, with small trees:
+{{ v('targeting.learner.n_estimators') }} rounds at a learning rate of {{ v('targeting.learner.learning_rate') }},
+{{ v('targeting.learner.num_leaves') }} leaves and at least {{ v('targeting.learner.min_child_samples') }}
+customers per leaf. The settings are modest on purpose: the outcomes are rare and the effects are a
+point or two of conversion, so deeper trees fit noise in each arm (`marginal_targeting.learners`).
+
+The protocol is the same on every dataset (`marginal_targeting.protocol`): fit on the training split
+alone; on the validation split, choose the share to contact where profit per thousand customers on
+the list peaks, on a grid from {{ v('targeting.share_grid.first') }} to {{ v('targeting.share_grid.last') }}
+in steps of {{ v('targeting.share_grid.step') }}; report every published figure from the test split,
+scored once. Qini intervals come from a paired bootstrap of {{ v('targeting.bootstrap_replicates') }}
+replicates at {{ v('targeting.level') }}, every policy scored on the same resampled customers. The
+chosen share must pass the interior test: strictly inside the grid, with the curve lower on both
+sides, or the page calls the operating point degenerate. Profit on Hillstrom is the spend the email
+causes at a {{ v('targeting.hillstrom.margin_on_spend') }} margin less {{ v('targeting.hillstrom.cost_per_contact') }}
+per email; on the simulator, {{ v('targeting.sim.revenue_per_conversion') }} per conversion at a
+{{ v('targeting.sim.margin') }} margin less {{ v('targeting.sim.cost_per_contact') }}; on Criteo, incremental
+visits with no cost. The Criteo run took {{ v('targeting.criteo.seconds') }} seconds against a budget of
+{{ v('targeting.criteo.budget_seconds') }}.
+{% endset %}
+{% set metrics %}
+The {{ learner_name }} on each test split, beside emailing everyone. Values are per thousand customers
+on the list: incremental profit in dollars on Hillstrom and the simulator, incremental visits on
+Criteo. The chosen share is read on the validation split.
+
+| Dataset | Qini coefficient | Qini interval | Top decile uplift | Chosen share | Operating point | Value on test | Everyone on test |
+|---|---:|---:|---:|---:|---|---:|---:|
+{% for key, name in datasets %}
+{% set p = 'targeting.' ~ key ~ '.' ~ learner ~ '.' %}
+| {{ name }} | {{ v(p ~ 'qini') }} | {{ v(p ~ 'qini_lower') }} to {{ v(p ~ 'qini_upper') }} | {{ v(p ~ 'top_decile_uplift') }} | {{ v(p ~ 'chosen_share') }} | {{ v(p ~ 'interior') }} | {{ v(p ~ 'policy_value_test') }} | {{ v('targeting.' ~ key ~ '.everyone.policy_value_test') }} |
+{% endfor %}
+
+{% for key, name in datasets %}
+{{ label('targeting.' ~ key ~ '.' ~ learner ~ '.qini') }}
+{% endfor %}
+
+Why each operating point is what it is: on Hillstrom, {{ v(hs ~ learner ~ '.interior_reason') }}; on
+the simulator, {{ v('targeting.sim.' ~ learner ~ '.interior_reason') }}; on Criteo,
+{{ v('targeting.criteo.' ~ learner ~ '.interior_reason') }}.
+
+**On Hillstrom**, the real randomized test, the {{ learner_name }} earned
+{{ v(hs ~ learner ~ '.policy_value_test') }} per thousand customers on test against
+{{ v(hs ~ 'sure_things.policy_value_test') }} for the sure things rule and
+{{ v(hs ~ 'everyone.policy_value_test') }} for emailing everyone{% if lost_on_hillstrom %}: it did not beat
+the rule{% endif %}{% if zero_in_hillstrom %}, and its Qini interval includes zero{% endif %}. The paired
+differences, the same customers resampled for every policy:
+
+{{ table('targeting.hillstrom.qini_differences') }}
+
+{{ label('targeting.hillstrom.qini_differences') }}
+
+**On the simulator**, where the true effect of the email on every customer is known, the error in
+predicted uplift (PEHE) is {{ v('targeting.sim.pehe.' ~ learner) }} against an average true effect of
+{{ v('sim.customers.ate_true') }}. At its chosen share the {{ learner_name }} contacts
+{{ v('targeting.sim.quadrant.' ~ learner ~ '.persuadable') }} of the persuadables and
+{{ v('targeting.sim.quadrant.' ~ learner ~ '.sleeping_dog') }} of the sleeping dogs, and leaves
+{{ v('targeting.sim.regret.' ~ learner) }} of the {{ v('targeting.sim.oracle_conversions') }} conversions an
+oracle would collect on the table, against {{ v('targeting.sim.regret.everyone') }} for emailing everyone.
+
+{{ table('targeting.sim.quadrants') }}
+
+{{ label('targeting.sim.quadrants') }}
+
+{{ table('targeting.sim.qini_differences') }}
+
+{{ label('targeting.sim.qini_differences') }}
+
+**On Criteo**, with no cost per contact, the policy value keeps rising to the end of the list, so a
+ranking that beats random still chooses {{ v('targeting.criteo.' ~ learner ~ '.chosen_share') }} of it.
+The paired differences:
+
+{{ table('targeting.criteo.qini_differences') }}
+
+{{ label('targeting.criteo.qini_differences') }}
+{% endset %}
+{% set contract %}
+{% call m.line('trained', 'met') %}
+Fit in the pipeline (`make targeting`) on each dataset's training split ({{ v('targeting.split.train') }} of customers, split by customer with one seeded draw), against two baselines that are not straw men: the sure things rule and emailing everyone.
+{% endcall %}
+{% call m.line('timed', 'met') %}
+The features describe each customer before the contact and the outcome follows it (on Hillstrom, {{ v(hs ~ 'outcome') }}); the share is chosen on validation before the test split is scored, once, and the manifest is as of {{ manifest.as_of }}.
+{% endcall %}
+{% call m.line('calibrated', 'partly') %}
+Its scores are rankings, not calibrated probabilities; the Qini coefficient carries a paired bootstrap interval at {{ v('targeting.level') }} on each test split, and on the simulator the predicted uplift is checked against the true effect (PEHE {{ v('targeting.sim.pehe.' ~ learner) }}).
+{% endcall %}
+{% call m.line('useful', 'met') %}
+It picks who gets the email: the share contacted is chosen where profit peaks on validation, at {{ v('targeting.hillstrom.cost_per_contact') }} per email and a {{ v('targeting.hillstrom.margin_on_spend') }} margin on the spend it causes on Hillstrom; Criteo carries no cost, so there it only ranks.
+{% endcall %}
+{% call m.line('fair', 'not built') %}
+None of the features is a protected attribute, but zip code class on Hillstrom and region on the simulator can stand in for one, and the build did not compare who is contacted across them.
+{% endcall %}
+{% call m.line('gated', 'partly') %}
+The protocol refuses to choose a share on the test or the training split and refuses an outcome that is not binary, and the interior test marks an operating point on the edge of the grid as degenerate; no bound on the fit's quality fails it.
+{% endcall %}
+{% call m.line('served', 'not served') %}
+The API has no targeting route; the scores live in `results/targeting` and the site's marts.
+{% endcall %}
+{% call m.line('integrated', 'met') %}
+The site's Targeting page reads its Qini and policy value curves and the quadrant table from the marts, and the quarterly review quotes its test split figures.
+{% endcall %}
+{% call m.line('monitored', 'not built') %}
+There is no scheduled refit and no check on how its ranking holds up over time; the run's steps are logged in `logs/targeting.log`.
+{% endcall %}
+{% call m.line('documented', 'met') %}
+This card and `docs/evaluation.md`, rendered from the manifest by the claim gate.
+{% endcall %}
+{% call m.line('bounded', 'met') %}
+The statement closes this card: Hillstrom and Criteo are public research releases and the simulated customers are generated, so no real customer of Alderquist is scored.
+{% endcall %}
+{% call m.line('validated', 'met') %}
+Graded on randomized holdouts, the Hillstrom and Criteo test splits scored once, and on the simulator's known effects, never on the data it was fit on.
+{% endcall %}
+{% call m.line('explainable at the decision', 'met') %}
+A reader sees the Qini curve with its bootstrap band, the policy value curve by share with the chosen share and its interior test, the top decile uplift, and on the simulator which quadrants the list reaches.
+{% endcall %}
+{% endset %}
+{% set limitations %}
+{% if lost_on_hillstrom or zero_in_hillstrom %}
+On the one real randomized test it has not shown it can rank: on Hillstrom it
+{{ 'earned less than the sure things rule' if lost_on_hillstrom else 'did not separate from the sure things rule' }}{% if zero_in_hillstrom %} and its Qini interval includes zero{% endif %}.
+The evidence that it works comes from the simulator, where the effects were written to be found.
+
+{% endif %}
+Hillstrom's features are few and coarse, and its effects are a point or less of conversion, so a
+test split of {{ v(hs ~ 'rows_test') }} customers carries more noise than the differences between
+policies: emailing everyone, which ranks no one, earns {{ v(hs ~ 'everyone.policy_value_validation') }}
+on validation and {{ v(hs ~ 'everyone.policy_value_test') }} on test.
+
+On Criteo the chosen share is {{ v('targeting.criteo.' ~ learner ~ '.chosen_share') }}, a degenerate
+operating point, because the release carries no cost per contact; the ranking is tested there, the
+decision is not.
+
+{{ weakness|trim }}
+
+The build did not check who it contacts across zip code classes or regions, and it is not served.
+{% endset %}
+{% include 'cards/_card.md.j2' %}

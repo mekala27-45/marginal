@@ -1,0 +1,1741 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Alderquist quarterly marketing review, as of 2026-09-27</title>
+<style>
+/* The quarterly review memo, HTML form. Inlined into report/quarterly-review.html by the claim
+   gate. Nothing is fetched: Fraunces and Public Sans are used when installed, and the stacks fall
+   back to fonts every system has. Prose keeps a 68 character measure; tables may run wider. */
+
+:root {
+  --ink: #1c1b19;
+  --ink-2: #57544e;
+  --rule: #dcd8cf;
+  --rule-strong: #8f8a80;
+  --paper: #fcfbf8;
+  --quote: #f3f0e8;
+  --serif: Fraunces, "Iowan Old Style", Georgia, serif;
+  --sans: "Public Sans", system-ui, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-kerning: normal;
+}
+
+main.memo {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 3rem 1rem 4rem;
+}
+
+main.memo > p,
+main.memo > ul,
+main.memo > ol,
+main.memo > h1,
+main.memo > h2,
+main.memo > h3,
+main.memo > blockquote {
+  max-width: 68ch;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0 0 1rem;
+}
+
+h2 {
+  font-size: 1.375rem;
+  margin: 3rem 0 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+strong {
+  font-weight: 600;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  overflow-wrap: anywhere;
+}
+
+/* Tables: sans serif, tabular figures, numbers right aligned. The Markdown converter marks
+   numeric columns with an inline right alignment; td.num covers tables written as HTML. */
+table {
+  display: block;
+  max-width: 100%;
+  width: max-content;
+  overflow-x: auto;
+  margin: 1.5rem 0 0.5rem;
+  border-collapse: collapse;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+th,
+td {
+  padding: 0.375rem 0.75rem;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+th {
+  font-weight: 600;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+th:first-child,
+td:first-child {
+  padding-left: 0;
+}
+
+td.num,
+th.num {
+  text-align: right;
+}
+
+/* The provenance label printed under every table. */
+table + p {
+  max-width: 68ch;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--ink-2);
+  margin-bottom: 1.5rem;
+}
+
+/* The statement closes the memo. */
+blockquote {
+  margin: 3rem 0 0;
+  padding: 1rem 1.25rem;
+  background: var(--quote);
+  border-left: 3px solid var(--rule-strong);
+  font-size: 0.9375rem;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+@media (max-width: 30rem) {
+  body {
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 1.625rem;
+  }
+}
+
+@media print {
+  @page {
+    margin: 16mm 14mm;
+  }
+
+  html,
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  body {
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+
+  main.memo {
+    max-width: none;
+    padding: 0;
+  }
+
+  main.memo > p,
+  main.memo > h1,
+  main.memo > h2,
+  main.memo > blockquote {
+    max-width: none;
+  }
+
+  h2 {
+    break-before: page;
+    page-break-before: always;
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  p,
+  strong,
+  code,
+  th,
+  td,
+  table + p,
+  blockquote {
+    color: #000;
+  }
+
+  table {
+    display: table;
+    width: auto;
+    max-width: 100%;
+    overflow: visible;
+    font-size: 8pt;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  th,
+  td {
+    white-space: normal;
+    border-bottom-color: #999;
+  }
+
+  th {
+    border-bottom-color: #000;
+  }
+
+  blockquote {
+    background: #fff;
+    border-left-color: #000;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  table + p {
+    font-size: 7.5pt;
+  }
+
+  h2 + p,
+  table + p {
+    break-before: avoid;
+    page-break-before: avoid;
+  }
+
+  /* A sentence that introduces a table stays on the table's page. */
+  p:has(+ table) {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+}
+</style>
+</head>
+<body>
+<main class="memo">
+<h1>Alderquist quarterly marketing review</h1>
+<p>As of 2026-09-27. For the chief marketing officer, from marketing science. The simulated
+weekly panel behind the mix model runs from 2023-10-02 to 2026-09-21.</p>
+<p>Every figure below is a value or a table in <code>results/manifest.json</code>, rendered by the claim gate;
+none is typed by hand. Alderquist's market is simulated with known truth, so each mix model figure
+sits beside the answer it was trying to find, and each public dataset is named where it is used.</p>
+<h2>The budget numbers</h2>
+<p><strong>Reallocating the same budget.</strong> Moving last year's $500,233 a week between
+the channels, without adding a dollar, gains $953,345 a
+year over last year's mix on the demonstration brand, or $18,334
+a week, judged on the simulator's true response curves. Across 10
+simulated markets the same procedure gained $12,149 a week
+($9,555 to $14,640, a
+90% bootstrap interval over seeds) and beat last year's mix in
+90% of them.</p>
+<p><strong>The share of the available gain captured.</strong> On the demonstration brand the calibrated plan
+captures 88% of the gain the truth optimal plan makes, which is
+$1,084,278 a year; the plan built on the uncalibrated model
+captures 62%. Across the 10
+markets the calibrated plan captured 67%
+(53% to 80%)
+and the uncalibrated plan 68%
+(53% to 81%).</p>
+<p>The demonstration figures come from one seed and the study is the honest number: across seeds the
+calibrated and uncalibrated plans are within a point of each other, so calibration bought a better
+estimate of the channel it tested, not a better budget on average.</p>
+<p>The plan at last year's budget, week by week:</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th style="text-align:right">Last year (weekly)</th>
+<th style="text-align:right">Plan (weekly)</th>
+<th style="text-align:right">Change</th>
+<th style="text-align:right">Expected revenue</th>
+<th style="text-align:right">Marginal return</th>
+<th style="text-align:right">Marginal profit</th>
+<th>Bound</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Paid search</td>
+<td style="text-align:right">$129,669</td>
+<td style="text-align:right">$162,629</td>
+<td style="text-align:right">+25.4%</td>
+<td style="text-align:right">$566,447</td>
+<td style="text-align:right">2.03</td>
+<td style="text-align:right">-14.6%</td>
+<td>interior</td>
+</tr>
+<tr>
+<td>Paid social</td>
+<td style="text-align:right">$110,747</td>
+<td style="text-align:right">$139,753</td>
+<td style="text-align:right">+26.2%</td>
+<td style="text-align:right">$374,698</td>
+<td style="text-align:right">2.03</td>
+<td style="text-align:right">-14.6%</td>
+<td>interior</td>
+</tr>
+<tr>
+<td>Online video</td>
+<td style="text-align:right">$63,969</td>
+<td style="text-align:right">$44,778</td>
+<td style="text-align:right">-30.0%</td>
+<td style="text-align:right">$22,804</td>
+<td style="text-align:right">0.84</td>
+<td style="text-align:right">-64.6%</td>
+<td>allowance (infeasible)</td>
+</tr>
+<tr>
+<td>Display and retargeting</td>
+<td style="text-align:right">$82,854</td>
+<td style="text-align:right">$57,998</td>
+<td style="text-align:right">-30.0%</td>
+<td style="text-align:right">$95,908</td>
+<td style="text-align:right">1.03</td>
+<td style="text-align:right">-56.9%</td>
+<td>change limit</td>
+</tr>
+<tr>
+<td>Email</td>
+<td style="text-align:right">$15,454</td>
+<td style="text-align:right">$20,090</td>
+<td style="text-align:right">+30.0%</td>
+<td style="text-align:right">$129,901</td>
+<td style="text-align:right">2.79</td>
+<td style="text-align:right">+17.3%</td>
+<td>change limit</td>
+</tr>
+<tr>
+<td>Affiliate and promo codes</td>
+<td style="text-align:right">$40,330</td>
+<td style="text-align:right">$34,939</td>
+<td style="text-align:right">-13.4%</td>
+<td style="text-align:right">$36,800</td>
+<td style="text-align:right">1.68</td>
+<td style="text-align:right">-29.3%</td>
+<td>allowance</td>
+</tr>
+<tr>
+<td>Direct mail</td>
+<td style="text-align:right">$57,210</td>
+<td style="text-align:right">$40,047</td>
+<td style="text-align:right">-30.0%</td>
+<td style="text-align:right">$33,475</td>
+<td style="text-align:right">0.85</td>
+<td style="text-align:right">-64.2%</td>
+<td>change limit</td>
+</tr>
+</tbody>
+</table>
+<p>Source: simulated, model optimizer, demonstration brand, calibrated own curves, condition rho 0.6, feedback on, seed 12, as of 2026-09-27.</p>
+<p>Paid search and paid social are the interior channels, and their marginal returns
+are equal at the optimum (a spread of 0.000), which is the condition the
+optimizer is built to meet. Every other channel sits at a bound: the change limit of
+30% of last year's spend, or the acquisition cost allowance
+from the lifetime value model (below).</p>
+<p>At this total the marginal profit column is negative in the interior channels: the next dollar
+there returns less than the breakeven return of 2.38 at a
+42% margin. The plan says where last year's budget does the most;
+it does not say that budget is the right size, and the budget page's slider is where a smaller
+total can be tried against the same curves.</p>
+<p>Every plan judged on the true curves, and the study across markets:</p>
+<table>
+<thead>
+<tr>
+<th>Plan</th>
+<th style="text-align:right">True weekly profit</th>
+<th style="text-align:right">Gain over last year (weekly)</th>
+<th style="text-align:right">Gain over last year (annual)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Calibrated model's plan</td>
+<td style="text-align:right">$36,354</td>
+<td style="text-align:right">$18,334</td>
+<td style="text-align:right">$953,345</td>
+</tr>
+<tr>
+<td>Uncalibrated model's plan</td>
+<td style="text-align:right">$30,862</td>
+<td style="text-align:right">$12,842</td>
+<td style="text-align:right">$667,778</td>
+</tr>
+<tr>
+<td>Truth optimal plan</td>
+<td style="text-align:right">$38,872</td>
+<td style="text-align:right">$20,852</td>
+<td style="text-align:right">$1,084,278</td>
+</tr>
+<tr>
+<td>Last year's mix</td>
+<td style="text-align:right">$18,020</td>
+<td style="text-align:right">$0</td>
+<td style="text-align:right">$0</td>
+</tr>
+<tr>
+<td>Equal split</td>
+<td style="text-align:right">-$56,079</td>
+<td style="text-align:right">-$74,100</td>
+<td style="text-align:right">-$3,853,187</td>
+</tr>
+</tbody>
+</table>
+<p>Source: simulated, model optimizer, demonstration brand, calibrated own curves, condition rho 0.6, feedback on, seed 12, as of 2026-09-27.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align:right">Seeds</th>
+<th style="text-align:right">Share of optimal gain captured</th>
+<th style="text-align:right">Lower</th>
+<th style="text-align:right">Upper</th>
+<th style="text-align:right">Gain over last year (weekly)</th>
+<th style="text-align:right">Lower</th>
+<th style="text-align:right">Upper</th>
+<th style="text-align:right">Beats last year</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>uncalibrated</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">68%</td>
+<td style="text-align:right">53%</td>
+<td style="text-align:right">81%</td>
+<td style="text-align:right">$12,250</td>
+<td style="text-align:right">$9,646</td>
+<td style="text-align:right">$14,730</td>
+<td style="text-align:right">90%</td>
+</tr>
+<tr>
+<td>calibrated</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">67%</td>
+<td style="text-align:right">53%</td>
+<td style="text-align:right">80%</td>
+<td style="text-align:right">$12,149</td>
+<td style="text-align:right">$9,555</td>
+<td style="text-align:right">$14,640</td>
+<td style="text-align:right">90%</td>
+</tr>
+</tbody>
+</table>
+<p>Source: simulated, model optimizer, markets with known truth, demonstration condition, condition rho 0.6, feedback on, 10 seeds, as of 2026-09-27.</p>
+<h2>What the lift test said, and how it moved the model</h2>
+<p><strong>The design.</strong> The test switched display and retargeting off in 10 of the
+40 simulated geos for 8 weeks, weeks 148
+to 155 of the panel (a spend change of -100.0%), with the other
+30 geos as controls and the 52 weeks before it as the
+pre period. Geos were assigned by a stratified draw across the size distribution. Power was
+estimated by simulation, 60 runs for each candidate design; at the true
+effect this design's power is 100%, and the smaller designs that were
+considered are in <code>docs/experiments.md</code>. The design was hashed and registered before any of the
+test's weeks were read: plan hash <code>53733a76fe1af6ec</code>, registered at 2026-09-27T21:45:07+00:00.
+It was registered locally in this build, in <code>results/experiments/registry.json</code>, because the build
+sandbox could not reach the live API; <code>docs/serving.md</code> says what was verified on the live registry
+and what was not. The sample ratio gate passed (p = 1.000).</p>
+<p><strong>The result against the truth.</strong> Difference in differences puts the revenue the channel caused in
+the treated geos over the window at $169,063 ($151,588 to
+$186,538). Synthetic control, fit on the pre period, puts it at $167,952
+($131,871 to $206,046), and none of its
+200 placebo assignments produced a gap as large (placebo p value
+0.000). The truth, known only because the market is
+simulated, is $150,478. The difference in differences interval
+misses it and the synthetic control's
+covers it.
+Both estimates sit above the truth, by +12.4% and +11.6%.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align:right">Estimate</th>
+<th style="text-align:right">Lower</th>
+<th style="text-align:right">Upper</th>
+<th style="text-align:right">Truth (simulated)</th>
+<th>Covers</th>
+<th style="text-align:right">Error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Difference in differences</td>
+<td style="text-align:right">$169,063</td>
+<td style="text-align:right">$151,588</td>
+<td style="text-align:right">$186,538</td>
+<td style="text-align:right">$150,478</td>
+<td>no</td>
+<td style="text-align:right">+12.4%</td>
+</tr>
+<tr>
+<td>Synthetic control</td>
+<td style="text-align:right">$167,952</td>
+<td style="text-align:right">$131,871</td>
+<td style="text-align:right">$206,046</td>
+<td style="text-align:right">$150,478</td>
+<td>yes</td>
+<td style="text-align:right">+11.6%</td>
+</tr>
+</tbody>
+</table>
+<p>Source: simulated, model did, 10 treated geos of 40, 8 weeks, condition rho 0.6, feedback on, seed 12, as of 2026-09-27.</p>
+<p><strong>How it moved the model.</strong> The difference in differences result was posted against its plan hash
+($169,063, standard error $10,624) and taken into
+both mix models: in own as a pseudo observation weighted by the experiment's precision, in bayes as
+a lift test measurement. On the tested channel, own's return on ad spend went from
+1.62 (1.18 to
+1.92) to 1.31
+(1.27 to 1.32), and bayes's from
+2.26 (1.12 to
+4.56) to 1.42
+(1.25 to 1.59). The true
+return is 1.22.
+Both estimates moved toward the truth, and both intervals narrowed until neither covers it: before
+calibration each interval held the true return, and after it each sits wholly above it. The
+experiment's own estimate sits above the truth, and the calibrated models follow the experiment.
+That is what calibration should do with a test it is told to trust; it is also why one test is not
+enough.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">Before</th>
+<th style="text-align:right">After</th>
+<th style="text-align:right">Truth (simulated)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Return on ad spend</td>
+<td style="text-align:right">1.62</td>
+<td style="text-align:right">1.31</td>
+<td style="text-align:right">1.22</td>
+</tr>
+<tr>
+<td>Interval lower</td>
+<td style="text-align:right">1.18</td>
+<td style="text-align:right">1.27</td>
+<td style="text-align:right">not applicable</td>
+</tr>
+<tr>
+<td>Interval upper</td>
+<td style="text-align:right">1.92</td>
+<td style="text-align:right">1.32</td>
+<td style="text-align:right">not applicable</td>
+</tr>
+<tr>
+<td>Marginal return</td>
+<td style="text-align:right">0.76</td>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">0.69</td>
+</tr>
+</tbody>
+</table>
+<p>Source: simulated, model own, demonstration brand, condition rho 0.6, feedback on, seed 12, as of 2026-09-27.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">Before</th>
+<th style="text-align:right">After</th>
+<th style="text-align:right">Truth (simulated)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Return on ad spend</td>
+<td style="text-align:right">2.26</td>
+<td style="text-align:right">1.42</td>
+<td style="text-align:right">1.22</td>
+</tr>
+<tr>
+<td>Interval lower</td>
+<td style="text-align:right">1.12</td>
+<td style="text-align:right">1.25</td>
+<td style="text-align:right">not applicable</td>
+</tr>
+<tr>
+<td>Interval upper</td>
+<td style="text-align:right">4.56</td>
+<td style="text-align:right">1.59</td>
+<td style="text-align:right">not applicable</td>
+</tr>
+<tr>
+<td>Marginal return</td>
+<td style="text-align:right">1.41</td>
+<td style="text-align:right">1.15</td>
+<td style="text-align:right">0.69</td>
+</tr>
+</tbody>
+</table>
+<p>Source: simulated, model bayes, demonstration brand, condition rho 0.6, feedback on, seed 12, as of 2026-09-27.</p>
+<p>The lift each model implies for the test's geos and weeks tells the same story: own implied
+$212,748 before and $173,669 after, bayes
+$319,342 and $170,634, against the
+experiment's $169,063 and a true $150,478.</p>
+<p><strong>Across markets.</strong> One market is one draw.
+Across 20 seeds of the demonstration condition, each with its own
+geo test, calibration cut own's median absolute error on the tested channel from
+36.1% to 15.2%
+and across all channels from 36.4% to
+27.9%, while interval coverage
+stayed at 37%.
+Bayes, on its 3 seeds, went from
+57.8% to 14.7%
+on the tested channel; with so few seeds that is a direction, not a measurement.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">Before</th>
+<th style="text-align:right">After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Median absolute error, all channels</td>
+<td style="text-align:right">36.4%</td>
+<td style="text-align:right">27.9%</td>
+</tr>
+<tr>
+<td>Median absolute error, tested channel</td>
+<td style="text-align:right">36.1%</td>
+<td style="text-align:right">15.2%</td>
+</tr>
+<tr>
+<td>Interval coverage, all channels</td>
+<td style="text-align:right">37.1%</td>
+<td style="text-align:right">37.1%</td>
+</tr>
+</tbody>
+</table>
+<p>Source: simulated, model own, markets with known truth, demonstration condition, condition rho 0.6, feedback on, 20 seeds, as of 2026-09-27.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">Before</th>
+<th style="text-align:right">After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Median absolute error, all channels</td>
+<td style="text-align:right">17.7%</td>
+<td style="text-align:right">14.7%</td>
+</tr>
+<tr>
+<td>Median absolute error, tested channel</td>
+<td style="text-align:right">57.8%</td>
+<td style="text-align:right">14.7%</td>
+</tr>
+<tr>
+<td>Interval coverage, all channels</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">100.0%</td>
+</tr>
+</tbody>
+</table>
+<p>Source: simulated, model bayes, markets with known truth, demonstration condition, condition rho 0.6, feedback on, 3 seeds, as of 2026-09-27.</p>
+<p><strong>The weight passed its interior test.</strong> Refit with the experiment's weight halved, as stated and
+doubled, the gap between the lift own implies and the lift the experiment found is
+$9,299, $4,606 and
+$1,553: the residual against the experiment shrinks as the weight grows and is not zero at the stated weight. At the stated weight
+the data still has a say; the experiment does not simply overwrite the fit.</p>
+<h2>The targeting result</h2>
+<p><strong>The email experiment.</strong> Hillstrom's file is the one real randomized test in this build:
+64,000 recent buyers of a catalog retailer in 2008, assigned in equal thirds
+to no email (21,306), a men's merchandise email (21,307) or a
+women's (21,387). The sample ratio gate passed (p = 0.904).
+Over the 14 days after the send, the men's email raised the conversion rate
+from 0.57% to 1.25%, a difference of
+0.68% of customers (0.53% to
+0.83%), and spend per customer from $0.65
+to $1.42, a difference of $0.77
+($0.53 to $1.01), with intervals at
+90%. At a 30% margin on that spend and
+$0.12 per email, each men's email sent earned $0.11
+of incremental profit; the women's email earned $0.01.</p>
+<table>
+<thead>
+<tr>
+<th>Arm</th>
+<th>Outcome</th>
+<th style="text-align:right">No email</th>
+<th style="text-align:right">Email</th>
+<th style="text-align:right">Effect</th>
+<th style="text-align:right">Lower</th>
+<th style="text-align:right">Upper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mens</td>
+<td>visit</td>
+<td style="text-align:right">0.1062</td>
+<td style="text-align:right">0.1828</td>
+<td style="text-align:right">0.0766</td>
+<td style="text-align:right">0.0710</td>
+<td style="text-align:right">0.0822</td>
+</tr>
+<tr>
+<td>mens</td>
+<td>conversion</td>
+<td style="text-align:right">0.0057</td>
+<td style="text-align:right">0.0125</td>
+<td style="text-align:right">0.0068</td>
+<td style="text-align:right">0.0053</td>
+<td style="text-align:right">0.0083</td>
+</tr>
+<tr>
+<td>mens</td>
+<td>spend</td>
+<td style="text-align:right">0.6528</td>
+<td style="text-align:right">1.4226</td>
+<td style="text-align:right">0.7698</td>
+<td style="text-align:right">0.5309</td>
+<td style="text-align:right">1.0087</td>
+</tr>
+<tr>
+<td>womens</td>
+<td>visit</td>
+<td style="text-align:right">0.1062</td>
+<td style="text-align:right">0.1514</td>
+<td style="text-align:right">0.0452</td>
+<td style="text-align:right">0.0399</td>
+<td style="text-align:right">0.0506</td>
+</tr>
+<tr>
+<td>womens</td>
+<td>conversion</td>
+<td style="text-align:right">0.0057</td>
+<td style="text-align:right">0.0088</td>
+<td style="text-align:right">0.0031</td>
+<td style="text-align:right">0.0018</td>
+<td style="text-align:right">0.0045</td>
+</tr>
+<tr>
+<td>womens</td>
+<td>spend</td>
+<td style="text-align:right">0.6528</td>
+<td style="text-align:right">1.0772</td>
+<td style="text-align:right">0.4244</td>
+<td style="text-align:right">0.2100</td>
+<td style="text-align:right">0.6388</td>
+</tr>
+</tbody>
+</table>
+<p>Source: real:hillstrom, 64,000 recent buyers, three arms, as of 2026-09-27. Visit and conversion are rates as fractions of customers; spend is
+dollars per customer.</p>
+<p>Split by purchase history, the men's email effect on conversion stays significant in
+6 of 7
+segments once the p values are corrected by Benjamini-Hochberg across segments, and the effect on
+spend in 5 of the same segments. The conversion family,
+with each p value before and after the correction:</p>
+<table>
+<thead>
+<tr>
+<th>History segment</th>
+<th style="text-align:right">Effect</th>
+<th style="text-align:right">Lower</th>
+<th style="text-align:right">Upper</th>
+<th style="text-align:right">p</th>
+<th style="text-align:right">p adjusted</th>
+<th>Significant</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1) $0 - $100</td>
+<td style="text-align:right">0.50%</td>
+<td style="text-align:right">0.28%</td>
+<td style="text-align:right">0.72%</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.001</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>2) $100 - $200</td>
+<td style="text-align:right">0.48%</td>
+<td style="text-align:right">0.21%</td>
+<td style="text-align:right">0.75%</td>
+<td style="text-align:right">0.004</td>
+<td style="text-align:right">0.006</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>3) $200 - $350</td>
+<td style="text-align:right">0.85%</td>
+<td style="text-align:right">0.47%</td>
+<td style="text-align:right">1.23%</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.001</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>4) $350 - $500</td>
+<td style="text-align:right">0.87%</td>
+<td style="text-align:right">0.24%</td>
+<td style="text-align:right">1.50%</td>
+<td style="text-align:right">0.022</td>
+<td style="text-align:right">0.026</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>5) $500 - $750</td>
+<td style="text-align:right">0.83%</td>
+<td style="text-align:right">0.27%</td>
+<td style="text-align:right">1.40%</td>
+<td style="text-align:right">0.015</td>
+<td style="text-align:right">0.021</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>6) $750 - $1,000</td>
+<td style="text-align:right">2.00%</td>
+<td style="text-align:right">0.89%</td>
+<td style="text-align:right">3.11%</td>
+<td style="text-align:right">0.003</td>
+<td style="text-align:right">0.006</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>7) $1,000 +</td>
+<td style="text-align:right">0.93%</td>
+<td style="text-align:right">-0.58%</td>
+<td style="text-align:right">2.44%</td>
+<td style="text-align:right">0.312</td>
+<td style="text-align:right">0.312</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>Source: real:hillstrom, 64,000 recent buyers, three arms, as of 2026-09-27.</p>
+<p><strong>Who to email.</strong> Four policies were compared on the same customers: the T learner and the X
+learner, uplift models that rank customers by how much the email changes their chance of buying;
+the sure things rule, which emails the customers most likely to buy and is the rule most retailers
+run; and everyone. The models were fit on 60% of customers; each policy
+chose how many to contact on a 20% validation split and is reported
+on the 20% test split, which took no part in either. On test, per thousand
+customers on the list, the T learner earned $188
+contacting 95.0%, the X learner
+$180 at 85.0%,
+the sure things rule $207 at
+85.0%, and emailing everyone
+$202.
+The learners did not beat the sure things rule, or emailing everyone, on this test, and every Qini
+interval includes zero: -0.109 (-1.197 to
+0.941) for the T learner, -0.110
+(-1.245 to 1.039) for the X learner and
+0.191 (-0.716 to 1.214)
+for the rule. On this data the build cannot tell the policies apart. Emailing everyone involves no
+ranking at all, yet its value moves from $83 on
+validation to $202 on test: that is the noise a split of
+8,560 customers carries.</p>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th style="text-align:right">Qini coefficient</th>
+<th style="text-align:right">Lower</th>
+<th style="text-align:right">Upper</th>
+<th style="text-align:right">Chosen share</th>
+<th style="text-align:right">Value on validation</th>
+<th style="text-align:right">Value on test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T learner</td>
+<td style="text-align:right">-0.109</td>
+<td style="text-align:right">-1.197</td>
+<td style="text-align:right">0.941</td>
+<td style="text-align:right">95.0%</td>
+<td style="text-align:right">$87</td>
+<td style="text-align:right">$188</td>
+</tr>
+<tr>
+<td>X learner</td>
+<td style="text-align:right">-0.110</td>
+<td style="text-align:right">-1.245</td>
+<td style="text-align:right">1.039</td>
+<td style="text-align:right">85.0%</td>
+<td style="text-align:right">$106</td>
+<td style="text-align:right">$180</td>
+</tr>
+<tr>
+<td>Sure things</td>
+<td style="text-align:right">0.191</td>
+<td style="text-align:right">-0.716</td>
+<td style="text-align:right">1.214</td>
+<td style="text-align:right">85.0%</td>
+<td style="text-align:right">$84</td>
+<td style="text-align:right">$207</td>
+</tr>
+<tr>
+<td>Everyone</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">$83</td>
+<td style="text-align:right">$202</td>
+</tr>
+</tbody>
+</table>
+<p>Source: real:hillstrom, Hillstrom men's email against no email, test split of 8,560 customers (models fit on 25,470, shares chosen on 8,583); T and X learners, the sure things rule and everyone, as of 2026-09-27.</p>
+<p><strong>Where the answer is known.</strong> On 200,000 simulated customers under a randomized
+email, where each customer's response with and without the email is known, the learners win
+clearly. Their Qini coefficients are 8.924 (7.627
+to 10.030) and 10.147 (8.848
+to 11.252), against -1.290
+(-2.368 to -0.076) for the sure things
+rule, which ranks worse than random here because the customers most likely to buy would mostly buy
+anyway. On test they earn $893 and
+$923 per thousand customers on the list, against
+$879 for emailing everyone. The error in predicted uplift (PEHE)
+is 0.024 for the T learner and 0.016
+for the X learner, against an average true effect of 4.48%. An oracle that
+emails exactly the persuadables collects 1,843 incremental
+conversions on the test split; the T learner leaves 81 of them on
+the table and the X learner 30, while the sure things rule and
+everyone, which both end up emailing the whole list, give up 167
+and 167: the sleeping dogs they wake.</p>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th style="text-align:right">Share contacted</th>
+<th style="text-align:right">Persuadables</th>
+<th style="text-align:right">Sure things</th>
+<th style="text-align:right">Lost causes</th>
+<th style="text-align:right">Sleeping dogs</th>
+<th style="text-align:right">Regret (conversions)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T learner</td>
+<td style="text-align:right">80.0%</td>
+<td style="text-align:right">96.6%</td>
+<td style="text-align:right">71.5%</td>
+<td style="text-align:right">80.1%</td>
+<td style="text-align:right">11.4%</td>
+<td style="text-align:right">81</td>
+</tr>
+<tr>
+<td>X learner</td>
+<td style="text-align:right">85.0%</td>
+<td style="text-align:right">99.1%</td>
+<td style="text-align:right">79.6%</td>
+<td style="text-align:right">85.0%</td>
+<td style="text-align:right">8.4%</td>
+<td style="text-align:right">30</td>
+</tr>
+<tr>
+<td>Sure things</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">167</td>
+</tr>
+<tr>
+<td>Everyone</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">167</td>
+</tr>
+<tr>
+<td>Oracle (known truth)</td>
+<td style="text-align:right">4.6%</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">0.0%</td>
+<td style="text-align:right">0.0%</td>
+<td style="text-align:right">0.0%</td>
+<td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<p>Source: simulated, simulated customers, randomized email, test split of 40,235 (models fit on 119,603, shares chosen on 40,162); the oracle contacts exactly the persuadables, seed 12, as of 2026-09-27.</p>
+<p><strong>At scale.</strong> Criteo's full v2.1 release, all 13,979,592 rows, is ranked on
+visit (conversion is too rare to rank on). Both learners beat everyone by Qini,
+3.428 (3.209 to 3.619)
+and 3.706 (3.515 to 3.929),
+but the release carries no cost per contact and no value per visit, so the policy value keeps
+rising to the end of the list and both learners chose 100.0% of it:
+a degenerate operating point, the same list as emailing everyone. The paired differences show that
+the X learner and the sure things rule cannot be told apart and that the T learner ranks below the
+rule.</p>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th style="text-align:right">Qini coefficient</th>
+<th style="text-align:right">Lower</th>
+<th style="text-align:right">Upper</th>
+<th style="text-align:right">Chosen share</th>
+<th style="text-align:right">Value on validation</th>
+<th style="text-align:right">Value on test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T learner</td>
+<td style="text-align:right">3.428</td>
+<td style="text-align:right">3.209</td>
+<td style="text-align:right">3.619</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">10.6</td>
+<td style="text-align:right">10.4</td>
+</tr>
+<tr>
+<td>X learner</td>
+<td style="text-align:right">3.706</td>
+<td style="text-align:right">3.515</td>
+<td style="text-align:right">3.929</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">10.6</td>
+<td style="text-align:right">10.4</td>
+</tr>
+<tr>
+<td>Sure things</td>
+<td style="text-align:right">3.629</td>
+<td style="text-align:right">3.438</td>
+<td style="text-align:right">3.861</td>
+<td style="text-align:right">95.0%</td>
+<td style="text-align:right">10.6</td>
+<td style="text-align:right">10.4</td>
+</tr>
+<tr>
+<td>Everyone</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">10.6</td>
+<td style="text-align:right">10.4</td>
+</tr>
+</tbody>
+</table>
+<p>Source: real:criteo, Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858); T and X learners, the sure things rule and everyone, as of 2026-09-27. Values are incremental visits per thousand users on the list; Criteo publishes no value per visit and no cost per impression, so no cost is assumed.</p>
+<table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th style="text-align:right">Difference</th>
+<th style="text-align:right">Lower</th>
+<th style="text-align:right">Upper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T learner minus X learner</td>
+<td style="text-align:right">-0.279</td>
+<td style="text-align:right">-0.483</td>
+<td style="text-align:right">-0.094</td>
+</tr>
+<tr>
+<td>T learner minus Sure things</td>
+<td style="text-align:right">-0.201</td>
+<td style="text-align:right">-0.443</td>
+<td style="text-align:right">-0.010</td>
+</tr>
+<tr>
+<td>X learner minus Sure things</td>
+<td style="text-align:right">0.077</td>
+<td style="text-align:right">-0.132</td>
+<td style="text-align:right">0.255</td>
+</tr>
+</tbody>
+</table>
+<p>Source: real:criteo, Criteo v2.1, every row: test split of 2,793,890 users (models fit on a seeded 2,000,000 of 8,388,844 training rows, shares chosen on 2,796,858); T and X learners, the sure things rule and everyone, as of 2026-09-27.</p>
+<h2>Lifetime value and the allowance</h2>
+<p>BG/NBD (how often a customer buys, and whether they are still a customer) and Gamma-Gamma (how
+much they spend when they buy) were fit on the 4,266 Online Retail II customers
+who bought by 2010-11-30, of 5,878 in the file, and
+judged on what those customers did from 2010-12-01 to 2011-12-09.</p>
+<p><strong>The model over predicts.</strong> It expected 19,057 purchases in
+the holdout and the customers made 12,835, a difference of
++48.5%; revenue is over by
++29.7%. The cause is in the parameters: the fitted chance
+that a customer stops buying after a purchase is 0.11%, close to
+zero, so the model treats nearly every customer who went quiet as still active and keeps predicting
+purchases for them. Among the customers who bought most often in the calibration window, the tenth
+decile, the gap is much smaller: +11.6%.</p>
+<table>
+<thead>
+<tr>
+<th>Decile</th>
+<th style="text-align:right">Customers</th>
+<th style="text-align:right">Predicted purchases</th>
+<th style="text-align:right">Actual purchases</th>
+<th style="text-align:right">Predicted revenue</th>
+<th style="text-align:right">Actual revenue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:right">427</td>
+<td style="text-align:right">890</td>
+<td style="text-align:right">379</td>
+<td style="text-align:right">$379,157.78</td>
+<td style="text-align:right">$141,437.86</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:right">427</td>
+<td style="text-align:right">833</td>
+<td style="text-align:right">377</td>
+<td style="text-align:right">$355,114.07</td>
+<td style="text-align:right">$124,717.32</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:right">426</td>
+<td style="text-align:right">902</td>
+<td style="text-align:right">333</td>
+<td style="text-align:right">$384,536.25</td>
+<td style="text-align:right">$106,853.80</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:right">427</td>
+<td style="text-align:right">1,119</td>
+<td style="text-align:right">562</td>
+<td style="text-align:right">$467,779.35</td>
+<td style="text-align:right">$272,297.72</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:right">426</td>
+<td style="text-align:right">1,312</td>
+<td style="text-align:right">639</td>
+<td style="text-align:right">$517,517.02</td>
+<td style="text-align:right">$283,728.18</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align:right">427</td>
+<td style="text-align:right">1,411</td>
+<td style="text-align:right">810</td>
+<td style="text-align:right">$569,778.79</td>
+<td style="text-align:right">$310,921.93</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align:right">427</td>
+<td style="text-align:right">1,789</td>
+<td style="text-align:right">1,036</td>
+<td style="text-align:right">$724,786.44</td>
+<td style="text-align:right">$410,357.61</td>
+</tr>
+<tr>
+<td>8</td>
+<td style="text-align:right">426</td>
+<td style="text-align:right">2,100</td>
+<td style="text-align:right">1,383</td>
+<td style="text-align:right">$887,311.65</td>
+<td style="text-align:right">$781,357.76</td>
+</tr>
+<tr>
+<td>9</td>
+<td style="text-align:right">427</td>
+<td style="text-align:right">2,853</td>
+<td style="text-align:right">2,075</td>
+<td style="text-align:right">$1,197,973.31</td>
+<td style="text-align:right">$1,069,345.52</td>
+</tr>
+<tr>
+<td>10</td>
+<td style="text-align:right">426</td>
+<td style="text-align:right">5,848</td>
+<td style="text-align:right">5,241</td>
+<td style="text-align:right">$3,775,160.08</td>
+<td style="text-align:right">$3,638,901.18</td>
+</tr>
+<tr>
+<td>All customers</td>
+<td style="text-align:right">4,266</td>
+<td style="text-align:right">19,057</td>
+<td style="text-align:right">12,835</td>
+<td style="text-align:right">$9,259,114.73</td>
+<td style="text-align:right">$7,139,918.88</td>
+</tr>
+</tbody>
+</table>
+<p>Source: real:retail, model bgnbd, 4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30, as of 2026-09-27. Deciles are of purchase frequency in the calibration window.</p>
+<p>PyMC-Marketing fit the same two models to the same frame, by maximum a posteriori under flat
+priors; the largest relative difference across the seven parameters is
+0.001%. The two fits agree, which points the over prediction
+at the model on this data rather than at the repository's code.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align:right">Repository</th>
+<th style="text-align:right">PyMC-Marketing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BG/NBD r</td>
+<td style="text-align:right">0.896</td>
+<td style="text-align:right">0.896</td>
+</tr>
+<tr>
+<td>BG/NBD alpha</td>
+<td style="text-align:right">73.948</td>
+<td style="text-align:right">73.948</td>
+</tr>
+<tr>
+<td>BG/NBD a</td>
+<td style="text-align:right">0.340</td>
+<td style="text-align:right">0.340</td>
+</tr>
+<tr>
+<td>BG/NBD b</td>
+<td style="text-align:right">308.682</td>
+<td style="text-align:right">308.683</td>
+</tr>
+<tr>
+<td>Gamma-Gamma p</td>
+<td style="text-align:right">2.162</td>
+<td style="text-align:right">2.162</td>
+</tr>
+<tr>
+<td>Gamma-Gamma q</td>
+<td style="text-align:right">3.621</td>
+<td style="text-align:right">3.621</td>
+</tr>
+<tr>
+<td>Gamma-Gamma v</td>
+<td style="text-align:right">516.597</td>
+<td style="text-align:right">516.597</td>
+</tr>
+</tbody>
+</table>
+<p>Source: real:retail, model bgnbd_pymc, 4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30; PyMC-Marketing fit by MAP under flat priors beside the repository's fit, as of 2026-09-27.</p>
+<p>Over a 12 month horizon at 10% a
+year, lifetime value per customer has a mean of $2,014.33, a median of
+$1,149.20 and a ninetieth percentile of $3,301.15. The allowance is that
+value times the 42% contribution margin times a payback share of
+70%: $592.21 per acquired customer overall, from
+$239.89 for one time buyers to $1,957.63 for frequent
+ones. A channel's allowance weights the segment allowances by the mix of customers the channel is
+assumed to bring; the mixes are stated in <code>marginal_clv.value</code>, not measured, because the retail
+file records no channel.</p>
+<table>
+<thead>
+<tr>
+<th>Segment</th>
+<th style="text-align:right">Customers</th>
+<th style="text-align:right">Mean lifetime value</th>
+<th style="text-align:right">Allowance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One time (no repeat purchase)</td>
+<td style="text-align:right">1,508</td>
+<td style="text-align:right">$815.94</td>
+<td style="text-align:right">$239.89</td>
+</tr>
+<tr>
+<td>Occasional (1 to 2 repeat purchases)</td>
+<td style="text-align:right">1,371</td>
+<td style="text-align:right">$1,246.01</td>
+<td style="text-align:right">$366.33</td>
+</tr>
+<tr>
+<td>Regular (3 to 5 repeat purchases)</td>
+<td style="text-align:right">778</td>
+<td style="text-align:right">$2,055.69</td>
+<td style="text-align:right">$604.37</td>
+</tr>
+<tr>
+<td>Frequent (6 or more repeat purchases)</td>
+<td style="text-align:right">609</td>
+<td style="text-align:right">$6,658.60</td>
+<td style="text-align:right">$1,957.63</td>
+</tr>
+<tr>
+<td>All customers</td>
+<td style="text-align:right">4,266</td>
+<td style="text-align:right">$2,014.33</td>
+<td style="text-align:right">$592.21</td>
+</tr>
+</tbody>
+</table>
+<p>Source: real:retail, model bgnbd, 4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30, as of 2026-09-27.</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th style="text-align:right">Allowance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Paid search</td>
+<td style="text-align:right">$626.60</td>
+</tr>
+<tr>
+<td>Paid social</td>
+<td style="text-align:right">$477.20</td>
+</tr>
+<tr>
+<td>Online video</td>
+<td style="text-align:right">$517.73</td>
+</tr>
+<tr>
+<td>Display and retargeting</td>
+<td style="text-align:right">$450.20</td>
+</tr>
+<tr>
+<td>Email</td>
+<td style="text-align:right">$730.71</td>
+</tr>
+<tr>
+<td>Affiliate and promo codes</td>
+<td style="text-align:right">$420.83</td>
+</tr>
+<tr>
+<td>Direct mail</td>
+<td style="text-align:right">$671.89</td>
+</tr>
+</tbody>
+</table>
+<p>Source: real:retail, model bgnbd, 4,266 customers who bought by 2010-11-30 (of 5,878 in the file), calibration to 2010-11-30, as of 2026-09-27.</p>
+<p><strong>Where it binds.</strong> In the plan the allowance binds on affiliate and promo codes,
+and online video cannot meet its allowance of
+$517.73 at any spend the constraints allow: every dollar it
+could be given acquires a customer for more than that. The optimizer holds it at the lowest spend
+the constraints allow, -30.0% from last year, and labels it
+&quot;allowance (infeasible)&quot; instead of failing the plan.</p>
+<p>Read the allowance as a demonstration of the mechanism, not a number for Alderquist. The
+transactions are a UK online gift retailer's, largely wholesale customers, from
+2009-12-01 to 2011-12-09, and Alderquist's market is
+simulated. The retailer's amounts are pounds sterling, printed here in the repository's dollar
+format and applied to Alderquist's dollars one for one. And because the purchase model over
+predicts, the allowance leans optimistic: it lets a channel pay more per customer than the holdout
+supports.</p>
+<h2>Attribution beside the truth</h2>
+<p>On 60,000 simulated user paths with 10,861 conversions,
+60% of them incremental, six credit rules (last
+touch, first touch, linear, position based, time decay and Shapley) are set beside each channel's
+true incremental share and the calibrated own model's share.</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th style="text-align:right">Last touch</th>
+<th style="text-align:right">First touch</th>
+<th style="text-align:right">Linear</th>
+<th style="text-align:right">Position based</th>
+<th style="text-align:right">Time decay</th>
+<th style="text-align:right">Shapley</th>
+<th style="text-align:right">Truth (simulated)</th>
+<th style="text-align:right">Calibrated model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Paid search</td>
+<td style="text-align:right">28.9%</td>
+<td style="text-align:right">29.5%</td>
+<td style="text-align:right">28.9%</td>
+<td style="text-align:right">29.1%</td>
+<td style="text-align:right">28.8%</td>
+<td style="text-align:right">27.4%</td>
+<td style="text-align:right">32.8%</td>
+<td style="text-align:right">42.2%</td>
+</tr>
+<tr>
+<td>Paid social</td>
+<td style="text-align:right">17.4%</td>
+<td style="text-align:right">16.7%</td>
+<td style="text-align:right">16.9%</td>
+<td style="text-align:right">17.0%</td>
+<td style="text-align:right">17.0%</td>
+<td style="text-align:right">16.4%</td>
+<td style="text-align:right">21.8%</td>
+<td style="text-align:right">26.7%</td>
+</tr>
+<tr>
+<td>Online video</td>
+<td style="text-align:right">8.0%</td>
+<td style="text-align:right">7.4%</td>
+<td style="text-align:right">7.7%</td>
+<td style="text-align:right">7.7%</td>
+<td style="text-align:right">7.7%</td>
+<td style="text-align:right">8.3%</td>
+<td style="text-align:right">6.1%</td>
+<td style="text-align:right">3.5%</td>
+</tr>
+<tr>
+<td>Display and retargeting</td>
+<td style="text-align:right">23.0%</td>
+<td style="text-align:right">23.3%</td>
+<td style="text-align:right">23.4%</td>
+<td style="text-align:right">23.2%</td>
+<td style="text-align:right">23.4%</td>
+<td style="text-align:right">23.2%</td>
+<td style="text-align:right">6.5%</td>
+<td style="text-align:right">9.9%</td>
+</tr>
+<tr>
+<td>Email</td>
+<td style="text-align:right">11.3%</td>
+<td style="text-align:right">12.2%</td>
+<td style="text-align:right">11.7%</td>
+<td style="text-align:right">11.8%</td>
+<td style="text-align:right">11.7%</td>
+<td style="text-align:right">12.2%</td>
+<td style="text-align:right">20.4%</td>
+<td style="text-align:right">9.8%</td>
+</tr>
+<tr>
+<td>Affiliate and promo codes</td>
+<td style="text-align:right">6.7%</td>
+<td style="text-align:right">6.4%</td>
+<td style="text-align:right">6.7%</td>
+<td style="text-align:right">6.6%</td>
+<td style="text-align:right">6.7%</td>
+<td style="text-align:right">7.3%</td>
+<td style="text-align:right">7.9%</td>
+<td style="text-align:right">4.0%</td>
+</tr>
+<tr>
+<td>Direct mail</td>
+<td style="text-align:right">4.7%</td>
+<td style="text-align:right">4.6%</td>
+<td style="text-align:right">4.7%</td>
+<td style="text-align:right">4.7%</td>
+<td style="text-align:right">4.7%</td>
+<td style="text-align:right">5.2%</td>
+<td style="text-align:right">4.3%</td>
+<td style="text-align:right">4.0%</td>
+</tr>
+</tbody>
+</table>
+<p>Source: simulated, model both, 60,000 user paths, demonstration seed, seed 12, as of 2026-09-27.</p>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th style="text-align:right">Mean share error (points)</th>
+<th style="text-align:right">Largest share error (points)</th>
+<th style="text-align:right">Rank agreement with truth</th>
+<th>Over credits most</th>
+<th style="text-align:right">By (points)</th>
+<th style="text-align:right">Ratio to truth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Last touch</td>
+<td style="text-align:right">5.4</td>
+<td style="text-align:right">16.5</td>
+<td style="text-align:right">0.71</td>
+<td>Display and retargeting</td>
+<td style="text-align:right">16.5</td>
+<td style="text-align:right">3.5</td>
+</tr>
+<tr>
+<td>First touch</td>
+<td style="text-align:right">5.2</td>
+<td style="text-align:right">16.8</td>
+<td style="text-align:right">0.71</td>
+<td>Display and retargeting</td>
+<td style="text-align:right">16.8</td>
+<td style="text-align:right">3.6</td>
+</tr>
+<tr>
+<td>Linear</td>
+<td style="text-align:right">5.4</td>
+<td style="text-align:right">16.8</td>
+<td style="text-align:right">0.71</td>
+<td>Display and retargeting</td>
+<td style="text-align:right">16.8</td>
+<td style="text-align:right">3.6</td>
+</tr>
+<tr>
+<td>Position based</td>
+<td style="text-align:right">5.3</td>
+<td style="text-align:right">16.7</td>
+<td style="text-align:right">0.71</td>
+<td>Display and retargeting</td>
+<td style="text-align:right">16.7</td>
+<td style="text-align:right">3.6</td>
+</tr>
+<tr>
+<td>Time decay</td>
+<td style="text-align:right">5.4</td>
+<td style="text-align:right">16.8</td>
+<td style="text-align:right">0.71</td>
+<td>Display and retargeting</td>
+<td style="text-align:right">16.8</td>
+<td style="text-align:right">3.6</td>
+</tr>
+<tr>
+<td>Shapley</td>
+<td style="text-align:right">5.7</td>
+<td style="text-align:right">16.7</td>
+<td style="text-align:right">0.71</td>
+<td>Display and retargeting</td>
+<td style="text-align:right">16.7</td>
+<td style="text-align:right">3.6</td>
+</tr>
+</tbody>
+</table>
+<p>Source: simulated, model rules, 60,000 user paths, demonstration seed, seed 12, as of 2026-09-27.</p>
+<p><strong>Every rule over credits display and retargeting.</strong> Last touch gives it
+23.0% of conversions against a true incremental share of
+6.5%: 16.5 points too much, 3.5 times the
+truth. The worst rule, time decay, over credits it by 16.8
+points. The channel reaches people who were about to buy anyway, and a rule that shares out the
+touches on converting paths cannot see that. The calibrated model gives it 9.9%,
+much closer. The model is a third answer rather than a second truth, since it measures the weekly
+panel and not the paths, and it has errors of its own: paid search at
+42.2% against a true 32.8%,
+email at 9.8% against 20.4%.</p>
+<p>The rules agree with one another far more than with the truth. Last touch ranks the channels with
+a rank correlation of 0.71 against the truth and misses
+each channel's share by 5.4 points on average;
+the grades table shows the other five.</p>
+<h2>The mix model itself</h2>
+<p>Two backends estimate the same model family, geometric carryover and Hill saturation on a weekly
+panel: own, written in the repository and fit by a stated search with block bootstrap intervals,
+and bayes, fit by PyMC-Marketing with posterior intervals. On the demonstration brand, each
+channel's return on ad spend with its 90% interval, beside the truth:</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th style="text-align:right">own</th>
+<th style="text-align:right">own interval</th>
+<th style="text-align:right">bayes</th>
+<th style="text-align:right">bayes interval</th>
+<th style="text-align:right">Truth (simulated)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Paid search</td>
+<td style="text-align:right">2.38</td>
+<td style="text-align:right">2.24 to 2.61</td>
+<td style="text-align:right">2.98</td>
+<td style="text-align:right">1.85 to 5.03</td>
+<td style="text-align:right">3.15</td>
+</tr>
+<tr>
+<td>Paid social</td>
+<td style="text-align:right">3.02</td>
+<td style="text-align:right">2.58 to 3.38</td>
+<td style="text-align:right">3.84</td>
+<td style="text-align:right">2.09 to 6.74</td>
+<td style="text-align:right">2.37</td>
+</tr>
+<tr>
+<td>Online video</td>
+<td style="text-align:right">0.85</td>
+<td style="text-align:right">0.36 to 1.19</td>
+<td style="text-align:right">0.99</td>
+<td style="text-align:right">0.23 to 2.70</td>
+<td style="text-align:right">1.59</td>
+</tr>
+<tr>
+<td>Display and retargeting</td>
+<td style="text-align:right">1.62</td>
+<td style="text-align:right">1.18 to 1.92</td>
+<td style="text-align:right">2.26</td>
+<td style="text-align:right">1.12 to 4.56</td>
+<td style="text-align:right">1.22</td>
+</tr>
+<tr>
+<td>Email</td>
+<td style="text-align:right">4.79</td>
+<td style="text-align:right">3.21 to 6.79</td>
+<td style="text-align:right">8.44</td>
+<td style="text-align:right">3.99 to 17.60</td>
+<td style="text-align:right">7.70</td>
+</tr>
+<tr>
+<td>Affiliate and promo codes</td>
+<td style="text-align:right">1.60</td>
+<td style="text-align:right">1.27 to 2.00</td>
+<td style="text-align:right">1.65</td>
+<td style="text-align:right">0.66 to 3.81</td>
+<td style="text-align:right">2.74</td>
+</tr>
+<tr>
+<td>Direct mail</td>
+<td style="text-align:right">1.93</td>
+<td style="text-align:right">0.38 to 4.05</td>
+<td style="text-align:right">1.80</td>
+<td style="text-align:right">0.37 to 5.14</td>
+<td style="text-align:right">1.88</td>
+</tr>
+</tbody>
+</table>
+<p>Source: simulated, model own, demonstration brand, 156 weeks, condition rho 0.6, feedback on, seed 12, as of 2026-09-27. Source: simulated, model bayes, demonstration brand, 156 weeks, condition rho 0.6, feedback on, seed 12, as of 2026-09-27.</p>
+<p>By the rule the site uses, the backends disagree on a channel when their intervals do not overlap,
+and on that rule they disagree nowhere.
+The overlap hides a real difference in the intervals themselves: own's miss the truth in
+paid search, paid social, online video, email, and affiliate and promo codes, while bayes's cover it in every channel.
+Own covers the truth in 2 of 7 channels here
+and bayes in 7. The point estimates differ most on
+email: 4.79 for own and 8.44
+for bayes, against a true 7.70. Own puts
+66.1% of sales in the baseline and bayes 53.7%,
+against a true 62.0%; each leaves 0.6% and
+0.7% of sales unexplained.</p>
+<p><strong>The recovery study.</strong> Each backend was refit on fresh simulated markets under
+6 conditions (three levels of correlation between the channels'
+spend, each with and without retargeting spend that follows demand) and every fit was graded
+against the truth. Own ran 20 seeds per condition, bayes
+3. Own's median absolute error in return across channels
+runs from 30.3% (rho 0.6, feedback off) to
+46.2% (rho 0.9, feedback on),
+over the 25% floor in every condition, and its intervals hold
+the truth 42% of the time against a stated
+90%. Bayes runs from 17.7%
+(rho 0.6, feedback on) to 34.4%
+(rho 0.2, feedback on), and it is over the floor under these conditions:
+rho 0.2, feedback off; rho 0.2, feedback on; rho 0.9, feedback off; rho 0.9, feedback on. Its intervals hold the truth
+98% of the time. Bayes is the more accurate backend on this study
+and the only one whose intervals reach the stated level; its figures rest on
+3 seeds per condition, so its intervals over seeds are wide.
+Both tables, every condition and channel, are in <code>docs/evaluation.md</code>.</p>
+<p><strong>Bayes diagnostics.</strong> The demonstration fit ran 2 chains of
+400 draws after 400 tuning steps, in
+258.9 seconds, with 0 divergences and a largest
+R hat of 1.010, just under the level PyMC warns at. That is a clean fit on fewer
+chains than PyMC recommends for R hat. The recovery fits were less clean: most reported a few
+divergences and an R hat above that level, though every one stayed under the ceilings the backend
+enforces and is marked ok in <code>results/recovery/bayes_diagnostics.json</code>.</p>
+<h2>Limitations</h2>
+<p><strong>The market is simulated.</strong> Every mix model, budget and attribution figure describes the
+simulator, which was written with the effects it asks the models to find: geometric carryover,
+Hill saturation and retargeting spend that follows demand. A real market can break those
+assumptions in ways the recovery study cannot show. None of these returns applies to a real brand
+until the pipeline has run on that brand's weekly panel.</p>
+<p><strong>Bayes rests on 3 seeds per condition.</strong> Each bayes fit
+samples for minutes (258.9 seconds on the demonstration brand), so its
+recovery study ran that many seeds against own's 20, and its
+calibration study 3. Those figures are indicative: the
+intervals over seeds are wide, and the order of the conditions could change with more.</p>
+<p><strong>One experiment.</strong> A single geo test on a single channel calibrates both models. It measured
+display and retargeting at $169,063 against a true $150,478, off by
++12.4%, and the calibrated models inherited that error. A second test on another
+channel, or a repeat of this one, is what would show whether calibration pays on average; for the
+budget, the regret study says it did not.</p>
+<p><strong>Hillstrom is catalog retail in 2008.</strong> The email experiment is a real randomized test of
+64,000 recent buyers of a catalog retailer over 14 days
+in 2008. It shows the analysis and the targeting protocol working on data the build did not write;
+it says nothing about Alderquist's customers or about email as it is sent today.</p>
+<p><strong>The purchase history is a UK gift wholesaler's.</strong> Lifetime value is fit on a UK online gift
+retailer whose customers are largely wholesale buyers, from 2009-12-01 to
+2011-12-09, in pounds sterling. Their purchase rhythm and basket sizes are not
+those of a direct to consumer home goods brand, and the model over predicts their holdout purchases
+by +48.5%.</p>
+<p><strong>Criteo has no cost.</strong> Criteo publishes no cost per impression and no value per visit, so its policy
+value counts incremental visits and a policy that ranks well still chooses the whole list. It tests
+the ranking at scale, not the operating point.</p>
+<p><strong>The allowance is a mechanism.</strong> The allowance is lifetime value at margin times a payback share,
+weighted by channel mixes that are stated, not measured. It shows how an acquisition cost limit
+enters the plan and where it binds; the number itself is the retailer's, leans optimistic because
+the purchase model over predicts, and moves one for one with the stated mixes and payback share.</p>
+<p><strong>Own's intervals are too narrow.</strong> Own's bootstrap resamples weeks with carryover and saturation
+held at their searched values, so its intervals leave out the uncertainty of the search itself. They
+hold the truth 42% of the time in the recovery study against a
+stated 90%. Read them as a floor on the uncertainty; bayes's are the ones to
+quote.</p>
+<p><strong>The API serves the own backend only.</strong> The API serves own's curves: the calibrated export once it
+is redeployed, and, when a separate client last checked the live instance, the uncalibrated one.
+Bayes is not served, the uplift learners are not served, and lifetime value reaches the API only as
+the allowance file. A plan saved through the API is an own plan.</p>
+<h2>What the CMO would push back on</h2>
+<p><strong>&quot;The market is simulated.&quot;</strong> It is, on purpose: a simulated market is the only place a mix model
+can be graded against the answer. The build did that grading, 120 own fits and
+18 bayes fits across 6 conditions, and
+published where each backend falls short. It did not run on a real brand's panel, and until it does,
+no return in this memo applies to one.</p>
+<p><strong>&quot;The email test is from a catalog retailer in 2008.&quot;</strong> It is, and it is used only for what it can
+support: a real randomized test on which to show the sample ratio gate, a segment analysis with a
+multiple testing correction and the targeting protocol. The build does not carry its effect sizes
+over to Alderquist, and on it the uplift learners did not beat the simple rule; the simulator, where
+the effects are known, is where the learners were shown to work. An Alderquist holdout is the next
+step, and the protocol is ready for it.</p>
+<p><strong>&quot;The agency's attribution report says otherwise.&quot;</strong> It probably does, and on these paths every
+rule does too: each gives display and retargeting about
+23.0% of conversions against a true incremental share of
+6.5%. The build graded the rules against the truth on
+simulated paths and ran a geo test on that channel, which measured it directly. It has not seen the
+agency's report or any real path data; the answer to the agency is a holdout on the channel, and
+this build shows how to design, register and read one.</p>
+<p><strong>&quot;The model says cut the channel the CFO likes.&quot;</strong> The plan cuts display and retargeting, and direct mail as far as
+the change limit allows and holds online video at its floor.
+Display and retargeting is the one channel the build measured directly: after calibration its return is
+1.31 against a breakeven of 2.38
+at the 42% margin, and the truth is lower still at
+1.22, so that cut survives taking the experiment at its word. The other
+cuts rest on the model alone, and the online video cut rests on the
+allowance, the weakest number in this memo. The build did not test those channels. A
+holdout on whichever one the CFO would defend is the cheapest way to settle it, and no plan here
+moves a channel by more than 30% of last year's spend, so a wrong
+cut is bounded.</p>
+<blockquote>
+<p>Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here.</p>
+</blockquote>
+</main>
+</body>
+</html>

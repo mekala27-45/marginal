@@ -1,0 +1,168 @@
+{#- Model card: BG/NBD and Gamma-Gamma lifetime value, and the allowance built on it. -#}
+{% import '_macros.j2' as m %}
+{% set card = 'clv-bgnbd-gamma-gamma' %}
+{% set title = 'BG/NBD and Gamma-Gamma lifetime value' %}
+{% set infeasible = raw('budget.allowance_infeasible') %}
+{% set infeasible_key = m.key_of(infeasible) %}
+{% set binds = [] %}
+{% for key, name in m.channels if raw('budget.bound.' ~ key) == 'allowance' %}{% set _ = binds.append(name) %}{% endfor %}
+{% set over = raw('clv.holdout.purchases_predicted_over_actual') > 0 %}
+{% set intended %}
+BG/NBD predicts how many purchases a customer will make and whether they are still a customer;
+Gamma-Gamma predicts how much they spend when they buy. Together they give each customer's
+lifetime value over the next {{ v('policy.clv_horizon_months') }} months, and from it the acquisition
+cost allowance: the most a channel may spend to acquire a customer, which the budget optimizer and
+the API apply. The transactions are a UK online gift retailer's, largely wholesale customers, from
+2009 to 2011, and Alderquist's market is simulated, so the allowance is a demonstration of the
+mechanism, not a number for Alderquist. It is not meant for valuing Alderquist's customers, for
+one customer's value (the holdout grades deciles and totals, not individuals), for customers the
+model has not seen, or for pricing an acquisition before it is refit on the brand's own purchase
+history.
+{% endset %}
+{% set data %}
+Online Retail II from the UCI Machine Learning Repository: {{ v('data.retail.raw_rows') }} transaction
+lines from {{ v('data.retail.first_date') }} to {{ v('data.retail.last_date') }}. After the sheet overlap
+is dropped and credit notes, lines without a customer id and non positive adjustments are removed
+(`data/PROVENANCE.md` has each count), {{ v('data.retail.kept_rows') }} lines remain, from
+{{ v('data.retail.customers') }} customers over {{ v('data.retail.purchases') }} customer days.
+{{ label('data.retail.kept_rows') }}
+
+The models are fit on the {{ v('clv.customers') }} customers who bought by {{ v('clv.calibration_end') }},
+{{ v('clv.customers_repeat') }} of them repeat buyers, and judged on what those customers did from
+{{ v('clv.holdout_start') }} to {{ v('clv.holdout_end') }}. The {{ v('clv.customers_new_in_holdout') }}
+customers whose first purchase falls in the holdout are counted but not predicted, because the
+models describe customers they have seen. The committed frame holds a pseudonymous customer id, a
+day, revenue and lines, nothing else. Amounts are the retailer's own, in pounds sterling, printed
+in the repository's dollar format. {{ label('clv.holdout_by_decile') }}
+{% endset %}
+{% set fit %}
+Both models are written in the repository (`marginal_clv`) and fit by maximum likelihood on the
+calibration window, with BFGS on the log parameters and the analytic gradient. BG/NBD took
+{{ v('clv.bgnbd.evaluations') }} evaluations and {{ 'converged' if raw('clv.bgnbd.converged') == 'yes' else 'did not converge' }},
+judged by the largest gradient component at the answer and not by the optimizer's flag alone. On this file its
+likelihood has a long, nearly flat ridge along which a and b grow together, so the tolerance is
+tight on purpose. Gamma-Gamma uses the repeat purchases of repeat customers only, and assumes that
+spend per purchase does not depend on how often a customer buys; the correlation between the two
+among repeat customers is {{ v('clv.gg.correlation') }}, which does not rule the model out.
+
+Lifetime value is the discounted expected revenue over {{ v('policy.clv_horizon_months') }} months at an
+annual rate of {{ v('policy.clv_discount_rate_annual') }}, computed at the calibration end from the
+models the holdout judged, not refit on the whole file. The allowance is lifetime value times the
+{{ v('policy.contribution_margin') }} contribution margin times a payback share of
+{{ v('policy.clv_payback_share') }}: per purchase frequency segment, overall, and per channel as a mix
+weighted mean of the segment allowances. The channel mixes are stated assumptions in
+`marginal_clv.value`, because the retail file records no channel. The budget optimizer turns a
+channel's incremental revenue into customers at {{ v('clv.revenue_per_acquisition') }} per acquisition,
+the mean revenue on a customer's first purchase day, and holds spend per customer under the
+channel's allowance.
+
+As a cross check, PyMC-Marketing fits the same two models to the same frame by maximum a posteriori
+under flat priors.
+{% endset %}
+{% set metrics %}
+The parameters, beside PyMC-Marketing's. The largest relative difference across them is
+{{ v('clv.crosscheck.max_relative_difference') }}.
+
+{{ table('clv.parameters') }}
+
+{{ label('clv.parameters') }}
+
+{% call m.holds(over and raw('clv.holdout.top_decile_purchases_predicted_over_actual') < raw('clv.holdout.purchases_predicted_over_actual'), 'that BG/NBD over predicts the holdout and the top decile is closer') %}
+**The holdout.** The model expected {{ v('clv.holdout.predicted_purchases_total') }} purchases in the
+holdout and the customers made {{ v('clv.holdout.actual_purchases_total') }}, a difference of
+{{ v('clv.holdout.purchases_predicted_over_actual') }}; predicted revenue is {{ v('clv.holdout.predicted_revenue_total') }}
+against {{ v('clv.holdout.actual_revenue_total') }}, a difference of {{ v('clv.holdout.revenue_predicted_over_actual') }}.
+The mean absolute error per customer is {{ v('clv.holdout.mae_purchases') }} purchases and
+{{ v('clv.holdout.mae_revenue') }} of revenue. The over prediction comes from the dropout parameters: the
+fitted chance that a customer stops buying after a purchase is {{ v('clv.bgnbd.dropout_after_purchase') }},
+close to zero, so the model treats nearly every customer who went quiet as still active and keeps
+predicting purchases for them. The tenth decile, the customers who bought most often in the
+calibration window, is much closer: {{ v('clv.holdout.top_decile_purchases_predicted_over_actual') }}.
+{% endcall %}
+
+{{ table('clv.holdout_by_decile') }}
+
+{{ label('clv.holdout_by_decile') }} Deciles are of purchase frequency in the calibration window.
+
+**Lifetime value** over the horizon has a mean of {{ v('clv.clv.mean') }}, a median of
+{{ v('clv.clv.median') }} and a ninetieth percentile of {{ v('clv.clv.p90') }} per customer.
+
+**The allowance**, by segment and by channel:
+
+{{ table('clv.segments') }}
+
+{{ label('clv.segments') }}
+
+{{ table('clv.allowance_by_channel') }}
+
+{{ label('clv.allowance_by_channel') }}
+
+{% call m.holds(raw('budget.allowance_applied') == 'yes' and infeasible_key, 'that the allowance was applied in the plan and holds a channel at its floor') %}
+**Where it binds.** In the plan at last year's budget the allowance
+{% if binds %}binds on {{ m.join_and(binds)|lower }}, and it {% endif %}holds {{ infeasible|lower }} at the
+lowest spend the constraints allow, {{ v('budget.change.' ~ infeasible_key) }} from last year, because that
+channel's curve cannot meet its allowance of {{ v('clv.allowance.channel.' ~ infeasible_key) }} at any spend
+the constraints allow. {{ label('budget.allocation') }}
+{% endcall %}
+{% endset %}
+{% set contract %}
+{% call m.line('trained', 'partly') %}
+Fit in the pipeline (`make clv`) on the calibration window to {{ v('clv.calibration_end') }} and judged against what the same customers did in the holdout, with PyMC-Marketing as a cross check; no simpler benchmark, such as last year's purchases carried forward, was fit beside it.
+{% endcall %}
+{% call m.line('timed', 'met') %}
+The calibration window ends {{ v('clv.calibration_end') }} and the holdout runs from {{ v('clv.holdout_start') }} to {{ v('clv.holdout_end') }}; a test checks the two never overlap, and lifetime value is computed at the calibration end from the models the holdout judged.
+{% endcall %}
+{% call m.line('calibrated', 'partly') %}
+The holdout by decile checks predicted purchases and revenue against actual, and `results/clv/calibration_plot.parquet` makes the same check in bins of predicted purchases; the check shows an over prediction of {{ v('clv.holdout.purchases_predicted_over_actual') }}, and no interval is published for lifetime value or the allowance.
+{% endcall %}
+{% call m.line('useful', 'met') %}
+It sets the acquisition cost allowance the plan and the API apply: lifetime value times the {{ v('policy.contribution_margin') }} margin times a payback share of {{ v('policy.clv_payback_share') }}, {{ v('clv.allowance.overall') }} per customer overall.
+{% endcall %}
+{% call m.line('fair', 'partly') %}
+The frame holds a pseudonymous id, a day, revenue and lines, with no demographic field to check; the allowance differs by purchase frequency segment by design, and the channel mixes that weight the segments are stated, not measured.
+{% endcall %}
+{% call m.line('gated', 'partly') %}
+A fit whose maximum sits on the edge of the parameter space is not called converged (a test checks this), and the stage refuses an empty or overlapping window; a fit that does not converge is published with its flag rather than stopped.
+{% endcall %}
+{% call m.line('served', 'partly') %}
+The model is not served, its allowance is: the API reads `results/clv/allowance.json` and applies it in `/v1/optimize` and `/v1/plans` unless a request turns it off.
+{% endcall %}
+{% call m.line('integrated', 'met') %}
+The budget stage and the API apply the allowance, the site's Budget page shows where it binds, and the quarterly review's lifetime value section quotes the holdout and the allowance.
+{% endcall %}
+{% call m.line('monitored', 'not built') %}
+There is no refit on new purchases and no check of the holdout error over time; the weekly refresh is a stretch goal.
+{% endcall %}
+{% call m.line('documented', 'met') %}
+This card and `data/PROVENANCE.md`, rendered from the manifest by the claim gate.
+{% endcall %}
+{% call m.line('bounded', 'met') %}
+The statement closes this card, and the intended use above says it plainly: the customers are a UK gift retailer's, the market they are applied to is simulated, and the allowance demonstrates the mechanism.
+{% endcall %}
+{% call m.line('validated', 'met') %}
+Judged on the holdout year of the same customers, by decile of calibration frequency, and cross checked against PyMC-Marketing, never on the window it was fit on.
+{% endcall %}
+{% call m.line('explainable at the decision', 'met') %}
+A reader sees the holdout by decile, the parameters beside PyMC-Marketing's, the lifetime value distribution, the allowance by segment and by channel, and in the plan the channels where it binds.
+{% endcall %}
+{% endset %}
+{% set limitations %}
+{% if over %}
+It over predicts: its holdout purchases are {{ v('clv.holdout.purchases_predicted_over_actual') }} against
+what the customers bought, so every lifetime value and every allowance built on it leans
+optimistic. A model in which customers can drop out between purchases, such as Pareto/NBD, is the
+next thing to try.
+
+{% endif %}
+The customers are a UK online gift retailer's, largely wholesale buyers, whose purchase rhythm and
+basket sizes are not those of a direct to consumer home goods brand. The amounts are pounds
+sterling, and the plan applies them to Alderquist's dollars one for one.
+
+The channel allowances rest on segment mixes that are stated, not measured, and move one for one
+with them. A segment is a customer's purchase frequency in the calibration window, which also
+reflects how long they have been a customer; reading it as the kind of customer a channel acquires
+is the simplification the mixes rest on.
+
+No interval is published for lifetime value or the allowance.
+{% endset %}
+{% include 'cards/_card.md.j2' %}

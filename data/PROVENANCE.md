@@ -39,10 +39,12 @@ Source: static, the three public releases, as of 2026-09-27.
 - SHA-256 of the verified copy: `572e36277c2390fbfde10664750731e0a86f55e33470d91919085f0408e67bfb` (the UCI page publishes no checksum;
   a different copy fails verification on purpose so the row counts below stay tied to this file).
 - Rows: 1,067,371 transactions from 2009-12-01 to
-  2011-12-09. Cleaning removed 19,494 credit
-  notes (invoices starting with C), 242,257 rows without a customer id
-  (23.1% of the non credit rows) and 71
-  non positive adjustments, leaving 805,549 rows,
+  2011-12-09. The workbook's two sheets both hold 1 to 9 December 2010, so the
+  first sheet's 22,523 rows for those days were dropped before anything
+  else. Cleaning then removed 19,165 credit
+  notes (invoices starting with C), 234,568 rows without a customer id
+  (22.9% of the non credit rows) and 70
+  non positive adjustments, leaving 791,045 rows,
   5,878 customers and 33,107 customer days.
 - Windows: calibration to 2010-11-30, holdout from 2010-12-01.
 - Committed: `data/retail/purchases.parquet` (customer id, day, revenue, lines) and `summary.json`.

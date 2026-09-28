@@ -1,0 +1,182 @@
+# Runbook
+
+Rendered from `results/manifest.json` by the claim gate; do not edit by hand.
+
+What to run, in what order, roughly how long it takes on the build machine, and what to do when
+something fails.
+
+## From a fresh clone
+
+```sh
+make setup      # uv sync, and npm ci in web/
+make data       # verify the three public datasets, fetching each one whose host answers
+make pipeline   # every stage below in order, then render and marts
+make check      # lint, types, gates and tests
+make web        # the static site into web/out
+```
+
+You need Python 3.12 with uv, and Node with npm for the site. `make pipeline` does not include
+`make data`; run that first. Every stage after it is seeded from the demonstration seed, and every
+stage writes its figures to its own manifest under `results/manifests`, so rerunning one stage
+never touches another's.
+
+## The data
+
+`make data` looks for three files under `data/external`, downloads each one whose host answers, and
+verifies every checksum either way:
+
+- `data/external/hillstorm_no_indices.csv.gz`, the Hillstrom email experiment
+- `data/external/online+retail+ii.zip`, Online Retail II
+- `data/external/criteo-uplift-v2.1.csv.gz`, the Criteo uplift release, the large one
+
+On a machine that cannot reach the hosts, place the files there by hand;
+`uv run marginal data --no-download` verifies without trying the hosts, and a missing file is
+reported with the path it should have and the address it comes from. Nothing raw is committed.
+`data/PROVENANCE.md` has the sources, terms, checksums and row counts.
+
+## The pipeline, stage by stage
+
+Each target is one command of the `marginal` CLI, in the order `make pipeline` runs them. Times are
+from the stage logs under `logs/` on the build machine; stages without a log were not timed.
+
+| Target | What it does | What it writes | Time here |
+|---|---|---|---|
+| `make simulate` | The market with known truth for the demonstration seed: the geo panel, the national panel, customers and paths | `data/sim/` | not timed |
+| `make recovery` | Own on the demonstration brand, then own refit across every condition and seed of the recovery study | `results/mmm/own_*`, `results/recovery/own_*` | about half an hour |
+| `make recovery-bayes` | The same for bayes | `results/mmm/bayes_*`, `results/recovery/bayes_*` | about an hour and a quarter, nearly all of it sampling |
+| `make experiments` | The geo lift test (design, power, registration, the gate, both analyses) and the email experiment | `results/experiments/` | not timed |
+| `make calibrate` | The posted lift result into both backends, before and after, and the weight test | `results/calibrate/` | about forty minutes, most of it the bayes half |
+| `make budget` | The plan at last year's budget, the regret study and the slider surface | `results/budget/` | about five minutes, most of it the regret study |
+| `make targeting` | The uplift protocol on Hillstrom, the simulator and Criteo | `results/targeting/` | about five minutes, most of it Criteo (286 seconds against a budget of 900) |
+| `make clv` | Lifetime value with the holdout, the cross check and the allowance | `results/clv/` | not timed |
+| `make attribution` | Six credit rules and Shapley beside the truth and the calibrated model | `results/attribution/` | not timed |
+| `make manifest` | Every stage's manifest merged, with the policy and the palette summary | `results/manifest.json` | not timed |
+| `make render` | Every document rendered from the manifest by the claim gate | `README.md`, `docs/`, `data/PROVENANCE.md`, `report/` | seconds |
+| `make marts` | The parquet marts, the manifest and the policy for the site | `web/public/data/` | not timed |
+
+Two orderings to know:
+
+- `make budget` reads `results/clv/allowance.json`, which `make clv` writes later in this order. A
+  fresh clone reads the committed file. After a change to the lifetime value stage, run
+  `make clv budget` again, then `make manifest render marts`, so the plan applies the new allowance.
+- `make attribution` and the API read the calibrated own export when `make calibrate` has run, and
+  the uncalibrated one otherwise.
+
+`make calibrate` takes `--backends` through the CLI (`uv run marginal calibrate --backends own`) when
+only one half needs to run; the other half's figures are carried over from the previous run.
+
+## Gates and checks
+
+`make gates` runs, in order: the dash gate, the vocabulary gate, the statement gate, the claim gate,
+the identifier scan and the palette validator. `make check` runs lint (ruff), types (mypy), the gates
+and the tests (pytest with the coverage floor). The tests that need Postgres, PyMC or LightGBM skip
+with a named reason when those are missing locally; CI requires all three.
+
+| Gate | What a failure means | What to do |
+|---|---|---|
+| Claim gate | A document differs from what the manifest renders, or a template has a number typed into its prose | Run `make render`. Read the number from the manifest instead of typing it; a name with digits that is not a claim goes in `docs/templates/_allowed_literals.txt` with its reason. |
+| Claim gate, "the manifest no longer supports" | A rerun moved a result under a sentence that states its direction | Rewrite the sentence for the new result, and record why in `DECISIONS.md`. |
+| Statement | A document, a card, the memo or a built page lost the statement | Restore the `statement()` call at the end of the template; never retype the text. |
+| Dashes, vocabulary | An em or en dash, or a phrase on the filler list | Rewrite the sentence. |
+| Identifier scan | Something that looks like a real person's identity, or a raw data row, in a published file | Find what wrote it and fix it at the source. |
+| Palette | A color pair fails a contrast or separation check | Change `web/src/theme/palette.json`, not the check. |
+
+## Rederiving before a release
+
+`make rederive` is wired to `scripts/reset_and_rederive.py`, which this build has not written yet, so
+the target fails today. Until it exists, the manual equivalent is to run `make pipeline` and
+`make check` from a clean clone and read `git status` and `git diff --stat`: every document is
+rendered from the manifest, so a document that changed means a figure moved. `make demo` is in the
+same state: `scripts/build_demo_gif.py` does not exist yet.
+
+## Deploying the API
+
+The API runs on Fly with its database on Neon. The deploy needs `flyctl`, a Fly account and these
+variables, from the environment or a `.env` file (see `.env.example`):
+
+- `DATABASE_URL`, the Neon connection string
+- `MARGINAL_WRITE_TOKEN`, the token writes must carry
+- `FLY_API_TOKEN`, for flyctl
+- `FLY_APP_NAME`, which defaults to `marginal-alderquist-api`
+
+From Linux or macOS, `make deploy` runs `deploy/deploy.sh`: it creates the app when it does not
+exist, stages the two secrets, and deploys with Fly's remote builder, so no local Docker is needed.
+From Windows:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File deploy\deploy.ps1
+```
+
+reads `.env` beside or above the repository, installs flyctl when it is missing, generates a write
+token when none is set, deploys, checks `/v1/health`, and writes the live address and the token to
+`deploy/live-url.txt` and `deploy/write-token.txt` and a transcript to `deploy/deploy-log.txt`, all
+ignored by git.
+
+**Verify from a separate client.** On a machine that is neither the server nor the build machine:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File deploy\verify.ps1
+```
+
+It registers a verification experiment, posts a result against its plan hash, saves a plan, reads
+all three back through the API, checks that the audit row came before the response, and writes
+`deploy/verify-result.json`; the committed record of the last run is
+`results/deploy/verification.json`. From any machine, `make verify-api` with `MARGINAL_API_BASE` set
+to the live address runs `scripts/check_persistence.py --base-url` against it.
+
+**Continuous deploys.** `.github/workflows/deploy.yml` redeploys on a push to main that touches the
+API, the model exports or the Fly configuration, when the repository variable `FLY_DEPLOY_ENABLED`
+is true, using the `FLY_API_TOKEN` secret, and then checks `/v1/health` from the runner.
+
+## Redeploying after a calibration
+
+The image copies `results/mmm`, `results/calibrate`, `results/clv` and the experiment registry when
+it is built, so a new calibration reaches the live API only through a new deploy:
+
+- First run `make calibrate`, and `make clv budget` if lifetime value changed, then
+  `make manifest render marts`.
+- Commit the results.
+- Push, which redeploys when the deploy workflow is enabled, or run `deploy/deploy.sh` or
+  `deploy/deploy.ps1`.
+- Check that `/v1/health` names the calibrated export, `own-0c071596-calibrated`.
+- Last, run `deploy/verify.ps1` from a separate client and commit the new
+  `results/deploy/verification.json`.
+
+This redeploy is outstanding: when the live instance was last verified, `/v1/health` named the
+uncalibrated own export.
+
+## The site
+
+`make web` (or `npm --prefix web run build`) copies the DuckDB-WASM bundle, writes the color tokens
+and builds the static export into `web/out`. `npm --prefix web run dev` serves it locally, and
+`npx playwright test` in `web/` runs the browser tests against the export. The site reads only
+`web/public/data`, which `make marts` writes and which is committed.
+
+`.github/workflows/pages.yml` publishes it: on a push to main it builds with the base path
+`/marginal` and the live API from the `MARGINAL_API_URL` repository variable (the Fly address when
+the variable is empty), runs the type check and the browser tests, and deploys `web/out` to GitHub
+Pages. The repository's Pages source must be set to GitHub Actions.
+
+## Recording the session
+
+The site falls back to a recorded API session while the live API is asleep. To record one:
+
+```sh
+MARGINAL_TEST_DATABASE_URL=postgresql+psycopg://... uv run python scripts/record_session.py --start-server
+uv run python scripts/record_session.py --base-url https://marginal-alderquist-api.fly.dev
+```
+
+The first starts the API against a local Postgres; the second drives a running server. Either walks
+the flow the site performs (health, models, the registered geo test and its result, the optimizer
+at the current budget and at four others, a saved plan, the plan list, the audit log) and writes
+every response, labelled recorded, to `web/public/data/recorded_session.json`. The committed
+recording was made the first way. Record again after a calibration or a change to the API, then
+rebuild the site.
+
+## The release
+
+Commits first, then the tag. Commit every stage's results, the rendered documents and the site's
+data, run `make check` on the commit that will be tagged, then tag it (`git tag -a v0.1.0`) and push
+the commits before the tag, so the tag never names a commit the remote does not have.
+
+> Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here.

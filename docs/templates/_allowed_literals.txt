@@ -29,3 +29,9 @@ SHA-256
 MD5
 Day 2
 log(0.5)
+# The HTML memo declares its character encoding (report/templates/quarterly-review.html.j2); an encoding name.
+utf-8
+# The PowerShell scripts deploy/deploy.ps1 and deploy/verify.ps1, named in docs/runbook.md; a file extension.
+.ps1
+# data/PROVENANCE.md names the days both Online Retail II sheets hold (the overlap dropped once); a date range.
+1 to 9 December 2010

@@ -1,0 +1,189 @@
+{#- How the build grades itself without grading itself. -#}
+{% import '_macros.j2' as m %}
+# Evaluation: how the build grades itself
+
+Rendered from `results/manifest.json` by the claim gate; do not edit by hand.
+
+The rule is short. No model is graded on the data it was fit or tuned on, and nothing is graded
+against itself. On the simulator the answer is known, so every estimate sits beside the truth. On
+real data the answer is a randomized holdout, read once. Where the data has to choose something (a
+share of customers to contact, the weight an experiment carries, an allocation), the choice is made
+on one split, reported on another, and has to pass an interior test. Intervals are at
+{{ v('policy.interval_level') }} throughout.
+
+## The recovery study
+
+Each mix model backend is refit on fresh simulated markets under {{ v('recovery.own.conditions') }}
+conditions: three levels of correlation between the channels' weekly spend (rho), each with and
+without retargeting spend that follows last week's demand. Own runs
+{{ v('recovery.own.seeds_per_condition') }} seeds per condition ({{ v('recovery.own.fits') }} fits) and bayes
+{{ v('recovery.bayes.seeds_per_condition') }} ({{ v('recovery.bayes.fits') }} fits), because each bayes fit
+samples for minutes. Every fit is graded per channel against the truth: bias (the signed error in
+return as a share of the true return), median absolute error, and whether the interval covers the
+truth; per condition, the rank agreement between the estimated and the true order of the channels
+(Spearman's correlation). Each carries an interval over seeds. The error floor of
+{{ v('recovery.own.error_floor') }} names the conditions where the median error across channels is over
+it; it is a callout, not a gate.
+
+Across all conditions own's median absolute error is {{ v('recovery.own.median_abs_error_overall') }} and
+its intervals cover the truth {{ v('recovery.own.coverage_overall') }} of the time; bayes's error is
+{{ v('recovery.bayes.median_abs_error_overall') }} and its coverage {{ v('recovery.bayes.coverage_overall') }}.
+Own's worst condition is {{ v('recovery.own.worst_condition') }} ({{ v('recovery.own.worst_condition_error') }})
+and its best {{ v('recovery.own.best_condition') }} ({{ v('recovery.own.best_condition_error') }}); bayes's
+worst is {{ v('recovery.bayes.worst_condition') }} ({{ v('recovery.bayes.worst_condition_error') }}) and its
+best {{ v('recovery.bayes.best_condition') }} ({{ v('recovery.bayes.best_condition_error') }}).
+
+{{ table('recovery.own.summary') }}
+
+{{ label('recovery.own.summary') }}
+
+{{ table('recovery.bayes.summary') }}
+
+{{ label('recovery.bayes.summary') }}
+
+## The cross check
+
+On the demonstration brand the two backends are set side by side, channel by channel, with the
+truth beside both (the table is in the quarterly review and on the Mix page). The backends disagree
+on a channel when their intervals do not overlap. Agreement between two models is not evidence that
+either is right, which is why the truth column is there: own covers it in
+{{ v('mmm.own.covered_count') }} of {{ v('policy.channel_count') }} channels and bayes in
+{{ v('mmm.bayes.covered_count') }}.
+
+## The lift test against the truth
+
+The geo lift test is analyzed two ways, and both are graded against the true lift the simulator
+knows. Difference in differences estimates {{ v('geo.did.estimate') }} ({{ v('geo.did.lower') }} to
+{{ v('geo.did.upper') }}); synthetic control estimates {{ v('geo.sc.estimate') }} ({{ v('geo.sc.lower') }}
+to {{ v('geo.sc.upper') }}); the truth is {{ v('geo.truth') }}. Synthetic control's inference is by
+placebo: the same fit is repeated {{ v('geo.sc.placebo_permutations') }} times with control geos
+standing in for the treated ones, the p value is the share of placebos with a gap at least as large
+({{ v('geo.sc.p_value') }}), and the interval is the placebo distribution around the estimate. Power
+was estimated by simulation before the test ran (`docs/experiments.md`).
+
+{{ table('geo.estimates') }}
+
+{{ label('geo.estimates') }}
+
+## Calibration, before and after
+
+The lift result enters both backends, and each is graded before and after on the demonstration
+brand and across seeds of the demonstration condition, each seed with its own geo test.
+
+{{ table('calibrate.own.before_after') }}
+
+{{ label('calibrate.own.before_after') }}
+
+{{ table('calibrate.own.recovery') }}
+
+{{ label('calibrate.own.recovery') }}
+
+{{ table('calibrate.bayes.before_after') }}
+
+{{ label('calibrate.bayes.before_after') }}
+
+{{ table('calibrate.bayes.recovery') }}
+
+{{ label('calibrate.bayes.recovery') }}
+
+## The regret study
+
+A plan is only as good as what it earns on the true curves. For each of
+{{ v('budget.regret.calibrated.seeds') }} seeds of the demonstration condition the market is simulated,
+the geo test is run on it, own is fit before and after calibration, each fit's plan is optimized
+under the stated constraints, and every plan is evaluated on that market's true curves beside the
+plan built on the truth, last year's mix and an equal split. The headline is the share of the truth
+optimal gain each plan captured, with a bootstrap interval over seeds.
+
+{{ table('budget.regret') }}
+
+{{ label('budget.regret') }}
+
+## Targeting: Qini, policy value and the split rule
+
+Every targeting figure comes from a protocol that splits customers once, by key, into training,
+validation and test shares of {{ v('targeting.split.train') }}, {{ v('targeting.split.validation') }} and
+{{ v('targeting.split.test') }}. Models are fit on training; the share to contact is chosen on
+validation; everything published is read from test, scored once. The code refuses to choose a share
+on the test or the training split.
+
+The **Qini curve** is the incremental outcome, per thousand customers on the list, as a growing
+share is contacted in descending order of score; the **Qini coefficient** is the area between it and
+the random diagonal. Intervals come from a paired bootstrap of {{ v('targeting.bootstrap_replicates') }}
+replicates: every policy is scored on the same resampled customers, so the difference between two
+policies' coefficients has its own, narrower interval. The **policy value** is the incremental profit
+per thousand customers on the list when the top share is contacted; the value per thousand
+contacted is published beside it, but the share is not chosen on it, because it falls as the list
+deepens whenever the ranking works.
+
+On the simulator both potential outcomes are known, so two more measures can be read. **PEHE** is
+the root mean squared error of predicted uplift against the true effect:
+{{ v('targeting.sim.pehe.t_learner') }} for the T learner and {{ v('targeting.sim.pehe.x_learner') }} for the X
+learner. The **quadrants** say which customers each policy reaches at its chosen share, and the
+**oracle regret** counts the conversions a policy leaves behind against an oracle that contacts
+exactly the persuadables.
+
+{{ table('targeting.sim.quadrants') }}
+
+{{ label('targeting.sim.quadrants') }}
+
+## Lifetime value: the holdout by decile
+
+The purchase model is fit on the calibration window and judged on what the same customers did in
+the holdout, by decile of their calibration purchase frequency, so an error that sits in one kind
+of customer shows up where it sits. Predicted purchases are {{ v('clv.holdout.purchases_predicted_over_actual') }}
+against actual overall and {{ v('clv.holdout.top_decile_purchases_predicted_over_actual') }} in the tenth decile.
+
+{{ table('clv.holdout_by_decile') }}
+
+{{ label('clv.holdout_by_decile') }}
+
+## Attribution grades
+
+Each credit rule's share of conversions per channel is compared with the true incremental share,
+the summed incremental credit of every touch on the simulated paths. A rule is graded by its mean
+and largest share error in points, its rank agreement with the truth, and the channel it over
+credits most.
+
+{{ table('attribution.grades') }}
+
+{{ label('attribution.grades') }}
+
+## Benjamini-Hochberg
+
+The one family of hypothesis tests in the build is the email effect by purchase history segment:
+{{ v('email.segments.mens.conversion.count') }} segments per outcome, corrected by
+{{ v('email.segments.correction') }} at the false discovery rate set in `marginal_experiments.email`.
+The Qini differences between policies are reported as intervals, not tested, and are not corrected.
+
+## Interior tests, and what "degenerate" means on a page
+
+Three operating points are chosen by the data, and each has to be interior: strictly inside what
+was allowed, with the objective worse on both sides. When one is not, the point is degenerate: the
+answer came from the edge of the grid or the bounds, not from the data, and the page prints the
+word and the reason beside the number instead of hiding it.
+
+- **The calibration weight.** Own is refit with the experiment's weight halved, as stated and
+  doubled. The gap between the lift the model implies and the lift the experiment found is
+  {{ v('calibrate.weight.residual_half') }}, {{ v('calibrate.weight.residual_one') }} and
+  {{ v('calibrate.weight.residual_double') }}, so the test reads {{ v('calibrate.weight.interior') }}:
+  {{ v('calibrate.weight.reason') }}. A weight that reproduced the experiment exactly would be
+  degenerate, because the weight and not the data would have chosen the fit.
+- **The allocation.** Budget is moved between every pair of interior channels in both directions,
+  and every move must lower expected profit. The plan reads {{ v('budget.interior') }}, with
+  {{ v('budget.interior_channels') }} interior channels: {{ v('budget.interior_reason') }}.
+- **The targeting share.** The share with the highest policy value on validation must sit strictly
+  inside the grid, with lower values on both sides:
+
+| Dataset | T learner | X learner | Sure things | Everyone |
+|---|---|---|---|---|
+{% for key, name in [('hillstrom', 'Hillstrom'), ('sim', 'Simulator'), ('criteo', 'Criteo v2.1')] %}
+| {{ name }} | {% for policy in ['t_learner', 'x_learner', 'sure_things', 'everyone'] %}{{ v('targeting.' ~ key ~ '.' ~ policy ~ '.interior') }} at {{ v('targeting.' ~ key ~ '.' ~ policy ~ '.chosen_share') }} | {% endfor %}
+
+{% endfor %}
+
+{{ label('targeting.hillstrom.t_learner.interior') }} {{ label('targeting.sim.t_learner.interior') }}
+{{ label('targeting.criteo.t_learner.interior') }} Everyone contacts the whole list by definition;
+it is the baseline the others are judged against, so it is degenerate by construction.
+
+{{ statement() }}

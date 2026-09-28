@@ -1,0 +1,39 @@
+{#- Shared pieces for the memo, the model cards and the docs. Nothing here prints a figure of
+    its own: every number still comes through v(), table() or table_html(). -#}
+
+{#- The seven channels, keyed and labelled in the fixed order of marginal_core.config.CHANNELS. -#}
+{% set channels = [
+  ('paid_search', 'Paid search'),
+  ('paid_social', 'Paid social'),
+  ('online_video', 'Online video'),
+  ('display_retargeting', 'Display and retargeting'),
+  ('email', 'Email'),
+  ('affiliate_promo', 'Affiliate and promo codes'),
+  ('direct_mail', 'Direct mail'),
+] %}
+
+{#- "a", "a and b", "a, b, and c". The comma before the last "and" is kept whenever a name has
+    an "and" of its own, so "display and retargeting, and direct mail" reads as two channels. -#}
+{% macro join_and(items) -%}
+{%- set ns = namespace(serial=items|length > 2) -%}
+{%- for item in items if ' and ' in item -%}{%- set ns.serial = true -%}{%- endfor -%}
+{%- if items|length > 1 -%}{{ items[:-1]|join(', ') }}{{ ',' if ns.serial else '' }} and {{ items[-1] }}{%- elif items -%}{{ items[0] }}{%- endif -%}
+{%- endmacro %}
+
+{#- The channel key for a channel label, so a label read from the manifest can find its values. -#}
+{% macro key_of(label) -%}
+{%- for key, name in channels if name == label -%}{{ key }}{%- endfor -%}
+{%- endmacro %}
+
+{#- Prints its body only while the manifest still supports the claim the body makes. When a
+    rerun changes the result, the render stops with the claim named, so an old sentence cannot
+    stand beside new numbers. -#}
+{% macro holds(condition, claim) -%}
+{%- if condition -%}{{ caller() }}{%- else -%}{{ missing('the manifest no longer supports ' ~ claim) }}{%- endif -%}
+{%- endmacro %}
+
+{#- One line of the model integration contract, as a checklist item. The box is ticked only
+    when the line is met; any other status is printed beside the line's name. -#}
+{% macro line(name, status) -%}
+- [{{ 'x' if status == 'met' else ' ' }}] **{{ name }}**{{ '' if status == 'met' else ' (' ~ status ~ ')' }}: {{ caller()|trim }}
+{% endmacro %}
