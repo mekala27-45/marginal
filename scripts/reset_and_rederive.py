@@ -138,8 +138,12 @@ def _same_scalar(a: Any, b: Any) -> bool:
     return bool(a == b)
 
 
+TIMING_SUFFIX = "_seconds"
+
+
 def compare(before: dict[str, Any], after: dict[str, Any]) -> list[str]:
-    """Every difference between two manifests, as one line each."""
+    """Every difference between two manifests, as one line each. Wall clock timings (keys ending
+    in ``_seconds``) are reported by ``timing_differences`` instead; they are not claims."""
     drift: list[str] = []
     for bucket in ("values", "tables"):
         old = before.get(bucket, {})
@@ -152,6 +156,8 @@ def compare(before: dict[str, Any], after: dict[str, Any]) -> list[str]:
                 drift.append(f"{bucket} {key}: new since the committed manifest")
                 continue
             if bucket == "values":
+                if key.endswith(TIMING_SUFFIX):
+                    continue
                 if not _same_scalar(old[key]["value"], new[key]["value"]):
                     drift.append(f"value {key}: {old[key]['value']!r} became {new[key]['value']!r}")
             else:
@@ -164,6 +170,14 @@ def compare(before: dict[str, Any], after: dict[str, Any]) -> list[str]:
                         if not _same_scalar(a, b):
                             drift.append(f"table {key} row {i} col {j}: {a!r} became {b!r}")
     return drift
+
+
+def timing_differences(before: dict[str, Any], after: dict[str, Any]) -> dict[str, list[Any]]:
+    out: dict[str, list[Any]] = {}
+    for key, entry in after.get("values", {}).items():
+        if key.endswith(TIMING_SUFFIX) and key in before.get("values", {}):
+            out[key] = [before["values"][key]["value"], entry["value"]]
+    return out
 
 
 def main() -> int:
@@ -237,6 +251,7 @@ def main() -> int:
         summary["values_compared"] = len(after.get("values", {}))
         summary["tables_compared"] = len(after.get("tables", {}))
         summary["drift"] = drift
+        summary["timing_differences"] = timing_differences(before, after)
         for line in drift[:200]:
             log(handle, "drift: " + line)
         log(

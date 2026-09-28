@@ -86,7 +86,8 @@ with a named reason when those are missing locally; CI requires all three.
 `make rederive` runs `scripts/reset_and_rederive.py`: it snapshots `results/manifest.json`, runs
 every stage in the registry's order with the committed manifest's as of date, merges, renders and
 writes the marts, then compares every value and table of the new manifest with the snapshot
-(floats may differ by one part in a billion, nothing else may differ) and runs the gates. The
+(floats may differ by one part in a billion; wall clock timings, the keys ending in `_seconds`,
+are reported separately and never count; nothing else may differ) and runs the gates. The
 summary lands in `results/rederive.json` and the log in `logs/rederive.log`. With `--reset` and
 `DATABASE_URL` set it first deletes the plans and experiments the site recording and the separate
 client verification created in the registry, by their stated notes and names, and leaves the
