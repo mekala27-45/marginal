@@ -23,11 +23,14 @@ ORDER = (
     "recovery_bayes",
     "experiments",
     "calibrate",
+    "clv",
     "budget",
     "targeting",
-    "clv",
     "attribution",
 )
+"""The stage order the pipeline runs in. Lifetime value runs before the budget because the
+optimizer reads the acquisition cost allowance it writes; the Makefile's pipeline target and
+scripts/reset_and_rederive.py follow this tuple, and a test holds them to it."""
 
 
 def run(paths: Paths, as_of: str, seed: int) -> Manifest:

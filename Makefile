@@ -1,5 +1,5 @@
 # The pipeline in the order it runs. docs/runbook.md describes each target;
-# tests/pipeline/test_make_order.py fails if the CLI's stage order disagrees with this file.
+# tests/core/test_make_order.py fails if the Makefile's order disagrees with the stage order.
 
 PY := uv run python
 M := uv run marginal
@@ -54,7 +54,7 @@ render:
 marts:
 	$(M) marts
 
-pipeline: simulate recovery recovery-bayes experiments calibrate budget targeting clv attribution manifest render marts
+pipeline: simulate recovery recovery-bayes experiments calibrate clv budget targeting attribution manifest render marts
 
 gates:
 	$(PY) scripts/check_no_em_dash.py

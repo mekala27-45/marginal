@@ -45,3 +45,6 @@ deploy/live-url.txt
 deploy/write-token.txt
 deploy/verify-log.txt
 deploy/verify-result.json
+
+# Written by scripts/reset_and_rederive.py; the summary results/rederive.json is committed.
+results/manifest.before-rederive.json
