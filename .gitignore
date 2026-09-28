@@ -32,6 +32,9 @@ web/out/
 web/test-results/
 web/playwright-report/
 web/tsconfig.tsbuildinfo
+# Written by web/scripts/prepare-assets.mjs on every build: the DuckDB-WASM bundles and the color tokens.
+web/public/duckdb/
+web/src/app/tokens.css
 
 # Local environment
 .env
