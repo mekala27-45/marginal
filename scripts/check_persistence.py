@@ -8,7 +8,7 @@ the API's own GET endpoints from this separate client, which is the verification
 prints. The audit row must be observed before the response's served_at in both modes.
 
     python scripts/check_persistence.py --start-server
-    python scripts/check_persistence.py --base-url https://marginal-alderquist-api.fly.dev
+    python scripts/check_persistence.py --base-url https://marginal-alderquist-api.vercel.app
 """
 
 from __future__ import annotations

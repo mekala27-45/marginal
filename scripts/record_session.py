@@ -8,7 +8,7 @@ web/public/data/recorded_session.json. When the live API is asleep the site serv
 responses and says so on the page.
 
     MARGINAL_TEST_DATABASE_URL=postgresql+psycopg://... python scripts/record_session.py --start-server
-    python scripts/record_session.py --base-url https://marginal-alderquist-api.fly.dev
+    python scripts/record_session.py --base-url https://marginal-alderquist-api.vercel.app
 """
 
 from __future__ import annotations
