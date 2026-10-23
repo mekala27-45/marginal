@@ -1,3 +1,4 @@
+# The former Fly route, kept for history. The live API runs on Vercel (Dockerfile.vercel).
 # Fly.io, free allowance: one shared CPU machine that stops when idle and starts on the first
 # request. The site reads the precomputed surface while it wakes and says so.
 app = "marginal-alderquist-api"

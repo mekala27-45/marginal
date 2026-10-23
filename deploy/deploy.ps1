@@ -1,3 +1,4 @@
+# The former Fly route, kept for history. The live API runs on Vercel and redeploys on push.
 # Deploy the marginal API to Fly from a Windows machine.
 #
 # Reads FLY_APP_NAME, FLY_API_TOKEN, DATABASE_URL and MARGINAL_WRITE_TOKEN from a .env file next

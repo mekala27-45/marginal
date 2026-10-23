@@ -6,7 +6,7 @@ Rendered from `results/manifest.json` by the claim gate; do not edit by hand.
 
 A FastAPI application (`packages/api/src/marginal_api/app.py`) that keeps the plan and experiment
 registry in Postgres, runs the budget optimizer live on the served model, and lists the models on
-disk. It is live at https://marginal-alderquist-api.fly.dev.
+disk. It is live at https://marginal-alderquist-api.vercel.app.
 
 | Route | Token | What it does |
 |---|---|---|
@@ -27,7 +27,7 @@ route's body lacks the statement (`tests/api/test_registry.py`).
 
 **Token gated writes.** The three routes that store something need the write token as a bearer
 token; without it the request is refused as unauthorized and nothing is written. The token is one
-shared secret, set on Fly and never committed. `/v1/optimize` stores nothing and needs no token.
+shared secret, set in the Vercel project settings and never committed. `/v1/optimize` stores nothing and needs no token.
 
 **The audit row before the response.** Every write adds its row, then its audit row, then commits,
 and only then builds the response, so a response can never exist without its audit record. Tests
@@ -41,13 +41,21 @@ all three back through a psycopg connection it opens itself. CI runs it on every
 every pull request, against a fresh Postgres service. With `--base-url` the same check drives a live
 server and reads back through the API's own GET routes.
 
-**Fly and Neon.** `Dockerfile.api` builds the image on Python 3.12 with the API package only (the
-bayes extra is left out, so the image stays small) and copies the fitted exports it serves:
-`results/mmm`, `results/calibrate`, `results/clv` and the experiment registry. On start it runs the
-migrations and serves on the port Fly routes to. `fly.toml` runs one shared CPU machine in one
-region that stops when idle and starts on the first request, with a health check on `/v1/health`.
-The database is Postgres on Neon; its connection string and the write token are Fly secrets, set by
-`deploy/deploy.sh` or `deploy/deploy.ps1` and never seen by the deploy workflow.
+**Vercel and Neon.** The API runs as a container function on the Vercel Hobby plan, built from
+`Dockerfile.vercel`. That file is `Dockerfile.api` with one change: it serves on the port Vercel
+sends traffic to. The image is Python 3.12 with the API package only (the bayes extra is left
+out, so the image stays small) and copies the fitted exports it serves: `results/mmm`,
+`results/calibrate`, `results/clv` and the experiment registry. On start it runs the migrations,
+which do nothing after the first run, and then serves. Vercel starts an instance on the first
+request after idle and scales back to zero, so that first request waits a second or so.
+
+To set it up, import the repository in Vercel, pick the Container preset and point it at
+`Dockerfile.vercel`. `DATABASE_URL`, `MARGINAL_WRITE_TOKEN` and `MARGINAL_CORS_ORIGINS` go in the
+project's environment variables, never in the repository. The database is Postgres on Neon. Every
+push to main redeploys.
+
+`fly.toml`, `deploy/deploy.sh` and `deploy/deploy.ps1` are the former Fly route, kept for history.
+The Fly account now asks for a card, so the API moved; `DECISIONS.md` has the reasons.
 
 **What is served.** The API loads `results/calibrate/own_calibrated_model.json` when the calibration
 stage has run, and `results/mmm/own_model.json` otherwise, and names the one it loaded in
@@ -56,7 +64,7 @@ stage has run, and `results/mmm/own_model.json` otherwise, and names the one it 
 ## The separate client verification
 
 `results/deploy/verification.json` records a check of the live URL from a Windows machine running
-PowerShell, outside the build sandbox and outside Fly, made with `deploy/verify.ps1`. It found the
+PowerShell, outside the build sandbox and outside Vercel, made with `deploy/verify.ps1`. It found the
 health route ok and the database ok; registered a verification experiment and posted a result
 against its plan hash; saved a plan; read the experiment, its result and the plan back through the
 API; found the registration's audit row timed before the response's `served_at`; found the
@@ -82,7 +90,7 @@ written by `make marts` and committed; the site never recomputes it.
   by DuckDB-WASM in a worker that starts after the first paint. Printed figures come from the
   manifest copied beside the marts, through a formatter that mirrors `marginal_core.formats`.
 - **The live API.** The Budget and Experiments pages call the API named at build time by the
-  `MARGINAL_API_URL` repository variable, and the Fly address when it is empty. The first call
+  `MARGINAL_API_URL` repository variable, and the Vercel address when it is empty. The first call
   probes `/v1/health` and gives up after a few seconds.
 - **The recorded session.** If the API is asleep or unreachable, those pages answer for the rest of
   the visit from `web/public/data/recorded_session.json`, a session recorded by
@@ -97,12 +105,9 @@ written by `make marts` and committed; the site never recomputes it.
 
 - **Authentication beyond the token.** There are no users, roles or per client keys; one shared
   token gates every write, and reads are open.
-- **More than one region.** One machine in one region, stopped when idle, so the first request after
-  a quiet spell waits for it to start; the site falls back to the recording in the meantime.
+- **A warm instance.** The function scales to zero when idle, so the first request after a quiet
+  spell waits for a cold start; the site falls back to the recording if it waits too long.
 - **Rate limiting.** None, on any route.
-- **Automatic redeploys by default.** The deploy workflow redeploys on a push that touches the API,
-  the model exports or the Fly configuration only when the `FLY_DEPLOY_ENABLED` repository variable
-  is set to true.
 - **A scheduled refresh.** Nothing refits or re-records on a schedule.
 
 > Alderquist is a fictional direct to consumer home goods brand and its market is simulated with known truth. The email experiment is Kevin Hillstrom's public 2008 dataset, the purchase history is the UCI Online Retail II dataset, and the large uplift set is Criteo's public research release. No real company's spend and no real customer's identity appears here.

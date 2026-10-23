@@ -23,7 +23,7 @@ documents, the site and the API. Nothing on any surface is typed by hand.
         |  render           README, RESULTS, the memo, the cards, the docs
         |  marts            parquet for DuckDB-WASM, the site bundle
         v
-  FLY API        /v1/plans, /v1/experiments, /v1/optimize, /v1/models, /v1/audit
+  VERCEL API     /v1/plans, /v1/experiments, /v1/optimize, /v1/models, /v1/audit
   GITHUB PAGES   overview, mix, budget, experiments, targeting, report
 ```
 
@@ -88,7 +88,7 @@ page consumes the curves; it never sees the panel.
 
 Everything the pipeline derives is a file under `results/` or `data/sim`, committed, and
 reproduced by `make rederive`. The registry (plans, experiments, results, the audit log) is
-the only mutable state, in Neon Postgres behind the API on Fly; every write commits its row
+the only mutable state, in Neon Postgres behind the API on Vercel; every write commits its row
 and its audit row before the response is built, and the tests observe the rows from a second
 connection. The site is static: DuckDB-WASM queries the committed marts in the browser, the
 manifest supplies every printed number, and a recorded session stands in for the API when it

@@ -1,4 +1,5 @@
 #!/bin/sh
+# The former Fly route, kept for history. The live API runs on Vercel and redeploys on push.
 # Deploy the API to Fly with the Neon connection string and the write token as secrets.
 # Reads FLY_APP_NAME, FLY_API_TOKEN, DATABASE_URL and MARGINAL_WRITE_TOKEN from the environment
 # (or from .env in the repository root). Uses Fly's remote builder, so no local Docker is needed.

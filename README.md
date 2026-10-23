@@ -125,7 +125,7 @@ and the test corrected one.
 | Statistics | block bootstrap, placebo inference, Benjamini-Hochberg and coverage in `packages/evaluation` and `packages/experiments` |
 | Simulation | `packages/sim` |
 | SQL | the marts in `web/public/data`, queried in the browser by DuckDB-WASM (`web/src/lib/data.ts`) |
-| APIs, persistence, deployment | `packages/api`, `fly.toml`, `scripts/check_persistence.py`, `deploy/` |
+| APIs, persistence, deployment | `packages/api`, `Dockerfile.vercel`, `scripts/check_persistence.py`, `deploy/` |
 | Visualization | `web/`, the validated palette (`web/src/theme/palette.json`), one callout per chart |
 | Communication | `report/quarterly-review.md` and the pushback paragraph on every page |
 | Data licensing and provenance | `data/PROVENANCE.md`, the three declared licenses |
@@ -142,7 +142,7 @@ Each line is done or not done, with one sentence of evidence.
 | 4 | Mix model `own` with curves, marginal returns and intervals; the recovery study on six conditions with at least twenty seeds | done | 120 fits ran (120 completed) across 6 conditions and 20 seeds; `results/recovery/own_summary.parquet`. |
 | 5 | Mix model `bayes` on the same interface; the cross check table with the truth column; the recovery study on the stated seeds | done | 18 sampled fits across six conditions and 3 seeds; the cross check table in `RESULTS.md` (disagreements beyond intervals: none). |
 | 6 | Geo lift test: power curve, registered plan hash, SRM gate, DiD and synthetic control with placebo inference; estimate against truth | done | Plan hash `53733a76fe1af6ec`, power at the true effect 100% from 60 simulations per design point, SRM passed, DiD error +12.4%, synthetic control error +11.6% with placebo p value 0.000. |
-| 7 | API deployed on Fly with Neon; live URL in the README; verified from a separate client | done | https://marginal-alderquist-api.vercel.app, checked from AJAY, Windows, PowerShell 5.1.26100.9711 at 2026-10-23T17:56:55.3504903Z: yes; `results/deploy/verification.json`. |
+| 7 | API deployed on Vercel with Neon; live URL in the README; verified from a separate client | done | https://marginal-alderquist-api.vercel.app, checked from AJAY, Windows, PowerShell 5.1.26100.9711 at 2026-10-23T17:56:55.3504903Z: yes; `results/deploy/verification.json`. |
 | 8 | Plans and results observed from an independent connection; audit before response; the out of process check | done | `tests/api/test_registry.py` (`test_plan_is_committed`, `test_experiment_result_is_committed`, `test_audit_precedes_response`) and `scripts/check_persistence.py --start-server` in CI. |
 | 9 | Calibration: a posted lift result changes both backends; before and after recovery error; the interior test on the weight | done | `own` error on the tested channel 36.1% to 15.2% over 20 seeds; `bayes` 17.7% to 14.7% over 3 seeds; weight test interior. |
 | 10 | Budget optimizer with constraints and the equalization check; the regret study; the two headline numbers with intervals; the interior test on the allocation | done | Marginal returns equal across interior channels (yes, spread 0.000), solver "Optimization terminated successfully" from 8 starts, allocation interior; the regret study over 10 seeds in `results/budget/regret_summary.parquet`. |
@@ -158,7 +158,7 @@ Each line is done or not done, with one sentence of evidence.
 Stretch items, listed and never counted: the Criteo full release (done, and it replaced the ten
 percent run because the mirror is gone); the registry gates and the models page (not done);
 the customers, attribution and explore pages (not done); Markov attribution (not done); the geo
-hierarchy (not done); the containers in CI (`Dockerfile.api` is built by Fly on every deploy;
+hierarchy (not done); the containers in CI (Vercel builds `Dockerfile.vercel` on every push to main;
 the pipeline container is not built in CI); the demo GIF (not done); the release workflow
 (`.github/workflows/release.yml`, done); the load test (`scripts/load_test.py`, not run against
 the live API).

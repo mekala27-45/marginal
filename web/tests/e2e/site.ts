@@ -22,8 +22,8 @@ export const recorded: { responses: Record<string, { body: { plan_id?: string; p
   data("recorded_session.json");
 
 /**
- * Open a route with every request that leaves the test server left hanging, the way a stopped Fly
- * machine behaves. The page's six second probe then gives up and it answers from the recorded
+ * Open a route with every request that leaves the test server left hanging, the way a cold API
+ * that never answers behaves. The page's six second probe then gives up and it answers from the recorded
  * session. No test needs the network, and none can reach a live API by accident.
  */
 export async function open(page: Page, route: string): Promise<void> {

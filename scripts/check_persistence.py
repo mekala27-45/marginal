@@ -3,7 +3,7 @@ three back through a connection this process opens itself.
 
 Two modes. `--start-server` starts the API in a child process against DATABASE_URL (CI, or a
 local Postgres), drives it over HTTP, then reads the rows with a fresh psycopg connection in
-this process. `--base-url` drives a live server (the Fly deployment) and reads back through
+this process. `--base-url` drives a live server (the Vercel deployment) and reads back through
 the API's own GET endpoints from this separate client, which is the verification the README
 prints. The audit row must be observed before the response's served_at in both modes.
 

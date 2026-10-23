@@ -125,7 +125,7 @@ and the test corrected one.
 | Statistics | block bootstrap, placebo inference, Benjamini-Hochberg and coverage in `packages/evaluation` and `packages/experiments` |
 | Simulation | `packages/sim` |
 | SQL | the marts in `web/public/data`, queried in the browser by DuckDB-WASM (`web/src/lib/data.ts`) |
-| APIs, persistence, deployment | `packages/api`, `fly.toml`, `scripts/check_persistence.py`, `deploy/` |
+| APIs, persistence, deployment | `packages/api`, `Dockerfile.vercel`, `scripts/check_persistence.py`, `deploy/` |
 | Visualization | `web/`, the validated palette (`web/src/theme/palette.json`), one callout per chart |
 | Communication | `report/quarterly-review.md` and the pushback paragraph on every page |
 | Data licensing and provenance | `data/PROVENANCE.md`, the three declared licenses |
@@ -139,7 +139,7 @@ Each line is done or not done, with one sentence of evidence.
 Stretch items, listed and never counted: the Criteo full release (done, and it replaced the ten
 percent run because the mirror is gone); the registry gates and the models page (not done);
 the customers, attribution and explore pages (not done); Markov attribution (not done); the geo
-hierarchy (not done); the containers in CI (`Dockerfile.api` is built by Fly on every deploy;
+hierarchy (not done); the containers in CI (Vercel builds `Dockerfile.vercel` on every push to main;
 the pipeline container is not built in CI); the demo GIF (not done); the release workflow
 (`.github/workflows/release.yml`, done); the load test (`scripts/load_test.py`, not run against
 the live API).

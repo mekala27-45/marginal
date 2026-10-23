@@ -99,26 +99,22 @@ no target for it.
 
 ## Deploying the API
 
-The API runs on Fly with its database on Neon. The deploy needs `flyctl`, a Fly account and these
-variables, from the environment or a `.env` file (see `.env.example`):
+The API runs on Vercel as a container function, with its database on Neon. It is live at
+https://marginal-alderquist-api.vercel.app. To set it up once:
 
-- `DATABASE_URL`, the Neon connection string
-- `MARGINAL_WRITE_TOKEN`, the token writes must carry
-- `FLY_API_TOKEN`, for flyctl
-- `FLY_APP_NAME`, which defaults to `marginal-alderquist-api`
+- Import the repository in Vercel and pick the Container preset.
+- Point the build at `Dockerfile.vercel`.
+- In the project settings, add these environment variables:
+  - `DATABASE_URL`, the Neon connection string
+  - `MARGINAL_WRITE_TOKEN`, the token writes must carry
+  - `MARGINAL_CORS_ORIGINS`, the site origins allowed to call the API
 
-From Linux or macOS, `make deploy` runs `deploy/deploy.sh`: it creates the app when it does not
-exist, stages the two secrets, and deploys with Fly's remote builder, so no local Docker is needed.
-From Windows:
+After that, every push to main redeploys. There is no deploy command to run and no deploy
+workflow. The function scales to zero when idle, so the first request after a quiet spell takes a
+second or so.
 
-```powershell
-powershell -ExecutionPolicy Bypass -File deploy\deploy.ps1
-```
-
-reads `.env` beside or above the repository, installs flyctl when it is missing, generates a write
-token when none is set, deploys, checks `/v1/health`, and writes the live address and the token to
-`deploy/live-url.txt` and `deploy/write-token.txt` and a transcript to `deploy/deploy-log.txt`, all
-ignored by git.
+`fly.toml`, `deploy/deploy.sh`, `deploy/deploy.ps1` and `make deploy` are the former Fly route,
+kept for history. Fly now asks for a card, so they no longer run against a live app.
 
 **Verify from a separate client.** On a machine that is neither the server nor the build machine:
 
@@ -132,9 +128,8 @@ all three back through the API, checks that the audit row came before the respon
 `results/deploy/verification.json`. From any machine, `make verify-api` with `MARGINAL_API_BASE` set
 to the live address runs `scripts/check_persistence.py --base-url` against it.
 
-**Continuous deploys.** `.github/workflows/deploy.yml` redeploys on a push to main that touches the
-API, the model exports or the Fly configuration, when the repository variable `FLY_DEPLOY_ENABLED`
-is true, using the `FLY_API_TOKEN` secret, and then checks `/v1/health` from the runner.
+**Continuous deploys.** Vercel builds and redeploys on every push to main. Check `/v1/health`
+after it finishes.
 
 ## Redeploying after a calibration
 
@@ -144,8 +139,7 @@ it is built, so a new calibration reaches the live API only through a new deploy
 - First run `make calibrate`, and `make clv budget` if lifetime value changed, then
   `make manifest render marts`.
 - Commit the results.
-- Push, which redeploys when the deploy workflow is enabled, or run `deploy/deploy.sh` or
-  `deploy/deploy.ps1`.
+- Push to main, which redeploys on Vercel.
 - Check that `/v1/health` names the calibrated export, `own-0c071596-calibrated`.
 - Last, run `deploy/verify.ps1` from a separate client and commit the new
   `results/deploy/verification.json`.
@@ -161,7 +155,7 @@ and builds the static export into `web/out`. `npm --prefix web run dev` serves i
 `web/public/data`, which `make marts` writes and which is committed.
 
 `.github/workflows/pages.yml` publishes it: on a push to main it builds with the base path
-`/marginal` and the live API from the `MARGINAL_API_URL` repository variable (the Fly address when
+`/marginal` and the live API from the `MARGINAL_API_URL` repository variable (the Vercel address when
 the variable is empty), runs the type check and the browser tests, and deploys `web/out` to GitHub
 Pages. The repository's Pages source must be set to GitHub Actions.
 
@@ -171,7 +165,7 @@ The site falls back to a recorded API session while the live API is asleep. To r
 
 ```sh
 MARGINAL_TEST_DATABASE_URL=postgresql+psycopg://... uv run python scripts/record_session.py --start-server
-uv run python scripts/record_session.py --base-url https://marginal-alderquist-api.fly.dev
+uv run python scripts/record_session.py --base-url https://marginal-alderquist-api.vercel.app
 ```
 
 The first starts the API against a local Postgres; the second drives a running server. Either walks
