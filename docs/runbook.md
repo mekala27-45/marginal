@@ -150,7 +150,7 @@ it is built, so a new calibration reaches the live API only through a new deploy
 - Last, run `deploy/verify.ps1` from a separate client and commit the new
   `results/deploy/verification.json`.
 
-When the live instance was last verified (2026-09-28T04:44:12.5119589Z), `/v1/health` named
+When the live instance was last verified (2026-10-23T17:56:55.3504903Z), `/v1/health` named
 own-0c071596-calibrated.
 
 ## The site

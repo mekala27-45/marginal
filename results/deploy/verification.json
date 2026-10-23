@@ -1,18 +1,18 @@
 {
-    "base_url":  "https://marginal-alderquist-api.fly.dev",
-    "client":  "AJAY, Windows, PowerShell 5.1.26100.9444",
-    "checked_at":  "2026-09-28T04:44:12.5119589Z",
+    "base_url":  "https://marginal-alderquist-api.vercel.app",
+    "client":  "AJAY, Windows, PowerShell 5.1.26100.9711",
+    "checked_at":  "2026-10-23T17:56:55.3504903Z",
     "health":  {
                    "status":  "ok",
                    "database":  "ok",
                    "model_version":  "own-0c071596-calibrated"
                },
-    "experiment_id":  "f43681df-ebd2-5f35-992a-354f231d2419",
-    "plan_hash":  "370a225bdd954ae5",
+    "experiment_id":  "8c9c1378-1332-5565-8fc4-af05ce219406",
+    "plan_hash":  "9a83b43927174311",
     "result_read_back":  123456.0,
-    "plan_id":  "f461a56a-0734-4918-8afa-81485cb4ff87",
-    "plan_expected_profit":  30089.54411122686,
-    "audit_entries":  6,
+    "plan_id":  "74004df2-65d7-424f-91c8-07725e869c62",
+    "plan_expected_profit":  30089.544111226976,
+    "audit_entries":  11,
     "audit_before_response":  true,
     "statement_present":  true,
     "passed":  true

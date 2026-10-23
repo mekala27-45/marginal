@@ -174,7 +174,7 @@ A ticked line is met. Any other line names what it is instead: partly met, not b
 applicable, with the reason.
 
 - [x] **trained**: Fit in the pipeline (`make recovery-bayes`) on the same 156 weeks as own, and set beside own and the truth, channel by channel, as the cross check in the quarterly review.
-- [x] **timed**: The panel runs from 2023-10-02 to 2026-09-21 and the manifest is as of 2026-09-27; the fit sees no week after the panel's last, and the lift test it is calibrated on ran inside the panel, weeks 148 to 155.
+- [x] **timed**: The panel runs from 2023-10-02 to 2026-09-21 and the manifest is as of 2026-10-23; the fit sees no week after the panel's last, and the lift test it is calibrated on ran inside the panel, weeks 148 to 155.
 - [x] **calibrated**: Its 90% posterior intervals hold the truth in 7 of 7 channels here and 98% of the time across the recovery study; after lift calibration the tested channel's interval misses the truth, as the metrics say.
 - [ ] **useful** (partly): It informs the budget only through the cross check and the calibration comparison; the plan and the API use own's curves, so no dollar moves on bayes's estimates alone.
 - [ ] **fair** (not applicable): Not applicable to people, because the model sees weekly national spend and sales and no customer; the parties a plan affects are the channels and the teams behind them.

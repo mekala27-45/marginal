@@ -149,7 +149,7 @@ A ticked line is met. Any other line names what it is instead: partly met, not b
 applicable, with the reason.
 
 - [x] **trained**: Fit in the pipeline (`make targeting`) on each dataset's training split (60% of customers, split by customer with one seeded draw), against two baselines that are not straw men: the sure things rule and emailing everyone.
-- [x] **timed**: The features describe each customer before the contact and the outcome follows it (on Hillstrom, conversion in the two weeks after the email); the share is chosen on validation before the test split is scored, once, and the manifest is as of 2026-09-27.
+- [x] **timed**: The features describe each customer before the contact and the outcome follows it (on Hillstrom, conversion in the two weeks after the email); the share is chosen on validation before the test split is scored, once, and the manifest is as of 2026-10-23.
 - [ ] **calibrated** (partly): Its scores are rankings, not calibrated probabilities; the Qini coefficient carries a paired bootstrap interval at 90% on each test split, and on the simulator the predicted uplift is checked against the true effect (PEHE 0.016).
 - [x] **useful**: It picks who gets the email: the share contacted is chosen where profit peaks on validation, at $0.12 per email and a 30% margin on the spend it causes on Hillstrom; Criteo carries no cost, so there it only ranks.
 - [ ] **fair** (not built): None of the features is a protected attribute, but zip code class on Hillstrom and region on the simulator can stand in for one, and the build did not compare who is contacted across them.

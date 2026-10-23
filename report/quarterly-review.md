@@ -1,6 +1,6 @@
 # Alderquist quarterly marketing review
 
-As of 2026-09-27. For the chief marketing officer, from marketing science. The simulated
+As of 2026-10-23. For the chief marketing officer, from marketing science. The simulated
 weekly panel behind the mix model runs from 2023-10-02 to 2026-09-21.
 
 Every figure below is a value or a table in `results/manifest.json`, rendered by the claim gate;

@@ -1,5 +1,5 @@
 {
- "as_of": "2026-09-27",
+ "as_of": "2026-10-23",
  "figures": {},
  "seed": 12,
  "tables": {
@@ -1458,7 +1458,7 @@
     "text"
    ],
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "both",
     "origin": "marginal_registry.stages.assemble",
@@ -5743,7 +5743,7 @@
   "build.stages_present": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_registry.stages.assemble",
@@ -7815,7 +7815,7 @@
   "deploy.audit_before_response": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -7829,7 +7829,7 @@
   "deploy.audit_entries": {
    "fmt": "int",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -7838,12 +7838,12 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": 6
+   "value": 11
   },
   "deploy.base_url": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -7852,12 +7852,12 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": "https://marginal-alderquist-api.fly.dev"
+   "value": "https://marginal-alderquist-api.vercel.app"
   },
   "deploy.checked_at": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -7866,12 +7866,12 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": "2026-09-28T04:44:12.5119589Z"
+   "value": "2026-10-23T17:56:55.3504903Z"
   },
   "deploy.client": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -7880,12 +7880,12 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": "AJAY, Windows, PowerShell 5.1.26100.9444"
+   "value": "AJAY, Windows, PowerShell 5.1.26100.9711"
   },
   "deploy.experiment_id": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -7894,12 +7894,12 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": "f43681df-ebd2-5f35-992a-354f231d2419"
+   "value": "8c9c1378-1332-5565-8fc4-af05ce219406"
   },
   "deploy.health_database": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -7913,7 +7913,7 @@
   "deploy.health_status": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -7927,7 +7927,7 @@
   "deploy.model_version": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -7941,7 +7941,7 @@
   "deploy.passed": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -7955,7 +7955,7 @@
   "deploy.plan_expected_profit": {
    "fmt": "usd0",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -7969,7 +7969,7 @@
   "deploy.plan_hash": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -7978,12 +7978,12 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": "370a225bdd954ae5"
+   "value": "9a83b43927174311"
   },
   "deploy.plan_id": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -7992,12 +7992,12 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": "f461a56a-0734-4918-8afa-81485cb4ff87"
+   "value": "74004df2-65d7-424f-91c8-07725e869c62"
   },
   "deploy.result_read_back": {
    "fmt": "usd0",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -8011,7 +8011,7 @@
   "deploy.statement_present": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -8025,7 +8025,7 @@
   "deploy.status": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/verify.ps1",
@@ -8963,7 +8963,7 @@
   "geo.replay.client": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/replay-registration.ps1",
@@ -8972,12 +8972,12 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": "AJAY, Windows, PowerShell 5.1.26100.9444"
+   "value": "AJAY, Windows, PowerShell 5.1.26100.9711"
   },
   "geo.replay.experiment_id": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/replay-registration.ps1",
@@ -8991,7 +8991,7 @@
   "geo.replay.plan_hash": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/replay-registration.ps1",
@@ -9005,7 +9005,7 @@
   "geo.replay.plan_hash_matches": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/replay-registration.ps1",
@@ -9019,7 +9019,7 @@
   "geo.replay.registered_at_on_live": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/replay-registration.ps1",
@@ -9033,7 +9033,7 @@
   "geo.replay.replayed_at": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/replay-registration.ps1",
@@ -9042,12 +9042,12 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": "2026-09-28T04:44:53.6655930Z"
+   "value": "2026-10-23T17:56:58.5704445Z"
   },
   "geo.replay.result_read_back": {
    "fmt": "usd0",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/replay-registration.ps1",
@@ -9061,7 +9061,7 @@
   "geo.replay.results_on_live": {
    "fmt": "int",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/replay-registration.ps1",
@@ -9070,12 +9070,12 @@
     "seeds": null,
     "source": "recorded"
    },
-   "value": 1
+   "value": 2
   },
   "geo.replay.status": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "deploy/replay-registration.ps1",
@@ -10083,7 +10083,7 @@
   "mmm.crosscheck.disagreement_count": {
    "fmt": "int",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "both",
     "origin": "marginal_registry.stages.assemble",
@@ -10097,7 +10097,7 @@
   "mmm.crosscheck.disagreements": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "both",
     "origin": "marginal_registry.stages.assemble",
@@ -10825,7 +10825,7 @@
   "palette.dark.first_three_all_pairs_cvd": {
    "fmt": "float1",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "scripts/validate_palette.js",
@@ -10839,7 +10839,7 @@
   "palette.dark.worst_adjacent_cvd": {
    "fmt": "float1",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "scripts/validate_palette.js",
@@ -10853,7 +10853,7 @@
   "palette.dark.worst_adjacent_normal": {
    "fmt": "float1",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "scripts/validate_palette.js",
@@ -10867,7 +10867,7 @@
   "palette.dark.worst_card_contrast": {
    "fmt": "float2",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "scripts/validate_palette.js",
@@ -10881,7 +10881,7 @@
   "palette.dark.worst_slot_contrast": {
    "fmt": "float2",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "scripts/validate_palette.js",
@@ -10895,7 +10895,7 @@
   "palette.failures": {
    "fmt": "int",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "scripts/validate_palette.js",
@@ -10909,7 +10909,7 @@
   "palette.light.first_three_all_pairs_cvd": {
    "fmt": "float1",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "scripts/validate_palette.js",
@@ -10923,7 +10923,7 @@
   "palette.light.worst_adjacent_cvd": {
    "fmt": "float1",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "scripts/validate_palette.js",
@@ -10937,7 +10937,7 @@
   "palette.light.worst_adjacent_normal": {
    "fmt": "float1",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "scripts/validate_palette.js",
@@ -10951,7 +10951,7 @@
   "palette.light.worst_card_contrast": {
    "fmt": "float2",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "scripts/validate_palette.js",
@@ -10965,7 +10965,7 @@
   "palette.light.worst_slot_contrast": {
    "fmt": "float2",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "scripts/validate_palette.js",
@@ -10979,7 +10979,7 @@
   "palette.validated": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "scripts/validate_palette.js",
@@ -10993,7 +10993,7 @@
   "policy.attribution_half_life_days": {
    "fmt": "float1",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11007,7 +11007,7 @@
   "policy.attribution_position_first": {
    "fmt": "pct0",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11021,7 +11021,7 @@
   "policy.attribution_position_last": {
    "fmt": "pct0",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11035,7 +11035,7 @@
   "policy.bootstrap_block_weeks": {
    "fmt": "int",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11049,7 +11049,7 @@
   "policy.bootstrap_replicates": {
    "fmt": "int",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11063,7 +11063,7 @@
   "policy.budget_ceiling_share": {
    "fmt": "pct0",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11077,7 +11077,7 @@
   "policy.budget_floor_share": {
    "fmt": "pct0",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11091,7 +11091,7 @@
   "policy.budget_max_change_share": {
    "fmt": "pct0",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11105,7 +11105,7 @@
   "policy.channel_count": {
    "fmt": "int",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11119,7 +11119,7 @@
   "policy.channel_order": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11133,7 +11133,7 @@
   "policy.clv_discount_rate_annual": {
    "fmt": "pct0",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11147,7 +11147,7 @@
   "policy.clv_horizon_months": {
    "fmt": "int",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11161,7 +11161,7 @@
   "policy.clv_payback_share": {
    "fmt": "pct0",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11175,7 +11175,7 @@
   "policy.contribution_margin": {
    "fmt": "pct0",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11189,7 +11189,7 @@
   "policy.contribution_margin_breakeven": {
    "fmt": "float2",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11203,7 +11203,7 @@
   "policy.email_cost_per_contact": {
    "fmt": "usd2",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11217,7 +11217,7 @@
   "policy.email_margin_on_spend": {
    "fmt": "pct0",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11231,7 +11231,7 @@
   "policy.interval_level": {
    "fmt": "pct0",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11245,7 +11245,7 @@
   "policy.lift_test_channel": {
    "fmt": "text",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11259,7 +11259,7 @@
   "policy.lift_test_length_weeks": {
    "fmt": "int",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11273,7 +11273,7 @@
   "policy.lift_test_pre_period_weeks": {
    "fmt": "int",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11287,7 +11287,7 @@
   "policy.lift_test_spend_change": {
    "fmt": "spct1",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11301,7 +11301,7 @@
   "policy.optimizer_starts": {
    "fmt": "int",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11315,7 +11315,7 @@
   "policy.placebo_permutations": {
    "fmt": "int",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11329,7 +11329,7 @@
   "policy.recovery_seeds_bayes": {
    "fmt": "int",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11343,7 +11343,7 @@
   "policy.recovery_seeds_own": {
    "fmt": "int",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11357,7 +11357,7 @@
   "policy.rolling_origins": {
    "fmt": "int",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",
@@ -11371,7 +11371,7 @@
   "policy.srm_alpha": {
    "fmt": "float3",
    "provenance": {
-    "as_of": "2026-09-27",
+    "as_of": "2026-10-23",
     "condition": null,
     "model": "none",
     "origin": "marginal_core.config.POLICY",

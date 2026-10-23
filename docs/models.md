@@ -27,7 +27,7 @@ stretched a line to tick it would be worse than one that leaves the box open.
 | Line | What it asks | What it means in this build |
 |---|---|---|
 | trained | In the pipeline, against a baseline, on a stated split | Every model is fit by a `make` target, never in a notebook. The mix models' plans are judged against last year's mix and an equal split on the true curves; the learners against the sure things rule and emailing everyone; lifetime value against the holdout year. The splits are stated: rolling origins in time for the mix models, 60%, 20% and 20% by customer for the learners, a calibration window and a holdout for lifetime value. |
-| timed | The data the model saw and the as of date are stated; nothing after it | The panel's weeks, the Hillstrom outcome window, the lifetime value calibration end and the manifest's as of date (2026-09-27) are printed on each card. |
+| timed | The data the model saw and the as of date are stated; nothing after it | The panel's weeks, the Hillstrom outcome window, the lifetime value calibration end and the manifest's as of date (2026-10-23) are printed on each card. |
 | calibrated | An interval or a calibration check against held out truth | Interval coverage against the simulator's truth in the recovery study (stated level 90%), Qini intervals from a paired bootstrap, and the lifetime value holdout by decile. |
 | useful | A decision it informs, with the cost or margin stated | The contribution margin of 42%; $0.12 per email and a 30% margin on the spend it causes; a payback share of 70% of lifetime value at margin. |
 | fair | Who is affected and how the build checked (features, segments) | The mix models see no person. The learners use no protected attribute, but zip code class and region can stand in for one and were not checked. Lifetime value has no demographic field; its segments are purchase frequency. |
@@ -51,7 +51,7 @@ request turns it off. `/v1/models` also lists the other exports on disk, the unc
 model and the calibrated bayes model, as files; no route uses them.
 
 The calibrated export in this build is `own-0c071596-calibrated`. When a separate client last
-checked the live instance (2026-09-28T04:44:12.5119589Z), `/v1/health` named
+checked the live instance (2026-10-23T17:56:55.3504903Z), `/v1/health` named
 `own-0c071596-calibrated`. Bayes, the two learners and the lifetime value model itself are not
 served.
 
