@@ -7,7 +7,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "/marginal";
 
 // The live API. The workflow passes the MARGINAL_API_URL repository variable, which is empty
 // until someone sets it, so an empty value falls back to the deployed address.
-const api = process.env.NEXT_PUBLIC_MARGINAL_API || "https://marginal-alderquist-api.fly.dev";
+const api = process.env.NEXT_PUBLIC_MARGINAL_API || "https://marginal-alderquist-api.vercel.app";
 
 const config: NextConfig = {
   output: "export",
